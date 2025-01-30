@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Npd简介 - 花日の博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="花日の博客"><meta name="msapplication-TileImage" content="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/%E5%BC%80%E6%94%BE.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="花日の博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1 简介官方文档库地址：https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;kubernetes&amp;#x2F;node-problem-detector node-problem-detector 旨在使集群管理堆栈中的上游层能够看到各种节点问题。它是一个在每个节点上运行的守护进程，检测节点问题并将其报告给apiserver。 node-problem-detector 可以作为 DaemonSet 运行，也可以独立运行。"><meta property="og:type" content="blog"><meta property="og:title" content="Npd简介"><meta property="og:url" content="https://hua-ri.github.io/"><meta property="og:site_name" content="花日"><meta property="og:description" content="1 简介官方文档库地址：https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;kubernetes&amp;#x2F;node-problem-detector node-problem-detector 旨在使集群管理堆栈中的上游层能够看到各种节点问题。它是一个在每个节点上运行的守护进程，检测节点问题并将其报告给apiserver。 node-problem-detector 可以作为 DaemonSet 运行，也可以独立运行。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/%E5%A4%B4%E5%83%8F.jpeg"><meta property="article:published_time" content="2024-11-19T07:01:21.000Z"><meta property="article:modified_time" content="2025-01-30T15:47:49.174Z"><meta property="article:author" content="hua-ri"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/%E5%A4%B4%E5%83%8F.jpeg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hua-ri.github.io/2024/11/19/devops/npd/npd%E7%AE%80%E4%BB%8B/"},"headline":"花日の博客","image":["https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/20191226231853.png"],"datePublished":"2024-11-19T07:01:21.000Z","dateModified":"2025-01-30T15:47:49.174Z","author":{"@type":"Person","name":"hua-ri"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject"}},"description":"1 简介官方文档库地址：https:&#x2F;&#x2F;github.com&#x2F;kubernetes&#x2F;node-problem-detector node-problem-detector 旨在使集群管理堆栈中的上游层能够看到各种节点问题。它是一个在每个节点上运行的守护进程，检测节点问题并将其报告给apiserver。 node-problem-detector 可以作为 DaemonSet 运行，也可以独立运行。"}</script><link rel="canonical" href="https://hua-ri.github.io/2024/11/19/devops/npd/npd%E7%AE%80%E4%BB%8B/"><link rel="icon" href="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/%E5%BC%80%E6%94%BE.png"><meta name="referrer" content="no-referrer-when-downgrade"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.loli.net/ajax/libs/pace/1.2.4/pace.min.js"></script><link rel="stylesheet" href="/live2d/waifu.css"><script type="text/javascript" async src="/live2d/autoload.js"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/logo.svg" alt="花日の博客" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/hua-ri/hua-ri.github.io"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><!--!--><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/20191226231853.png" alt="Npd简介"></span></div><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2024-11-19  <a class="commentCountImg" href="/2024/11/19/devops/npd/npd%E7%AE%80%E4%BB%8B/#comment-container"><span class="display-none-class">/2024/11/19/devops/npd/npd简介/</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="b91e82f5f97f7bf5411aa155d3ca0f5a">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>26 分钟  <i class="fas fa-pencil-alt"> </i>3.9 k</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">Npd简介</h1><div class="content"><h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h1><p>官方文档库地址：<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector">https://github.com/kubernetes/node-problem-detector</a></p>
+<p>node-problem-detector 旨在使集群管理堆栈中的上游层能够看到各种节点问题。它是一个在每个节点上运行的守护进程，检测节点问题并将其报告给apiserver。</p>
+<p>node-problem-detector 可以作为 <a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">DaemonSet</a> 运行，也可以独立运行。现在它作为 GKE集群中默认启用的<a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/tree/master/cluster/addons">Kubernetes Addon</a>运行。它也作为<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/aks/faq#what-is-the-purpose-of-the-aks-linux-extension-i-see-installed-on-my-linux-vmss-instances">AKS Linux Extension</a>的一部分在 AKS 中默认启用。</p>
+<h2 id="1-2-背景"><a href="#1-2-背景" class="headerlink" title="1.2 背景"></a>1.2 背景</h2><p>大量节点问题可能会影响节点上运行的 pod，例如：</p>
+<ul>
+<li>基础设施守护进程问题：ntp 服务关闭；</li>
+<li>硬件问题：CPU、内存或磁盘损坏；</li>
+<li>内核问题：内核死锁、文件系统损坏；</li>
+<li>容器运行时问题：运行时守护进程无响应；</li>
+<li>…</li>
+</ul>
+<p>目前，这些问题对于集群管理堆栈中的上游层是不可见的，因此 Kubernetes 将继续将 pod 调度到坏节点。</p>
+<p>为了解决这个问题，我们引入了这个新的守护进程node-problem-detector来从各种守护进程收集节点问题，并将它们提供给上游层。一旦上游层能够看到这些问题，我们就可以讨论 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector?tab=readme-ov-file#remedy-systems">remedy systems</a>了。</p>
+<h2 id="1-3-Problem-API"><a href="#1-3-Problem-API" class="headerlink" title="1.3 Problem API"></a>1.3 Problem API</h2><p>node-problem-detector 使用Event并向NodeConditionapiserver 报告问题。</p>
+<ul>
+<li>NodeCondition：导致节点无法用于 pod 的永久性问题应报告为NodeCondition。</li>
+<li>Event：对 pod 影响有限但具有参考意义的临时问题应报告为Event。</li>
+</ul>
+<h2 id="1-4-Problem-Daemon"><a href="#1-4-Problem-Daemon" class="headerlink" title="1.4 Problem Daemon"></a>1.4 Problem Daemon</h2><p>问题守护进程是 node-problem-detector 的一个子守护进程。它监视特定类型的节点问题并将其报告给 node-problem-detector。</p>
+<p>守护进程可能是：</p>
+<ul>
+<li>专为 Kubernetes 专用用例设计的微型守护进程。</li>
+<li>与节点问题检测器集成的现有节点健康监控守护进程。</li>
+</ul>
+<p>目前，问题守护进程在 node-problem-detector 二进制文件中以 goroutine 的形式运行。未来，我们会将 node-problem-detector和问题守护进程分离到不同的容器中，并使用 pod 规范将它们组合在一起。</p>
+<p>每种类型的问题守护进程都可以通过设置相应的构建标签在编译时禁用。如果在编译时禁用它们，则它们的所有构建依赖项、全局变量和后台goroutine 都将从编译的可执行文件中剔除。</p>
+<p>支持的守护进程列表：</p>
+<table>
+<thead>
+<tr>
+<th>问题守护进程类型</th>
+<th>节点状态</th>
+<th>解释</th>
+<th>配置</th>
+<th>禁用构建标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemlogmonitor">SystemLogMonitor</a></td>
+<td>KernelDeadlock ReadonlyFilesystem FrequentKubeletRestart FrequentDockerRestart FrequentContainerdRestart</td>
+<td>系统日志监视器监视系统日志并根据预定义的规则报告问题和指标。</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor-filelog.json">filelog</a>, <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor.json">kmsg</a>, <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor-counter.json">kernel</a>, <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/abrt-adaptor.json">abrt</a>, <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/systemd-monitor-counter.json">systemd</a></td>
+<td>disable_system_log_monitor</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemstatsmonitor">SystemStatsMonitor</a></td>
+<td>None(Could be added in the future)</td>
+<td>节点问题检测器的系统统计监视器，用于收集各种与健康相关的系统统计信息作为指标。请参阅<a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1SeaUz6kBavI283Dq8GBpoEUDrHA2a795xtw0OvjM568/edit">此处</a>的提案。</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/system-stats-monitor.json">system-stats-monitor</a></td>
+<td>disable_system_stats_monitor</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/custompluginmonitor">CustomPluginMonitor</a></td>
+<td>On-demand(According to users configuration), existing example: NTPProblem</td>
+<td>一个自定义的 node-problem-detector 插件监控器，用于调用和检查各种节点问题，并使用用户定义的检查脚本。请参阅<a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1jK_5YloSYtboj-DtfjmYKxfNnUxCAvohLnsH5aGCAYQ/edit#">此处</a>的提案。</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/4ad49bbd84b8ced45ac825eac01ec93d9235935e/config/custom-plugin-monitor.json">example</a></td>
+<td>disable_custom_plugin_monitor</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/healthchecker">HealthChecker</a></td>
+<td>KubeletUnhealthy ContainerRuntimeUnhealthy</td>
+<td>节点问题检测器的健康检查器用于检查 kubelet 和容器运行时的健康状况。</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/health-checker-kubelet.json">kubelet</a> <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/health-checker-docker.json">docker</a> <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/health-checker-containerd.json">containerd</a></td>
+<td>Helm</td>
+</tr>
+</tbody></table>
+<h2 id="1-5-Exporter"><a href="#1-5-Exporter" class="headerlink" title="1.5 Exporter"></a>1.5 Exporter</h2><p>exporter 是 node-problem-detector 的一个组件。它向某些后端报告节点问题 和&#x2F;或 指标。其中一些可以在编译时使用构建标记禁用。支持的导出器列表：</p>
+<table>
+<thead>
+<tr>
+<th>Exporter</th>
+<th>解释</th>
+<th>禁用构建标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Kubernetes exporter</td>
+<td>Kubernetes 导出器向 Kubernetes API 服务器报告节点问题：临时问题报告为事件，永久问题报告为节点状况。</td>
+<td></td>
+</tr>
+<tr>
+<td>Prometheus exporter</td>
+<td>Prometheus 导出器将节点问题和指标本地报告为 Prometheus 指标</td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/exporter/stackdriver-exporter.json">Stackdriver exporter</a></td>
+<td>Stackdriver 导出器向 Stackdriver Monitoring API 报告节点问题和指标。</td>
+<td>disable_stackdriver_exporter</td>
+</tr>
+</tbody></table>
+<h2 id="1-6-用法"><a href="#1-6-用法" class="headerlink" title="1.6 用法"></a>1.6 用法</h2><h3 id="1-6-1-标志"><a href="#1-6-1-标志" class="headerlink" title="1.6.1 标志"></a>1.6.1 标志</h3><ul>
+<li>–version：打印节点问题检测器的当前版本。</li>
+<li>–hostname-override：node-problem-detector 用于更新状态和发出事件的自定义节点名称。node-problem-detector 首先从hostname-override获取节点名称，然后从NODE_NAME环境变量 获取，最后返回到os.Hostname。</li>
+</ul>
+<h3 id="1-6-2-对于系统日志监控"><a href="#1-6-2-对于系统日志监控" class="headerlink" title="1.6.2 对于系统日志监控"></a>1.6.2 对于系统日志监控</h3><p>–config.system-log-monitor：系统日志监视器配置文件路径列表，以逗号分隔，例如 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor.json">config&#x2F;kernel-monitor.json</a>。节点问题检测器将为每个配置启动单独的日志监视器。您可以使用不同的日志监视器来监视不同的系统日志。</p>
+<h3 id="1-6-3-对于系统统计监控"><a href="#1-6-3-对于系统统计监控" class="headerlink" title="1.6.3 对于系统统计监控"></a>1.6.3 对于系统统计监控</h3><p>–config.system-stats-monitor：系统统计监控配置文件的路径列表，以逗号分隔，例如 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/system-stats-monitor.json">config&#x2F;system-stats-monitor.json</a>。节点问题检测器将为每个配置启动一个单独的系统统计监控器。您可以使用不同的系统统计监控器来监控与问题相关的不同系统统计信息。</p>
+<h3 id="1-6-4-对于自定义插件监视器"><a href="#1-6-4-对于自定义插件监视器" class="headerlink" title="1.6.4 对于自定义插件监视器"></a>1.6.4 对于自定义插件监视器</h3><p>–config.custom-plugin-monitor：自定义插件监控配置文件路径列表，以逗号分隔，例如 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/custom-plugin-monitor.json">config&#x2F;custom-plugin-monitor.json</a>。节点问题检测器将为每个配置启动一个单独的自定义插件监控。您可以使用不同的自定义插件监控来监控不同的节点问题。</p>
+<h3 id="1-6-5-对于健康检查者"><a href="#1-6-5-对于健康检查者" class="headerlink" title="1.6.5 对于健康检查者"></a>1.6.5 对于健康检查者</h3><ul>
+<li>–enable-k8s-exporter：启用向 Kubernetes API 服务器报告，默认为true。</li>
+<li>–apiserver-override：用于自定义 node-problem-detector 如何连接 apiserver 的 URI<br>参数。如果–enable-k8s-exporter是，则忽略此参数。格式与<a target="_blank" rel="noopener" href="https://github.com/kubernetes/heapster">Heapster</a> 的标志false相同。例如，要无需身份验证即可运行，请使用以下配置： <a target="_blank" rel="noopener" href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">source</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://APISERVER_IP:APISERVER_PORT?inClusterConfig=false</span><br></pre></td></tr></table></figure>
+
+<p>请参阅<a target="_blank" rel="noopener" href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">heapster 文档</a><br>以获取可用选项的完整列表。</p>
+<ul>
+<li>–address：绑定节点问题检测服务器的地址。</li>
+<li>–port：绑定节点问题检测服务器的端口。使用 0 表示禁用。</li>
+</ul>
+<h3 id="1-6-6-对于-Prometheus-exporter"><a href="#1-6-6-对于-Prometheus-exporter" class="headerlink" title="1.6.6 对于 Prometheus exporter"></a>1.6.6 对于 Prometheus exporter</h3><ul>
+<li>–prometheus-address：绑定Prometheus抓取端点的地址，默认为127.0.0.1。</li>
+<li>–prometheus-port：绑定 Prometheus 抓取端点的端口，默认为 20257。使用 0 表示禁用。</li>
+</ul>
+<h3 id="1-6-7-对于-Stackdriver-exporter"><a href="#1-6-7-对于-Stackdriver-exporter" class="headerlink" title="1.6.7 对于 Stackdriver exporter"></a>1.6.7 对于 Stackdriver exporter</h3><p>–exporter.stackdriver：Stackdriver<br>导出器配置文件的路径，例如<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/exporter/stackdriver-exporter.json">config&#x2F;exporter&#x2F;stackdriver-exporter.json</a>，默认为空字符串。设置为空字符串即可禁用。</p>
+<h3 id="1-6-8-已弃用的标志"><a href="#1-6-8-已弃用的标志" class="headerlink" title="1.6.8 已弃用的标志"></a>1.6.8 已弃用的标志</h3><ul>
+<li><p>–system-log-monitors：系统日志监控配置文件的路径列表，以逗号分隔。此选项已弃用，由–config.system-log-monitor替代，并将被删除。如果同时设置–system-log-monitors和 –config.system-log-monitor ， NPD 将崩溃。</p>
+</li>
+<li><p>–custom-plugin-monitors：自定义插件监控配置文件的路径列表，以逗号分隔。此选项已弃用，由–config.custom-plugin-monitor替代，并将被删除。如果同时设置–custom-plugin-monitors和 –config.custom-plugin-monitor，NPD 将崩溃。</p>
+</li>
+</ul>
+<h2 id="1-7-构建镜像"><a href="#1-7-构建镜像" class="headerlink" title="1.7 构建镜像"></a>1.7 构建镜像</h2><ul>
+<li>安装libsystemdARM GCC 工具链的开发依赖项<ul>
+<li>Debian &#x2F; Ubuntu：apt install libsystemd-dev gcc-aarch64-linux-gnu</li>
+</ul>
+</li>
+<li>git clone <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:kubernetes&#x2F;node-problem-detector.git</li>
+<li>在顶层目录中运行make。它将：<ul>
+<li>构建二进制文件。</li>
+<li>构建docker镜像。二进制文件和config&#x2F;被复制到docker镜像中。</li>
+</ul>
+</li>
+</ul>
+<p>如果您不需要某些类别的问题守护进程，您可以选择在编译时禁用它们。这是保持 node-problem-detector运行时紧凑且没有不必要代码（例如全局变量、goroutines 等）的最佳方法。</p>
+<p>您可以通过BUILD_TAGS在运行之前设置环境变量来实现这一点make。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BUILD_TAGS=&quot;disable_custom_plugin_monitor disable_system_stats_monitor&quot; make</span><br></pre></td></tr></table></figure>
+
+<p>上述命令将在不使用<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/custompluginmonitor">自定义插件监视器</a>和<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemstatsmonitor">系统统计监视器</a>的情况下编译node-problem-detector 。查看<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector#problem-daemon">问题守护进程</a>部分，了解如何在编译时禁用每个问题守护进程。</p>
+<h2 id="1-8-推送镜像"><a href="#1-8-推送镜像" class="headerlink" title="1.8 推送镜像"></a>1.8 推送镜像</h2><p><code>make push</code>将 docker 镜像上传到注册表。默认情况下，镜像将上传到 <code>staging-k8s.gcr.io</code>。可以轻松修改<code>Makefile</code>以将镜像推送到另一个注册表。</p>
+<h2 id="1-9-安装"><a href="#1-9-安装" class="headerlink" title="1.9 安装"></a>1.9 安装</h2><p>将 node-problem-detector<br>安装到集群中的最简单方法是使用<a target="_blank" rel="noopener" href="https://github.com/deliveryhero/helm-charts/tree/master/stable/node-problem-detector">Helm 图表</a>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">helm repo add deliveryhero https://charts.deliveryhero.io/</span><br><span class="line">helm install --generate-name deliveryhero/node-problem-detector</span><br></pre></td></tr></table></figure>
+
+<p>或者，手动安装 node-problem-detector：</p>
+<p>编辑<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/node-problem-detector.yaml">node-problem-detector.yaml</a>以适应您的环境。将<code>log</code>卷设置为您的系统日志目录（由 SystemLogMonitor 使用）。您可以使用 ConfigMap 覆盖<code>config</code> pod 内的目录。</p>
+<p>编辑<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/node-problem-detector-config.yaml">node-problem-detector-config.yaml</a>来配置 node-problem-detector。</p>
+<ul>
+<li>编辑<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/rbac.yaml">rbac.yaml</a>以适合您的环境。</li>
+<li>使用 创建 ServiceAccount 和 ClusterRoleBinding <code>kubectl create -f rbac.yaml</code>。</li>
+<li>使用 创建 ConfigMap <code>kubectl create -f node-problem-detector-config.yaml</code>。</li>
+<li>使用 创建 DaemonSet <code>kubectl create -f node-problem-detector.yaml</code>。</li>
+</ul>
+<h2 id="1-10-开始独立运行"><a href="#1-10-开始独立运行" class="headerlink" title="1.10 开始独立运行"></a>1.10 开始独立运行</h2><p>要独立运行 node-problem-detector，您应该设置inClusterConfig为false，并且教 node-problem-detector 如何 访问 apiserver，也就是apiserver-override。</p>
+<p>要使用不安全的 apiserver 连接独立运行 node-problem-detector：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node-problem-detector --apiserver-override=http://APISERVER_IP:APISERVER_INSECURE_PORT?inClusterConfig=false</span><br></pre></td></tr></table></figure>
+
+<p>更多场景请见<a target="_blank" rel="noopener" href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">此处</a></p>
+<h2 id="1-11-试用"><a href="#1-11-试用" class="headerlink" title="1.11 试用"></a>1.11 试用</h2><p>您可以在正在运行的集群中尝试使用 node-problem-detector，方法是将消息注入到 node-problem-detector 正在监视的日志中。</p>
+<p>例如，假设 node-problem-detector 正在使用KernelMonitor。在您的机器上运行<code>kubectl get events -w</code>。在节点上运行<code>sudo sh -c &quot;echo &#39;kernel: BUG: unable to handle kernel NULL pointer dereference at TESTING&#39; &gt;&gt; /dev/kmsg&quot;</code>。然后您应该会看到该KernelOopss事件。</p>
+<p>添加新规则或开发节点问题检测器时，在独立模式下在本地工作站上进行测试可能更容易。对于 API 服务器，一种简单的方法是使用kubectl proxy正在运行的集群的 API 服务器在本地可用。您会收到一些错误，因为 API 服务器无法识别您的本地工作站。但无论如何，您仍然应该能够测试您的新规则。</p>
+<p>例如，测试KernelMonitor规则：</p>
+<ul>
+<li><code>make</code>（本地构建node-problem-detector）</li>
+<li><code>kubectl proxy --port=8080</code>（使正在运行的集群的 API 服务器在本地可用）</li>
+<li>将KernelMonitor更新到您的本地内核日志目录<code>logPath</code>。例如，在某些 Linux 系统上，它是<code>/run/log/journal</code><br>而不是<code>/var/log/journal</code>。</li>
+<li><code>./bin/node-problem-detector --logtostderr --apiserver-override=http://127.0.0.1:8080?inClusterConfig=false --config.system-log-monitor=config/kernel-monitor.json --config.system-stats-monitor=config/system-stats-monitor.json --port=20256 --prometheus-port=2025</code>（或指向任何 API 服务器地址：端口和 Prometheus 端口）</li>
+<li><code>sudo sh -c &quot;echo &#39;kernel: BUG: unable to handle kernel NULL pointer dereference at TESTING&#39; &gt;&gt; /dev/kmsg&quot;</code></li>
+<li>您可以<code>KernelOops</code>在节点问题检测器日志中看到事件。</li>
+<li><code>sudo sh -c &quot;echo &#39;kernel: INFO: task docker:20744 blocked for more than 120 seconds.&#39; &gt;&gt; /dev/kmsg&quot;</code></li>
+<li>您可以在node-problem-detector log看<code>DockerHung</code>event和状态</li>
+<li>您可以在<a target="_blank" rel="noopener" href="http://127.0.0.1:20256/conditions%E6%9F%A5%E7%9C%8B%60DockerHung%60%E7%8A%B6%E6%80%81">http://127.0.0.1:20256/conditions查看`DockerHung`状态</a></li>
+<li>您可以在<a target="_blank" rel="noopener" href="http://127.0.0.1:20257/metrics%E4%B8%8A%E6%9F%A5%E7%9C%8B">http://127.0.0.1:20257/metrics上查看</a> Prometheus 格式的磁盘相关系统指标。</li>
+</ul>
+<p>注：<br>您可以在<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/tree/master/test/kernel_log_generator/problems">test&#x2F;kernel_log_generator&#x2F;problems</a>下查看更多规则示例。</p>
+<ul>
+<li>对于<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor.json">KernelMonitor</a><br>消息注入，所有消息都应该有<code>kernel: </code>前缀（另请注意，后面有一个空格:）；或者使用<a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/blob/master/test/kernel_log_generator/generator.sh">generator.sh</a>。</li>
+<li>要将其他日志（如 systemd 日志）注入 journald，请使用<code>echo &#39;Some systemd message&#39; | systemd-cat -t systemd</code>。</li>
+</ul>
+<h2 id="1-12-Remedy-Systems"><a href="#1-12-Remedy-Systems" class="headerlink" title="1.12 Remedy Systems"></a>1.12 Remedy Systems</h2><p>Remedy Systems是一个或多个旨在尝试解决node-problem-detector检测到的问题的过程。Remedy Systems会观察node-problem-detector发出的事件 <code>和/或</code> 节点状况，并采取措施使 Kubernetes 集群恢复健康状态。补救系统有以下几种：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/planetlabs/draino">Draino</a> 根据标签和节点条件自动排空 Kubernetes节点。与所有提供的标签和任何提供的节点条件匹配的节点将被阻止立即接受新 pod（也称为“封锁”），并在可配置的时间后<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/">排空</a>。Draino可以与 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler">Cluster Autoscaler</a>结合使用，以自动终止排空的节点。请参阅 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/node-problem-detector/issues/199">此问题</a> ，了解 Draino的示例生产用例。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/descheduler">Descheduler</a><br>取消调度策略RemovePodsViolatingNodeTaints会驱逐节点上违反NoSchedule污染的Pod。必须启用k8s调度程序的TaintNodesByCondition功能。<a target="_blank" rel="noopener" href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler">Cluster Autoscaler</a><br>可用于自动终止耗尽的节点。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/medik8s">mediK8S</a><br>是一个基于<a target="_blank" rel="noopener" href="https://github.com/medik8s/node-healthcheck-operator">Node Health Check Operator (NHC)</a>构建的自动修复系统的总体项目，该系统监控节点状况并使用修复 API将修复委托给外部修复程序。<a target="_blank" rel="noopener" href="https://github.com/medik8s/poison-pill">Poison-Pill</a>是一个修复程序，它将重新启动节点并确保所有有状态的工作负载都得到重新安排。如果集群具有足够的健康容量，NHC支持有条件地进行修复，或者手动暂停任何操作以最大限度地减少集群中断。</li>
+<li><a target="_blank" rel="noopener" href="https://cluster-api.sigs.k8s.io/">Cluster API</a> 的<a target="_blank" rel="noopener" href="https://cluster-api.sigs.k8s.io/developer/architecture/controllers/machine-health-check">MachineHealthCheck</a>负责修复不健康的机器。</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Npd简介</p><p><a href="https://hua-ri.github.io/2024/11/19/devops/npd/npd简介/">https://hua-ri.github.io/2024/11/19/devops/npd/npd简介/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><a href="https://hua-ri.github.io"><p>hua-ri</p></a></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-11-19</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2025-01-30</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="recommend-area"><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/2024/11/19/devops/npd/npd%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E4%BA%86%E8%A7%A3/" target="_blank">Npd代码结构了解</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/11/19/devops/npd/npd%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E4%BA%86%E8%A7%A3/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Npd代码结构了解</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/11/09/devops/argoCD/argoCD%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8/"><span class="level-item">ArgoCD部署应用</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex is-mobile" href="#1-简介"><span>1 简介</span></a><ul class="menu-list"><li><a class="is-flex is-mobile" href="#1-2-背景"><span>1.2 背景</span></a></li><li><a class="is-flex is-mobile" href="#1-3-Problem-API"><span>1.3 Problem API</span></a></li><li><a class="is-flex is-mobile" href="#1-4-Problem-Daemon"><span>1.4 Problem Daemon</span></a></li><li><a class="is-flex is-mobile" href="#1-5-Exporter"><span>1.5 Exporter</span></a></li><li><a class="is-flex is-mobile" href="#1-6-用法"><span>1.6 用法</span></a><ul class="menu-list"><li><a class="is-flex is-mobile" href="#1-6-1-标志"><span>1.6.1 标志</span></a></li><li><a class="is-flex is-mobile" href="#1-6-2-对于系统日志监控"><span>1.6.2 对于系统日志监控</span></a></li><li><a class="is-flex is-mobile" href="#1-6-3-对于系统统计监控"><span>1.6.3 对于系统统计监控</span></a></li><li><a class="is-flex is-mobile" href="#1-6-4-对于自定义插件监视器"><span>1.6.4 对于自定义插件监视器</span></a></li><li><a class="is-flex is-mobile" href="#1-6-5-对于健康检查者"><span>1.6.5 对于健康检查者</span></a></li><li><a class="is-flex is-mobile" href="#1-6-6-对于-Prometheus-exporter"><span>1.6.6 对于 Prometheus exporter</span></a></li><li><a class="is-flex is-mobile" href="#1-6-7-对于-Stackdriver-exporter"><span>1.6.7 对于 Stackdriver exporter</span></a></li><li><a class="is-flex is-mobile" href="#1-6-8-已弃用的标志"><span>1.6.8 已弃用的标志</span></a></li></ul></li><li><a class="is-flex is-mobile" href="#1-7-构建镜像"><span>1.7 构建镜像</span></a></li><li><a class="is-flex is-mobile" href="#1-8-推送镜像"><span>1.8 推送镜像</span></a></li><li><a class="is-flex is-mobile" href="#1-9-安装"><span>1.9 安装</span></a></li><li><a class="is-flex is-mobile" href="#1-10-开始独立运行"><span>1.10 开始独立运行</span></a></li><li><a class="is-flex is-mobile" href="#1-11-试用"><span>1.11 试用</span></a></li><li><a class="is-flex is-mobile" href="#1-12-Remedy-Systems"><span>1.12 Remedy Systems</span></a></li></ul></li></ul></div></div><style>.menu-list > li > a.is-active + .menu-list { display: block; }.menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/%E5%A4%B4%E5%83%8F.jpeg" alt="花日の博客"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">花日の博客</p><p class="is-size-6 is-block">花有重开日，人无再少年</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国-上海</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">18</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/huari" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/hua-ri"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="/qiqiuyang@163.com"><i class="fa fa-envelope"></i></a></div><div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://github.com/removeif/hexo-theme-amazing" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Amazing</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><!--!--><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><figure class="media-left"><a class="image" href="/2025/01/29/blog/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"><img src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/20191226231853.png" alt="使用hexo搭建个人博客"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-01-29T14:49:00.000Z">2025-01-29</time></p><p class="title"><a href="/2025/01/29/blog/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">使用hexo搭建个人博客</a></p><p class="categories"><a href="/categories/blog/">blog</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2025/01/29/kubernetes/dashboard/%E9%9B%86%E7%BE%A4%E6%8E%A5%E5%85%A5dashboard/"><img src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/20191226231853.png" alt="集群接入dashboard"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-01-29T14:12:00.000Z">2025-01-29</time></p><p class="title"><a href="/2025/01/29/kubernetes/dashboard/%E9%9B%86%E7%BE%A4%E6%8E%A5%E5%85%A5dashboard/">集群接入dashboard</a></p><p class="categories"><a href="/categories/kubernetes/">kubernetes</a> / <a href="/categories/kubernetes/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/">加速代理</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2025/01/29/kubernetes/%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4/%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"><img src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/20191226231853.png" alt="本地测试集群搭建"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-01-29T10:05:00.000Z">2025-01-29</time></p><p class="title"><a href="/2025/01/29/kubernetes/%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4/%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">本地测试集群搭建</a></p><p class="categories"><a href="/categories/kubernetes/">kubernetes</a> / <a href="/categories/kubernetes/%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4/">测试集群</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2025/01/29/kubernetes/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ubuntu%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"><img src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/20191226231853.png" alt="ubuntu开发环境搭建"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-01-29T09:55:00.000Z">2025-01-29</time></p><p class="title"><a href="/2025/01/29/kubernetes/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ubuntu%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">ubuntu开发环境搭建</a></p><p class="categories"><a href="/categories/kubernetes/">kubernetes</a> / <a href="/categories/kubernetes/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">开发环境搭建</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2025/01/29/kubernetes/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/mac%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"><img src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/20191226231853.png" alt="mac开发环境搭建"></a></figure><div class="media-content"><p class="date"><time dateTime="2025-01-29T09:50:00.000Z">2025-01-29</time></p><p class="title"><a href="/2025/01/29/kubernetes/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/mac%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">mac开发环境搭建</a></p><p class="categories"><a href="/categories/kubernetes/">kubernetes</a> / <a href="/categories/kubernetes/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">开发环境搭建</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/blog/"><span class="level-start"><span class="level-item">blog</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/devops/"><span class="level-start"><span class="level-item">devops</span></span><span class="level-end"><span class="level-item tag">5</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/devops/argoCD/"><span class="level-start"><span class="level-item">argoCD</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/devops/npd/"><span class="level-start"><span class="level-item">npd</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile is-marginless" href="/categories/kubernetes/"><span class="level-start"><span class="level-item">kubernetes</span></span><span class="level-end"><span class="level-item tag">11</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/kubernetes/kubectl/"><span class="level-start"><span class="level-item">kubectl</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/kubernetes/operator/"><span class="level-start"><span class="level-item">operator</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/kubernetes/%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%90%86/"><span class="level-start"><span class="level-item">加速代理</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/kubernetes/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"><span class="level-start"><span class="level-item">开发环境搭建</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/kubernetes/%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4/"><span class="level-start"><span class="level-item">测试集群</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><a class="level is-mobile is-marginless" href="/categories/"><span class="level-start"><span class="level-item">查看全部&gt;&gt;</span></span></a></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2025/01/"><span class="level-start"><span class="level-item">一月 2025</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2024/11/"><span class="level-start"><span class="level-item">十一月 2024</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2024/10/"><span class="level-start"><span class="level-item">十月 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><!--!--><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/blog-image/logo.svg" alt="花日の博客" height="28"></a><p class="size-small"><span>&copy; 2025 hua-ri</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a> &amp; <a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">Amazing</a> <br><span>© <a href="http://www.beian.miit.gov.cn/" target="_blank">川ICP备88888888号-8（测试）</a><br></span><span>© 版权说明：[本网站所有内容均收集于互联网或自己创作,<br />&nbsp;&nbsp;&nbsp;&nbsp;方便于网友与自己学习交流，如有侵权，请<a href="/message" target="_blank">留言</a>，立即处理]<br /></span><span><span id="statistic-times">loading...</span><script>function createTime(time) {
+            var n = new Date(time);
+            now.setTime(now.getTime() + 250),
+                days = (now - n) / 1e3 / 60 / 60 / 24,
+                dnum = Math.floor(days),
+                hours = (now - n) / 1e3 / 60 / 60 - 24 * dnum,
+                hnum = Math.floor(hours),
+            1 == String(hnum).length && (hnum = "0" + hnum),
+                minutes = (now - n) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
+                mnum = Math.floor(minutes),
+            1 == String(mnum).length && (mnum = "0" + mnum),
+                seconds = (now - n) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
+                snum = Math.round(seconds),
+            1 == String(snum).length && (snum = "0" + snum),
+                document.getElementById("statistic-times").innerHTML = "❤️本站自 <strong>"+time.split(" ")[0].replace(/\//g,".")+"</strong> 已运行 <strong>" + dnum + "</strong> 天 <strong>" + hnum + "</strong> 小时 <strong>" + mnum + "</strong> 分 <strong>" + snum + "</strong> 秒！❤️";
+        }var now = new Date();setInterval("createTime('2025/01/28 00:00:00')", 250,"");</script><br></span><div class="size-small"><span>❤️感谢 <strong><span id="busuanzi_value_site_uv">99+</span></strong> 小伙伴的 <strong><span id="busuanzi_value_site_pv">99+</span></strong> 次光临！❤️</span></div></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/removeif/hexo-theme-amazing"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script type="text/javascript">var pjax = new Pjax({
+            elements: "a",//代表点击链接就更新
+            selectors: [  //代表要更新的节点
+                ".section",
+                "title"
+            ],
+            cache: true,
+            cacheBust:false
+        })
+
+        function loadBusuanzi(){
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", function () {});
+        }
+
+        function loadMathJax() { //加载mathjax
+            $.getScript("//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML", function () {
+                MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\(', '\)']] } });
+                var math = document.getElementsByClassName("entry-content")[0];
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+            });
+        };
+
+        // 开始 PJAX 执行的函数
+        document.addEventListener('pjax:send', function () {
+        });
+        
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+        document.addEventListener('pjax:complete', function () {
+            $(".section").css({opacity:1});
+            if(false){
+                $.getScript('/js/comment-issue-data.js',function(){loadIssueData('undefined','undefined','undefined','undefined',undefined);});
+            }
+            if(false){
+                loadMathJax();
+            }
+            loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+            loadBackTop();
+            loadBusuanzi();
+            if(typeof loadBanner == 'function'){
+                loadBanner();
+            }
+        });</script></body></html>
