@@ -19,6 +19,277 @@
 ]]></content>
   </entry>
   <entry>
+    <title>NPD介绍</title>
+    <url>/2025/07/devops/npd/NPD%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h1><p>官方文档库地址：<a href="https://github.com/kubernetes/node-problem-detector">https://github.com/kubernetes/node-problem-detector</a></p>
+<p>node-problem-detector 旨在使集群管理堆栈中的上游层能够看到各种节点问题。</p>
+<p>它是一个在每个节点上运行的守护进程，检测节点问题并将其报告给apiserver。</p>
+<p>node-problem-detector 可以作为 DaemonSet 运行，也可以独立运行。</p>
+<p>现在它作为 GKE集群中默认启用的Kubernetes Addon运行。它也作为AKS Linux Extension的一部分在 AKS 中默认启用。</p>
+<h2 id="1-2-背景"><a href="#1-2-背景" class="headerlink" title="1.2 背景"></a>1.2 背景</h2><p>大量节点问题可能会影响节点上运行的 pod，例如：</p>
+<ul>
+<li>基础设施守护进程问题：ntp 服务关闭；</li>
+<li>硬件问题：CPU、内存或磁盘损坏；</li>
+<li>内核问题：内核死锁、文件系统损坏；</li>
+<li>容器运行时问题：运行时守护进程无响应；</li>
+<li>…</li>
+</ul>
+<p>目前，这些问题对于集群管理堆栈中的上游层是不可见的，因此 Kubernetes 将继续将 pod 调度到坏节点。<br>为了解决这个问题，我们引入了这个新的守护进程node-problem-detector来从各种守护进程收集节点问题，并将它们提供给上游层。一旦上游层能够看到这些问题，我们就可以讨论 <a href="https://github.com/kubernetes/node-problem-detector?tab=readme-ov-file#remedy-systems">remedy systems</a>了。</p>
+<h2 id="1-3-Problem-API"><a href="#1-3-Problem-API" class="headerlink" title="1.3 Problem API"></a>1.3 Problem API</h2><p>node-problem-detector 使用Event并向NodeConditionapiserver 报告问题。</p>
+<ul>
+<li>NodeCondition：导致节点无法用于 pod 的永久性问题应报告为NodeCondition。</li>
+<li>Event：对 pod 影响有限但具有参考意义的临时问题应报告为Event。</li>
+</ul>
+<h2 id="1-4-Problem-Daemon"><a href="#1-4-Problem-Daemon" class="headerlink" title="1.4 Problem Daemon"></a>1.4 Problem Daemon</h2><p>问题守护进程是 node-problem-detector 的一个子守护进程。它监视特定类型的节点问题并将其报告给 node-problem-detector。<br>守护进程可能是：</p>
+<ul>
+<li>专为 Kubernetes 专用用例设计的微型守护进程。</li>
+<li>与节点问题检测器集成的现有节点健康监控守护进程。</li>
+</ul>
+<p>目前，问题守护进程在 node-problem-detector 二进制文件中以 goroutine 的形式运行。</p>
+<p>未来，我们会将 node-problem-detector和问题守护进程分离到不同的容器中，并使用 pod 规范将它们组合在一起。</p>
+<p>每种类型的问题守护进程都可以通过设置相应的构建标签在编译时禁用。</p>
+<p>如果在编译时禁用它们，则它们的所有构建依赖项、全局变量和后台goroutine 都将从编译的可执行文件中剔除。</p>
+<p>支持的守护进程列表：</p>
+<table>
+<thead>
+<tr>
+<th>问题守护进程类型</th>
+<th>节点状态</th>
+<th>解释</th>
+<th>配置</th>
+<th>禁用构建标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemlogmonitor">SystemLogMonitor</a></td>
+<td>KernelDeadlock ReadonlyFilesystem FrequentKubeletRestart FrequentDockerRestart FrequentContainerdRestart</td>
+<td>系统日志监视器监视系统日志并根据预定义的规则报告问题和指标。</td>
+<td><a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor-filelog.json">filelog</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor.json">kmsg</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor-counter.json">kernel</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/systemd-monitor-counter.json">abrt</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/systemd-monitor-counter.json">systemd</a></td>
+<td>disable_system_log_monitor</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemstatsmonitor">SystemStatsMonitor</a></td>
+<td>None(Could be added in the future)</td>
+<td>节点问题检测器的系统统计监视器，用于收集各种与健康相关的系统统计信息作为指标。请参阅<a href="https://docs.google.com/document/d/1SeaUz6kBavI283Dq8GBpoEUDrHA2a795xtw0OvjM568/edit">此处</a>的提案。</td>
+<td><a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/system-stats-monitor.json">system-stats-monitor</a></td>
+<td>disable_system_stats_monitor</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/custompluginmonitor">CustomPluginMonitor</a></td>
+<td>On-demand(According to users configuration), existing example: NTPProblem</td>
+<td>一个自定义的 node-problem-detector 插件监控器，用于调用和检查各种节点问题，并使用用户定义的检查脚本。请参阅<a href="https://docs.google.com/document/d/1jK_5YloSYtboj-DtfjmYKxfNnUxCAvohLnsH5aGCAYQ/edit#">此处</a>的提案。</td>
+<td><a href="https://github.com/kubernetes/node-problem-detector/blob/4ad49bbd84b8ced45ac825eac01ec93d9235935e/config/custom-plugin-monitor.json">example</a></td>
+<td>disable_custom_plugin_monitor</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/healthchecker">HealthChecker</a></td>
+<td>KubeletUnhealthy ContainerRuntimeUnhealthy</td>
+<td>节点问题检测器的健康检查器用于检查 kubelet 和容器运行时的健康状况。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="1-5-Exporter"><a href="#1-5-Exporter" class="headerlink" title="1.5 Exporter"></a>1.5 Exporter</h2><p>exporter 是 node-problem-detector 的一个组件。</p>
+<p>它向某些后端报告节点问题 和&#x2F;或 指标。</p>
+<p>其中一些可以在编译时使用构建标记禁用。支持的导出器列表：</p>
+<table>
+<thead>
+<tr>
+<th>Exporter</th>
+<th>解释</th>
+<th>禁用构建标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Kubernetes exporter</td>
+<td>Kubernetes 导出器向 Kubernetes API 服务器报告节点问题：临时问题报告为事件，永久问题报告为节点状况。</td>
+<td></td>
+</tr>
+<tr>
+<td>Prometheus exporter</td>
+<td>Prometheus 导出器将节点问题和指标本地报告为 Prometheus 指标</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/exporter/stackdriver-exporter.json">Stackdriver exporter</a></td>
+<td>Stackdriver 导出器向 Stackdriver Monitoring API 报告节点问题和指标。</td>
+<td>disable_stackdriver_exporter</td>
+</tr>
+</tbody></table>
+<h2 id="1-6-用法"><a href="#1-6-用法" class="headerlink" title="1.6 用法"></a>1.6 用法</h2><h3 id="1-6-1-标志"><a href="#1-6-1-标志" class="headerlink" title="1.6.1 标志"></a>1.6.1 标志</h3><ul>
+<li>–version：打印节点问题检测器的当前版本。</li>
+<li>–hostname-override：node-problem-detector 用于更新状态和发出事件的自定义节点名称。node-problem-detector 首先从hostname-override获取节点名称，然后从NODE_NAME环境变量 获取，最后返回到os.Hostname。</li>
+</ul>
+<h3 id="1-6-2-对于系统日志监控"><a href="#1-6-2-对于系统日志监控" class="headerlink" title="1.6.2 对于系统日志监控"></a>1.6.2 对于系统日志监控</h3><ul>
+<li>–config.system-log-monitor：系统日志监视器配置文件路径列表，以逗号分隔，例如 config&#x2F;kernel-monitor.json。节点问题检测器将为每个配置启动单独的日志监视器。您可以使用不同的日志监视器来监视不同的系统日志。</li>
+</ul>
+<h3 id="1-6-3-对于系统统计监控"><a href="#1-6-3-对于系统统计监控" class="headerlink" title="1.6.3 对于系统统计监控"></a>1.6.3 对于系统统计监控</h3><ul>
+<li>–config.system-stats-monitor：系统统计监控配置文件的路径列表，以逗号分隔，例如 <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/system-stats-monitor.json">config&#x2F;system-stats-monitor.json</a>。节点问题检测器将为每个配置启动一个单独的系统统计监控器。您可以使用不同的系统统计监控器来监控与问题相关的不同系统统计信息。</li>
+</ul>
+<h3 id="1-6-4-对于自定义插件监视器"><a href="#1-6-4-对于自定义插件监视器" class="headerlink" title="1.6.4 对于自定义插件监视器"></a>1.6.4 对于自定义插件监视器</h3><ul>
+<li>–config.custom-plugin-monitor：自定义插件监控配置文件路径列表，以逗号分隔，例如 <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/custom-plugin-monitor.json">config&#x2F;custom-plugin-monitor.json</a>。节点问题检测器将为每个配置启动一个单独的自定义插件监控。您可以使用不同的自定义插件监控来监控不同的节点问题。</li>
+</ul>
+<h3 id="1-6-5-对于健康检查者"><a href="#1-6-5-对于健康检查者" class="headerlink" title="1.6.5 对于健康检查者"></a>1.6.5 对于健康检查者</h3><ul>
+<li>–enable-k8s-exporter：启用向 Kubernetes API 服务器报告，默认为true。</li>
+<li>–apiserver-override：用于自定义 node-problem-detector 如何连接 apiserver 的 URI 参数。如果–enable-k8s-exporter是，则忽略此参数。格式与<a href="https://github.com/kubernetes/heapster">Heapster</a> 的标志false相同。例如，要无需身份验证即可运行，请使用以下配置： <a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">source</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">http://APISERVER_IP:APISERVER_PORT?inClusterConfig=false</span><br></pre></td></tr></table></figure>
+
+<p>请参阅<a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">heapster 文档</a><br>以获取可用选项的完整列表。</p>
+<ul>
+<li>–address：绑定节点问题检测服务器的地址。</li>
+<li>–port：绑定节点问题检测服务器的端口。使用 0 表示禁用。</li>
+</ul>
+<h3 id="1-6-6-对于-Prometheus-exporter"><a href="#1-6-6-对于-Prometheus-exporter" class="headerlink" title="1.6.6 对于 Prometheus exporter"></a>1.6.6 对于 Prometheus exporter</h3><ul>
+<li>–prometheus-address：绑定Prometheus抓取端点的地址，默认为127.0.0.1。</li>
+<li>–prometheus-port：绑定 Prometheus 抓取端点的端口，默认为 20257。使用 0 表示禁用。</li>
+</ul>
+<h3 id="1-6-7-对于-Stackdriver-exporter"><a href="#1-6-7-对于-Stackdriver-exporter" class="headerlink" title="1.6.7 对于 Stackdriver exporter"></a>1.6.7 对于 Stackdriver exporter</h3><ul>
+<li>–exporter.stackdriver：Stackdriver 导出器配置文件的路径，例如config&#x2F;exporter&#x2F;stackdriver-exporter.json，默认为空字符串。设置为空字符串即可禁用。</li>
+</ul>
+<h3 id="1-6-8-已弃用的标志"><a href="#1-6-8-已弃用的标志" class="headerlink" title="1.6.8 已弃用的标志"></a>1.6.8 已弃用的标志</h3><ul>
+<li>–system-log-monitors：系统日志监控配置文件的路径列表，以逗号分隔。此选项已弃用，由–config.system-log-monitor替代，并将被删除。如果同时设置–system-log-monitors和 –config.system-log-monitor ， NPD 将崩溃。</li>
+<li>–custom-plugin-monitors：自定义插件监控配置文件的路径列表，以逗号分隔。此选项已弃用，由–config.custom-plugin-monitor替代，并将被删除。如果同时设置–custom-plugin-monitors和 –config.custom-plugin-monitor，NPD 将崩溃。</li>
+</ul>
+<h2 id="1-7-构建镜像"><a href="#1-7-构建镜像" class="headerlink" title="1.7 构建镜像"></a>1.7 构建镜像</h2><ul>
+<li>安装libsystemdARM GCC 工具链的开发依赖项<ul>
+<li>Debian &#x2F; Ubuntu：apt install libsystemd-dev gcc-aarch64-linux-gnu</li>
+</ul>
+</li>
+<li>git clone <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#103;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:kubernetes&#x2F;node-problem-detector.git</li>
+<li>在顶层目录中运行make。它将：<ul>
+<li>构建二进制文件。</li>
+<li>构建docker镜像。二进制文件和config&#x2F;被复制到docker镜像中。</li>
+</ul>
+</li>
+</ul>
+<p>如果您不需要某些类别的问题守护进程，您可以选择在编译时禁用它们。这是保持 node-problem-detector运行时紧凑且没有不必要代码（例如全局变量、goroutines 等）的最佳方法。</p>
+<p>您可以通过BUILD_TAGS在运行之前设置环境变量来实现这一点make。例如：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">BUILD_TAGS=&quot;disable_custom_plugin_monitor disable_system_stats_monitor&quot; make</span><br></pre></td></tr></table></figure>
+
+<p>上述命令将在不使用<a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/custompluginmonitor">自定义插件监视器</a>和<a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemstatsmonitor">系统统计监视器</a>的情况下编译node-problem-detector 。查看<a href="https://github.com/kubernetes/node-problem-detector#problem-daemon">问题守护进程</a>部分，了解如何在编译时禁用每个问题守护进程。</p>
+<h2 id="1-8-推送镜像"><a href="#1-8-推送镜像" class="headerlink" title="1.8 推送镜像"></a>1.8 推送镜像</h2><p><code>make push</code>将 docker 镜像上传到注册表。默认情况下，镜像将上传到 <code>staging-k8s.gcr.io</code>。可以轻松修改<code>Makefile</code>以将镜像推送到另一个注册表。</p>
+<h2 id="1-9-安装"><a href="#1-9-安装" class="headerlink" title="1.9 安装"></a>1.9 安装</h2><p>将 node-problem-detector<br>安装到集群中的最简单方法是使用<a href="https://github.com/deliveryhero/helm-charts/tree/master/stable/node-problem-detector">Helm 图表</a>：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">helm repo add deliveryhero https://charts.deliveryhero.io/</span><br><span class="line">helm install --generate-name deliveryhero/node-problem-detector</span><br></pre></td></tr></table></figure>
+
+<p>或者，手动安装 node-problem-detector：</p>
+<p>编辑<a href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/node-problem-detector.yaml">node-problem-detector.yaml</a>以适应您的环境。将<code>log</code>卷设置为您的系统日志目录（由 SystemLogMonitor 使用）。您可以使用 ConfigMap 覆盖<code>config</code> pod 内的目录。</p>
+<p>编辑<a href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/node-problem-detector-config.yaml">node-problem-detector-config.yaml</a>来配置 node-problem-detector。</p>
+<ul>
+<li>编辑<a href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/rbac.yaml">rbac.yaml</a>以适合您的环境。</li>
+<li>使用 创建 ServiceAccount 和 ClusterRoleBinding <code>kubectl create -f rbac.yaml</code>。</li>
+<li>使用 创建 ConfigMap <code>kubectl create -f node-problem-detector-config.yaml</code>。</li>
+<li>使用 创建 DaemonSet <code>kubectl create -f node-problem-detector.yaml</code>。</li>
+</ul>
+<h2 id="1-10-开始独立运行"><a href="#1-10-开始独立运行" class="headerlink" title="1.10 开始独立运行"></a>1.10 开始独立运行</h2><p>要独立运行 node-problem-detector，您应该设置inClusterConfig为false，并且教 node-problem-detector 如何 访问 apiserver，也就是apiserver-override。</p>
+<p>要使用不安全的 apiserver 连接独立运行 node-problem-detector：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node-problem-detector --apiserver-override=http://APISERVER_IP:APISERVER_INSECURE_PORT?inClusterConfig=false</span><br></pre></td></tr></table></figure>
+
+<p>更多场景请见<a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">此处</a></p>
+<h2 id="1-11-试用"><a href="#1-11-试用" class="headerlink" title="1.11 试用"></a>1.11 试用</h2><p>您可以在正在运行的集群中尝试使用 node-problem-detector，方法是将消息注入到 node-problem-detector 正在监视的日志中。</p>
+<p>例如，假设 node-problem-detector 正在使用KernelMonitor。</p>
+<p>在您的机器上运行<code>kubectl get events -w</code>。在节点上运行<code>sudo sh -c &quot;echo &#39;kernel: BUG: unable to handle kernel NULL pointer dereference at TESTING&#39; &gt;&gt; /dev/kmsg&quot;</code>。然后您应该会看到该KernelOopss事件。</p>
+<p>添加新规则或开发节点问题检测器时，在独立模式下在本地工作站上进行测试可能更容易。</p>
+<p>对于 API 服务器，一种简单的方法是使用kubectl proxy正在运行的集群的 API 服务器在本地可用。</p>
+<p>您会收到一些错误，因为 API 服务器无法识别您的本地工作站。但无论如何，您仍然应该能够测试您的新规则。</p>
+<p>例如，测试KernelMonitor规则：</p>
+<ul>
+<li><code>make</code>（本地构建node-problem-detector）</li>
+<li><code>kubectl proxy --port=8080</code>（使正在运行的集群的 API 服务器在本地可用）</li>
+<li>将KernelMonitor更新到您的本地内核日志目录<code>logPath</code>。例如，在某些 Linux 系统上，它是<code>/run/log/journal</code>, 而不是<code>/var/log/journal</code>。</li>
+<li><code>./bin/node-problem-detector --logtostderr --apiserver-override=http://127.0.0.1:8080?inClusterConfig=false --config.system-log-monitor=config/kernel-monitor.json --config.system-stats-monitor=config/system-stats-monitor.json --port=20256 --prometheus-port=2025</code>（或指向任何 API 服务器地址：端口和 Prometheus 端口）</li>
+<li><code>sudo sh -c &quot;echo &#39;kernel: BUG: unable to handle kernel NULL pointer dereference at TESTING&#39; &gt;&gt; /dev/kmsg&quot;</code></li>
+<li>您可以<code>KernelOops</code>在节点问题检测器日志中看到事件。</li>
+<li><code>sudo sh -c &quot;echo &#39;kernel: INFO: task docker:20744 blocked for more than 120 seconds.&#39; &gt;&gt; /dev/kmsg&quot;</code></li>
+<li>您可以在node-problem-detector log看DockerHung event和状态</li>
+<li>您可以在<a href="http://127.0.0.1:20256/conditions%E6%9F%A5%E7%9C%8B%60DockerHung%60%E7%8A%B6%E6%80%81">http://127.0.0.1:20256/conditions查看DockerHung状态</a></li>
+<li>您可以在<a href="http://127.0.0.1:20257/metrics%E4%B8%8A%E6%9F%A5%E7%9C%8B">http://127.0.0.1:20257/metrics</a>上查看 Prometheus 格式的磁盘相关系统指标。</li>
+</ul>
+<p>注： 您可以在<a href="https://github.com/kubernetes/node-problem-detector/tree/master/test/kernel_log_generator/problems">test&#x2F;kernel_log_generator&#x2F;problems</a>下查看更多规则示例。</p>
+<ul>
+<li>对于<a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor.json">KernelMonitor</a><br>消息注入，所有消息都应该有kernel: 前缀（另请注意，后面有一个空格:）；或者使用<a href="https://github.com/kubernetes/node-problem-detector/blob/master/test/kernel_log_generator/generator.sh">generator.sh</a>。</li>
+<li>要将其他日志（如 systemd 日志）注入 journald，请使用<code>echo &#39;Some systemd message&#39; | systemd-cat -t systemd</code>。</li>
+</ul>
+<h2 id="1-12-Remedy-Systems"><a href="#1-12-Remedy-Systems" class="headerlink" title="1.12 Remedy Systems"></a>1.12 Remedy Systems</h2><p>Remedy Systems是一个或多个旨在尝试解决node-problem-detector检测到的问题的过程。</p>
+<p>Remedy Systems会观察node-problem-detector发出的事件 和&#x2F;或 节点状况，并采取措施使 Kubernetes 集群恢复健康状态。</p>
+<p>补救系统有以下几种：</p>
+<ul>
+<li><a href="https://github.com/planetlabs/draino">Draino</a> 根据标签和节点条件自动排空 Kubernetes节点。与所有提供的标签和任何提供的节点条件匹配的节点将被阻止立即接受新 pod（也称为“封锁”），并在可配置的时间后<a href="https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/">排空</a>。Draino可以与 <a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler">Cluster Autoscaler</a>结合使用，以自动终止排空的节点。请参阅 <a href="https://github.com/kubernetes/node-problem-detector/issues/199">此问题</a> ，了解 Draino的示例生产用例。</li>
+<li><a href="https://github.com/kubernetes-sigs/descheduler">Descheduler</a> 取消调度策略RemovePodsViolatingNodeTaints会驱逐节点上违反NoSchedule污染的Pod。必须启用k8s调度程序的TaintNodesByCondition功能。</li>
+<li><a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler">Cluster Autoscaler</a> 可用于自动终止耗尽的节点。</li>
+<li><a href="https://github.com/medik8s">mediK8S</a> 是一个基于<a href="https://github.com/medik8s/node-healthcheck-operator">Node Health Check Operator (NHC)</a>构建的自动修复系统的总体项目，该系统监控节点状况并使用修复 API将修复委托给外部修复程序。</li>
+<li><a href="https://github.com/medik8s/poison-pill">Poison-Pill</a>是一个修复程序，它将重新启动节点并确保所有有状态的工作负载都得到重新安排。如果集群具有足够的健康容量，NHC支持有条件地进行修复，或者手动暂停任何操作以最大限度地减少集群中断。</li>
+<li><a href="https://cluster-api.sigs.k8s.io/">Cluster API</a> 的<a href="https://cluster-api.sigs.k8s.io/developer/architecture/controllers/machine-health-check">MachineHealthCheck</a>负责修复不健康的机器。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>BKCI 简介</title>
+    <url>/2025/07/devops/blueking/BKCI%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p>BK-CI官方文档：<a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md">https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md</a><br>github仓库地址：<a href="https://github.com/TencentBlueKing/bk-ci">https://github.com/TencentBlueKing/bk-ci</a></p>
+<h1 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h1><table>
+<thead>
+<tr>
+<th>🐤 了解基本概念</th>
+<th>👉 使用 BKCI</th>
+<th>🚀 部署 BKCI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/bkci.md">BKCI 是什么？</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Create-your-first-pipeline.md">创建你的第一条流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/hardware.md">BKCI 硬件规格指南</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/components.md">BKCI 组件</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Link-your-first-repo.md">关联你的第一个代码库</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/system.md">BKCI 系统要求</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">快速熟悉流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Enable-ci.md">为你的Git工程开启CI</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">术语解释</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Case/Examples/vars-usage.md">示例</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Developer/rest-api/read-before-use.md">API接口</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>📔 产品功能</th>
+<th>🏪 研发商店</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pipeline/pipeline-list.md">流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/home.md">浏览研发商店</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Console/Console.md">控制台</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/start-new-task.md">开发一个流水线插件</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Ticket/ticket.md">凭证管理</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/upload-new-task.md">在 BKCI 里使用商店插件</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pools/host-to-bkci.md">构建资源</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><p>蓝鲸学习社区：<a href="https://bk.tencent.com/s-mart/communities">https://bk.tencent.com/s-mart/communities</a><br>蓝鲸官方文档：<a href="https://bk.tencent.com/docs/">https://bk.tencent.com/docs/</a></p>
+<p><strong>蓝鲸体系</strong><br>蓝鲸简介：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md</a><br>核心优势：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md</a><br>体系架构：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md</a><br>CI领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md</a><br>CD领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md</a><br>CO领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>BK-CI插件开发指引</title>
     <url>/2025/07/devops/blueking/BK-CI%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E6%8C%87%E5%BC%95/</url>
     <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><blockquote>
@@ -212,72 +483,6 @@
 
 
 
-]]></content>
-  </entry>
-  <entry>
-    <title>BKCI 简介</title>
-    <url>/2025/07/devops/blueking/BKCI%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p>BK-CI官方文档：<a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md">https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md</a><br>github仓库地址：<a href="https://github.com/TencentBlueKing/bk-ci">https://github.com/TencentBlueKing/bk-ci</a></p>
-<h1 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h1><table>
-<thead>
-<tr>
-<th>🐤 了解基本概念</th>
-<th>👉 使用 BKCI</th>
-<th>🚀 部署 BKCI</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/bkci.md">BKCI 是什么？</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Create-your-first-pipeline.md">创建你的第一条流水线</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/hardware.md">BKCI 硬件规格指南</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/components.md">BKCI 组件</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Link-your-first-repo.md">关联你的第一个代码库</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/system.md">BKCI 系统要求</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">快速熟悉流水线</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Enable-ci.md">为你的Git工程开启CI</a></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">术语解释</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Case/Examples/vars-usage.md">示例</a></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Developer/rest-api/read-before-use.md">API接口</a></td>
-<td></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>📔 产品功能</th>
-<th>🏪 研发商店</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pipeline/pipeline-list.md">流水线</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/home.md">浏览研发商店</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Console/Console.md">控制台</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/start-new-task.md">开发一个流水线插件</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Ticket/ticket.md">凭证管理</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/upload-new-task.md">在 BKCI 里使用商店插件</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pools/host-to-bkci.md">构建资源</a></td>
-<td></td>
-</tr>
-</tbody></table>
-<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><p>蓝鲸学习社区：<a href="https://bk.tencent.com/s-mart/communities">https://bk.tencent.com/s-mart/communities</a><br>蓝鲸官方文档：<a href="https://bk.tencent.com/docs/">https://bk.tencent.com/docs/</a></p>
-<p><strong>蓝鲸体系</strong><br>蓝鲸简介：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md</a><br>核心优势：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md</a><br>体系架构：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md</a><br>CI领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md</a><br>CD领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md</a><br>CO领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md</a></p>
 ]]></content>
   </entry>
 </search>
