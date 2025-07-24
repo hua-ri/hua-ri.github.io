@@ -18,4 +18,70 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title></title>
+    <url>/2025/07/devops/blueking/BKCI%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p>BK-CI官方文档：<a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md">https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md</a><br>github仓库地址：<a href="https://github.com/TencentBlueKing/bk-ci">https://github.com/TencentBlueKing/bk-ci</a></p>
+<h1 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h1><table>
+<thead>
+<tr>
+<th>🐤 了解基本概念</th>
+<th>👉 使用 BKCI</th>
+<th>🚀 部署 BKCI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/bkci.md">BKCI 是什么？</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Create-your-first-pipeline.md">创建你的第一条流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/hardware.md">BKCI 硬件规格指南</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/components.md">BKCI 组件</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Link-your-first-repo.md">关联你的第一个代码库</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/system.md">BKCI 系统要求</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">快速熟悉流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Enable-ci.md">为你的Git工程开启CI</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">术语解释</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Case/Examples/vars-usage.md">示例</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Developer/rest-api/read-before-use.md">API接口</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>📔 产品功能</th>
+<th>🏪 研发商店</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pipeline/pipeline-list.md">流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/home.md">浏览研发商店</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Console/Console.md">控制台</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/start-new-task.md">开发一个流水线插件</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Ticket/ticket.md">凭证管理</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/upload-new-task.md">在 BKCI 里使用商店插件</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pools/host-to-bkci.md">构建资源</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><p>蓝鲸学习社区：<a href="https://bk.tencent.com/s-mart/communities">https://bk.tencent.com/s-mart/communities</a><br>蓝鲸官方文档：<a href="https://bk.tencent.com/docs/">https://bk.tencent.com/docs/</a></p>
+<p><strong>蓝鲸体系</strong><br>蓝鲸简介：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md</a><br>核心优势：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md</a><br>体系架构：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md</a><br>CI领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md</a><br>CD领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md</a><br>CO领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md</a></p>
+]]></content>
+  </entry>
 </search>
