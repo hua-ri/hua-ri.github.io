@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BKCI 简介</title>
+    <url>/2025/07/devops/blueking/BKCI%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p>BK-CI官方文档：<a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md">https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md</a><br>github仓库地址：<a href="https://github.com/TencentBlueKing/bk-ci">https://github.com/TencentBlueKing/bk-ci</a></p>
+<h1 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h1><table>
+<thead>
+<tr>
+<th>🐤 了解基本概念</th>
+<th>👉 使用 BKCI</th>
+<th>🚀 部署 BKCI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/bkci.md">BKCI 是什么？</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Create-your-first-pipeline.md">创建你的第一条流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/hardware.md">BKCI 硬件规格指南</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/components.md">BKCI 组件</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Link-your-first-repo.md">关联你的第一个代码库</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/system.md">BKCI 系统要求</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">快速熟悉流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Enable-ci.md">为你的Git工程开启CI</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">术语解释</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Case/Examples/vars-usage.md">示例</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Developer/rest-api/read-before-use.md">API接口</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>📔 产品功能</th>
+<th>🏪 研发商店</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pipeline/pipeline-list.md">流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/home.md">浏览研发商店</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Console/Console.md">控制台</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/start-new-task.md">开发一个流水线插件</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Ticket/ticket.md">凭证管理</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/upload-new-task.md">在 BKCI 里使用商店插件</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pools/host-to-bkci.md">构建资源</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><p>蓝鲸学习社区：<a href="https://bk.tencent.com/s-mart/communities">https://bk.tencent.com/s-mart/communities</a><br>蓝鲸官方文档：<a href="https://bk.tencent.com/docs/">https://bk.tencent.com/docs/</a></p>
+<p><strong>蓝鲸体系</strong><br>蓝鲸简介：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md</a><br>核心优势：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md</a><br>体系架构：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md</a><br>CI领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md</a><br>CD领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md</a><br>CO领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2025/07/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -156,7 +222,7 @@
 <li>Debian &#x2F; Ubuntu：apt install libsystemd-dev gcc-aarch64-linux-gnu</li>
 </ul>
 </li>
-<li>git clone <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#103;&#105;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>:kubernetes&#x2F;node-problem-detector.git</li>
+<li>git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:kubernetes&#x2F;node-problem-detector.git</li>
 <li>在顶层目录中运行make。它将：<ul>
 <li>构建二进制文件。</li>
 <li>构建docker镜像。二进制文件和config&#x2F;被复制到docker镜像中。</li>
@@ -221,72 +287,6 @@
 <li><a href="https://github.com/medik8s/poison-pill">Poison-Pill</a>是一个修复程序，它将重新启动节点并确保所有有状态的工作负载都得到重新安排。如果集群具有足够的健康容量，NHC支持有条件地进行修复，或者手动暂停任何操作以最大限度地减少集群中断。</li>
 <li><a href="https://cluster-api.sigs.k8s.io/">Cluster API</a> 的<a href="https://cluster-api.sigs.k8s.io/developer/architecture/controllers/machine-health-check">MachineHealthCheck</a>负责修复不健康的机器。</li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>BKCI 简介</title>
-    <url>/2025/07/devops/blueking/BKCI%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p>BK-CI官方文档：<a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md">https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md</a><br>github仓库地址：<a href="https://github.com/TencentBlueKing/bk-ci">https://github.com/TencentBlueKing/bk-ci</a></p>
-<h1 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h1><table>
-<thead>
-<tr>
-<th>🐤 了解基本概念</th>
-<th>👉 使用 BKCI</th>
-<th>🚀 部署 BKCI</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/bkci.md">BKCI 是什么？</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Create-your-first-pipeline.md">创建你的第一条流水线</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/hardware.md">BKCI 硬件规格指南</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/components.md">BKCI 组件</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Link-your-first-repo.md">关联你的第一个代码库</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/system.md">BKCI 系统要求</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">快速熟悉流水线</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Enable-ci.md">为你的Git工程开启CI</a></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">术语解释</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Case/Examples/vars-usage.md">示例</a></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Developer/rest-api/read-before-use.md">API接口</a></td>
-<td></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>📔 产品功能</th>
-<th>🏪 研发商店</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pipeline/pipeline-list.md">流水线</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/home.md">浏览研发商店</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Console/Console.md">控制台</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/start-new-task.md">开发一个流水线插件</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Ticket/ticket.md">凭证管理</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/upload-new-task.md">在 BKCI 里使用商店插件</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pools/host-to-bkci.md">构建资源</a></td>
-<td></td>
-</tr>
-</tbody></table>
-<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><p>蓝鲸学习社区：<a href="https://bk.tencent.com/s-mart/communities">https://bk.tencent.com/s-mart/communities</a><br>蓝鲸官方文档：<a href="https://bk.tencent.com/docs/">https://bk.tencent.com/docs/</a></p>
-<p><strong>蓝鲸体系</strong><br>蓝鲸简介：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md</a><br>核心优势：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md</a><br>体系架构：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md</a><br>CI领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md</a><br>CD领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md</a><br>CO领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -483,6 +483,298 @@
 
 
 
+]]></content>
+  </entry>
+  <entry>
+    <title>Npd代码结构了解</title>
+    <url>/2025/07/devops/npd/Npd%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E4%BA%86%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="1-pkg目录结构"><a href="#1-pkg目录结构" class="headerlink" title="1 pkg目录结构"></a>1 pkg目录结构</h1><p>这里是各个monitor的实现。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── custompluginmonitor             -&gt; 用于实现自定义监视插件。node-problem-detector 支持通过插件监视特定状态或事件，此目录中包含与用户自定义插件相关的代码。</span><br><span class="line">├── exporters                       -&gt; 用于包含导出器（exporters）的实现，导出器负责将监视到的数据发送到外部系统，比如监控系统（例如 Prometheus）。导出器在数据收集和监控集成中起到关键作用。</span><br><span class="line">├── healthchecker                   -&gt; 实现健康检查逻辑，确保 node-problem-detector 本身和其他依赖的组件处于健康状态。这是监控和维护软件稳定性的重要部分。</span><br><span class="line">├── logcounter                      -&gt; 实现了 logcounter 的功能，通常用于计数和分析系统日志，以检测异常行为或问题。它可以与系统日志监控结合使用。</span><br><span class="line">├── problemdaemon                   -&gt; 实现问题守护程序。这个守护程序负责监测和识别节点中的问题，通过问题发现机制收集指标并生成告警。</span><br><span class="line">├── problemdetector                 -&gt; 包含问题检测的核心逻辑。这是 node-problem-detector 的主要功能部分，负责从不同的来源收集信息，并根据这些信息识别和报告节点问题。</span><br><span class="line">├── problemmetrics                  -&gt; 包含问题指标的实现，用于收集、处理和导出有关节点状态和问题的数据。这些指标可以展示在监控界面上，帮助用户理解系统的健康状况。</span><br><span class="line">├── systemlogmonitor                -&gt; 实现了系统日志监控的功能。它处理系统日志，分析日志内容，以检测可能导致问题的事件和错误。</span><br><span class="line">├── systemstatsmonitor              -&gt; 用于监控系统的各种统计数据，例如 CPU 使用率、内存使用情况等。它负责收集和报告这些统计信息，以帮助验证节点的健康状态。</span><br><span class="line">├── types                           -&gt; 用于定义项目中使用的各种类型结构体和常量。这些类型通常用于数据传输和处理，为核心逻辑提供数据模型。</span><br><span class="line">├── util                            -&gt; 包含一些公用工具函数和库，这些函数可以在其他模块中复用，提高代码的可维护性和可读性。</span><br><span class="line">└── version                         -&gt; 保存与版本相关的信息和结构。它用于管理版本号并提供版本信息的功能</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-problemdaemon"><a href="#2-problemdaemon" class="headerlink" title="2 problemdaemon"></a>2 problemdaemon</h1><h2 id="2-1-Register"><a href="#2-1-Register" class="headerlink" title="2.1 Register"></a>2.1 Register</h2><p>pkg&#x2F;problemdaemon&#x2F;problem_daemon.go:32</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">var (</span><br><span class="line">        handlers = make(map[types.ProblemDaemonType]types.ProblemDaemonHandler)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">// Register registers a problem daemon factory method, which will be used to create the problem daemon.</span><br><span class="line">func Register(problemDaemonType types.ProblemDaemonType, handler types.ProblemDaemonHandler) &#123;</span><br><span class="line">        handlers[problemDaemonType] = handler</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注册一个问题守护进程工厂方法。<br>参数：</p>
+<ul>
+<li>problemDaemonType: 需要注册的守护进程类型。</li>
+<li>handler: 对应的处理器，其中包含创建守护进程的方法。<br>作用：将指定类型的处理器添加到 handlers 映射中，以便后续根据类型获取对应的处理器。</li>
+</ul>
+<h2 id="2-2-GetProblemDaemonNames"><a href="#2-2-GetProblemDaemonNames" class="headerlink" title="2.2 GetProblemDaemonNames"></a>2.2 GetProblemDaemonNames</h2><p>pkg&#x2F;problemdaemon&#x2F;problem_daemon.go:37</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// GetProblemDaemonNames retrieves all available problem daemon types.</span><br><span class="line">func GetProblemDaemonNames() []types.ProblemDaemonType &#123;</span><br><span class="line">        problemDaemonTypes := []types.ProblemDaemonType&#123;&#125;</span><br><span class="line">        for problemDaemonType := range handlers &#123;</span><br><span class="line">                problemDaemonTypes = append(problemDaemonTypes, problemDaemonType)</span><br><span class="line">        &#125;</span><br><span class="line">        return problemDaemonTypes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>检索所有可用的问题守护进程类型。</p>
+<p>返回值：返回一个包含所有注册的守护进程类型的切片。</p>
+<p>实现细节：遍历 handlers 映射，将每种问题守护进程类型添加到返回的切片中。</p>
+<h2 id="2-3-GetProblemDaemonHandlerOrDie"><a href="#2-3-GetProblemDaemonHandlerOrDie" class="headerlink" title="2.3 GetProblemDaemonHandlerOrDie"></a>2.3 GetProblemDaemonHandlerOrDie</h2><p>pkg&#x2F;problemdaemon&#x2F;problem_daemon.go:46</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// GetProblemDaemonHandlerOrDie retrieves the ProblemDaemonHandler for a specific type of problem daemon, panic if error occurs..</span><br><span class="line">func GetProblemDaemonHandlerOrDie(problemDaemonType types.ProblemDaemonType) types.ProblemDaemonHandler &#123;</span><br><span class="line">        handler, ok := handlers[problemDaemonType]</span><br><span class="line">        if !ok &#123;</span><br><span class="line">                panic(fmt.Sprintf(&quot;Problem daemon handler for %v does not exist&quot;, problemDaemonType))</span><br><span class="line">        &#125;</span><br><span class="line">        return handler</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取特定类型问题守护进程的处理器。</p>
+<p>参数：问题守护进程类型。</p>
+<p>返回值：返回对应的处理器。</p>
+<p>实现细节：如果指定类型没有找到对应的处理器，则触发恐慌（panic），这通常用于在初始化时确保配置的有效性。</p>
+<h2 id="2-4-NewProblemDaemons"><a href="#2-4-NewProblemDaemons" class="headerlink" title="2.4 NewProblemDaemons"></a>2.4 NewProblemDaemons</h2><p>pkg&#x2F;problemdaemon&#x2F;problem_daemon.go:55</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// NewProblemDaemons creates all problem daemons based on the configurations provided.</span><br><span class="line">func NewProblemDaemons(monitorConfigPaths types.ProblemDaemonConfigPathMap) []types.Monitor &#123;</span><br><span class="line">        problemDaemonMap := make(map[string]types.Monitor)</span><br><span class="line">        for problemDaemonType, configs := range monitorConfigPaths &#123;</span><br><span class="line">                for _, config := range *configs &#123;</span><br><span class="line">                        if _, ok := problemDaemonMap[config]; ok &#123;</span><br><span class="line">                                // Skip the config if it&#x27;s duplicated.</span><br><span class="line">                                klog.Warningf(&quot;Duplicated problem daemon configuration %q&quot;, config)</span><br><span class="line">                                continue</span><br><span class="line">                        &#125;</span><br><span class="line">                        problemDaemonMap[config] = handlers[problemDaemonType].CreateProblemDaemonOrDie(config)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        problemDaemons := []types.Monitor&#123;&#125;</span><br><span class="line">        for _, problemDaemon := range problemDaemonMap &#123;</span><br><span class="line">                problemDaemons = append(problemDaemons, problemDaemon)</span><br><span class="line">        &#125;</span><br><span class="line">        return problemDaemons</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据提供的配置创建所有问题守护进程。</p>
+<p>参数：</p>
+<p>monitorConfigPaths: 包含每种问题守护进程类型及其对应配置路径的映射。<br>返回值：返回创建的所有 Monitor 实例的切片。<br>实现细节</p>
+<ul>
+<li>创建空映射：使用 problemDaemonMap 存储已创建的守护进程，以避免重复。</li>
+<li>遍历配置：<ul>
+<li>对于配置中的每种问题守护进程类型及其相应的配置路径，检查是否已经创建。</li>
+<li>如果配置已存在，则记录警告并跳过。</li>
+<li>使用注册的处理器创建新的问题守护进程并将其添加到映射中。</li>
+</ul>
+</li>
+<li>返回值构建：将地图中的所有守护进程转换为切片并返回。</li>
+</ul>
+<h1 id="3-problem-detector"><a href="#3-problem-detector" class="headerlink" title="3 problem_detector"></a>3 problem_detector</h1><h2 id="3-1-problemDetector定义"><a href="#3-1-problemDetector定义" class="headerlink" title="3.1 problemDetector定义"></a>3.1 problemDetector定义</h2><p>pkg&#x2F;problemdetector&#x2F;problem_detector.go:33</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// ProblemDetector collects statuses from all problem daemons and update the node condition and send node event.</span><br><span class="line">type ProblemDetector interface &#123;</span><br><span class="line">        Run(context.Context) error</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type problemDetector struct &#123;</span><br><span class="line">        monitors  []types.Monitor</span><br><span class="line">        exporters []types.Exporter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字段：</p>
+<p>monitors: 存储监控器的切片，用于收集问题状态。</p>
+<p>exporters: 存储导出器的切片，用于将收集到的状态发送到外部系统或用户。</p>
+<p>方法说明： Run(context.Context) error 启动问题检测器，并在上下文被取消或出现错误时返回错误。</p>
+<h2 id="3-2-NewProblemDetector"><a href="#3-2-NewProblemDetector" class="headerlink" title="3.2 NewProblemDetector"></a>3.2 NewProblemDetector</h2><p>pkg&#x2F;problemdetector&#x2F;problem_detector.go:40</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// NewProblemDetector creates the problem detector. Currently we just directly passed in the problem daemons, but</span><br><span class="line">// in the future we may want to let the problem daemons register themselves.</span><br><span class="line">func NewProblemDetector(monitors []types.Monitor, exporters []types.Exporter) ProblemDetector &#123;</span><br><span class="line">        return &amp;problemDetector&#123;</span><br><span class="line">                monitors:  monitors,</span><br><span class="line">                exporters: exporters,</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建一个新的问题检测器实例。</p>
+<p>参数：</p>
+<p>monitors: 监控器数组，用于检测不同问题。</p>
+<p>exporters: 导出器数组，用于将状态发送给外部系统。</p>
+<p>返回值：返回实现 ProblemDetector 接口的新的 problemDetector 实例。</p>
+<h2 id="3-3-Run"><a href="#3-3-Run" class="headerlink" title="3.3 Run"></a>3.3 Run</h2><p>pkg&#x2F;problemdetector&#x2F;problem_detector.go:48</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// Run starts the problem detector.</span><br><span class="line">func (p *problemDetector) Run(ctx context.Context) error &#123;</span><br><span class="line">        // Start the log monitors one by one.</span><br><span class="line">        var chans []&lt;-chan *types.Status</span><br><span class="line">        failureCount := 0</span><br><span class="line">        for _, m := range p.monitors &#123;</span><br><span class="line">                ch, err := m.Start()</span><br><span class="line">                if err != nil &#123;</span><br><span class="line">                        // Do not return error and keep on trying the following config files.</span><br><span class="line">                        klog.Errorf(&quot;Failed to start problem daemon %v: %v&quot;, m, err)</span><br><span class="line">                        failureCount++</span><br><span class="line">                        continue</span><br><span class="line">                &#125;</span><br><span class="line">                if ch != nil &#123;</span><br><span class="line">                        chans = append(chans, ch)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        allMonitors := p.monitors</span><br><span class="line"></span><br><span class="line">        if len(allMonitors) == failureCount &#123;</span><br><span class="line">                return fmt.Errorf(&quot;no problem daemon is successfully setup&quot;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        defer func() &#123;</span><br><span class="line">                for _, m := range allMonitors &#123;</span><br><span class="line">                        m.Stop()</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;()</span><br><span class="line"></span><br><span class="line">        ch := groupChannel(chans)</span><br><span class="line">        klog.Info(&quot;Problem detector started&quot;)</span><br><span class="line"></span><br><span class="line">        for &#123;</span><br><span class="line">                select &#123;</span><br><span class="line">                case &lt;-ctx.Done():</span><br><span class="line">                        return nil</span><br><span class="line">                case status := &lt;-ch:</span><br><span class="line">                        for _, exporter := range p.exporters &#123;</span><br><span class="line">                                exporter.ExportProblems(status)</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行问题检测器的主要运行逻辑。</p>
+<p>实现细节：</p>
+<ul>
+<li>开始监控器：遍历并启动每个监控器。</li>
+<li>如果启动失败，记录错误并增加失败计数。</li>
+<li>如果成功，则将返回的通道添加到 chans 切片。</li>
+<li>检查失败情况：如果所有监控器都失败，则返回错误。</li>
+<li>延迟关闭：在函数结束时停止所有监控器。</li>
+<li>通道组合：调用 groupChannel 函数，用于将所有监控器的状态通道组合成单一通道。</li>
+<li>监听状态：使用 select 不断监听上下文和监控器的状态。</li>
+<li>如果收到状态，从所有导出器导出问题。</li>
+</ul>
+<h2 id="3-4-groupChannel"><a href="#3-4-groupChannel" class="headerlink" title="3.4 groupChannel"></a>3.4 groupChannel</h2><p>pkg&#x2F;problemdetector&#x2F;problem_detector.go:91</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">func groupChannel(chans []&lt;-chan *types.Status) &lt;-chan *types.Status &#123;</span><br><span class="line">        statuses := make(chan *types.Status)</span><br><span class="line">        for _, ch := range chans &#123;</span><br><span class="line">                go func(c &lt;-chan *types.Status) &#123;</span><br><span class="line">                        for status := range c &#123;</span><br><span class="line">                                statuses &lt;- status</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125;(ch)</span><br><span class="line">        &#125;</span><br><span class="line">        return statuses</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将多个状态通道组合为一个通道。</p>
+<p>参数：切片 chans，包含多个状态通道。</p>
+<p>返回值：返回一个新的通道 statuses，用于接收来自所有监控器的状态。</p>
+<p>实现细节</p>
+<p>启动多个 goroutine，每个 goroutine 从一个监控器的通道读取状态，并将其转发到新的 statuses 通道中。</p>
+<h1 id="4-problemmetrics"><a href="#4-problemmetrics" class="headerlink" title="4 problemmetrics"></a>4 problemmetrics</h1><h2 id="4-1-ProblemMetricsManager定义"><a href="#4-1-ProblemMetricsManager定义" class="headerlink" title="4.1 ProblemMetricsManager定义"></a>4.1 ProblemMetricsManager定义</h2><p>pkg&#x2F;problemmetrics&#x2F;problem_metrics.go:40</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// ProblemMetricsManager manages problem-converted metrics.</span><br><span class="line">// ProblemMetricsManager is thread-safe.</span><br><span class="line">type ProblemMetricsManager struct &#123;</span><br><span class="line">        problemCounter           metrics.Int64MetricInterface</span><br><span class="line">        problemGauge             metrics.Int64MetricInterface</span><br><span class="line">        problemTypeToReason      map[string]string</span><br><span class="line">        problemTypeToReasonMutex sync.Mutex</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字段：</p>
+<ul>
+<li>problemCounter: 一个整型指标接口，用于计数特定问题发生的次数。</li>
+<li>problemGauge: 一个整型指标接口，用于表示特定问题是否对节点产生影响。</li>
+<li>problemTypeToReason: 一个映射，保存问题类型与原因的关系。</li>
+<li>problemTypeToReasonMutex: 一个互斥锁，用于保护 problemTypeToReason 的并发访问。</li>
+</ul>
+<h2 id="4-2-init"><a href="#4-2-init" class="headerlink" title="4.2 init"></a>4.2 init</h2><p>pkg&#x2F;problemmetrics&#x2F;problem_metrics.go:31</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// GlobalProblemMetricsManager is a singleton of ProblemMetricsManager,</span><br><span class="line">// which should be used to manage all problem-converted metrics across all</span><br><span class="line">// problem daemons.</span><br><span class="line">var GlobalProblemMetricsManager *ProblemMetricsManager</span><br><span class="line"></span><br><span class="line">func init() &#123;</span><br><span class="line">        GlobalProblemMetricsManager = NewProblemMetricsManagerOrDie()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GlobalProblemMetricsManager: 全局唯一的 ProblemMetricsManager 实例，用于管理所有问题相关的指标。</p>
+<p>init 函数: 在程序启动时初始化 GlobalProblemMetricsManager，确保其可用。</p>
+<h2 id="4-3-NewProblemMetricsManagerOrDie"><a href="#4-3-NewProblemMetricsManagerOrDie" class="headerlink" title="4.3 NewProblemMetricsManagerOrDie"></a>4.3 NewProblemMetricsManagerOrDie</h2><p>pkg&#x2F;problemmetrics&#x2F;problem_metrics.go:47</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">func NewProblemMetricsManagerOrDie() *ProblemMetricsManager &#123;</span><br><span class="line">        pmm := ProblemMetricsManager&#123;&#125;</span><br><span class="line"></span><br><span class="line">        var err error</span><br><span class="line">        pmm.problemCounter, err = metrics.NewInt64Metric(</span><br><span class="line">                metrics.ProblemCounterID,</span><br><span class="line">                string(metrics.ProblemCounterID),</span><br><span class="line">                &quot;Number of times a specific type of problem have occurred.&quot;,</span><br><span class="line">                &quot;1&quot;,</span><br><span class="line">                metrics.Sum,</span><br><span class="line">                []string&#123;&quot;reason&quot;&#125;)</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">                klog.Fatalf(&quot;Failed to create problem_counter metric: %v&quot;, err)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        pmm.problemGauge, err = metrics.NewInt64Metric(</span><br><span class="line">                metrics.ProblemGaugeID,</span><br><span class="line">                string(metrics.ProblemGaugeID),</span><br><span class="line">                &quot;Whether a specific type of problem is affecting the node or not.&quot;,</span><br><span class="line">                &quot;1&quot;,</span><br><span class="line">                metrics.LastValue,</span><br><span class="line">                []string&#123;&quot;type&quot;, &quot;reason&quot;&#125;)</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">                klog.Fatalf(&quot;Failed to create problem_gauge metric: %v&quot;, err)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        pmm.problemTypeToReason = make(map[string]string)</span><br><span class="line"></span><br><span class="line">        return &amp;pmm</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建并初始化 ProblemMetricsManager 实例。</p>
+<p>实现细节：</p>
+<p>创建 problemCounter 指标，用于记录特定问题的发生次数，接收标签 reason。</p>
+<p>创建 problemGauge 指标，用于指示特定问题是否正在影响节点，接收标签 type 和 reason。</p>
+<p>如果创建指标失败，则程序会崩溃（Fatalf）。</p>
+<p>初始化问题类型到原因的映射。</p>
+<h2 id="4-4-IncrementProblemCounter"><a href="#4-4-IncrementProblemCounter" class="headerlink" title="4.4 IncrementProblemCounter"></a>4.4 IncrementProblemCounter</h2><p>pkg&#x2F;problemmetrics&#x2F;problem_metrics.go:79</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// IncrementProblemCounter increments the value of a problem counter.</span><br><span class="line">func (pmm *ProblemMetricsManager) IncrementProblemCounter(reason string, count int64) error &#123;</span><br><span class="line">        if pmm.problemCounter == nil &#123;</span><br><span class="line">                return errors.New(&quot;problem counter is being incremented before initialized.&quot;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return pmm.problemCounter.Record(map[string]string&#123;&quot;reason&quot;: reason&#125;, count)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>增加问题计数器的值，根据 reason 标签记录统计数据。</p>
+<p>参数：</p>
+<p>reason: 问题发生的原因。</p>
+<p>count: 要增加的数量。</p>
+<p>返回值：返回可能的错误。</p>
+<h2 id="4-5-SetProblemGauge"><a href="#4-5-SetProblemGauge" class="headerlink" title="4.5 SetProblemGauge"></a>4.5 SetProblemGauge</h2><p>pkg&#x2F;problemmetrics&#x2F;problem_metrics.go:88</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// SetProblemGauge sets the value of a problem gauge.</span><br><span class="line">func (pmm *ProblemMetricsManager) SetProblemGauge(problemType string, reason string, value bool) error &#123;</span><br><span class="line">        if pmm.problemGauge == nil &#123;</span><br><span class="line">                return errors.New(&quot;problem gauge is being set before initialized.&quot;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        pmm.problemTypeToReasonMutex.Lock()</span><br><span class="line">        defer pmm.problemTypeToReasonMutex.Unlock()</span><br><span class="line"></span><br><span class="line">        // We clear the last reason, because the expected behavior is that at any point of time,</span><br><span class="line">        // for each type of permanent problem, there should be at most one reason got set to 1.</span><br><span class="line">        // This behavior is consistent with the behavior of node condition in Kubernetes.</span><br><span class="line">        // However, problemGauges with different &quot;type&quot; and &quot;reason&quot; are considered as different</span><br><span class="line">        // metrics in Prometheus. So we need to clear the previous metrics explicitly.</span><br><span class="line">        if lastReason, ok := pmm.problemTypeToReason[problemType]; ok &#123;</span><br><span class="line">                err := pmm.problemGauge.Record(map[string]string&#123;&quot;type&quot;: problemType, &quot;reason&quot;: lastReason&#125;, 0)</span><br><span class="line">                if err != nil &#123;</span><br><span class="line">                        return fmt.Errorf(&quot;failed to clear previous reason %q for type %q: %v&quot;,</span><br><span class="line">                                problemType, lastReason, err)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        pmm.problemTypeToReason[problemType] = reason</span><br><span class="line"></span><br><span class="line">        var valueInt int64</span><br><span class="line">        if value &#123;</span><br><span class="line">                valueInt = 1</span><br><span class="line">        &#125;</span><br><span class="line">        return pmm.problemGauge.Record(map[string]string&#123;&quot;type&quot;: problemType, &quot;reason&quot;: reason&#125;, valueInt)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置问题量规的值，指示特定问题对节点的影响。</p>
+<p>参数：</p>
+<ul>
+<li>problemType: 问题类型（例如，节点不可用）。</li>
+<li>reason: 具体原因。</li>
+<li>value: 表示问题的状态，true表示问题存在 (1)，false表示问题消失 (0)。</li>
+</ul>
+<p>实现细节：</p>
+<ul>
+<li>使用互斥锁保护对 problemTypeToReason 的并发访问。</li>
+<li>清除之前的原因（如果存在），保证每个问题类型在任何时刻都最多只有一个原因被设置为 1。</li>
+<li>记录新的量规值。</li>
+</ul>
+<h1 id="5-exporters"><a href="#5-exporters" class="headerlink" title="5 exporters"></a>5 exporters</h1><p>目录结构：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── k8sexporter</span><br><span class="line">│   ├── condition</span><br><span class="line">│   ├── k8s_exporter.go</span><br><span class="line">│   └── problemclient</span><br><span class="line">├── prometheusexporter</span><br><span class="line">│   └── prometheus_exporter.go</span><br><span class="line">├── register.go</span><br><span class="line">├── register_test.go</span><br><span class="line">└── stackdriver</span><br><span class="line">    ├── config</span><br><span class="line">    ├── gce</span><br><span class="line">    ├── stackdriver_exporter.go</span><br><span class="line">    └── stackdriver_exporter_test.go</span><br></pre></td></tr></table></figure>
+<p>这里就涉及到了三个exporter，分别是k8sexporter、prometheusexporter、stackdriver_exporter</p>
+<p>这三个是比较独立的，因为能力是完全不一样的，</p>
+<ul>
+<li>exporter：专注于将types.Status的event和conditation上报，并且会有一些http服务接口开放(healthz、conditions、&#x2F;debug&#x2F;pprof)，</li>
+<li>prometheusexporter：直接用的prometheuse的库，简单理解就是为了让prometheuse可以采集到数据</li>
+<li>stackdriver_exporter：处理与 Google Stackdriver 的集成，Stackdriver 是 Google Cloud 提供的监控和管理平台，该exporter负责将指标数据发送到<br>Stackdriver，以便在 Google Cloud 环境中监控应用程序和集群状态。</li>
+</ul>
+<p>这里来说说我的理解吧，prometheusexporter和stackdriver_exporter这两个exporter是为了将metric数据发送到对应的监控平台，而k8sexporter则是为了将types.Status发送到k8s，目前已经开始向register继承方向延展，如stackdriver_exporter已经使用该模式并且已经统一了struct的实现方法，但是prometheusexporter和k8sexporter还没完成演变，目前还是通过package直接调用的方式使用的。</p>
+<p>这个模块就不进行代码级别解析了，整体是非常简单的。</p>
+<h1 id="6-healthchecker"><a href="#6-healthchecker" class="headerlink" title="6 healthchecker"></a>6 healthchecker</h1><p>目录结构：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">├── health_checker.go</span><br><span class="line">├── health_checker_darwin.go</span><br><span class="line">├── health_checker_linux.go</span><br><span class="line">├── health_checker_test.go</span><br><span class="line">├── health_checker_windows.go</span><br><span class="line">└── types</span><br><span class="line">├── types.go</span><br><span class="line">├── types_test.go</span><br><span class="line">├── types_unix.go</span><br><span class="line">└── types_windows.go</span><br></pre></td></tr></table></figure>
+
+<p>6.1 healthChecker定义<br>pkg&#x2F;healthchecker&#x2F;health_checker.go:31</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">type healthChecker struct &#123;</span><br><span class="line">  component       string</span><br><span class="line">  service         string</span><br><span class="line">  enableRepair    bool</span><br><span class="line">  healthCheckFunc func () (bool, error)</span><br><span class="line">  // The repair is &quot;best-effort&quot; and ignores the error from the underlying actions.</span><br><span class="line">  // The bash commands to kill the process will fail if the service is down and hence ignore.</span><br><span class="line">  repairFunc         func ()</span><br><span class="line">  uptimeFunc         func () (time.Duration, error)</span><br><span class="line">  crictlPath         string</span><br><span class="line">  healthCheckTimeout time.Duration</span><br><span class="line">  coolDownTime       time.Duration</span><br><span class="line">  loopBackTime       time.Duration</span><br><span class="line">  logPatternsToCheck map[string]int</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字段含义：</p>
+<ul>
+<li>component：被检查的 Kubernetes 组件名称（如 Kubelet、Kube Proxy 等）。</li>
+<li>service：服务名称或标识符。</li>
+<li>enableRepair：布尔值，指示是否在发现服务不健康时尝试修复它。</li>
+<li>healthCheckFunc：一个函数，用于执行健康检查，返回健康状态和可能的错误。</li>
+<li>repairFunc：一个函数，用于尝试修复不健康的服务。</li>
+<li>uptimeFunc：一个函数，用于获取服务的运行时间。</li>
+<li>crictlPath：指向 CRI 工具的路径。</li>
+<li>healthCheckTimeout：健康检查的超时设置。</li>
+<li>coolDownTime：在尝试修复之前要求服务必须正常运行的时间。</li>
+<li>loopBackTime：用于回溯检查日志的时间段。</li>
+<li>logPatternsToCheck：一个映射，包含要检查的日志模式及其出现次数阈值。</li>
+</ul>
+<h2 id="6-2-NewHealthChecker"><a href="#6-2-NewHealthChecker" class="headerlink" title="6.2 NewHealthChecker"></a>6.2 NewHealthChecker</h2><p>pkg&#x2F;healthchecker&#x2F;health_checker.go:48</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// NewHealthChecker returns a new health checker configured with the given options.</span><br><span class="line">func NewHealthChecker(hco *options.HealthCheckerOptions) (types.HealthChecker, error) &#123;</span><br><span class="line">  hc := &amp;healthChecker&#123;</span><br><span class="line">    component:          hco.Component,</span><br><span class="line">    enableRepair:       hco.EnableRepair,</span><br><span class="line">    crictlPath:         hco.CriCtlPath,</span><br><span class="line">    healthCheckTimeout: hco.HealthCheckTimeout,</span><br><span class="line">    coolDownTime:       hco.CoolDownTime,</span><br><span class="line">    service:            hco.Service,</span><br><span class="line">    loopBackTime:       hco.LoopBackTime,</span><br><span class="line">    logPatternsToCheck: hco.LogPatterns.GetLogPatternCountMap(),</span><br><span class="line">  &#125;</span><br><span class="line">  hc.healthCheckFunc = getHealthCheckFunc(hco)</span><br><span class="line">  hc.repairFunc = getRepairFunc(hco)</span><br><span class="line">  hc.uptimeFunc = getUptimeFunc(hco.Service)</span><br><span class="line">  return hc, nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>NewHealthChecker会根据输入的options.HealthCheckerOptions来进行types.HealthChecker的构造。</p>
+<h2 id="6-3-CheckHealth"><a href="#6-3-CheckHealth" class="headerlink" title="6.3 CheckHealth"></a>6.3 CheckHealth</h2><p>pkg&#x2F;healthchecker&#x2F;health_checker.go:67</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// CheckHealth checks for the health of the component and tries to repair if enabled.</span><br><span class="line">// Returns true if healthy, false otherwise.</span><br><span class="line">func (hc *healthChecker) CheckHealth() (bool, error) &#123;</span><br><span class="line">        healthy, err := hc.healthCheckFunc()</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">                return healthy, err</span><br><span class="line">        &#125;</span><br><span class="line">        logPatternHealthy, err := logPatternHealthCheck(hc.service, hc.loopBackTime, hc.logPatternsToCheck)</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">                return logPatternHealthy, err</span><br><span class="line">        &#125;</span><br><span class="line">        if healthy &amp;&amp; logPatternHealthy &#123;</span><br><span class="line">                return true, nil</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // The service is unhealthy.</span><br><span class="line">        // Attempt repair based on flag.</span><br><span class="line">        if hc.enableRepair &#123;</span><br><span class="line">                // repair if the service has been up for the cool down period.</span><br><span class="line">                uptime, err := hc.uptimeFunc()</span><br><span class="line">                if err != nil &#123;</span><br><span class="line">                        klog.Infof(&quot;error in getting uptime for %v: %v\n&quot;, hc.component, err)</span><br><span class="line">                        return false, nil</span><br><span class="line">                &#125;</span><br><span class="line">                klog.Infof(&quot;%v is unhealthy, component uptime: %v\n&quot;, hc.component, uptime)</span><br><span class="line">                if uptime &gt; hc.coolDownTime &#123;</span><br><span class="line">                        klog.Infof(&quot;%v cooldown period of %v exceeded, repairing&quot;, hc.component, hc.coolDownTime)</span><br><span class="line">                        hc.repairFunc()</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false, nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>检查组件的健康状态，返回是否健康，并在不健康的情况下尝试修复。</p>
+<p>逻辑：</p>
+<ul>
+<li>调用 healthCheckFunc 执行健康检查。</li>
+<li>使用 logPatternHealthCheck 检查日志模式。</li>
+<li>如果组件不健康且启用了修复，检查组件的运行时间并调用修复函数。</li>
+</ul>
+<h2 id="6-4-logPatternHealthCheck"><a href="#6-4-logPatternHealthCheck" class="headerlink" title="6.4 logPatternHealthCheck"></a>6.4 logPatternHealthCheck</h2><p>pkg&#x2F;healthchecker&#x2F;health_checker.go:100</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// logPatternHealthCheck checks for the provided logPattern occurrences in the service logs.</span><br><span class="line">// Returns true if the pattern is empty or does not exist logThresholdCount times since start of service, false otherwise.</span><br><span class="line">func logPatternHealthCheck(service string, loopBackTime time.Duration, logPatternsToCheck map[string]int) (bool, error) &#123;</span><br><span class="line">        if len(logPatternsToCheck) == 0 &#123;</span><br><span class="line">                return true, nil</span><br><span class="line">        &#125;</span><br><span class="line">        uptimeFunc := getUptimeFunc(service)</span><br><span class="line">        klog.Infof(&quot;Getting uptime for service: %v\n&quot;, service)</span><br><span class="line">        uptime, err := uptimeFunc()</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">                klog.Warningf(&quot;Failed to get the uptime: %+v&quot;, err)</span><br><span class="line">                return true, err</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        logStartTime := time.Now().Add(-uptime).Format(types.LogParsingTimeLayout)</span><br><span class="line">        if loopBackTime &gt; 0 &amp;&amp; uptime &gt; loopBackTime &#123;</span><br><span class="line">                logStartTime = time.Now().Add(-loopBackTime).Format(types.LogParsingTimeLayout)</span><br><span class="line">        &#125;</span><br><span class="line">        for pattern, count := range logPatternsToCheck &#123;</span><br><span class="line">                healthy, err := checkForPattern(service, logStartTime, pattern, count)</span><br><span class="line">                if err != nil || !healthy &#123;</span><br><span class="line">                        return healthy, err</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true, nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>检查服务日志中指定模式的出现次数。</p>
+<p>参数：</p>
+<ul>
+<li>service：被监控的服务名称。</li>
+<li>loopBackTime：用于确定要检查的日志时间范围。</li>
+<li>logPatternsToCheck：要检查的日志模式及其出现的阈值。<br>返回值：布尔值表示健康状态和可能的错误。</li>
+</ul>
+<h2 id="6-5-healthCheckEndpointOKFunc"><a href="#6-5-healthCheckEndpointOKFunc" class="headerlink" title="6.5 healthCheckEndpointOKFunc"></a>6.5 healthCheckEndpointOKFunc</h2><p>pkg&#x2F;healthchecker&#x2F;health_checker.go:126</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// healthCheckEndpointOKFunc returns a function to check the status of an http endpoint</span><br><span class="line">func healthCheckEndpointOKFunc(endpoint string, timeout time.Duration) func() (bool, error) &#123;</span><br><span class="line">        return func() (bool, error) &#123;</span><br><span class="line">                httpClient := http.Client&#123;Timeout: timeout&#125;</span><br><span class="line">                response, err := httpClient.Get(endpoint)</span><br><span class="line">                if err != nil || response.StatusCode != http.StatusOK &#123;</span><br><span class="line">                        return false, nil</span><br><span class="line">                &#125;</span><br><span class="line">                return true, nil</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回一个函数，该函数检查给定 HTTP 端点的健康状态。</p>
+<p>参数：端点 URI 和超时时间。</p>
+<p>返回值：健康检查函数。</p>
+<h2 id="6-6-getHealthCheckFunc"><a href="#6-6-getHealthCheckFunc" class="headerlink" title="6.6 getHealthCheckFunc"></a>6.6 getHealthCheckFunc</h2><p>pkg&#x2F;healthchecker&#x2F;health_checker.go:138</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// getHealthCheckFunc returns the health check function based on the component.</span><br><span class="line">func getHealthCheckFunc(hco *options.HealthCheckerOptions) func() (bool, error) &#123;</span><br><span class="line">        switch hco.Component &#123;</span><br><span class="line">        case types.KubeletComponent:</span><br><span class="line">                return healthCheckEndpointOKFunc(types.KubeletHealthCheckEndpoint(), hco.HealthCheckTimeout)</span><br><span class="line">        case types.KubeProxyComponent:</span><br><span class="line">                return healthCheckEndpointOKFunc(types.KubeProxyHealthCheckEndpoint(), hco.HealthCheckTimeout)</span><br><span class="line">        case types.DockerComponent:</span><br><span class="line">                return func() (bool, error) &#123;</span><br><span class="line">                        if _, err := execCommand(hco.HealthCheckTimeout, getDockerPath(), &quot;ps&quot;); err != nil &#123;</span><br><span class="line">                                return false, nil</span><br><span class="line">                        &#125;</span><br><span class="line">                        return true, nil</span><br><span class="line">                &#125;</span><br><span class="line">        case types.CRIComponent:</span><br><span class="line">                return func() (bool, error) &#123;</span><br><span class="line">                        _, err := execCommand(</span><br><span class="line">                                hco.HealthCheckTimeout,</span><br><span class="line">                                hco.CriCtlPath,</span><br><span class="line">                                &quot;--timeout=&quot;+hco.CriTimeout.String(),</span><br><span class="line">                                &quot;--runtime-endpoint=&quot;+hco.CriSocketPath,</span><br><span class="line">                                &quot;pods&quot;,</span><br><span class="line">                                &quot;--latest&quot;,</span><br><span class="line">                        )</span><br><span class="line">                        if err != nil &#123;</span><br><span class="line">                                return false, nil</span><br><span class="line">                        &#125;</span><br><span class="line">                        return true, nil</span><br><span class="line">                &#125;</span><br><span class="line">        default:</span><br><span class="line">                klog.Warningf(&quot;Unsupported component: %v&quot;, hco.Component)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据组件类型返回相应的健康检查方法。</p>
+<p>参数：健康检查选项。</p>
+<p>返回值：执行健康检查的函数。</p>
+<h2 id="6-7-execCommand"><a href="#6-7-execCommand" class="headerlink" title="6.7 execCommand"></a>6.7 execCommand</h2><p>pkg&#x2F;healthchecker&#x2F;health_checker.go:174</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// execCommand executes the bash command and returns the (output, error) from command, error if timeout occurs.</span><br><span class="line">func execCommand(timeout time.Duration, command string, args ...string) (string, error) &#123;</span><br><span class="line">        ctx, cancel := context.WithTimeout(context.Background(), timeout)</span><br><span class="line">        defer cancel()</span><br><span class="line">        cmd := exec.CommandContext(ctx, command, args...)</span><br><span class="line">        out, err := cmd.CombinedOutput()</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">                klog.Infof(&quot;command %v failed: %v, %s\n&quot;, cmd, err, string(out))</span><br><span class="line">                return &quot;&quot;, err</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return strings.TrimSuffix(string(out), &quot;\n&quot;), nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行给定的命令，并在指定的超时时间内返回输出和错误。</p>
+<p>参数：超时时间、命令和参数。</p>
+<p>返回值：命令的输出和错误信息。</p>
+<h2 id="6-8-getUptimeFunc"><a href="#6-8-getUptimeFunc" class="headerlink" title="6.8 getUptimeFunc"></a>6.8 getUptimeFunc</h2><p>pkg&#x2F;healthchecker&#x2F;health_checker_linux.go:32</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// getUptimeFunc returns the time for which the given service has been running.</span><br><span class="line">func getUptimeFunc(service string) func() (time.Duration, error) &#123;</span><br><span class="line">        return func() (time.Duration, error) &#123;</span><br><span class="line">                // Using InactiveExitTimestamp to capture the exact time when systemd tried starting the service. The service will</span><br><span class="line">                // transition from inactive -&gt; activating and the timestamp is captured.</span><br><span class="line">                // Source : https://www.freedesktop.org/wiki/Software/systemd/dbus/</span><br><span class="line">                // Using ActiveEnterTimestamp resulted in race condition where the service was repeatedly killed by plugin when</span><br><span class="line">                // RestartSec of systemd and invoke interval of plugin got in sync. The service was repeatedly killed in</span><br><span class="line">                // activating state and hence ActiveEnterTimestamp was never updated.</span><br><span class="line">                out, err := execCommand(types.CmdTimeout, &quot;systemctl&quot;, &quot;show&quot;, service, &quot;--property=InactiveExitTimestamp&quot;)</span><br><span class="line"></span><br><span class="line">                if err != nil &#123;</span><br><span class="line">                        return time.Duration(0), err</span><br><span class="line">                &#125;</span><br><span class="line">                val := strings.Split(out, &quot;=&quot;)</span><br><span class="line">                if len(val) &lt; 2 &#123;</span><br><span class="line">                        return time.Duration(0), errors.New(&quot;could not parse the service uptime time correctly&quot;)</span><br><span class="line">                &#125;</span><br><span class="line">                t, err := time.Parse(types.UptimeTimeLayout, val[1])</span><br><span class="line">                if err != nil &#123;</span><br><span class="line">                        return time.Duration(0), err</span><br><span class="line">                &#125;</span><br><span class="line">                return time.Since(t), nil</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回一个函数，计算指定服务的运行时间。</p>
+<p>参数：</p>
+<ul>
+<li><p>service string - 被监控服务的名称。</p>
+</li>
+<li><p>返回值：返回一个函数，该函数返回服务运行的持续时间或错误。</p>
+</li>
+<li><p>实现细节</p>
+</li>
+<li><p>使用 systemctl show 命令获取 InactiveExitTimestamp，这是服务从 inactive 状态转换时的时间戳。</p>
+</li>
+<li><p>解析命令的输出，将时间戳转换为 time.Time 类型，并计算自该时间以来的持续时间。</p>
+</li>
+<li><p>此方法可用于获取服务的当前运行时间，以便评估是否在修复之前达到冷却时间。</p>
+</li>
+</ul>
+<h2 id="6-9-getRepairFunc"><a href="#6-9-getRepairFunc" class="headerlink" title="6.9 getRepairFunc"></a>6.9 getRepairFunc</h2><p>pkg&#x2F;healthchecker&#x2F;health_checker_linux.go:58</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// getRepairFunc returns the repair function based on the component.</span><br><span class="line">func getRepairFunc(hco *options.HealthCheckerOptions) func() &#123;</span><br><span class="line">        // Use `systemctl kill` instead of `systemctl restart` for the repair function.</span><br><span class="line">        // We start to rely on the kernel message difference for the two commands to</span><br><span class="line">        // indicate if the component restart is due to an administrative plan (restart)</span><br><span class="line">        // or a system issue that needs repair (kill).</span><br><span class="line">        // See https://github.com/kubernetes/node-problem-detector/issues/847.</span><br><span class="line">        switch hco.Component &#123;</span><br><span class="line">        case types.DockerComponent:</span><br><span class="line">                // Use &quot;docker ps&quot; for docker health check. Not using crictl for docker to remove</span><br><span class="line">                // dependency on the kubelet.</span><br><span class="line">                return func() &#123;</span><br><span class="line">                        execCommand(types.CmdTimeout, &quot;pkill&quot;, &quot;-SIGUSR1&quot;, &quot;dockerd&quot;)</span><br><span class="line">                        execCommand(types.CmdTimeout, &quot;systemctl&quot;, &quot;kill&quot;, &quot;--kill-who=main&quot;, hco.Service)</span><br><span class="line">                &#125;</span><br><span class="line">        default:</span><br><span class="line">                // Just kill the service for all other components</span><br><span class="line">                return func() &#123;</span><br><span class="line">                        execCommand(types.CmdTimeout, &quot;systemctl&quot;, &quot;kill&quot;, &quot;--kill-who=main&quot;, hco.Service)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据服务的组件类型返回一个演示修复功能的方法。</p>
+<p>参数：</p>
+<ul>
+<li>hco *options.HealthCheckerOptions - 健康检查的选项。</li>
+<li>返回值：返回一个函数，该函数执行相应修复操作。</li>
+</ul>
+<p>实现细节</p>
+<ul>
+<li>对于 Docker 组件，通过 pkill 发送 SIGUSR1 信号以更优雅地停止 Docker 守护进程。</li>
+<li>对于其他组件，调用 systemctl kill 命令终止主要进程。</li>
+<li>这种设计使得修复功能能够根据不同的组件采取合适的处理方式。</li>
+</ul>
+<h2 id="6-10-checkForPattern"><a href="#6-10-checkForPattern" class="headerlink" title="6.10 checkForPattern"></a>6.10 checkForPattern</h2><p>pkg&#x2F;healthchecker&#x2F;health_checker_linux.go:82</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// checkForPattern returns (true, nil) if logPattern occurs less than logCountThreshold number of times since last</span><br><span class="line">// service restart. (false, nil) otherwise.</span><br><span class="line">func checkForPattern(service, logStartTime, logPattern string, logCountThreshold int) (bool, error) &#123;</span><br><span class="line">        out, err := execCommand(types.CmdTimeout, &quot;/bin/sh&quot;, &quot;-c&quot;,</span><br><span class="line">                // Query service logs since the logStartTime</span><br><span class="line">                `journalctl --unit &quot;`+service+`&quot; --since &quot;`+logStartTime+</span><br><span class="line">                        // Grep the pattern</span><br><span class="line">                        `&quot; | grep -i &quot;`+logPattern+</span><br><span class="line">                        // Get the count of occurrences</span><br><span class="line">                        `&quot; | wc -l`)</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">                return true, err</span><br><span class="line">        &#125;</span><br><span class="line">        occurrences, err := strconv.Atoi(out)</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">                return true, err</span><br><span class="line">        &#125;</span><br><span class="line">        if occurrences &gt;= logCountThreshold &#123;</span><br><span class="line">                klog.Infof(&quot;%s failed log pattern check, %s occurrences: %v&quot;, service, logPattern, occurrences)</span><br><span class="line">                return false, nil</span><br><span class="line">        &#125;</span><br><span class="line">        return true, nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>检查指定服务的日志中是否包含特定模式，并返回其出现次数是否达到阈值。</p>
+<p>参数：</p>
+<ul>
+<li>service：被监控服务的名称。</li>
+<li>logStartTime：起始时间，用于过滤日志。</li>
+<li>logPattern：需要检查的日志模式。</li>
+<li>logCountThreshold：模式出现的最大次数阈值。</li>
+<li>返回值：返回一个布尔值，指示是否健康，以及可能的错误。</li>
+</ul>
+<p>实现细节</p>
+<ul>
+<li>使用 journalctl 命令获取从指定时间开始的服务日志，并通过 grep 过滤符合条件的日志模式。</li>
+<li>使用 wc -l 计算匹配的行数。</li>
+<li>如果日志模式出现的次数大于阈值，记录相关信息并返回健康检查失败的结果。</li>
+</ul>
+<h1 id="7-logcounter"><a href="#7-logcounter" class="headerlink" title="7 logcounter"></a>7 logcounter</h1><h2 id="7-1-logCounter定义"><a href="#7-1-logCounter定义" class="headerlink" title="7.1 logCounter定义"></a>7.1 logCounter定义</h2><p>pkg&#x2F;logcounter&#x2F;log_counter.go:42</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">type logCounter struct &#123;</span><br><span class="line">        logCh         &lt;-chan *systemtypes.Log</span><br><span class="line">        buffer        systemlogmonitor.LogBuffer</span><br><span class="line">        pattern       string</span><br><span class="line">        revertPattern string</span><br><span class="line">        clock         clock.Clock</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字段解释：</p>
+<ul>
+<li>logCh：只读通道，用于接收系统日志。</li>
+<li>buffer：存储日志的缓冲区，以便分析和计数。</li>
+<li>pattern：处理日志时使用的匹配模式。</li>
+<li>revertPattern：可用来反向计数的模式。</li>
+<li>clock：用于获取当前时间的时钟，支持模拟时钟功能。</li>
+</ul>
+<h2 id="7-2-NewJournaldLogCounter"><a href="#7-2-NewJournaldLogCounter" class="headerlink" title="7.2 NewJournaldLogCounter"></a>7.2 NewJournaldLogCounter</h2><p>pkg&#x2F;logcounter&#x2F;log_counter.go:50</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">func NewJournaldLogCounter(options *options.LogCounterOptions) (types.LogCounter, error) &#123;</span><br><span class="line">        watcher := journald.NewJournaldWatcher(watchertypes.WatcherConfig&#123;</span><br><span class="line">                Plugin:       &quot;journald&quot;,</span><br><span class="line">                PluginConfig: map[string]string&#123;journaldSourceKey: options.JournaldSource&#125;,</span><br><span class="line">                LogPath:      options.LogPath,</span><br><span class="line">                Lookback:     options.Lookback,</span><br><span class="line">                Delay:        options.Delay,</span><br><span class="line">        &#125;)</span><br><span class="line">        logCh, err := watcher.Watch()</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">                return nil, fmt.Errorf(&quot;error watching journald: %v&quot;, err)</span><br><span class="line">        &#125;</span><br><span class="line">        return &amp;logCounter&#123;</span><br><span class="line">                logCh:         logCh,</span><br><span class="line">                buffer:        systemlogmonitor.NewLogBuffer(bufferSize),</span><br><span class="line">                pattern:       options.Pattern,</span><br><span class="line">                revertPattern: options.RevertPattern,</span><br><span class="line">                clock:         clock.RealClock&#123;&#125;,</span><br><span class="line">        &#125;, nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>初始化并返回一个新的 logCounter 实例。</p>
+<p>参数：</p>
+<ul>
+<li>options *options.LogCounterOptions - 包含配置信息（例如日志源、路径、模式等）。</li>
+<li>返回值：返回一个实现了 types.LogCounter 接口的 logCounter 实例。</li>
+</ul>
+<p>实现细节</p>
+<ul>
+<li>创建一个 journald 日志观察者实例来监控指定的日志路径。</li>
+<li>如果监视操作成功，建立日志通道并创建 logCounter 的实例，设置缓冲区、匹配模式等。</li>
+</ul>
+<h2 id="7-3-Count"><a href="#7-3-Count" class="headerlink" title="7.3 Count"></a>7.3 Count</h2><p>pkg&#x2F;logcounter&#x2F;log_counter.go:71</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">func (e *logCounter) Count() (count int, err error) &#123;</span><br><span class="line">        start := e.clock.Now()</span><br><span class="line">        for &#123;</span><br><span class="line">                select &#123;</span><br><span class="line">                case log, ok := &lt;-e.logCh:</span><br><span class="line">                        if !ok &#123;</span><br><span class="line">                                err = fmt.Errorf(&quot;log channel closed unexpectedly&quot;)</span><br><span class="line">                                return</span><br><span class="line">                        &#125;</span><br><span class="line">                        if start.Before(log.Timestamp) &#123;</span><br><span class="line">                                return</span><br><span class="line">                        &#125;</span><br><span class="line">                        e.buffer.Push(log)</span><br><span class="line">                        if len(e.buffer.Match(e.pattern)) != 0 &#123;</span><br><span class="line">                                count++</span><br><span class="line">                        &#125;</span><br><span class="line">                        if e.revertPattern != &quot;&quot; &amp;&amp; len(e.buffer.Match(e.revertPattern)) != 0 &#123;</span><br><span class="line">                                count--</span><br><span class="line">                        &#125;</span><br><span class="line">                case &lt;-e.clock.After(timeout):</span><br><span class="line">                        return</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>统计在运行期间匹配的日志条目数量。</p>
+<p>返回值：返回符合条件的日志计数及任何潜在的错误。</p>
+<p>实现细节</p>
+<ul>
+<li>使用当前时间 (start) 记录开始时刻。</li>
+<li>在无限循环中，使用 select 语句监听日志通道和超时事件。</li>
+<li>如果从 logCh 读取到日志：<ul>
+<li>检查通道是否已经关闭。</li>
+<li>如果读取到的日志时间戳晚于开始时间，则停止计数。</li>
+<li>将日志条目压入缓冲区。</li>
+<li>检查当前日志是否与模式匹配，如果匹配则计数加一；如果匹配反向模式，则计数减一。</li>
+<li>如果在超时时间内没有收到新日志，结束循环并返回计数。</li>
+</ul>
+</li>
+</ul>
 ]]></content>
   </entry>
 </search>
