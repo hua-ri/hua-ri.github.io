@@ -1,295 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>BKCI 简介</title>
-    <url>/2025/07/devops/blueking/BKCI%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p>BK-CI官方文档：<a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md">https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md</a><br>github仓库地址：<a href="https://github.com/TencentBlueKing/bk-ci">https://github.com/TencentBlueKing/bk-ci</a></p>
-<h1 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h1><table>
-<thead>
-<tr>
-<th>🐤 了解基本概念</th>
-<th>👉 使用 BKCI</th>
-<th>🚀 部署 BKCI</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/bkci.md">BKCI 是什么？</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Create-your-first-pipeline.md">创建你的第一条流水线</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/hardware.md">BKCI 硬件规格指南</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/components.md">BKCI 组件</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Link-your-first-repo.md">关联你的第一个代码库</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/system.md">BKCI 系统要求</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">快速熟悉流水线</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Enable-ci.md">为你的Git工程开启CI</a></td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">术语解释</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Case/Examples/vars-usage.md">示例</a></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Developer/rest-api/read-before-use.md">API接口</a></td>
-<td></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>📔 产品功能</th>
-<th>🏪 研发商店</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pipeline/pipeline-list.md">流水线</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/home.md">浏览研发商店</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Console/Console.md">控制台</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/start-new-task.md">开发一个流水线插件</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Ticket/ticket.md">凭证管理</a></td>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/upload-new-task.md">在 BKCI 里使用商店插件</a></td>
-</tr>
-<tr>
-<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pools/host-to-bkci.md">构建资源</a></td>
-<td></td>
-</tr>
-</tbody></table>
-<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><p>蓝鲸学习社区：<a href="https://bk.tencent.com/s-mart/communities">https://bk.tencent.com/s-mart/communities</a><br>蓝鲸官方文档：<a href="https://bk.tencent.com/docs/">https://bk.tencent.com/docs/</a></p>
-<p><strong>蓝鲸体系</strong><br>蓝鲸简介：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md</a><br>核心优势：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md</a><br>体系架构：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md</a><br>CI领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md</a><br>CD领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md</a><br>CO领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2025/07/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>NPD介绍</title>
-    <url>/2025/07/devops/npd/NPD%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h1><p>官方文档库地址：<a href="https://github.com/kubernetes/node-problem-detector">https://github.com/kubernetes/node-problem-detector</a></p>
-<p>node-problem-detector 旨在使集群管理堆栈中的上游层能够看到各种节点问题。</p>
-<p>它是一个在每个节点上运行的守护进程，检测节点问题并将其报告给apiserver。</p>
-<p>node-problem-detector 可以作为 DaemonSet 运行，也可以独立运行。</p>
-<p>现在它作为 GKE集群中默认启用的Kubernetes Addon运行。它也作为AKS Linux Extension的一部分在 AKS 中默认启用。</p>
-<h2 id="1-2-背景"><a href="#1-2-背景" class="headerlink" title="1.2 背景"></a>1.2 背景</h2><p>大量节点问题可能会影响节点上运行的 pod，例如：</p>
-<ul>
-<li>基础设施守护进程问题：ntp 服务关闭；</li>
-<li>硬件问题：CPU、内存或磁盘损坏；</li>
-<li>内核问题：内核死锁、文件系统损坏；</li>
-<li>容器运行时问题：运行时守护进程无响应；</li>
-<li>…</li>
-</ul>
-<p>目前，这些问题对于集群管理堆栈中的上游层是不可见的，因此 Kubernetes 将继续将 pod 调度到坏节点。<br>为了解决这个问题，我们引入了这个新的守护进程node-problem-detector来从各种守护进程收集节点问题，并将它们提供给上游层。一旦上游层能够看到这些问题，我们就可以讨论 <a href="https://github.com/kubernetes/node-problem-detector?tab=readme-ov-file#remedy-systems">remedy systems</a>了。</p>
-<h2 id="1-3-Problem-API"><a href="#1-3-Problem-API" class="headerlink" title="1.3 Problem API"></a>1.3 Problem API</h2><p>node-problem-detector 使用Event并向NodeConditionapiserver 报告问题。</p>
-<ul>
-<li>NodeCondition：导致节点无法用于 pod 的永久性问题应报告为NodeCondition。</li>
-<li>Event：对 pod 影响有限但具有参考意义的临时问题应报告为Event。</li>
-</ul>
-<h2 id="1-4-Problem-Daemon"><a href="#1-4-Problem-Daemon" class="headerlink" title="1.4 Problem Daemon"></a>1.4 Problem Daemon</h2><p>问题守护进程是 node-problem-detector 的一个子守护进程。它监视特定类型的节点问题并将其报告给 node-problem-detector。<br>守护进程可能是：</p>
-<ul>
-<li>专为 Kubernetes 专用用例设计的微型守护进程。</li>
-<li>与节点问题检测器集成的现有节点健康监控守护进程。</li>
-</ul>
-<p>目前，问题守护进程在 node-problem-detector 二进制文件中以 goroutine 的形式运行。</p>
-<p>未来，我们会将 node-problem-detector和问题守护进程分离到不同的容器中，并使用 pod 规范将它们组合在一起。</p>
-<p>每种类型的问题守护进程都可以通过设置相应的构建标签在编译时禁用。</p>
-<p>如果在编译时禁用它们，则它们的所有构建依赖项、全局变量和后台goroutine 都将从编译的可执行文件中剔除。</p>
-<p>支持的守护进程列表：</p>
-<table>
-<thead>
-<tr>
-<th>问题守护进程类型</th>
-<th>节点状态</th>
-<th>解释</th>
-<th>配置</th>
-<th>禁用构建标签</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemlogmonitor">SystemLogMonitor</a></td>
-<td>KernelDeadlock ReadonlyFilesystem FrequentKubeletRestart FrequentDockerRestart FrequentContainerdRestart</td>
-<td>系统日志监视器监视系统日志并根据预定义的规则报告问题和指标。</td>
-<td><a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor-filelog.json">filelog</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor.json">kmsg</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor-counter.json">kernel</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/systemd-monitor-counter.json">abrt</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/systemd-monitor-counter.json">systemd</a></td>
-<td>disable_system_log_monitor</td>
-</tr>
-<tr>
-<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemstatsmonitor">SystemStatsMonitor</a></td>
-<td>None(Could be added in the future)</td>
-<td>节点问题检测器的系统统计监视器，用于收集各种与健康相关的系统统计信息作为指标。请参阅<a href="https://docs.google.com/document/d/1SeaUz6kBavI283Dq8GBpoEUDrHA2a795xtw0OvjM568/edit">此处</a>的提案。</td>
-<td><a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/system-stats-monitor.json">system-stats-monitor</a></td>
-<td>disable_system_stats_monitor</td>
-</tr>
-<tr>
-<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/custompluginmonitor">CustomPluginMonitor</a></td>
-<td>On-demand(According to users configuration), existing example: NTPProblem</td>
-<td>一个自定义的 node-problem-detector 插件监控器，用于调用和检查各种节点问题，并使用用户定义的检查脚本。请参阅<a href="https://docs.google.com/document/d/1jK_5YloSYtboj-DtfjmYKxfNnUxCAvohLnsH5aGCAYQ/edit#">此处</a>的提案。</td>
-<td><a href="https://github.com/kubernetes/node-problem-detector/blob/4ad49bbd84b8ced45ac825eac01ec93d9235935e/config/custom-plugin-monitor.json">example</a></td>
-<td>disable_custom_plugin_monitor</td>
-</tr>
-<tr>
-<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/healthchecker">HealthChecker</a></td>
-<td>KubeletUnhealthy ContainerRuntimeUnhealthy</td>
-<td>节点问题检测器的健康检查器用于检查 kubelet 和容器运行时的健康状况。</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="1-5-Exporter"><a href="#1-5-Exporter" class="headerlink" title="1.5 Exporter"></a>1.5 Exporter</h2><p>exporter 是 node-problem-detector 的一个组件。</p>
-<p>它向某些后端报告节点问题 和&#x2F;或 指标。</p>
-<p>其中一些可以在编译时使用构建标记禁用。支持的导出器列表：</p>
-<table>
-<thead>
-<tr>
-<th>Exporter</th>
-<th>解释</th>
-<th>禁用构建标签</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Kubernetes exporter</td>
-<td>Kubernetes 导出器向 Kubernetes API 服务器报告节点问题：临时问题报告为事件，永久问题报告为节点状况。</td>
-<td></td>
-</tr>
-<tr>
-<td>Prometheus exporter</td>
-<td>Prometheus 导出器将节点问题和指标本地报告为 Prometheus 指标</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/exporter/stackdriver-exporter.json">Stackdriver exporter</a></td>
-<td>Stackdriver 导出器向 Stackdriver Monitoring API 报告节点问题和指标。</td>
-<td>disable_stackdriver_exporter</td>
-</tr>
-</tbody></table>
-<h2 id="1-6-用法"><a href="#1-6-用法" class="headerlink" title="1.6 用法"></a>1.6 用法</h2><h3 id="1-6-1-标志"><a href="#1-6-1-标志" class="headerlink" title="1.6.1 标志"></a>1.6.1 标志</h3><ul>
-<li>–version：打印节点问题检测器的当前版本。</li>
-<li>–hostname-override：node-problem-detector 用于更新状态和发出事件的自定义节点名称。node-problem-detector 首先从hostname-override获取节点名称，然后从NODE_NAME环境变量 获取，最后返回到os.Hostname。</li>
-</ul>
-<h3 id="1-6-2-对于系统日志监控"><a href="#1-6-2-对于系统日志监控" class="headerlink" title="1.6.2 对于系统日志监控"></a>1.6.2 对于系统日志监控</h3><ul>
-<li>–config.system-log-monitor：系统日志监视器配置文件路径列表，以逗号分隔，例如 config&#x2F;kernel-monitor.json。节点问题检测器将为每个配置启动单独的日志监视器。您可以使用不同的日志监视器来监视不同的系统日志。</li>
-</ul>
-<h3 id="1-6-3-对于系统统计监控"><a href="#1-6-3-对于系统统计监控" class="headerlink" title="1.6.3 对于系统统计监控"></a>1.6.3 对于系统统计监控</h3><ul>
-<li>–config.system-stats-monitor：系统统计监控配置文件的路径列表，以逗号分隔，例如 <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/system-stats-monitor.json">config&#x2F;system-stats-monitor.json</a>。节点问题检测器将为每个配置启动一个单独的系统统计监控器。您可以使用不同的系统统计监控器来监控与问题相关的不同系统统计信息。</li>
-</ul>
-<h3 id="1-6-4-对于自定义插件监视器"><a href="#1-6-4-对于自定义插件监视器" class="headerlink" title="1.6.4 对于自定义插件监视器"></a>1.6.4 对于自定义插件监视器</h3><ul>
-<li>–config.custom-plugin-monitor：自定义插件监控配置文件路径列表，以逗号分隔，例如 <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/custom-plugin-monitor.json">config&#x2F;custom-plugin-monitor.json</a>。节点问题检测器将为每个配置启动一个单独的自定义插件监控。您可以使用不同的自定义插件监控来监控不同的节点问题。</li>
-</ul>
-<h3 id="1-6-5-对于健康检查者"><a href="#1-6-5-对于健康检查者" class="headerlink" title="1.6.5 对于健康检查者"></a>1.6.5 对于健康检查者</h3><ul>
-<li>–enable-k8s-exporter：启用向 Kubernetes API 服务器报告，默认为true。</li>
-<li>–apiserver-override：用于自定义 node-problem-detector 如何连接 apiserver 的 URI 参数。如果–enable-k8s-exporter是，则忽略此参数。格式与<a href="https://github.com/kubernetes/heapster">Heapster</a> 的标志false相同。例如，要无需身份验证即可运行，请使用以下配置： <a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">source</a></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">http://APISERVER_IP:APISERVER_PORT?inClusterConfig=false</span><br></pre></td></tr></table></figure>
-
-<p>请参阅<a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">heapster 文档</a><br>以获取可用选项的完整列表。</p>
-<ul>
-<li>–address：绑定节点问题检测服务器的地址。</li>
-<li>–port：绑定节点问题检测服务器的端口。使用 0 表示禁用。</li>
-</ul>
-<h3 id="1-6-6-对于-Prometheus-exporter"><a href="#1-6-6-对于-Prometheus-exporter" class="headerlink" title="1.6.6 对于 Prometheus exporter"></a>1.6.6 对于 Prometheus exporter</h3><ul>
-<li>–prometheus-address：绑定Prometheus抓取端点的地址，默认为127.0.0.1。</li>
-<li>–prometheus-port：绑定 Prometheus 抓取端点的端口，默认为 20257。使用 0 表示禁用。</li>
-</ul>
-<h3 id="1-6-7-对于-Stackdriver-exporter"><a href="#1-6-7-对于-Stackdriver-exporter" class="headerlink" title="1.6.7 对于 Stackdriver exporter"></a>1.6.7 对于 Stackdriver exporter</h3><ul>
-<li>–exporter.stackdriver：Stackdriver 导出器配置文件的路径，例如config&#x2F;exporter&#x2F;stackdriver-exporter.json，默认为空字符串。设置为空字符串即可禁用。</li>
-</ul>
-<h3 id="1-6-8-已弃用的标志"><a href="#1-6-8-已弃用的标志" class="headerlink" title="1.6.8 已弃用的标志"></a>1.6.8 已弃用的标志</h3><ul>
-<li>–system-log-monitors：系统日志监控配置文件的路径列表，以逗号分隔。此选项已弃用，由–config.system-log-monitor替代，并将被删除。如果同时设置–system-log-monitors和 –config.system-log-monitor ， NPD 将崩溃。</li>
-<li>–custom-plugin-monitors：自定义插件监控配置文件的路径列表，以逗号分隔。此选项已弃用，由–config.custom-plugin-monitor替代，并将被删除。如果同时设置–custom-plugin-monitors和 –config.custom-plugin-monitor，NPD 将崩溃。</li>
-</ul>
-<h2 id="1-7-构建镜像"><a href="#1-7-构建镜像" class="headerlink" title="1.7 构建镜像"></a>1.7 构建镜像</h2><ul>
-<li>安装libsystemdARM GCC 工具链的开发依赖项<ul>
-<li>Debian &#x2F; Ubuntu：apt install libsystemd-dev gcc-aarch64-linux-gnu</li>
-</ul>
-</li>
-<li>git clone <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:kubernetes&#x2F;node-problem-detector.git</li>
-<li>在顶层目录中运行make。它将：<ul>
-<li>构建二进制文件。</li>
-<li>构建docker镜像。二进制文件和config&#x2F;被复制到docker镜像中。</li>
-</ul>
-</li>
-</ul>
-<p>如果您不需要某些类别的问题守护进程，您可以选择在编译时禁用它们。这是保持 node-problem-detector运行时紧凑且没有不必要代码（例如全局变量、goroutines 等）的最佳方法。</p>
-<p>您可以通过BUILD_TAGS在运行之前设置环境变量来实现这一点make。例如：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">BUILD_TAGS=&quot;disable_custom_plugin_monitor disable_system_stats_monitor&quot; make</span><br></pre></td></tr></table></figure>
-
-<p>上述命令将在不使用<a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/custompluginmonitor">自定义插件监视器</a>和<a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemstatsmonitor">系统统计监视器</a>的情况下编译node-problem-detector 。查看<a href="https://github.com/kubernetes/node-problem-detector#problem-daemon">问题守护进程</a>部分，了解如何在编译时禁用每个问题守护进程。</p>
-<h2 id="1-8-推送镜像"><a href="#1-8-推送镜像" class="headerlink" title="1.8 推送镜像"></a>1.8 推送镜像</h2><p><code>make push</code>将 docker 镜像上传到注册表。默认情况下，镜像将上传到 <code>staging-k8s.gcr.io</code>。可以轻松修改<code>Makefile</code>以将镜像推送到另一个注册表。</p>
-<h2 id="1-9-安装"><a href="#1-9-安装" class="headerlink" title="1.9 安装"></a>1.9 安装</h2><p>将 node-problem-detector<br>安装到集群中的最简单方法是使用<a href="https://github.com/deliveryhero/helm-charts/tree/master/stable/node-problem-detector">Helm 图表</a>：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">helm repo add deliveryhero https://charts.deliveryhero.io/</span><br><span class="line">helm install --generate-name deliveryhero/node-problem-detector</span><br></pre></td></tr></table></figure>
-
-<p>或者，手动安装 node-problem-detector：</p>
-<p>编辑<a href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/node-problem-detector.yaml">node-problem-detector.yaml</a>以适应您的环境。将<code>log</code>卷设置为您的系统日志目录（由 SystemLogMonitor 使用）。您可以使用 ConfigMap 覆盖<code>config</code> pod 内的目录。</p>
-<p>编辑<a href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/node-problem-detector-config.yaml">node-problem-detector-config.yaml</a>来配置 node-problem-detector。</p>
-<ul>
-<li>编辑<a href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/rbac.yaml">rbac.yaml</a>以适合您的环境。</li>
-<li>使用 创建 ServiceAccount 和 ClusterRoleBinding <code>kubectl create -f rbac.yaml</code>。</li>
-<li>使用 创建 ConfigMap <code>kubectl create -f node-problem-detector-config.yaml</code>。</li>
-<li>使用 创建 DaemonSet <code>kubectl create -f node-problem-detector.yaml</code>。</li>
-</ul>
-<h2 id="1-10-开始独立运行"><a href="#1-10-开始独立运行" class="headerlink" title="1.10 开始独立运行"></a>1.10 开始独立运行</h2><p>要独立运行 node-problem-detector，您应该设置inClusterConfig为false，并且教 node-problem-detector 如何 访问 apiserver，也就是apiserver-override。</p>
-<p>要使用不安全的 apiserver 连接独立运行 node-problem-detector：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node-problem-detector --apiserver-override=http://APISERVER_IP:APISERVER_INSECURE_PORT?inClusterConfig=false</span><br></pre></td></tr></table></figure>
-
-<p>更多场景请见<a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">此处</a></p>
-<h2 id="1-11-试用"><a href="#1-11-试用" class="headerlink" title="1.11 试用"></a>1.11 试用</h2><p>您可以在正在运行的集群中尝试使用 node-problem-detector，方法是将消息注入到 node-problem-detector 正在监视的日志中。</p>
-<p>例如，假设 node-problem-detector 正在使用KernelMonitor。</p>
-<p>在您的机器上运行<code>kubectl get events -w</code>。在节点上运行<code>sudo sh -c &quot;echo &#39;kernel: BUG: unable to handle kernel NULL pointer dereference at TESTING&#39; &gt;&gt; /dev/kmsg&quot;</code>。然后您应该会看到该KernelOopss事件。</p>
-<p>添加新规则或开发节点问题检测器时，在独立模式下在本地工作站上进行测试可能更容易。</p>
-<p>对于 API 服务器，一种简单的方法是使用kubectl proxy正在运行的集群的 API 服务器在本地可用。</p>
-<p>您会收到一些错误，因为 API 服务器无法识别您的本地工作站。但无论如何，您仍然应该能够测试您的新规则。</p>
-<p>例如，测试KernelMonitor规则：</p>
-<ul>
-<li><code>make</code>（本地构建node-problem-detector）</li>
-<li><code>kubectl proxy --port=8080</code>（使正在运行的集群的 API 服务器在本地可用）</li>
-<li>将KernelMonitor更新到您的本地内核日志目录<code>logPath</code>。例如，在某些 Linux 系统上，它是<code>/run/log/journal</code>, 而不是<code>/var/log/journal</code>。</li>
-<li><code>./bin/node-problem-detector --logtostderr --apiserver-override=http://127.0.0.1:8080?inClusterConfig=false --config.system-log-monitor=config/kernel-monitor.json --config.system-stats-monitor=config/system-stats-monitor.json --port=20256 --prometheus-port=2025</code>（或指向任何 API 服务器地址：端口和 Prometheus 端口）</li>
-<li><code>sudo sh -c &quot;echo &#39;kernel: BUG: unable to handle kernel NULL pointer dereference at TESTING&#39; &gt;&gt; /dev/kmsg&quot;</code></li>
-<li>您可以<code>KernelOops</code>在节点问题检测器日志中看到事件。</li>
-<li><code>sudo sh -c &quot;echo &#39;kernel: INFO: task docker:20744 blocked for more than 120 seconds.&#39; &gt;&gt; /dev/kmsg&quot;</code></li>
-<li>您可以在node-problem-detector log看DockerHung event和状态</li>
-<li>您可以在<a href="http://127.0.0.1:20256/conditions%E6%9F%A5%E7%9C%8B%60DockerHung%60%E7%8A%B6%E6%80%81">http://127.0.0.1:20256/conditions查看DockerHung状态</a></li>
-<li>您可以在<a href="http://127.0.0.1:20257/metrics%E4%B8%8A%E6%9F%A5%E7%9C%8B">http://127.0.0.1:20257/metrics</a>上查看 Prometheus 格式的磁盘相关系统指标。</li>
-</ul>
-<p>注： 您可以在<a href="https://github.com/kubernetes/node-problem-detector/tree/master/test/kernel_log_generator/problems">test&#x2F;kernel_log_generator&#x2F;problems</a>下查看更多规则示例。</p>
-<ul>
-<li>对于<a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor.json">KernelMonitor</a><br>消息注入，所有消息都应该有kernel: 前缀（另请注意，后面有一个空格:）；或者使用<a href="https://github.com/kubernetes/node-problem-detector/blob/master/test/kernel_log_generator/generator.sh">generator.sh</a>。</li>
-<li>要将其他日志（如 systemd 日志）注入 journald，请使用<code>echo &#39;Some systemd message&#39; | systemd-cat -t systemd</code>。</li>
-</ul>
-<h2 id="1-12-Remedy-Systems"><a href="#1-12-Remedy-Systems" class="headerlink" title="1.12 Remedy Systems"></a>1.12 Remedy Systems</h2><p>Remedy Systems是一个或多个旨在尝试解决node-problem-detector检测到的问题的过程。</p>
-<p>Remedy Systems会观察node-problem-detector发出的事件 和&#x2F;或 节点状况，并采取措施使 Kubernetes 集群恢复健康状态。</p>
-<p>补救系统有以下几种：</p>
-<ul>
-<li><a href="https://github.com/planetlabs/draino">Draino</a> 根据标签和节点条件自动排空 Kubernetes节点。与所有提供的标签和任何提供的节点条件匹配的节点将被阻止立即接受新 pod（也称为“封锁”），并在可配置的时间后<a href="https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/">排空</a>。Draino可以与 <a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler">Cluster Autoscaler</a>结合使用，以自动终止排空的节点。请参阅 <a href="https://github.com/kubernetes/node-problem-detector/issues/199">此问题</a> ，了解 Draino的示例生产用例。</li>
-<li><a href="https://github.com/kubernetes-sigs/descheduler">Descheduler</a> 取消调度策略RemovePodsViolatingNodeTaints会驱逐节点上违反NoSchedule污染的Pod。必须启用k8s调度程序的TaintNodesByCondition功能。</li>
-<li><a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler">Cluster Autoscaler</a> 可用于自动终止耗尽的节点。</li>
-<li><a href="https://github.com/medik8s">mediK8S</a> 是一个基于<a href="https://github.com/medik8s/node-healthcheck-operator">Node Health Check Operator (NHC)</a>构建的自动修复系统的总体项目，该系统监控节点状况并使用修复 API将修复委托给外部修复程序。</li>
-<li><a href="https://github.com/medik8s/poison-pill">Poison-Pill</a>是一个修复程序，它将重新启动节点并确保所有有状态的工作负载都得到重新安排。如果集群具有足够的健康容量，NHC支持有条件地进行修复，或者手动暂停任何操作以最大限度地减少集群中断。</li>
-<li><a href="https://cluster-api.sigs.k8s.io/">Cluster API</a> 的<a href="https://cluster-api.sigs.k8s.io/developer/architecture/controllers/machine-health-check">MachineHealthCheck</a>负责修复不健康的机器。</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>BK-CI插件开发指引</title>
     <url>/2025/07/devops/blueking/BK-CI%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E6%8C%87%E5%BC%95/</url>
     <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><blockquote>
@@ -483,6 +194,397 @@
 
 
 
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/07/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>BKCI 简介</title>
+    <url>/2025/07/devops/blueking/BKCI%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><p>BK-CI官方文档：<a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md">https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.md</a><br>github仓库地址：<a href="https://github.com/TencentBlueKing/bk-ci">https://github.com/TencentBlueKing/bk-ci</a></p>
+<h1 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h1><table>
+<thead>
+<tr>
+<th>🐤 了解基本概念</th>
+<th>👉 使用 BKCI</th>
+<th>🚀 部署 BKCI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/bkci.md">BKCI 是什么？</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Create-your-first-pipeline.md">创建你的第一条流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/hardware.md">BKCI 硬件规格指南</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/components.md">BKCI 组件</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Link-your-first-repo.md">关联你的第一个代码库</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Setup/system-requirements/system.md">BKCI 系统要求</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">快速熟悉流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Enable-ci.md">为你的Git工程开启CI</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/terminology/Learn-pipeline-in-5min.md">术语解释</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Quickstarts/Case/Examples/vars-usage.md">示例</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Developer/rest-api/read-before-use.md">API接口</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>📔 产品功能</th>
+<th>🏪 研发商店</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pipeline/pipeline-list.md">流水线</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/home.md">浏览研发商店</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Console/Console.md">控制台</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/start-new-task.md">开发一个流水线插件</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Ticket/ticket.md">凭证管理</a></td>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/upload-new-task.md">在 BKCI 里使用商店插件</a></td>
+</tr>
+<tr>
+<td><a href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Pools/host-to-bkci.md">构建资源</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><p>蓝鲸学习社区：<a href="https://bk.tencent.com/s-mart/communities">https://bk.tencent.com/s-mart/communities</a><br>蓝鲸官方文档：<a href="https://bk.tencent.com/docs/">https://bk.tencent.com/docs/</a></p>
+<p><strong>蓝鲸体系</strong><br>蓝鲸简介：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/intro.md</a><br>核心优势：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/advantages.md</a><br>体系架构：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/solution.md</a><br>CI领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/ci_intro.md</a><br>CD领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/cd_intro.md</a><br>CO领域：<a href="https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md">https://bk.tencent.com/docs/markdown/ZH/BlueKingFamily/7.2/UserGuide/Solution/co_intro.md</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>NPD介绍</title>
+    <url>/2025/07/devops/npd/NPD%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h1><p>官方文档库地址：<a href="https://github.com/kubernetes/node-problem-detector">https://github.com/kubernetes/node-problem-detector</a></p>
+<p>node-problem-detector 旨在使集群管理堆栈中的上游层能够看到各种节点问题。</p>
+<p>它是一个在每个节点上运行的守护进程，检测节点问题并将其报告给apiserver。</p>
+<p>node-problem-detector 可以作为 DaemonSet 运行，也可以独立运行。</p>
+<p>现在它作为 GKE集群中默认启用的Kubernetes Addon运行。它也作为AKS Linux Extension的一部分在 AKS 中默认启用。</p>
+<h2 id="1-2-背景"><a href="#1-2-背景" class="headerlink" title="1.2 背景"></a>1.2 背景</h2><p>大量节点问题可能会影响节点上运行的 pod，例如：</p>
+<ul>
+<li>基础设施守护进程问题：ntp 服务关闭；</li>
+<li>硬件问题：CPU、内存或磁盘损坏；</li>
+<li>内核问题：内核死锁、文件系统损坏；</li>
+<li>容器运行时问题：运行时守护进程无响应；</li>
+<li>…</li>
+</ul>
+<p>目前，这些问题对于集群管理堆栈中的上游层是不可见的，因此 Kubernetes 将继续将 pod 调度到坏节点。<br>为了解决这个问题，我们引入了这个新的守护进程node-problem-detector来从各种守护进程收集节点问题，并将它们提供给上游层。一旦上游层能够看到这些问题，我们就可以讨论 <a href="https://github.com/kubernetes/node-problem-detector?tab=readme-ov-file#remedy-systems">remedy systems</a>了。</p>
+<h2 id="1-3-Problem-API"><a href="#1-3-Problem-API" class="headerlink" title="1.3 Problem API"></a>1.3 Problem API</h2><p>node-problem-detector 使用Event并向NodeConditionapiserver 报告问题。</p>
+<ul>
+<li>NodeCondition：导致节点无法用于 pod 的永久性问题应报告为NodeCondition。</li>
+<li>Event：对 pod 影响有限但具有参考意义的临时问题应报告为Event。</li>
+</ul>
+<h2 id="1-4-Problem-Daemon"><a href="#1-4-Problem-Daemon" class="headerlink" title="1.4 Problem Daemon"></a>1.4 Problem Daemon</h2><p>问题守护进程是 node-problem-detector 的一个子守护进程。它监视特定类型的节点问题并将其报告给 node-problem-detector。<br>守护进程可能是：</p>
+<ul>
+<li>专为 Kubernetes 专用用例设计的微型守护进程。</li>
+<li>与节点问题检测器集成的现有节点健康监控守护进程。</li>
+</ul>
+<p>目前，问题守护进程在 node-problem-detector 二进制文件中以 goroutine 的形式运行。</p>
+<p>未来，我们会将 node-problem-detector和问题守护进程分离到不同的容器中，并使用 pod 规范将它们组合在一起。</p>
+<p>每种类型的问题守护进程都可以通过设置相应的构建标签在编译时禁用。</p>
+<p>如果在编译时禁用它们，则它们的所有构建依赖项、全局变量和后台goroutine 都将从编译的可执行文件中剔除。</p>
+<p>支持的守护进程列表：</p>
+<table>
+<thead>
+<tr>
+<th>问题守护进程类型</th>
+<th>节点状态</th>
+<th>解释</th>
+<th>配置</th>
+<th>禁用构建标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemlogmonitor">SystemLogMonitor</a></td>
+<td>KernelDeadlock ReadonlyFilesystem FrequentKubeletRestart FrequentDockerRestart FrequentContainerdRestart</td>
+<td>系统日志监视器监视系统日志并根据预定义的规则报告问题和指标。</td>
+<td><a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor-filelog.json">filelog</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor.json">kmsg</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor-counter.json">kernel</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/systemd-monitor-counter.json">abrt</a>, <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/systemd-monitor-counter.json">systemd</a></td>
+<td>disable_system_log_monitor</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemstatsmonitor">SystemStatsMonitor</a></td>
+<td>None(Could be added in the future)</td>
+<td>节点问题检测器的系统统计监视器，用于收集各种与健康相关的系统统计信息作为指标。请参阅<a href="https://docs.google.com/document/d/1SeaUz6kBavI283Dq8GBpoEUDrHA2a795xtw0OvjM568/edit">此处</a>的提案。</td>
+<td><a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/system-stats-monitor.json">system-stats-monitor</a></td>
+<td>disable_system_stats_monitor</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/custompluginmonitor">CustomPluginMonitor</a></td>
+<td>On-demand(According to users configuration), existing example: NTPProblem</td>
+<td>一个自定义的 node-problem-detector 插件监控器，用于调用和检查各种节点问题，并使用用户定义的检查脚本。请参阅<a href="https://docs.google.com/document/d/1jK_5YloSYtboj-DtfjmYKxfNnUxCAvohLnsH5aGCAYQ/edit#">此处</a>的提案。</td>
+<td><a href="https://github.com/kubernetes/node-problem-detector/blob/4ad49bbd84b8ced45ac825eac01ec93d9235935e/config/custom-plugin-monitor.json">example</a></td>
+<td>disable_custom_plugin_monitor</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/healthchecker">HealthChecker</a></td>
+<td>KubeletUnhealthy ContainerRuntimeUnhealthy</td>
+<td>节点问题检测器的健康检查器用于检查 kubelet 和容器运行时的健康状况。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="1-5-Exporter"><a href="#1-5-Exporter" class="headerlink" title="1.5 Exporter"></a>1.5 Exporter</h2><p>exporter 是 node-problem-detector 的一个组件。</p>
+<p>它向某些后端报告节点问题 和&#x2F;或 指标。</p>
+<p>其中一些可以在编译时使用构建标记禁用。支持的导出器列表：</p>
+<table>
+<thead>
+<tr>
+<th>Exporter</th>
+<th>解释</th>
+<th>禁用构建标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Kubernetes exporter</td>
+<td>Kubernetes 导出器向 Kubernetes API 服务器报告节点问题：临时问题报告为事件，永久问题报告为节点状况。</td>
+<td></td>
+</tr>
+<tr>
+<td>Prometheus exporter</td>
+<td>Prometheus 导出器将节点问题和指标本地报告为 Prometheus 指标</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/exporter/stackdriver-exporter.json">Stackdriver exporter</a></td>
+<td>Stackdriver 导出器向 Stackdriver Monitoring API 报告节点问题和指标。</td>
+<td>disable_stackdriver_exporter</td>
+</tr>
+</tbody></table>
+<h2 id="1-6-用法"><a href="#1-6-用法" class="headerlink" title="1.6 用法"></a>1.6 用法</h2><h3 id="1-6-1-标志"><a href="#1-6-1-标志" class="headerlink" title="1.6.1 标志"></a>1.6.1 标志</h3><ul>
+<li>–version：打印节点问题检测器的当前版本。</li>
+<li>–hostname-override：node-problem-detector 用于更新状态和发出事件的自定义节点名称。node-problem-detector 首先从hostname-override获取节点名称，然后从NODE_NAME环境变量 获取，最后返回到os.Hostname。</li>
+</ul>
+<h3 id="1-6-2-对于系统日志监控"><a href="#1-6-2-对于系统日志监控" class="headerlink" title="1.6.2 对于系统日志监控"></a>1.6.2 对于系统日志监控</h3><ul>
+<li>–config.system-log-monitor：系统日志监视器配置文件路径列表，以逗号分隔，例如 config&#x2F;kernel-monitor.json。节点问题检测器将为每个配置启动单独的日志监视器。您可以使用不同的日志监视器来监视不同的系统日志。</li>
+</ul>
+<h3 id="1-6-3-对于系统统计监控"><a href="#1-6-3-对于系统统计监控" class="headerlink" title="1.6.3 对于系统统计监控"></a>1.6.3 对于系统统计监控</h3><ul>
+<li>–config.system-stats-monitor：系统统计监控配置文件的路径列表，以逗号分隔，例如 <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/system-stats-monitor.json">config&#x2F;system-stats-monitor.json</a>。节点问题检测器将为每个配置启动一个单独的系统统计监控器。您可以使用不同的系统统计监控器来监控与问题相关的不同系统统计信息。</li>
+</ul>
+<h3 id="1-6-4-对于自定义插件监视器"><a href="#1-6-4-对于自定义插件监视器" class="headerlink" title="1.6.4 对于自定义插件监视器"></a>1.6.4 对于自定义插件监视器</h3><ul>
+<li>–config.custom-plugin-monitor：自定义插件监控配置文件路径列表，以逗号分隔，例如 <a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/custom-plugin-monitor.json">config&#x2F;custom-plugin-monitor.json</a>。节点问题检测器将为每个配置启动一个单独的自定义插件监控。您可以使用不同的自定义插件监控来监控不同的节点问题。</li>
+</ul>
+<h3 id="1-6-5-对于健康检查者"><a href="#1-6-5-对于健康检查者" class="headerlink" title="1.6.5 对于健康检查者"></a>1.6.5 对于健康检查者</h3><ul>
+<li>–enable-k8s-exporter：启用向 Kubernetes API 服务器报告，默认为true。</li>
+<li>–apiserver-override：用于自定义 node-problem-detector 如何连接 apiserver 的 URI 参数。如果–enable-k8s-exporter是，则忽略此参数。格式与<a href="https://github.com/kubernetes/heapster">Heapster</a> 的标志false相同。例如，要无需身份验证即可运行，请使用以下配置： <a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">source</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">http://APISERVER_IP:APISERVER_PORT?inClusterConfig=false</span><br></pre></td></tr></table></figure>
+
+<p>请参阅<a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">heapster 文档</a><br>以获取可用选项的完整列表。</p>
+<ul>
+<li>–address：绑定节点问题检测服务器的地址。</li>
+<li>–port：绑定节点问题检测服务器的端口。使用 0 表示禁用。</li>
+</ul>
+<h3 id="1-6-6-对于-Prometheus-exporter"><a href="#1-6-6-对于-Prometheus-exporter" class="headerlink" title="1.6.6 对于 Prometheus exporter"></a>1.6.6 对于 Prometheus exporter</h3><ul>
+<li>–prometheus-address：绑定Prometheus抓取端点的地址，默认为127.0.0.1。</li>
+<li>–prometheus-port：绑定 Prometheus 抓取端点的端口，默认为 20257。使用 0 表示禁用。</li>
+</ul>
+<h3 id="1-6-7-对于-Stackdriver-exporter"><a href="#1-6-7-对于-Stackdriver-exporter" class="headerlink" title="1.6.7 对于 Stackdriver exporter"></a>1.6.7 对于 Stackdriver exporter</h3><ul>
+<li>–exporter.stackdriver：Stackdriver 导出器配置文件的路径，例如config&#x2F;exporter&#x2F;stackdriver-exporter.json，默认为空字符串。设置为空字符串即可禁用。</li>
+</ul>
+<h3 id="1-6-8-已弃用的标志"><a href="#1-6-8-已弃用的标志" class="headerlink" title="1.6.8 已弃用的标志"></a>1.6.8 已弃用的标志</h3><ul>
+<li>–system-log-monitors：系统日志监控配置文件的路径列表，以逗号分隔。此选项已弃用，由–config.system-log-monitor替代，并将被删除。如果同时设置–system-log-monitors和 –config.system-log-monitor ， NPD 将崩溃。</li>
+<li>–custom-plugin-monitors：自定义插件监控配置文件的路径列表，以逗号分隔。此选项已弃用，由–config.custom-plugin-monitor替代，并将被删除。如果同时设置–custom-plugin-monitors和 –config.custom-plugin-monitor，NPD 将崩溃。</li>
+</ul>
+<h2 id="1-7-构建镜像"><a href="#1-7-构建镜像" class="headerlink" title="1.7 构建镜像"></a>1.7 构建镜像</h2><ul>
+<li>安装libsystemdARM GCC 工具链的开发依赖项<ul>
+<li>Debian &#x2F; Ubuntu：apt install libsystemd-dev gcc-aarch64-linux-gnu</li>
+</ul>
+</li>
+<li>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#109;">&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#109;</a>:kubernetes&#x2F;node-problem-detector.git</li>
+<li>在顶层目录中运行make。它将：<ul>
+<li>构建二进制文件。</li>
+<li>构建docker镜像。二进制文件和config&#x2F;被复制到docker镜像中。</li>
+</ul>
+</li>
+</ul>
+<p>如果您不需要某些类别的问题守护进程，您可以选择在编译时禁用它们。这是保持 node-problem-detector运行时紧凑且没有不必要代码（例如全局变量、goroutines 等）的最佳方法。</p>
+<p>您可以通过BUILD_TAGS在运行之前设置环境变量来实现这一点make。例如：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">BUILD_TAGS=&quot;disable_custom_plugin_monitor disable_system_stats_monitor&quot; make</span><br></pre></td></tr></table></figure>
+
+<p>上述命令将在不使用<a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/custompluginmonitor">自定义插件监视器</a>和<a href="https://github.com/kubernetes/node-problem-detector/tree/master/pkg/systemstatsmonitor">系统统计监视器</a>的情况下编译node-problem-detector 。查看<a href="https://github.com/kubernetes/node-problem-detector#problem-daemon">问题守护进程</a>部分，了解如何在编译时禁用每个问题守护进程。</p>
+<h2 id="1-8-推送镜像"><a href="#1-8-推送镜像" class="headerlink" title="1.8 推送镜像"></a>1.8 推送镜像</h2><p><code>make push</code>将 docker 镜像上传到注册表。默认情况下，镜像将上传到 <code>staging-k8s.gcr.io</code>。可以轻松修改<code>Makefile</code>以将镜像推送到另一个注册表。</p>
+<h2 id="1-9-安装"><a href="#1-9-安装" class="headerlink" title="1.9 安装"></a>1.9 安装</h2><p>将 node-problem-detector<br>安装到集群中的最简单方法是使用<a href="https://github.com/deliveryhero/helm-charts/tree/master/stable/node-problem-detector">Helm 图表</a>：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">helm repo add deliveryhero https://charts.deliveryhero.io/</span><br><span class="line">helm install --generate-name deliveryhero/node-problem-detector</span><br></pre></td></tr></table></figure>
+
+<p>或者，手动安装 node-problem-detector：</p>
+<p>编辑<a href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/node-problem-detector.yaml">node-problem-detector.yaml</a>以适应您的环境。将<code>log</code>卷设置为您的系统日志目录（由 SystemLogMonitor 使用）。您可以使用 ConfigMap 覆盖<code>config</code> pod 内的目录。</p>
+<p>编辑<a href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/node-problem-detector-config.yaml">node-problem-detector-config.yaml</a>来配置 node-problem-detector。</p>
+<ul>
+<li>编辑<a href="https://github.com/kubernetes/node-problem-detector/blob/master/deployment/rbac.yaml">rbac.yaml</a>以适合您的环境。</li>
+<li>使用 创建 ServiceAccount 和 ClusterRoleBinding <code>kubectl create -f rbac.yaml</code>。</li>
+<li>使用 创建 ConfigMap <code>kubectl create -f node-problem-detector-config.yaml</code>。</li>
+<li>使用 创建 DaemonSet <code>kubectl create -f node-problem-detector.yaml</code>。</li>
+</ul>
+<h2 id="1-10-开始独立运行"><a href="#1-10-开始独立运行" class="headerlink" title="1.10 开始独立运行"></a>1.10 开始独立运行</h2><p>要独立运行 node-problem-detector，您应该设置inClusterConfig为false，并且教 node-problem-detector 如何 访问 apiserver，也就是apiserver-override。</p>
+<p>要使用不安全的 apiserver 连接独立运行 node-problem-detector：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node-problem-detector --apiserver-override=http://APISERVER_IP:APISERVER_INSECURE_PORT?inClusterConfig=false</span><br></pre></td></tr></table></figure>
+
+<p>更多场景请见<a href="https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md#kubernetes">此处</a></p>
+<h2 id="1-11-试用"><a href="#1-11-试用" class="headerlink" title="1.11 试用"></a>1.11 试用</h2><p>您可以在正在运行的集群中尝试使用 node-problem-detector，方法是将消息注入到 node-problem-detector 正在监视的日志中。</p>
+<p>例如，假设 node-problem-detector 正在使用KernelMonitor。</p>
+<p>在您的机器上运行<code>kubectl get events -w</code>。在节点上运行<code>sudo sh -c &quot;echo &#39;kernel: BUG: unable to handle kernel NULL pointer dereference at TESTING&#39; &gt;&gt; /dev/kmsg&quot;</code>。然后您应该会看到该KernelOopss事件。</p>
+<p>添加新规则或开发节点问题检测器时，在独立模式下在本地工作站上进行测试可能更容易。</p>
+<p>对于 API 服务器，一种简单的方法是使用kubectl proxy正在运行的集群的 API 服务器在本地可用。</p>
+<p>您会收到一些错误，因为 API 服务器无法识别您的本地工作站。但无论如何，您仍然应该能够测试您的新规则。</p>
+<p>例如，测试KernelMonitor规则：</p>
+<ul>
+<li><code>make</code>（本地构建node-problem-detector）</li>
+<li><code>kubectl proxy --port=8080</code>（使正在运行的集群的 API 服务器在本地可用）</li>
+<li>将KernelMonitor更新到您的本地内核日志目录<code>logPath</code>。例如，在某些 Linux 系统上，它是<code>/run/log/journal</code>, 而不是<code>/var/log/journal</code>。</li>
+<li><code>./bin/node-problem-detector --logtostderr --apiserver-override=http://127.0.0.1:8080?inClusterConfig=false --config.system-log-monitor=config/kernel-monitor.json --config.system-stats-monitor=config/system-stats-monitor.json --port=20256 --prometheus-port=2025</code>（或指向任何 API 服务器地址：端口和 Prometheus 端口）</li>
+<li><code>sudo sh -c &quot;echo &#39;kernel: BUG: unable to handle kernel NULL pointer dereference at TESTING&#39; &gt;&gt; /dev/kmsg&quot;</code></li>
+<li>您可以<code>KernelOops</code>在节点问题检测器日志中看到事件。</li>
+<li><code>sudo sh -c &quot;echo &#39;kernel: INFO: task docker:20744 blocked for more than 120 seconds.&#39; &gt;&gt; /dev/kmsg&quot;</code></li>
+<li>您可以在node-problem-detector log看DockerHung event和状态</li>
+<li>您可以在<a href="http://127.0.0.1:20256/conditions%E6%9F%A5%E7%9C%8B%60DockerHung%60%E7%8A%B6%E6%80%81">http://127.0.0.1:20256/conditions查看DockerHung状态</a></li>
+<li>您可以在<a href="http://127.0.0.1:20257/metrics%E4%B8%8A%E6%9F%A5%E7%9C%8B">http://127.0.0.1:20257/metrics</a>上查看 Prometheus 格式的磁盘相关系统指标。</li>
+</ul>
+<p>注： 您可以在<a href="https://github.com/kubernetes/node-problem-detector/tree/master/test/kernel_log_generator/problems">test&#x2F;kernel_log_generator&#x2F;problems</a>下查看更多规则示例。</p>
+<ul>
+<li>对于<a href="https://github.com/kubernetes/node-problem-detector/blob/master/config/kernel-monitor.json">KernelMonitor</a><br>消息注入，所有消息都应该有kernel: 前缀（另请注意，后面有一个空格:）；或者使用<a href="https://github.com/kubernetes/node-problem-detector/blob/master/test/kernel_log_generator/generator.sh">generator.sh</a>。</li>
+<li>要将其他日志（如 systemd 日志）注入 journald，请使用<code>echo &#39;Some systemd message&#39; | systemd-cat -t systemd</code>。</li>
+</ul>
+<h2 id="1-12-Remedy-Systems"><a href="#1-12-Remedy-Systems" class="headerlink" title="1.12 Remedy Systems"></a>1.12 Remedy Systems</h2><p>Remedy Systems是一个或多个旨在尝试解决node-problem-detector检测到的问题的过程。</p>
+<p>Remedy Systems会观察node-problem-detector发出的事件 和&#x2F;或 节点状况，并采取措施使 Kubernetes 集群恢复健康状态。</p>
+<p>补救系统有以下几种：</p>
+<ul>
+<li><a href="https://github.com/planetlabs/draino">Draino</a> 根据标签和节点条件自动排空 Kubernetes节点。与所有提供的标签和任何提供的节点条件匹配的节点将被阻止立即接受新 pod（也称为“封锁”），并在可配置的时间后<a href="https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/">排空</a>。Draino可以与 <a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler">Cluster Autoscaler</a>结合使用，以自动终止排空的节点。请参阅 <a href="https://github.com/kubernetes/node-problem-detector/issues/199">此问题</a> ，了解 Draino的示例生产用例。</li>
+<li><a href="https://github.com/kubernetes-sigs/descheduler">Descheduler</a> 取消调度策略RemovePodsViolatingNodeTaints会驱逐节点上违反NoSchedule污染的Pod。必须启用k8s调度程序的TaintNodesByCondition功能。</li>
+<li><a href="https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler">Cluster Autoscaler</a> 可用于自动终止耗尽的节点。</li>
+<li><a href="https://github.com/medik8s">mediK8S</a> 是一个基于<a href="https://github.com/medik8s/node-healthcheck-operator">Node Health Check Operator (NHC)</a>构建的自动修复系统的总体项目，该系统监控节点状况并使用修复 API将修复委托给外部修复程序。</li>
+<li><a href="https://github.com/medik8s/poison-pill">Poison-Pill</a>是一个修复程序，它将重新启动节点并确保所有有状态的工作负载都得到重新安排。如果集群具有足够的健康容量，NHC支持有条件地进行修复，或者手动暂停任何操作以最大限度地减少集群中断。</li>
+<li><a href="https://cluster-api.sigs.k8s.io/">Cluster API</a> 的<a href="https://cluster-api.sigs.k8s.io/developer/architecture/controllers/machine-health-check">MachineHealthCheck</a>负责修复不健康的机器。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>alicloud_alikafka_instance</title>
+    <url>/2025/07/devops/terraform/alicloud_alikafka_instance/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>约定格式：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">├── aliyun                                             # 云厂商实例文件</span><br><span class="line">│   └── aliyun_ecs_mod_demo                           # 模型名</span><br><span class="line">│       └── aliyun_china_platform_7111                # 云账号名</span><br><span class="line">│           └── ecs_instance_name_20241224121212      # 实例名</span><br><span class="line">│               ├── backend.tf                        # 实例state文件保存说明：oss</span><br><span class="line">│               └── main.tf                           # 实例具体的参数</span><br><span class="line">├── modules                                            # 模型数据文件夹</span><br><span class="line">│   ├── aliyun                                        # 云厂商模型文件夹</span><br><span class="line">│   │   └── aliyun_ecs_mod_demo                       # 模型名</span><br><span class="line">│   │       ├── main.tf                               # 模型定义主文件</span><br><span class="line">│   │       ├── outputs.tf                            # 模型定义输出文件</span><br><span class="line">│   │       └── variables.tf                          # 模型定义参数文件</span><br><span class="line">│   └── tenmod                                         # 另一个云厂商模型</span><br><span class="line">└── tenent                                              # 另一个云厂商实例文件</span><br></pre></td></tr></table></figure>
+
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── aliyun</span><br><span class="line">│   └── aliyun_alikafka_demo</span><br><span class="line">│       └── aliyun_china_pt_7111</span><br><span class="line">│           └── alikafka_demo_202502061910</span><br><span class="line">│               ├── backend.tf</span><br><span class="line">│               └── main.tf</span><br><span class="line">└── modules</span><br><span class="line">    └── aliyun</span><br><span class="line">        └── aliyun_alikafka_mod_demo</span><br><span class="line">            ├── main.tf</span><br><span class="line">            └── variables.tf</span><br></pre></td></tr></table></figure>
+
+<h2 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h2><h3 id="modules-aliyun-aliyun-alikafka-mod-demo-main-tf"><a href="#modules-aliyun-aliyun-alikafka-mod-demo-main-tf" class="headerlink" title="&#x2F;modules&#x2F;aliyun&#x2F;aliyun_alikafka_mod_demo&#x2F;main.tf"></a>&#x2F;modules&#x2F;aliyun&#x2F;aliyun_alikafka_mod_demo&#x2F;main.tf</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform &#123;</span><br><span class="line">  required_providers &#123;</span><br><span class="line">    alicloud = &#123;</span><br><span class="line">      source  = &quot;aliyun/alicloud&quot;</span><br><span class="line">      version = &quot;1.225.0&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">provider &quot;alicloud&quot; &#123;</span><br><span class="line">  region = var.region</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resource &quot;alicloud_alikafka_instance&quot; &quot;this&quot; &#123;</span><br><span class="line">  name          = var.instance_name</span><br><span class="line">  deploy_type   = var.deploy_type</span><br><span class="line">  disk_size     = var.disk_size</span><br><span class="line">  disk_type     = var.disk_type</span><br><span class="line">  vswitch_id    = var.vswitch_id</span><br><span class="line">  partition_num = var.partition_num</span><br><span class="line">  io_max        = var.io_max</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="modules-aliyun-aliyun-alikafka-mod-demo-variables-tf"><a href="#modules-aliyun-aliyun-alikafka-mod-demo-variables-tf" class="headerlink" title="&#x2F;modules&#x2F;aliyun&#x2F;aliyun_alikafka_mod_demo&#x2F;variables.tf"></a>&#x2F;modules&#x2F;aliyun&#x2F;aliyun_alikafka_mod_demo&#x2F;variables.tf</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">variable &quot;region&quot; &#123;</span><br><span class="line">  description = &quot;地域&quot;</span><br><span class="line">  type        = string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;instance_name&quot; &#123;</span><br><span class="line">  description = &quot;kafka实例名&quot;</span><br><span class="line">  type        = string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;deploy_type&quot; &#123;</span><br><span class="line">  // - 4: eip/vpc instance；- 5: vpc instance.</span><br><span class="line">  description = &quot;部署类型&quot;</span><br><span class="line">  type        = number</span><br><span class="line">  default = 5</span><br><span class="line">  validation &#123;</span><br><span class="line">    condition     = contains([4, 5], var.deploy_type)</span><br><span class="line">    error_message = &quot;The deploy_type must be one of 4, 5&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;disk_size&quot; &#123;</span><br><span class="line">  description = &quot;kafka实例磁盘规格&quot;</span><br><span class="line">  type = number</span><br><span class="line">  validation &#123;</span><br><span class="line">    condition     = contains([500, 1000], var.disk_size)</span><br><span class="line">    error_message = &quot;The disk_size must be one of 200, 400&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;disk_type&quot; &#123;</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">0: efficient cloud disk , 1: SSD.</span></span><br><span class="line">  description = &quot;磁盘类型&quot;</span><br><span class="line">  type = number</span><br><span class="line">  default = 1</span><br><span class="line">  validation &#123;</span><br><span class="line">    condition     = contains([0, 1], var.disk_type)</span><br><span class="line">    error_message = &quot;The disk_type must be empty, or one of 0, 1&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;vswitch_id&quot; &#123;</span><br><span class="line">  description = &quot;绑定虚拟交换机id&quot;</span><br><span class="line">  type = string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;partition_num&quot; &#123;</span><br><span class="line">  description = &quot;分区数量&quot;</span><br><span class="line">  type = number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">variable &quot;io_max&quot; &#123;</span><br><span class="line">  description = &quot;io的最大值&quot;</span><br><span class="line">  type = number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><h3 id="aliyun-aliyun-alikafka-demo-aliyun-china-pt-7111-alikafka-demo-202502061910-backend-tf"><a href="#aliyun-aliyun-alikafka-demo-aliyun-china-pt-7111-alikafka-demo-202502061910-backend-tf" class="headerlink" title="&#x2F;aliyun&#x2F;aliyun_alikafka_demo&#x2F;aliyun_china_pt_7111&#x2F;alikafka_demo_202502061910&#x2F;backend.tf"></a>&#x2F;aliyun&#x2F;aliyun_alikafka_demo&#x2F;aliyun_china_pt_7111&#x2F;alikafka_demo_202502061910&#x2F;backend.tf</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform &#123;</span><br><span class="line">  backend &quot;oss&quot; &#123;</span><br><span class="line">    endpoint = &quot;oss-cn-hangzhou.aliyuncs.com&quot;</span><br><span class="line">    bucket   = &quot;dz-devops&quot; # 替换为你的 OSS Bucket 名称</span><br><span class="line">    prefix = &quot;terraform_state//aliyun/aliyun_alikafka_demo/aliyun_china_pt_7111/alikafka_demo_202502061910&quot;</span><br><span class="line">    key      = &quot;terraform.tfstate&quot; # 存储状态文件的路径和名称</span><br><span class="line">    region   = &quot;cn-hangzhou&quot;       # OSS 的地域（根据你的实际情况调整）</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="aliyun-aliyun-alikafka-demo-aliyun-china-pt-7111-alikafka-demo-202502061910-main-tf"><a href="#aliyun-aliyun-alikafka-demo-aliyun-china-pt-7111-alikafka-demo-202502061910-main-tf" class="headerlink" title="&#x2F;aliyun&#x2F;aliyun_alikafka_demo&#x2F;aliyun_china_pt_7111&#x2F;alikafka_demo_202502061910&#x2F;main.tf"></a>&#x2F;aliyun&#x2F;aliyun_alikafka_demo&#x2F;aliyun_china_pt_7111&#x2F;alikafka_demo_202502061910&#x2F;main.tf</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">module &quot;alikafka_instance&quot; &#123;</span><br><span class="line">  source        = &quot;../../../../modules/aliyun/aliyun_alikafka_mod_demo&quot;</span><br><span class="line">  region        = &quot;cn-hangzhou&quot;</span><br><span class="line">  disk_size     = 500</span><br><span class="line">  instance_name = &quot;alikafka-testV2&quot;</span><br><span class="line">  deploy_type   = 5</span><br><span class="line">  vswitch_id    = &quot;vsw-bp1co65f3q2s0bis9yfkg&quot;</span><br><span class="line">  partition_num = 50</span><br><span class="line">  io_max        = 20</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h2><h3 id="获取-AK-SK"><a href="#获取-AK-SK" class="headerlink" title="获取 AK&#x2F;SK"></a>获取 AK&#x2F;SK</h3><p>在首次使用 Terraform 之前，需要前往腾讯云的<a href="https://console.cloud.tencent.com/cam/capi">云 API 密钥页面</a>申请安全凭证SecretId和SecretKey2。若已有可使用的安全凭证，则跳过该步骤2。具体步骤如下2：</p>
+<ol>
+<li>登录腾讯云<a href="https://console.cloud.tencent.com/cam">访问管理控制台</a>，在左侧导航栏，选择访问密钥&gt;API 密钥管理。</li>
+<li>在API 密钥管理页面，单击新建密钥，即可以创建一对SecretId&#x2F;SecretKey。</li>
+</ol>
+<h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p>将获取到的SecretId和SecretKey设置为环境变量：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export TENCENTCLOUD_SECRET_ID=your_secret_id</span><br><span class="line">export TENCENTCLOUD_SECRET_KEY=your_secret_key</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><p>进入项目根目录，alikafka_demo_202502061910目录：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ./aliyun/aliyun_alikafka_demo/aliyun_china_pt_7111/alikafka_demo_202502061910</span><br></pre></td></tr></table></figure>
+
+<p>初始化 Terraform 项目:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将xxx替换为实际backend的ak，将yyy替换为实际backend的sk</span></span><br><span class="line">terraform init -backend-config=&quot;access_key=xxx&quot; -backend-config=&quot;secret_key=yyy&quot;</span><br></pre></td></tr></table></figure>
+
+<p>该命令会下载所需的插件和依赖，并初始化后端配置。<br>类似的输出（首次使用某一个provier时，会先下载）：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Initializing the backend...</span><br><span class="line"></span><br><span class="line">Successfully configured the backend &quot;oss&quot;! Terraform will automatically</span><br><span class="line">use this backend unless the backend configuration changes.</span><br><span class="line">Initializing modules...</span><br><span class="line">Initializing provider plugins...</span><br><span class="line">- Reusing previous version of aliyun/alicloud from the dependency lock file</span><br><span class="line">- Using previously-installed aliyun/alicloud v1.225.0</span><br><span class="line"></span><br><span class="line">Terraform has been successfully initialized!</span><br><span class="line"></span><br><span class="line">You may now begin working with Terraform. Try running &quot;terraform plan&quot; to see</span><br><span class="line">any changes that are required for your infrastructure. All Terraform commands</span><br><span class="line">should now work.</span><br><span class="line"></span><br><span class="line">If you ever set or change modules or backend configuration for Terraform,</span><br><span class="line">rerun this command to reinitialize your working directory. If you forget, other</span><br><span class="line">commands will detect it and remind you to do so if necessary.</span><br></pre></td></tr></table></figure>
+
+<p>预览计划变更：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform plan</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:</span><br><span class="line">  + create</span><br><span class="line"></span><br><span class="line">Terraform will perform the following actions:</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">module.alikafka_instance.alicloud_alikafka_instance.this will be created</span></span><br><span class="line">  + resource &quot;alicloud_alikafka_instance&quot; &quot;this&quot; &#123;</span><br><span class="line">      + config            = (known after apply)</span><br><span class="line">      + deploy_type       = 5</span><br><span class="line">      + disk_size         = 500</span><br><span class="line">      + disk_type         = 1</span><br><span class="line">      + eip_max           = (known after apply)</span><br><span class="line">      + end_point         = (known after apply)</span><br><span class="line">      + group_left        = (known after apply)</span><br><span class="line">      + group_used        = (known after apply)</span><br><span class="line">      + id                = (known after apply)</span><br><span class="line">      + io_max            = 20</span><br><span class="line">      + io_max_spec       = (known after apply)</span><br><span class="line">      + is_partition_buy  = (known after apply)</span><br><span class="line">      + name              = &quot;alikafka-testV2&quot;</span><br><span class="line">      + paid_type         = &quot;PostPaid&quot;</span><br><span class="line">      + partition_left    = (known after apply)</span><br><span class="line">      + partition_num     = 50</span><br><span class="line">      + partition_used    = (known after apply)</span><br><span class="line">      + resource_group_id = (known after apply)</span><br><span class="line">      + security_group    = (known after apply)</span><br><span class="line">      + service_version   = (known after apply)</span><br><span class="line">      + spec_type         = &quot;normal&quot;</span><br><span class="line">      + status            = (known after apply)</span><br><span class="line">      + topic_left        = (known after apply)</span><br><span class="line">      + topic_num_of_buy  = (known after apply)</span><br><span class="line">      + topic_quota       = (known after apply)</span><br><span class="line">      + topic_used        = (known after apply)</span><br><span class="line">      + vpc_id            = (known after apply)</span><br><span class="line">      + vswitch_id        = &quot;vsw-bp1co65f3q2s0bis9yfkg&quot;</span><br><span class="line">      + zone_id           = (known after apply)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">Plan: 1 to add, 0 to change, 0 to destroy.</span><br><span class="line"></span><br><span class="line">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span><br><span class="line"></span><br><span class="line">Note: You didn&#x27;t use the -out option to save this plan, so Terraform can&#x27;t guarantee to take exactly these actions if you run &quot;terraform apply&quot; now.</span><br></pre></td></tr></table></figure>
+
+<p>执行变更：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform apply</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:</span><br><span class="line">  + create</span><br><span class="line"></span><br><span class="line">Terraform will perform the following actions:</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">module.alikafka_instance.alicloud_alikafka_instance.this will be created</span></span><br><span class="line">  + resource &quot;alicloud_alikafka_instance&quot; &quot;this&quot; &#123;</span><br><span class="line">      + config            = (known after apply)</span><br><span class="line">      + deploy_type       = 5</span><br><span class="line">      + disk_size         = 500</span><br><span class="line">      + disk_type         = 1</span><br><span class="line">      + eip_max           = (known after apply)</span><br><span class="line">      + end_point         = (known after apply)</span><br><span class="line">      + group_left        = (known after apply)</span><br><span class="line">      + group_used        = (known after apply)</span><br><span class="line">      + id                = (known after apply)</span><br><span class="line">      + io_max            = 20</span><br><span class="line">      + io_max_spec       = (known after apply)</span><br><span class="line">      + is_partition_buy  = (known after apply)</span><br><span class="line">      + name              = &quot;alikafka-testV2&quot;</span><br><span class="line">      + paid_type         = &quot;PostPaid&quot;</span><br><span class="line">      + partition_left    = (known after apply)</span><br><span class="line">      + partition_num     = 50</span><br><span class="line">      + partition_used    = (known after apply)</span><br><span class="line">      + resource_group_id = (known after apply)</span><br><span class="line">      + security_group    = (known after apply)</span><br><span class="line">      + service_version   = (known after apply)</span><br><span class="line">      + spec_type         = &quot;normal&quot;</span><br><span class="line">      + status            = (known after apply)</span><br><span class="line">      + topic_left        = (known after apply)</span><br><span class="line">      + topic_num_of_buy  = (known after apply)</span><br><span class="line">      + topic_quota       = (known after apply)</span><br><span class="line">      + topic_used        = (known after apply)</span><br><span class="line">      + vpc_id            = (known after apply)</span><br><span class="line">      + vswitch_id        = &quot;vsw-bp1co65f3q2s0bis9yfkg&quot;</span><br><span class="line">      + zone_id           = (known after apply)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">Plan: 1 to add, 0 to change, 0 to destroy.</span><br><span class="line"></span><br><span class="line">Do you want to perform these actions?</span><br><span class="line">  Terraform will perform the actions described above.</span><br><span class="line">  Only &#x27;yes&#x27; will be accepted to approve.</span><br><span class="line"></span><br><span class="line">  Enter a value: yes</span><br><span class="line"></span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Creating...</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [10s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [20s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [30s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [40s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [50s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [1m0s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [1m10s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [1m20s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [1m30s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [1m40s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [1m50s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [2m0s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [2m10s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [2m20s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [2m30s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [2m40s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [2m50s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [3m0s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [3m10s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [3m20s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [3m30s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [3m40s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [3m50s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [4m0s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [4m10s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [4m20s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [4m30s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still creating... [4m40s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Creation complete after 4m45s [id=alikafka_post-cn-0gx44g6dm006]</span><br><span class="line"></span><br><span class="line">Apply complete! Resources: 1 added, 0 changed, 0 destroyed.</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证创建"><a href="#验证创建" class="headerlink" title="验证创建"></a>验证创建</h3><p>在前端查看是否成功创建实例：<br><img src="/img.png" alt="img.png"></p>
+<h3 id="销毁资源"><a href="#销毁资源" class="headerlink" title="销毁资源"></a>销毁资源</h3><p>执行下面的命令进行销毁：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform destroy</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Refreshing state... [id=alikafka_post-cn-0gx44g6dm006]</span><br><span class="line"></span><br><span class="line">Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:</span><br><span class="line">  - destroy</span><br><span class="line"></span><br><span class="line">Terraform will perform the following actions:</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">module.alikafka_instance.alicloud_alikafka_instance.this will be destroyed</span></span><br><span class="line">  - resource &quot;alicloud_alikafka_instance&quot; &quot;this&quot; &#123;</span><br><span class="line">      - config            = jsonencode(</span><br><span class="line">            &#123;</span><br><span class="line">              - &quot;cloud.maxTieredStoreSpace&quot;           = &quot;0&quot;</span><br><span class="line">              - &quot;enable.acl&quot;                          = &quot;false&quot;</span><br><span class="line">              - &quot;enable.compact&quot;                      = &quot;true&quot;</span><br><span class="line">              - &quot;enable.tiered&quot;                       = &quot;false&quot;</span><br><span class="line">              - &quot;enable.vpc_sasl_ssl&quot;                 = &quot;false&quot;</span><br><span class="line">              - &quot;kafka.log.retention.hours&quot;           = &quot;72&quot;</span><br><span class="line">              - &quot;kafka.message.max.bytes&quot;             = &quot;1048576&quot;</span><br><span class="line">              - &quot;kafka.offsets.retention.minutes&quot;     = &quot;10080&quot;</span><br><span class="line">              - &quot;kafka.ssl.bit&quot;                       = &quot;1024&quot;</span><br><span class="line">              - &quot;message.timestamp.difference.max.ms&quot; = &quot;9223372036854775807&quot;</span><br><span class="line">              - &quot;message.timestamp.type&quot;              = &quot;CreateTime&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ) -&gt; null</span><br><span class="line">      - deploy_type       = 5 -&gt; null</span><br><span class="line">      - disk_size         = 500 -&gt; null</span><br><span class="line">      - disk_type         = 1 -&gt; null</span><br><span class="line">      - eip_max           = 0 -&gt; null</span><br><span class="line">      - end_point         = &quot;172.31.1.64:9092,172.31.1.66:9092,172.31.1.65:9092&quot; -&gt; null</span><br><span class="line">      - group_left        = 2100 -&gt; null</span><br><span class="line">      - group_used        = 0 -&gt; null</span><br><span class="line">      - id                = &quot;alikafka_post-cn-0gx44g6dm006&quot; -&gt; null</span><br><span class="line">      - io_max            = 20 -&gt; null</span><br><span class="line">      - io_max_spec       = &quot;alikafka.hw.2xlarge&quot; -&gt; null</span><br><span class="line">      - is_partition_buy  = 1 -&gt; null</span><br><span class="line">      - name              = &quot;alikafka-testV2&quot; -&gt; null</span><br><span class="line">      - paid_type         = &quot;PostPaid&quot; -&gt; null</span><br><span class="line">      - partition_left    = 1050 -&gt; null</span><br><span class="line">      - partition_num     = 50 -&gt; null</span><br><span class="line">      - partition_used    = 0 -&gt; null</span><br><span class="line">      - resource_group_id = &quot;rg-acfmzpn54i5ejry&quot; -&gt; null</span><br><span class="line">      - security_group    = &quot;sg-bp184o2lwjnssf12wf3w&quot; -&gt; null</span><br><span class="line">      - service_version   = &quot;2.2.0&quot; -&gt; null</span><br><span class="line">      - spec_type         = &quot;normal&quot; -&gt; null</span><br><span class="line">      - status            = 5 -&gt; null</span><br><span class="line">      - tags              = &#123;&#125; -&gt; null</span><br><span class="line">      - topic_left        = 1050 -&gt; null</span><br><span class="line">      - topic_num_of_buy  = 1050 -&gt; null</span><br><span class="line">      - topic_quota       = 1050 -&gt; null</span><br><span class="line">      - topic_used        = 0 -&gt; null</span><br><span class="line">      - vpc_id            = &quot;vpc-bp1sro6pb0sec14x7s05l&quot; -&gt; null</span><br><span class="line">      - vswitch_id        = &quot;vsw-bp1co65f3q2s0bis9yfkg&quot; -&gt; null</span><br><span class="line">      - zone_id           = &quot;zonei&quot; -&gt; null</span><br><span class="line">        # (1 unchanged attribute hidden)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">Plan: 0 to add, 0 to change, 1 to destroy.</span><br><span class="line"></span><br><span class="line">Do you really want to destroy all resources?</span><br><span class="line">  Terraform will destroy all your managed infrastructure, as shown above.</span><br><span class="line">  There is no undo. Only &#x27;yes&#x27; will be accepted to confirm.</span><br><span class="line"></span><br><span class="line">  Enter a value: yes</span><br><span class="line"></span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Destroying... [id=alikafka_post-cn-0gx44g6dm006]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 10s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 20s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 30s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 40s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 50s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 1m1s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 1m11s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 1m21s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 1m31s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 1m41s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 1m51s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 2m1s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 2m11s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 2m21s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Still destroying... [id=alikafka_post-cn-0gx44g6dm006, 2m31s elapsed]</span><br><span class="line">module.alikafka_instance.alicloud_alikafka_instance.this: Destruction complete after 2m37s</span><br><span class="line"></span><br><span class="line">Destroy complete! Resources: 1 destroyed.</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title>tencentcloud_ckafka_instance</title>
+    <url>/2025/07/devops/terraform/tencentcloud_ckafka_instance/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>约定格式：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">├── aliyun                                             # 云厂商实例文件</span><br><span class="line">│   └── aliyun_ecs_mod_demo                           # 模型名</span><br><span class="line">│       └── aliyun_china_platform_7111                # 云账号名</span><br><span class="line">│           └── ecs_instance_name_20241224121212      # 实例名</span><br><span class="line">│               ├── backend.tf                        # 实例state文件保存说明：oss</span><br><span class="line">│               └── main.tf                           # 实例具体的参数</span><br><span class="line">├── modules                                            # 模型数据文件夹</span><br><span class="line">│   ├── aliyun                                        # 云厂商模型文件夹</span><br><span class="line">│   │   └── aliyun_ecs_mod_demo                       # 模型名</span><br><span class="line">│   │       ├── main.tf                               # 模型定义主文件</span><br><span class="line">│   │       ├── outputs.tf                            # 模型定义输出文件</span><br><span class="line">│   │       └── variables.tf                          # 模型定义参数文件</span><br><span class="line">│   └── tenmod                                         # 另一个云厂商模型</span><br><span class="line">└── tenent                                              # 另一个云厂商实例文件</span><br></pre></td></tr></table></figure>
+
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── modules</span><br><span class="line">│   └── tcloud</span><br><span class="line">│       └── tcloud_ckafka_mod_demo</span><br><span class="line">│           ├── main.tf</span><br><span class="line">│           ├── outputs.tf</span><br><span class="line">│           └── variables.tf</span><br><span class="line">└── tcloud</span><br><span class="line">    └── tcloud_ckafka_demo</span><br><span class="line">        └── tcloud_china_game_x6</span><br><span class="line">            └── ckafaka_demo_202501221738</span><br><span class="line">                ├── backend.tf</span><br><span class="line">                └── main.tf</span><br></pre></td></tr></table></figure>
+
+<h2 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h2><h3 id="modules-tcloud-tcloud-ckafka-mod-demo-main-tf"><a href="#modules-tcloud-tcloud-ckafka-mod-demo-main-tf" class="headerlink" title="&#x2F;modules&#x2F;tcloud&#x2F;tcloud_ckafka_mod_demo&#x2F;main.tf"></a>&#x2F;modules&#x2F;tcloud&#x2F;tcloud_ckafka_mod_demo&#x2F;main.tf</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform &#123;</span><br><span class="line">  required_providers &#123;</span><br><span class="line">    tencentcloud = &#123;</span><br><span class="line">      source = &quot;tencentcloudstack/tencentcloud&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">provider &quot;tencentcloud&quot; &#123;</span><br><span class="line">  region = var.region</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">data &quot;tencentcloud_availability_zones_by_product&quot; &quot;zone&quot; &#123;</span><br><span class="line">  name    = var.availability_zone</span><br><span class="line">  product = &quot;ckafka&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resource &quot;tencentcloud_ckafka_instance&quot; &quot;this&quot; &#123;</span><br><span class="line">  instance_name      = var.instance_name</span><br><span class="line">  zone_id            = data.tencentcloud_availability_zones_by_product.zone.zones[0].id</span><br><span class="line">  vpc_id             = var.vpc_id</span><br><span class="line">  subnet_id          = var.vswitch_id</span><br><span class="line">  msg_retention_time = var.msg_retention_time</span><br><span class="line">  kafka_version      = var.kafka_version</span><br><span class="line">  disk_size          = var.disk_size</span><br><span class="line">  band_width         = var.band_width</span><br><span class="line">  disk_type          = var.disk_type</span><br><span class="line">  partition          = var.partition</span><br><span class="line">  charge_type        = var.charge_type</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  config &#123;</span><br><span class="line">    auto_create_topic_enable   = var.auto_create_topic_enable</span><br><span class="line">    default_num_partitions     = var.num_partitions</span><br><span class="line">    default_replication_factor = var.replication_factor</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  dynamic_retention_config &#123;</span><br><span class="line">    enable = var.dynamic_retention_config_enable</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="modules-tcloud-tcloud-ckafka-mod-demo-outputs-tf"><a href="#modules-tcloud-tcloud-ckafka-mod-demo-outputs-tf" class="headerlink" title="&#x2F;modules&#x2F;tcloud&#x2F;tcloud_ckafka_mod_demo&#x2F;outputs.tf"></a>&#x2F;modules&#x2F;tcloud&#x2F;tcloud_ckafka_mod_demo&#x2F;outputs.tf</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">output &quot;ckafka_instance_id&quot; &#123;</span><br><span class="line">  value = tencentcloud_ckafka_instance.this.id</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="modules-tcloud-tcloud-ckafka-mod-demo-variables-tf"><a href="#modules-tcloud-tcloud-ckafka-mod-demo-variables-tf" class="headerlink" title="&#x2F;modules&#x2F;tcloud&#x2F;tcloud_ckafka_mod_demo&#x2F;variables.tf"></a>&#x2F;modules&#x2F;tcloud&#x2F;tcloud_ckafka_mod_demo&#x2F;variables.tf</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">variable &quot;region&quot; &#123;</span><br><span class="line">  description = &quot;地域&quot;</span><br><span class="line">  type        = string</span><br><span class="line">  default     = &quot;ap-shanghai&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;instance_name&quot; &#123;</span><br><span class="line">  description = &quot;kafka实例名&quot;</span><br><span class="line">  type        = string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;availability_zone&quot; &#123;</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">如ap-shanghai-2</span></span><br><span class="line">  description = &quot;可用区&quot;</span><br><span class="line">  type = string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;charge_type&quot; &#123;</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">PREPAID(预付费), POSTPAID_BY_HOUR(按量付费)</span></span><br><span class="line">  description = &quot;kafka实例计费方式&quot;</span><br><span class="line">  type = string</span><br><span class="line">  validation &#123;</span><br><span class="line">    condition     = contains([&quot;PREPAID&quot;, &quot;POSTPAID_BY_HOUR&quot;], var.charge_type)</span><br><span class="line">    error_message = &quot;The charge_type must be one of PREPAID, POSTPAID_BY_HOUR&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;kafka_version&quot; &#123;</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">0.10.2/1.1.1/2.4.1/2.8.1</span></span><br><span class="line">  description = &quot;kafka实例版本&quot;</span><br><span class="line">  type = string</span><br><span class="line">  validation &#123;</span><br><span class="line">    condition     = contains([&quot;0.10.2&quot;, &quot;1.1.1&quot;, &quot;2.4.1&quot;, &quot;2.4.2&quot;, &quot;2.8.1&quot;], var.kafka_version)</span><br><span class="line">    error_message = &quot;The kafka_version must be one of 0.10.2, 1.1.1, 2.4.1, 2.4.2, 2.8.1&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">variable &quot;vswitch_id&quot; &#123;</span><br><span class="line">  // 阿里云vswitch_id -&gt; 腾讯云subnet_id</span><br><span class="line">  description = &quot;绑定子网id&quot;</span><br><span class="line">  type = string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;vpc_id&quot; &#123;</span><br><span class="line">  description = &quot;绑定vpc_id&quot;</span><br><span class="line">  type = string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;disk_size&quot; &#123;</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">需满足当前实例的计费规格，此处预设200和400，可以根据需要修改</span></span><br><span class="line">  description = &quot;kafka实例磁盘规格&quot;</span><br><span class="line">  type = number</span><br><span class="line">  validation &#123;</span><br><span class="line">    condition     = contains([200, 400], var.disk_size)</span><br><span class="line">    error_message = &quot;The disk_size must be one of 200, 400&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;disk_type&quot; &#123;</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">专业版实例磁盘类型，标准版实例不需要填写，CLOUD_SSD(SSD云硬盘), CLOUD_BASIC(高性能云硬盘)</span></span><br><span class="line">  description = &quot;kafka专业版实例磁盘类型&quot;</span><br><span class="line">  type = string</span><br><span class="line">  default = &quot;&quot;</span><br><span class="line">  validation &#123;</span><br><span class="line">    condition     = contains([&quot;&quot;, &quot;CLOUD_SSD&quot;, &quot;CLOUD_BASIC&quot;], var.disk_type)</span><br><span class="line">    error_message = &quot;The disk_type must be empty, or one of CLOUD_SSD, CLOUD_BASIC&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;band_width&quot; &#123;</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">单位为MBps.</span></span><br><span class="line">  description = &quot;kafka实例带宽&quot;</span><br><span class="line">  type = number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;auto_create_topic_enable&quot; &#123;</span><br><span class="line">  description = &quot;是否自动创建topic&quot;</span><br><span class="line">  type = bool</span><br><span class="line">  default = true</span><br><span class="line">  validation &#123;</span><br><span class="line">    condition     = contains([true, false], var.auto_create_topic_enable)</span><br><span class="line">    error_message = &quot;The auto_create_topic_enable must be one of true, false&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;num_partitions&quot; &#123;</span><br><span class="line">  description = &quot;kafka实例默认分区数&quot;</span><br><span class="line">  type = number</span><br><span class="line">  default = 3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;replication_factor&quot; &#123;</span><br><span class="line">  description = &quot;kafka实例默认副本数&quot;</span><br><span class="line">  type = number</span><br><span class="line">  default = 2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;dynamic_retention_config_enable&quot; &#123;</span><br><span class="line">  description = &quot;是否启用动态消息保留时间配置&quot;</span><br><span class="line">  type = number</span><br><span class="line">  default = 0</span><br><span class="line">  validation &#123;</span><br><span class="line">    condition     = contains([0, 1], var.dynamic_retention_config_enable)</span><br><span class="line">    error_message = &quot;The dynamic_retention_config_enable must be one of 0, 1&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;msg_retention_time&quot; &#123;</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">以分钟为单位</span></span><br><span class="line">  description = &quot;kafka实例日志的最大保留时间&quot;</span><br><span class="line">  type = number</span><br><span class="line">  default = 10080</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;partition&quot; &#123;</span><br><span class="line">  description = &quot;kafka实例分区大小&quot;</span><br><span class="line">  type = number</span><br><span class="line">  default = 3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><h3 id="tcloud-tcloud-ckafka-demo-tcloud-china-game-x6-ckafaka-demo-202501221738-backend-tf"><a href="#tcloud-tcloud-ckafka-demo-tcloud-china-game-x6-ckafaka-demo-202501221738-backend-tf" class="headerlink" title="&#x2F;tcloud&#x2F;tcloud_ckafka_demo&#x2F;tcloud_china_game_x6&#x2F;ckafaka_demo_202501221738&#x2F;backend.tf"></a>&#x2F;tcloud&#x2F;tcloud_ckafka_demo&#x2F;tcloud_china_game_x6&#x2F;ckafaka_demo_202501221738&#x2F;backend.tf</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform &#123;</span><br><span class="line">  backend &quot;oss&quot; &#123;</span><br><span class="line">    endpoint = &quot;oss-cn-hangzhou.aliyuncs.com&quot;</span><br><span class="line">    bucket   = &quot;dz-devops&quot; # 替换为你的 OSS Bucket 名称</span><br><span class="line">    prefix = &quot;terraform_state/tcloud/tcloud_ckafka_demo/tcloud_china_game_x6/ckafka_demo_202501221738&quot;</span><br><span class="line">    key      = &quot;terraform.tfstate&quot; # 存储状态文件的路径和名称</span><br><span class="line">    region   = &quot;cn-hangzhou&quot;       # OSS 的地域（根据你的实际情况调整）</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="tcloud-tcloud-ckafka-demo-tcloud-china-game-x6-ckafaka-demo-202501221738-main-tf"><a href="#tcloud-tcloud-ckafka-demo-tcloud-china-game-x6-ckafaka-demo-202501221738-main-tf" class="headerlink" title="&#x2F;tcloud&#x2F;tcloud_ckafka_demo&#x2F;tcloud_china_game_x6&#x2F;ckafaka_demo_202501221738&#x2F;main.tf"></a>&#x2F;tcloud&#x2F;tcloud_ckafka_demo&#x2F;tcloud_china_game_x6&#x2F;ckafaka_demo_202501221738&#x2F;main.tf</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">module &quot;ckafka_instance&quot; &#123;</span><br><span class="line">  source              = &quot;../../../../modules/tcloud/tcloud_ckafka_mod_demo&quot;</span><br><span class="line">  region              = &quot;ap-shanghai&quot;</span><br><span class="line">  instance_name       = &quot;ckafka-test&quot;</span><br><span class="line">  availability_zone   = &quot;ap-shanghai-2&quot;</span><br><span class="line">  charge_type         = &quot;POSTPAID_BY_HOUR&quot;</span><br><span class="line">  kafka_version       = &quot;2.4.2&quot;</span><br><span class="line">  vpc_id              = &quot;vpc-4tkroxts&quot;</span><br><span class="line">  vswitch_id          = &quot;subnet-oy1pqvzv&quot;</span><br><span class="line">  disk_size           = 200</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">disk_type           = <span class="string">&quot;CLOUD_BASIC&quot;</span></span></span><br><span class="line">  band_width          = 20</span><br><span class="line">  auto_create_topic_enable = true</span><br><span class="line">  num_partitions     = 3</span><br><span class="line">  replication_factor = 3</span><br><span class="line">  dynamic_retention_config_enable = 1</span><br><span class="line">  msg_retention_time = 1300</span><br><span class="line">  partition = 400</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h2><h3 id="获取-AK-SK"><a href="#获取-AK-SK" class="headerlink" title="获取 AK&#x2F;SK"></a>获取 AK&#x2F;SK</h3><p>在首次使用 Terraform 之前，需要前往腾讯云的<a href="https://console.cloud.tencent.com/cam/capi">云 API 密钥页面</a>申请安全凭证SecretId和SecretKey2。若已有可使用的安全凭证，则跳过该步骤2。具体步骤如下2：</p>
+<ol>
+<li>登录腾讯云<a href="https://console.cloud.tencent.com/cam">访问管理控制台</a>，在左侧导航栏，选择访问密钥&gt;API 密钥管理。</li>
+<li>在API 密钥管理页面，单击新建密钥，即可以创建一对SecretId&#x2F;SecretKey。</li>
+</ol>
+<h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p>将获取到的SecretId和SecretKey设置为环境变量：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export TENCENTCLOUD_SECRET_ID=your_secret_id</span><br><span class="line">export TENCENTCLOUD_SECRET_KEY=your_secret_key</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><p>进入项目根目录，这里是ckafaka_demo_202501221738目录：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ./tcloud/tcloud_ckafka_demo/tcloud_china_game_x6/ckafaka_demo_202501221738/</span><br></pre></td></tr></table></figure>
+
+<p>初始化 Terraform 项目:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将xxx替换为实际backend的ak，将yyy替换为实际backend的sk</span></span><br><span class="line">terraform init -backend-config=&quot;access_key=xxx&quot; -backend-config=&quot;secret_key=yyy&quot;</span><br></pre></td></tr></table></figure>
+
+<p>该命令会下载所需的插件和依赖，并初始化后端配置。<br>类似的输出（首次使用某一个provier时，会先下载）：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Initializing the backend...</span><br><span class="line"></span><br><span class="line">Successfully configured the backend &quot;oss&quot;! Terraform will automatically</span><br><span class="line">use this backend unless the backend configuration changes.</span><br><span class="line">Initializing modules...</span><br><span class="line">- ckafka_instance in ../../../../modules/tcloud/tcloud_ckafka_mod_demo</span><br><span class="line">Initializing provider plugins...</span><br><span class="line">- Finding latest version of tencentcloudstack/tencentcloud...</span><br><span class="line">- Installing tencentcloudstack/tencentcloud v1.81.162...</span><br><span class="line">- Installed tencentcloudstack/tencentcloud v1.81.162 (signed by a HashiCorp partner, key ID 84F69E1C1BECF459)</span><br><span class="line">Partner and community providers are signed by their developers.</span><br><span class="line">If you&#x27;d like to know more about provider signing, you can read about it here:</span><br><span class="line">https://www.terraform.io/docs/cli/plugins/signing.html</span><br><span class="line">Terraform has created a lock file .terraform.lock.hcl to record the provider</span><br><span class="line">selections it made above. Include this file in your version control repository</span><br><span class="line">so that Terraform can guarantee to make the same selections by default when</span><br><span class="line">you run &quot;terraform init&quot; in the future.</span><br><span class="line"></span><br><span class="line">Terraform has been successfully initialized!</span><br><span class="line"></span><br><span class="line">You may now begin working with Terraform. Try running &quot;terraform plan&quot; to see</span><br><span class="line">any changes that are required for your infrastructure. All Terraform commands</span><br><span class="line">should now work.</span><br><span class="line"></span><br><span class="line">If you ever set or change modules or backend configuration for Terraform,</span><br><span class="line">rerun this command to reinitialize your working directory. If you forget, other</span><br><span class="line">commands will detect it and remind you to do so if necessary.</span><br></pre></td></tr></table></figure>
+
+<h3 id="预览计划变更："><a href="#预览计划变更：" class="headerlink" title="预览计划变更："></a>预览计划变更：</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform plan</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">module.ckafka_instance.data.tencentcloud_availability_zones_by_product.zone: Reading...</span><br><span class="line">module.ckafka_instance.data.tencentcloud_availability_zones_by_product.zone: Read complete after 0s [id=2066006299]</span><br><span class="line"></span><br><span class="line">Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:</span><br><span class="line">  + create</span><br><span class="line"></span><br><span class="line">Terraform will perform the following actions:</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">module.ckafka_instance.tencentcloud_ckafka_instance.this will be created</span></span><br><span class="line">  + resource &quot;tencentcloud_ckafka_instance&quot; &quot;this&quot; &#123;</span><br><span class="line">      + band_width          = 20</span><br><span class="line">      + charge_type         = &quot;POSTPAID_BY_HOUR&quot;</span><br><span class="line">      + disk_size           = 200</span><br><span class="line">      + disk_type           = &quot;CLOUD_BASIC&quot;</span><br><span class="line">      + id                  = (known after apply)</span><br><span class="line">      + instance_name       = &quot;ckafka-test&quot;</span><br><span class="line">      + instance_type       = (known after apply)</span><br><span class="line">      + kafka_version       = &quot;kafka_version&quot;</span><br><span class="line">      + max_message_byte    = (known after apply)</span><br><span class="line">      + msg_retention_time  = 1300</span><br><span class="line">      + partition           = 400</span><br><span class="line">      + public_network      = (known after apply)</span><br><span class="line">      + renew_flag          = (known after apply)</span><br><span class="line">      + specifications_type = &quot;profession&quot;</span><br><span class="line">      + subnet_id           = &quot;subnet-oy1pqvzv&quot;</span><br><span class="line">      + tag_set             = (known after apply)</span><br><span class="line">      + upgrade_strategy    = 1</span><br><span class="line">      + vip                 = (known after apply)</span><br><span class="line">      + vpc_id              = &quot;vpc-4tkroxts&quot;</span><br><span class="line">      + vport               = (known after apply)</span><br><span class="line">      + zone_id             = 200002</span><br><span class="line"></span><br><span class="line">      + config &#123;</span><br><span class="line">          + auto_create_topic_enable   = true</span><br><span class="line">          + default_num_partitions     = 3</span><br><span class="line">          + default_replication_factor = 3</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      + dynamic_retention_config &#123;</span><br><span class="line">          + bottom_retention        = (known after apply)</span><br><span class="line">          + disk_quota_percentage   = (known after apply)</span><br><span class="line">          + enable                  = 1</span><br><span class="line">          + step_forward_percentage = (known after apply)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      + tags (known after apply)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">Plan: 1 to add, 0 to change, 0 to destroy.</span><br><span class="line"></span><br><span class="line">───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span><br><span class="line"></span><br><span class="line">Note: You didn&#x27;t use the -out option to save this plan, so Terraform can&#x27;t guarantee to take exactly these actions if you run &quot;terraform apply&quot; now.</span><br></pre></td></tr></table></figure>
+
+<p>执行变更：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform apply</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">module.ckafka_instance.data.tencentcloud_availability_zones_by_product.zone: Reading...</span><br><span class="line">module.ckafka_instance.data.tencentcloud_availability_zones_by_product.zone: Read complete after 1s [id=2066006299]</span><br><span class="line"></span><br><span class="line">Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:</span><br><span class="line">  + create</span><br><span class="line"></span><br><span class="line">Terraform will perform the following actions:</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">module.ckafka_instance.tencentcloud_ckafka_instance.this will be created</span></span><br><span class="line">  + resource &quot;tencentcloud_ckafka_instance&quot; &quot;this&quot; &#123;</span><br><span class="line">      + band_width          = 20</span><br><span class="line">      + charge_type         = &quot;POSTPAID_BY_HOUR&quot;</span><br><span class="line">      + disk_size           = 200</span><br><span class="line">      + disk_type           = &quot;CLOUD_BASIC&quot;</span><br><span class="line">      + id                  = (known after apply)</span><br><span class="line">      + instance_name       = &quot;ckafka-test&quot;</span><br><span class="line">      + instance_type       = (known after apply)</span><br><span class="line">      + kafka_version       = &quot;kafka_version&quot;</span><br><span class="line">      + max_message_byte    = (known after apply)</span><br><span class="line">      + msg_retention_time  = 1300</span><br><span class="line">      + partition           = 400</span><br><span class="line">      + public_network      = (known after apply)</span><br><span class="line">      + renew_flag          = (known after apply)</span><br><span class="line">      + specifications_type = &quot;profession&quot;</span><br><span class="line">      + subnet_id           = &quot;subnet-oy1pqvzv&quot;</span><br><span class="line">      + tag_set             = (known after apply)</span><br><span class="line">      + upgrade_strategy    = 1</span><br><span class="line">      + vip                 = (known after apply)</span><br><span class="line">      + vpc_id              = &quot;vpc-4tkroxts&quot;</span><br><span class="line">      + vport               = (known after apply)</span><br><span class="line">      + zone_id             = 200002</span><br><span class="line"></span><br><span class="line">      + config &#123;</span><br><span class="line">          + auto_create_topic_enable   = true</span><br><span class="line">          + default_num_partitions     = 3</span><br><span class="line">          + default_replication_factor = 3</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      + dynamic_retention_config &#123;</span><br><span class="line">          + bottom_retention        = (known after apply)</span><br><span class="line">          + disk_quota_percentage   = (known after apply)</span><br><span class="line">          + enable                  = 1</span><br><span class="line">          + step_forward_percentage = (known after apply)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      + tags (known after apply)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">Plan: 1 to add, 0 to change, 0 to destroy.</span><br><span class="line"></span><br><span class="line">Do you want to perform these actions?</span><br><span class="line">  Terraform will perform the actions described above.</span><br><span class="line">  Only &#x27;yes&#x27; will be accepted to approve.</span><br><span class="line"></span><br><span class="line">  Enter a value: yes</span><br><span class="line"></span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Creating...</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [10s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [20s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [30s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [40s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [50s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [1m0s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [1m10s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [1m20s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [1m30s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [1m40s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [1m50s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [2m0s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [2m10s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [2m20s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [2m30s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [2m40s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [2m50s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Still creating... [3m0s elapsed]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Creation complete after 3m7s [id=ckafka-9jnda3jn]</span><br><span class="line"></span><br><span class="line">Apply complete! Resources: 1 added, 0 changed, 0 destroyed.</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证创建"><a href="#验证创建" class="headerlink" title="验证创建"></a>验证创建</h3><p>在前端查看是否成功创建实例：<br><img src="/img_1.png" alt="img_1.png"></p>
+<h3 id="销毁资源"><a href="#销毁资源" class="headerlink" title="销毁资源"></a>销毁资源</h3><p>执行下面的命令进行销毁：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">terraform destroy</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">module.ckafka_instance.data.tencentcloud_availability_zones_by_product.zone: Reading...</span><br><span class="line">module.ckafka_instance.data.tencentcloud_availability_zones_by_product.zone: Read complete after 1s [id=2066006299]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Refreshing state... [id=ckafka-9jnda3jn]</span><br><span class="line"></span><br><span class="line">Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:</span><br><span class="line">  - destroy</span><br><span class="line"></span><br><span class="line">Terraform will perform the following actions:</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">module.ckafka_instance.tencentcloud_ckafka_instance.this will be destroyed</span></span><br><span class="line">  - resource &quot;tencentcloud_ckafka_instance&quot; &quot;this&quot; &#123;</span><br><span class="line">      - band_width          = 20 -&gt; null</span><br><span class="line">      - charge_type         = &quot;POSTPAID_BY_HOUR&quot; -&gt; null</span><br><span class="line">      - disk_size           = 200 -&gt; null</span><br><span class="line">      - disk_type           = &quot;CLOUD_BASIC&quot; -&gt; null</span><br><span class="line">      - id                  = &quot;ckafka-9jnda3jn&quot; -&gt; null</span><br><span class="line">      - instance_name       = &quot;ckafka-test&quot; -&gt; null</span><br><span class="line">      - instance_type       = 1 -&gt; null</span><br><span class="line">      - kafka_version       = &quot;0.10.2.1&quot; -&gt; null</span><br><span class="line">      - msg_retention_time  = 1300 -&gt; null</span><br><span class="line">      - partition           = 400 -&gt; null</span><br><span class="line">      - public_network      = 3 -&gt; null</span><br><span class="line">      - renew_flag          = 0 -&gt; null</span><br><span class="line">      - specifications_type = &quot;profession&quot; -&gt; null</span><br><span class="line">      - subnet_id           = &quot;subnet-oy1pqvzv&quot; -&gt; null</span><br><span class="line">      - tag_set             = &#123;&#125; -&gt; null</span><br><span class="line">      - upgrade_strategy    = 1 -&gt; null</span><br><span class="line">      - vip                 = &quot;172.17.0.3&quot; -&gt; null</span><br><span class="line">      - vpc_id              = &quot;vpc-4tkroxts&quot; -&gt; null</span><br><span class="line">      - vport               = &quot;9092&quot; -&gt; null</span><br><span class="line">      - zone_id             = 200002 -&gt; null</span><br><span class="line"></span><br><span class="line">      - config &#123;</span><br><span class="line">          - auto_create_topic_enable   = true -&gt; null</span><br><span class="line">          - default_num_partitions     = 3 -&gt; null</span><br><span class="line">          - default_replication_factor = 3 -&gt; null</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      - dynamic_retention_config &#123;</span><br><span class="line">          - bottom_retention        = 0 -&gt; null</span><br><span class="line">          - disk_quota_percentage   = 0 -&gt; null</span><br><span class="line">          - enable                  = 1 -&gt; null</span><br><span class="line">          - step_forward_percentage = 0 -&gt; null</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">Plan: 0 to add, 0 to change, 1 to destroy.</span><br><span class="line"></span><br><span class="line">Do you really want to destroy all resources?</span><br><span class="line">  Terraform will destroy all your managed infrastructure, as shown above.</span><br><span class="line">  There is no undo. Only &#x27;yes&#x27; will be accepted to confirm.</span><br><span class="line"></span><br><span class="line">  Enter a value: yes</span><br><span class="line"></span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Destroying... [id=ckafka-9jnda3jn]</span><br><span class="line">module.ckafka_instance.tencentcloud_ckafka_instance.this: Destruction complete after 5s</span><br><span class="line"></span><br><span class="line">Destroy complete! Resources: 1 destroyed.</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证销毁"><a href="#验证销毁" class="headerlink" title="验证销毁"></a>验证销毁</h3><p><img src="/img_2.png" alt="img_2.png"></p>
 ]]></content>
   </entry>
   <entry>
