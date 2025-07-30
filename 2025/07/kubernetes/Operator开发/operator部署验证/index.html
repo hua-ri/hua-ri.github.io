@@ -35,14 +35,153 @@
     <div class="post-content">
         <h1 id="1、部署命令"><a href="#1、部署命令" class="headerlink" title="1、部署命令"></a>1、部署命令</h1><p>这个是很多博客教程都在使用的部署命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">make manifests</span><br><span class="line">make install</span><br><span class="line">export ENABLE_WEBHOOKS=false</span><br><span class="line">make run</span><br></pre></td></tr></table></figure>
+<p>我们使用之前的demo来进行部署验证：<a href="https://hua-ri.cn/2025/07/kubernetes/Operator%E5%BC%80%E5%8F%91/operator%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6/">Kubernetes-Operator篇-02-脚手架熟悉</a></p>
+<p>这里面涉及到的makefile的配置可以参考：<a href="https://hua-ri.cn/2025/07/kubernetes/Operator%E5%BC%80%E5%8F%91/kubebuilder%E7%9A%84makefile%E6%96%87%E4%BB%B6/">Kubernetes-Operator篇-03-kubebuilder的Makefile文件熟悉</a></p>
+<p>下面让我来看看这些命令的含义，并且都是在干什么</p>
+<h2 id="1-1-make-manifests"><a href="#1-1-make-manifests" class="headerlink" title="1.1 make manifests"></a>1.1 make manifests</h2><p><code>make manifests</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.PHONY: manifests</span><br><span class="line">manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.</span><br><span class="line">        $(CONTROLLER_GEN) rbac:roleName=manager-role crd webhook paths=&quot;./...&quot; output:crd:artifacts:config=config/crd/bases</span><br></pre></td></tr></table></figure>
+<p>这里主要是为了生成WebhookConfiguration、ClusterRole和CustomResourceDefinition 对象。</p>
+<p>在生成了WebhookConfiguration、ClusterRole和CustomResourceDefinition 对象后，我们可以进行查看，但是不要手动去修改，因为后面的<code>make install</code>和<code>make run</code>等命令，都依赖该目标，并且因为都是使用的<code>.PHONY</code>关键字来申明的伪目标，所以每次执行<code>make install</code>和<code>make run</code>都会执行manifests依赖。</p>
+<p>所以单独执行make manifests的意义是什么呢，个人观点，在一个完整部署动作中，完成了代码变更后，是需要通过<code>make manifests</code>来进行配置的生成查看的。<code>但是如果在本部署动作中，不关心生成配置的具体情况，只想走一遍流程，或者直接测试，那其实忽略不执行也ok，毕竟后面每一步都会重新生成且覆盖。</code></p>
+<h2 id="1-2-make-install"><a href="#1-2-make-install" class="headerlink" title="1.2 make install"></a>1.2 make install</h2><p><code>make install</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.PHONY: install</span><br><span class="line">install: manifests kustomize ## Install CRDs into the K8s cluster specified in ~/.kube/config.</span><br><span class="line">        $(KUSTOMIZE) build config/crd | $(KUBECTL) apply -f -</span><br></pre></td></tr></table></figure>
 
+<p>先运行manifests和kustomize目标，然后使用kustomize 构建config&#x2F;crd目录中的资源，并使用kubectl将其应用到集群。</p>
+<p>这里manifests目标会生成WebhookConfiguration、ClusterRole和CustomResourceDefinition 对象，并保存在config&#x2F;crd&#x2F;bases目录下。</p>
+<p>而kustomize目标是进行kustomize工具的下载，如果二进制文件不存在则下载，然后生成二进制文件的软链，二进制文件只在首次下载，后续都是仅更新软链。</p>
+<p>下面的命令是install实际执行的动作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash">(KUSTOMIZE) build config/crd | $(KUBECTL) apply -f -</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="1-3-make-run"><a href="#1-3-make-run" class="headerlink" title="1.3 make run"></a>1.3 make run</h2><p><code>make run</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.PHONY: run</span><br><span class="line">run: manifests generate fmt vet ## Run a controller from your host.</span><br><span class="line">        go run ./cmd/main.go</span><br></pre></td></tr></table></figure>
+<p>先运行manifests、generate、fmt和vet目标，然后使用go run命令运行cmd&#x2F;main.go文件</p>
+<p>这里manifests目标会生成WebhookConfiguration、ClusterRole和CustomResourceDefinition 对象，并保存在config&#x2F;crd&#x2F;bases目录下。</p>
+<p>而generate 目标是使用controller-gen工具生成包含DeepCopy、DeepCopyInto, 和DeepCopyObject方法实现的代码。</p>
+<p>至于fmt和vet目标就是执行go的命令：<code>fmt ./...</code>和<code>go vet ./...</code></p>
+<p>下面的命令是install实际执行的动作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go run ./cmd/main.go</span><br></pre></td></tr></table></figure>
 
+<h3 id="1-4-环境变量ENABLE-WEBHOOKS"><a href="#1-4-环境变量ENABLE-WEBHOOKS" class="headerlink" title="1.4 环境变量ENABLE_WEBHOOKS"></a>1.4 环境变量ENABLE_WEBHOOKS</h3><p>环境变量ENABLE_WEBHOOKS控制着webhook的启用与否。</p>
+<p>这段代码是kubectl生成的operator项目的main函数中启用webhook逻辑的部分：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if os.Getenv(&quot;ENABLE_WEBHOOKS&quot;) != &quot;false&quot; &#123;</span><br><span class="line">                if err = (&amp;appsv1.Myapp&#123;&#125;).SetupWebhookWithManager(mgr); err != nil &#123;</span><br><span class="line">                        setupLog.Error(err, &quot;unable to create webhook&quot;, &quot;webhook&quot;, &quot;Myapp&quot;)</span><br><span class="line">                        os.Exit(1)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
+<p>这里很简单粗暴的根据环境变量ENABLE_WEBHOOKS来决定是否启用webhook，os.Getenv的定义:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">func Getenv(key string) string &#123;</span><br><span class="line">        testlog.Getenv(key)</span><br><span class="line">        v, _ := syscall.Getenv(key)</span><br><span class="line">        return v</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func Getenv(key string) (value string, found bool) &#123;</span><br><span class="line">        envOnce.Do(copyenv)</span><br><span class="line">        if len(key) == 0 &#123;</span><br><span class="line">                return &quot;&quot;, false</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        envLock.RLock()</span><br><span class="line">        defer envLock.RUnlock()</span><br><span class="line"></span><br><span class="line">        i, ok := env[key]</span><br><span class="line">        if !ok &#123;</span><br><span class="line">                return &quot;&quot;, false</span><br><span class="line">        &#125;</span><br><span class="line">        s := envs[i]</span><br><span class="line">        for i := 0; i &lt; len(s); i++ &#123;</span><br><span class="line">                if s[i] == &#x27;=&#x27; &#123;</span><br><span class="line">                        return s[i+1:], true</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;&quot;, false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里返回的值，可能是空字符串，也可能是bool类型值的字符串，但是只要值不是false，就会开启webhook。</p>
+<p>至于这里为什么要临时关闭webhook，因为启用webhook是需要证书的，也就是我们需要在本地安装cert-manager，并且还需要配置，在本实验项目就不搞太复杂了。</p>
+<h1 id="2、CRD-调试"><a href="#2、CRD-调试" class="headerlink" title="2、CRD 调试"></a>2、CRD 调试</h1><h2 id="2-1-make-manifests"><a href="#2-1-make-manifests" class="headerlink" title="2.1 make manifests"></a>2.1 make manifests</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">make manifests</span><br><span class="line">/home/king/workspace/king-devops/operator/myapp-operator/bin/controller-gen rbac:roleName=manager-role crd webhook paths=&quot;./...&quot; output:crd:artifacts:config=config/crd/bases</span><br><span class="line"></span><br><span class="line">ls -lh config/crd/bases/</span><br><span class="line">总计 1.1M</span><br><span class="line">-rw-rw-r-- 1 king king 1.1M 10月  5 16:17 apps.kubenode.kingtest.com_myapps.yaml</span><br></pre></td></tr></table></figure>
 
+<h2 id="2-2-make-install"><a href="#2-2-make-install" class="headerlink" title="2.2 make install"></a>2.2 make install</h2><p>命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
 
+<h3 id="2-2-1-make-install错误：dial-tcp-127-0-0-1-8080-connect-connection-refused"><a href="#2-2-1-make-install错误：dial-tcp-127-0-0-1-8080-connect-connection-refused" class="headerlink" title="2.2.1 make install错误：dial tcp 127.0.0.1:8080: connect: connection refused"></a>2.2.1 make install错误：dial tcp 127.0.0.1:8080: connect: connection refused</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br><span class="line">/home/king/workspace/king-devops/operator/myapp-operator/bin/controller-gen rbac:roleName=manager-role crd webhook paths=&quot;./...&quot; output:crd:artifacts:config=config/crd/bases</span><br><span class="line">/home/king/workspace/king-devops/operator/myapp-operator/bin/kustomize build config/crd | kubectl apply -f -</span><br><span class="line">error: error validating &quot;STDIN&quot;: error validating data: failed to download openapi: Get &quot;http://localhost:8080/openapi/v2?timeout=32s&quot;: dial tcp 127.0.0.1:8080: connect: connection refused; if you choose to ignore these errors, turn validation off with --validate=false</span><br><span class="line">make: *** [Makefile:131：install] 错误 1</span><br></pre></td></tr></table></figure>
 
+<p>这个错误很诡异： dial tcp 127.0.0.1:8080: connect: connection refused</p>
+<p>首先集群是存在的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo kind get clusters</span><br><span class="line">myk8s-test</span><br></pre></td></tr></table></figure>
 
+<p>其次已经使用下面的命令将集群信息，设置进去kubectl的上下文里：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kubectl cluster-info --context kind-myk8s-test</span><br></pre></td></tr></table></figure>
+
+<p>sudo kubectl cluster-info –context kind-myk8s-test</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo kubectl get nodes</span><br><span class="line">NAME                       STATUS   ROLES           AGE   VERSION</span><br><span class="line">myk8s-test-control-plane   Ready    control-plane   43h   v1.31.0</span><br><span class="line">myk8s-test-worker          Ready    &lt;none&gt;          43h   v1.31.0</span><br><span class="line">myk8s-test-worker2         Ready    &lt;none&gt;          43h   v1.31.0</span><br></pre></td></tr></table></figure>
+
+<p>进一步测试，分别执行<code>kubectl version</code>和<code>kubectl cluster-info dump</code>都遇见了类似的错误：</p>
+<p><code>kubectl version</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl version</span><br><span class="line">Client Version: v1.31.1</span><br><span class="line">Kustomize Version: v5.4.2</span><br><span class="line">The connection to the server localhost:8080 was refused - did you specify the right host or port?</span><br></pre></td></tr></table></figure>
+
+<p><code>kubectl cluster-info dump</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl cluster-info dump</span><br><span class="line">The connection to the server localhost:8080 was refused - did you specify the right host or port?</span><br></pre></td></tr></table></figure>
+
+<p>但是很悲催的是，忘记将kind集群的kubeconfig导出到本地，我的理解是，虽然kubectl上下文是有集群kubeconfig的，但是本地并没有，简单来说，就是这个信息是kubectl自身保存的，不是直接使用的系统上存储的kubeconfig</p>
+<p>使用下面的命令，将kubeconfig信息保存在<code>$HOME/.kube/config内</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kind export kubeconfig --name=myk8s-test --kubeconfig=$HOME/.kube/config</span><br></pre></td></tr></table></figure>
+
+<p>再执行<code>make install</code>命令，本问题已经解决，但是新的问题出现了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br><span class="line">/home/king/workspace/king-devops/operator/myapp-operator/bin/controller-gen rbac:roleName=manager-role crd webhook paths=&quot;./...&quot; output:crd:artifacts:config=config/crd/bases</span><br><span class="line">/home/king/workspace/king-devops/operator/myapp-operator/bin/kustomize build config/crd | kubectl apply -f -</span><br><span class="line">The CustomResourceDefinition &quot;myapps.apps.kubenode.kingtest.com&quot; is invalid: metadata.annotations: Too long: must have at most 262144 bytes</span><br><span class="line">make: *** [Makefile:131：install] 错误 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-2-make-install错误：metadata-annotations-Too-long-must-have-at-most-262144-bytes"><a href="#2-2-2-make-install错误：metadata-annotations-Too-long-must-have-at-most-262144-bytes" class="headerlink" title="2.2.2 make install错误：metadata.annotations: Too long: must have at most 262144 bytes"></a>2.2.2 make install错误：metadata.annotations: Too long: must have at most 262144 bytes</h3><p>kubebuilder的github issues中，修复过这个问题: <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubebuilder/pull/2862/commits/2c5b9edf614444acd43ae5f65af1702a5ed63ed6">https://github.com/kubernetes-sigs/kubebuilder/pull/2862/commits/2c5b9edf614444acd43ae5f65af1702a5ed63ed6</a></p>
+<p>修复方法：打开Makefile，在 manifests 命令处，修改 crd 为 crd:maxDescLen&#x3D;0</p>
+<p>原始的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.PHONY: manifests</span><br><span class="line">manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.</span><br><span class="line">        $(CONTROLLER_GEN) rbac:roleName=manager-role crd webhook paths=&quot;./...&quot; output:crd:artifacts:config=config/crd/bases</span><br></pre></td></tr></table></figure>
+
+<p>修复后的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.PHONY: manifests</span><br><span class="line">manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and CustomResourceDefinition objects.</span><br><span class="line">        $(CONTROLLER_GEN) rbac:roleName=manager-role crd:maxDescLen=0 webhook paths=&quot;./...&quot; output:crd:artifacts:config=config/crd/bases</span><br></pre></td></tr></table></figure>
+
+<p>问题解决：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br><span class="line">/home/king/workspace/king-devops/operator/myapp-operator/bin/controller-gen rbac:roleName=manager-role crd:maxDescLen=0 webhook paths=&quot;./...&quot; output:crd:artifacts:config=config/crd/bases</span><br><span class="line">/home/king/workspace/king-devops/operator/myapp-operator/bin/kustomize build config/crd | kubectl apply -f -</span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/my</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-3-make-install验证"><a href="#2-2-3-make-install验证" class="headerlink" title="2.2.3 make install验证"></a>2.2.3 make install验证</h3><p>查看安装结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get crd</span><br><span class="line">NAME                                CREATED AT</span><br><span class="line">myapps.apps.kubenode.kingtest.com   2024-10-05T11:56:22Z</span><br></pre></td></tr></table></figure>
+<p>已经可以看到我们定义的crd了。</p>
+<h2 id="2-3-make-run"><a href="#2-3-make-run" class="headerlink" title="2.3 make run"></a>2.3 make run</h2><p>命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export ENABLE_WEBHOOKS=false</span><br><span class="line">make run</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">make run</span><br><span class="line">/home/king/workspace/king-devops/operator/myapp-operator/bin/controller-gen rbac:roleName=manager-role crd:maxDescLen=0 webhook paths=&quot;./...&quot; output:crd:artifacts:config=config/crd/bases</span><br><span class="line">/home/king/workspace/king-devops/operator/myapp-operator/bin/controller-gen object:headerFile=&quot;hack/boilerplate.go.txt&quot; paths=&quot;./...&quot;</span><br><span class="line">go fmt ./...</span><br><span class="line">go vet ./...</span><br><span class="line">go run ./cmd/main.go</span><br><span class="line">2024-10-05T20:29:02+08:00       INFO    setup   starting manager</span><br><span class="line">2024-10-05T20:29:02+08:00       INFO    starting server &#123;&quot;name&quot;: &quot;health probe&quot;, &quot;addr&quot;: &quot;[::]:8081&quot;&#125;</span><br><span class="line">2024-10-05T20:29:02+08:00       INFO    Starting EventSource    &#123;&quot;controller&quot;: &quot;myapp&quot;, &quot;controllerGroup&quot;: &quot;apps.kubenode.kingtest.com&quot;, &quot;controllerKind&quot;: &quot;Myapp&quot;, &quot;source&quot;: &quot;kind source: *v1.Myapp&quot;&#125;</span><br><span class="line">2024-10-05T20:29:02+08:00       INFO    Starting Controller     &#123;&quot;controller&quot;: &quot;myapp&quot;, &quot;controllerGroup&quot;: &quot;apps.kubenode.kingtest.com&quot;, &quot;controllerKind&quot;: &quot;Myapp&quot;&#125;</span><br><span class="line">2024-10-05T20:29:02+08:00       INFO    Starting workers        &#123;&quot;controller&quot;: &quot;myapp&quot;, &quot;controllerGroup&quot;: &quot;apps.kubenode.kingtest.com&quot;, &quot;controllerKind&quot;: &quot;Myapp&quot;, &quot;worker count&quot;: 1&#125;</span><br></pre></td></tr></table></figure>
+
+<p>已经成功启动！！！</p>
+<h2 id="2-4-执行debug"><a href="#2-4-执行debug" class="headerlink" title="2.4 执行debug"></a>2.4 执行debug</h2><h3 id="2-4-1-启动debug"><a href="#2-4-1-启动debug" class="headerlink" title="2.4.1 启动debug"></a>2.4.1 启动debug</h3><p>在上面执行了以下步骤：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">make manifests</span><br><span class="line">make install</span><br><span class="line">export ENABLE_WEBHOOKS=false</span><br><span class="line">make run</span><br></pre></td></tr></table></figure>
+<p>我们先将make run运行的controller停止，然后打开operator项目，在项目的调谐函数内打上断点，然后直接以debug模式启动。</p>
+<p>打断点<br><img src="/img_5.png" alt="img_5.png"></p>
+<p>别忘了设置环境变量，关闭webhook<br><img src="/img_6.png" alt="img_6.png"></p>
+<p>以debug方式启动：<br><img src="/img_7.png" alt="img_7.png"></p>
+<p>执行结果<br><img src="/img_8.png" alt="img_8.png"></p>
+<p>接下来，我们来apply一个资源，测试一下。</p>
+<h3 id="2-4-2-crd测试"><a href="#2-4-2-crd测试" class="headerlink" title="2.4.2 crd测试"></a>2.4.2 crd测试</h3><p>编写一个测试的yaml：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: apps.kubenode.kingtest.com/v1</span><br><span class="line">kind: Myapp</span><br><span class="line">metadata:</span><br><span class="line">  name: myapp-sample</span><br><span class="line">spec:</span><br><span class="line">  foo: &quot;test value&quot;</span><br><span class="line">  replicas: 3</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: myapp</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: myapp</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: myapp-container</span><br><span class="line">        image: nginx:latest</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: 80</span><br></pre></td></tr></table></figure>
+
+<p>将测试yaml通过kubectl apply进去集群:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo kubectl apply -f myapptest.yaml</span><br><span class="line">myapp.apps.kubenode.kingtest.com/myapp-sample created</span><br></pre></td></tr></table></figure>
+
+<p>然后controller的调谐函数成功断住<br><img src="/img_9.png" alt="img_9.png"></p>
+<p>再向下执行一步<br><img src="/img_10.png" alt="img_10.png"></p>
+<p>在终端里已经成功打印出来代码里的日志：<br><img src="/img_11.png" alt="img_11.png"></p>
+<p>通过kubectl查看crd状态：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo kubectl get Myapp -A -owide</span><br><span class="line">NAMESPACE   NAME           AGE</span><br><span class="line">default     myapp-sample   14m</span><br></pre></td></tr></table></figure>
+<p>到此都是符合预期的。</p>
+<h1 id="4-构建CRD镜像并部署进k8s"><a href="#4-构建CRD镜像并部署进k8s" class="headerlink" title="4 构建CRD镜像并部署进k8s"></a>4 构建CRD镜像并部署进k8s</h1><p>上面我们是在本地运行的controller，那么在实际中该怎么办呢。</p>
+<p>答案是将controller打包成docker镜像，然后部署进集群。</p>
+<p>构建镜像并推送至你的镜像仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make docker-build docker-push IMG=&lt;some-registry&gt;/&lt;project-name&gt;:tag</span><br></pre></td></tr></table></figure>
+
+<p>看下makefile的定义：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.PHONY: docker-build</span><br><span class="line">docker-build: ## Build docker image with the manager.</span><br><span class="line">        $(CONTAINER_TOOL) build -t $&#123;IMG&#125; .</span><br><span class="line"></span><br><span class="line">.PHONY: docker-push</span><br><span class="line">docker-push: ## Push docker image with the manager.</span><br><span class="line">        $(CONTAINER_TOOL) push $&#123;IMG&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里就是使用CONTAINER_TOOL(默认为docker)构建并推送docker镜像，并使用IMG变量指定镜像名称和标签<br>指定镜像将controller部署进你的集群</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make deploy IMG=&lt;some-registry&gt;/&lt;project-name&gt;:tag</span><br></pre></td></tr></table></figure>
+
+<p>查看makefile定义：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.PHONY: deploy</span><br><span class="line">deploy: manifests kustomize ## Deploy controller to the K8s cluster specified in ~/.kube/config.</span><br><span class="line">        cd config/manager &amp;&amp; $(KUSTOMIZE) edit set image controller=$&#123;IMG&#125;</span><br><span class="line">        $(KUSTOMIZE) build config/default | $(KUBECTL) apply -f -</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>先运行manifests和kustomize目标</li>
+<li>使用kustomize设置controller镜像为IMG</li>
+<li>使用kustomize构建config&#x2F;default目录中的资源，并使用kubectl将其应用到集群</li>
+</ul>
+<h1 id="5-删除controller部署和卸载CRD"><a href="#5-删除controller部署和卸载CRD" class="headerlink" title="5 删除controller部署和卸载CRD"></a>5 删除controller部署和卸载CRD</h1><p>删除controller部署：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make undeploy</span><br></pre></td></tr></table></figure>
+
+<p>查看makefile定义：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.PHONY: undeploy</span><br><span class="line">undeploy: kustomize ## Undeploy controller from the K8s cluster specified in ~/.kube/config. Call with ignore-not-found=true to ignore resource not found errors during deletion.</span><br><span class="line">        $(KUSTOMIZE) build config/default | $(KUBECTL) delete --ignore-not-found=$(ignore-not-found) -f -</span><br></pre></td></tr></table></figure>
+
+<p>使用kustomize 构建config&#x2F;default目录中的资源，并使用kubectl将其从集群中删除。可以通过ignore-not-found&#x3D;true忽略资源未找到的错误</p>
+<p>从集群卸载CRD：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make uninstall</span><br></pre></td></tr></table></figure>
+
+<p>查看makefile定义：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.PHONY: uninstall</span><br><span class="line">uninstall: manifests kustomize ## Uninstall CRDs from the K8s cluster specified in ~/.kube/config. Call with ignore-not-found=true to ignore resource not found errors during deletion.</span><br><span class="line">        $(KUSTOMIZE) build config/crd | $(KUBECTL) delete --ignore-not-found=$(ignore-not-found) -f -</span><br></pre></td></tr></table></figure>
+<ul>
+<li>先运行manifests和kustomize目标</li>
+<li>使用kustomize 构建config&#x2F;crd目录中的资源，并使用kubectl将其从集群中删除，可以通过ignore-not-found&#x3D;true忽略资源未找到的错误</li>
+</ul>
+<h1 id="6-其他"><a href="#6-其他" class="headerlink" title="6 其他"></a>6 其他</h1><p>这是在我们本地运行的controller，我在最初一直想不通是怎么连接的集群的，知道想起了最初的client-go的使用。</p>
+<p>在看本文的同学，肯定是听说过，甚至使用过client-go的，我们可以使用client-go去实现一些小工具，比如说某个namespace下pod的查询，甚至可以获取node的列表，pod的全部信息等等，只要是kubectl可以做的，都可以通过client-go来实现，并且可以做更复杂的场景。</p>
+<p>我们是可以在工具里指定kubeconfig的路径的，让client-go去读取，并渲染对应的client，然后和对应集群的apiserver做交互。</p>
+<p>知道了这点，那么问题来了，operator是怎么做的呢，operator其实是使用的controller-runtime库，他和client-go有什么区别呢，他是client-go以及其他库的更上一层封装。</p>
+<p>所以虽然没具体看，但是controller-runtime肯定是默认读取的$HOME&#x2F;.kube&#x2F;config文件的kubeconfig，至于可不可以指定其他的kubeconfig，理论上是可以的，因为就是指定下kubeconfig的路径，然后去读取渲染client，这里和自己直接使用client-go去实现是一样的逻辑。</p>
+<p>但是，controller-runtime究竟支不支持，还需要自己去找一下源码或者资料，因为本地运行controller这本身肯定是不建议的，所以不支持也是说得过去的。</p>
 
     </div>
 
