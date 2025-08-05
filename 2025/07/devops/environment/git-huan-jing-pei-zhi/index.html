@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>git环境配置</title>
+<meta name="keywords" content="git环境配置, 花日の博客">
+<meta name="description" content="环境配置设置用户签名配置用户名： git config –global user.name 你的用户名配置邮箱： git config –global user.email 注册的邮箱
+配置好之后，可以用git config –global">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="git环境配置">
+<meta property="og:description" content="环境配置设置用户签名配置用户名： git config –global user.name 你的用户名配置邮箱： git config –global user.email 注册的邮箱
+配置好之后，可以用git config –global">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/avatar.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">git环境配置</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-29</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/devops/">
+              devops
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/environment/">
+              environment
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="设置用户签名"><a href="#设置用户签名" class="headerlink" title="设置用户签名"></a>设置用户签名</h2><p>配置用户名： git config –global user.name 你的用户名<br>配置邮箱： git config –global user.email 注册的邮箱</p>
+<p>配置好之后，可以用git config –global –list命令查看配置是否OK</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --global --list</span></span><br><span class="line">user.name=xxx</span><br><span class="line">user.email=xxx@163.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置sshKey"><a href="#设置sshKey" class="headerlink" title="设置sshKey"></a>设置sshKey</h2><p>生成新的rsa密钥：ssh-keygen -t rsa -C ‘注册GitHub的邮箱’</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C xxx@163.com</span><br></pre></td></tr></table></figure>
+
+<p>一直回车就可以，即不设置密码。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ssh-keygen -t rsa -C xxx@163.com</span></span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/home/king/.ssh/id_rsa): </span><br><span class="line">Enter passphrase (empty for no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved in /home/king/.ssh/id_rsa</span><br><span class="line">Your public key has been saved in /home/king/.ssh/id_rsa.pub</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:n+yyy xxx@163.com</span><br><span class="line">The key&#x27;s randomart image is:</span><br><span class="line">+---[RSA 3072]----+</span><br><span class="line">|    .*=.+.       |</span><br><span class="line">|    = +=o= o     |</span><br><span class="line">|     * ++ o .    |</span><br><span class="line">|  o . o..  .     |</span><br><span class="line">| o * .  S o      |</span><br><span class="line">|. X o  o = +     |</span><br><span class="line">| + + .. = *      |</span><br><span class="line">|..o .  o E       |</span><br><span class="line">|.o==    .        |</span><br><span class="line">+----[SHA256]-----+</span><br></pre></td></tr></table></figure>
+
+<p>此时已经生成了ssh ras的密钥：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> <span class="variable">$HOME</span>/.ssh</span></span><br><span class="line">authorized_keys  id_rsa  id_rsa.pub  known_hosts</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置github的SSH-key"><a href="#设置github的SSH-key" class="headerlink" title="设置github的SSH key"></a>设置github的SSH key</h2><p><a class="simple-lightbox" href="/img.png"><img   src="/images/loading.svg" data-src="/img.png"  alt="img.png" lazyload></a><br><a class="simple-lightbox" href="/img_1.png"><img   src="/images/loading.svg" data-src="/img_1.png"  alt="img_1.png" lazyload></a><br><a class="simple-lightbox" href="/img_2.png"><img   src="/images/loading.svg" data-src="/img_2.png"  alt="img_2.png" lazyload></a></p>
+<p>将上面生成的ssh公钥复制进去。<br><a class="simple-lightbox" href="/img_3.png"><img   src="/images/loading.svg" data-src="/img_3.png"  alt="img_3.png" lazyload></a></p>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="top-box-text">环境配置</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E7%AD%BE%E5%90%8D"><span class="top-box-text">设置用户签名</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E8%AE%BE%E7%BD%AEsshKey"><span class="top-box-text">设置sshKey</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E8%AE%BE%E7%BD%AEgithub%E7%9A%84SSH-key"><span class="top-box-text">设置github的SSH key</span></a></li></ol></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/07/devops/terraform/tencentcloud-ckafka-instance/">
+          <h3 class="post-title">
+            
+            下一篇：tencentcloud_ckafka_instance
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+

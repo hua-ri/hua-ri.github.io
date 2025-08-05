@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>仓库fork后同步</title>
+<meta name="keywords" content="仓库fork后同步, 花日の博客">
+<meta name="description" content="fork仓库
+此时会将该仓库在复制一份，并存放在你的路径下：
+设置上游代码库进入本地代码库：
+12345678910111213# 从自己仓库进行clone(fork)git clone https://github.com/qiqiuya">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="仓库fork后同步">
+<meta property="og:description" content="fork仓库
+此时会将该仓库在复制一份，并存放在你的路径下：
+设置上游代码库进入本地代码库：
+12345678910111213# 从自己仓库进行clone(fork)git clone https://github.com/qiqiuya">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/avatar.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">仓库fork后同步</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-29</span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="fork仓库"><a href="#fork仓库" class="headerlink" title="fork仓库"></a>fork仓库</h1><p><a class="simple-lightbox" href="/img_4.png"><img   src="/images/loading.svg" data-src="/img_4.png"  alt="img_4.png" lazyload></a><br><a class="simple-lightbox" href="/img_5.png"><img   src="/images/loading.svg" data-src="/img_5.png"  alt="img_5.png" lazyload></a></p>
+<p>此时会将该仓库在复制一份，并存放在你的路径下：<br><a class="simple-lightbox" href="/img_6.png"><img   src="/images/loading.svg" data-src="/img_6.png"  alt="img_6.png" lazyload></a></p>
+<h1 id="设置上游代码库"><a href="#设置上游代码库" class="headerlink" title="设置上游代码库"></a>设置上游代码库</h1><p>进入本地代码库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从自己仓库进行<span class="built_in">clone</span>(fork)</span></span><br><span class="line">git clone https://github.com/qiqiuyang/bk-ci.git</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入目录</span></span><br><span class="line">cd bk-ci/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看目录结构</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">CHANGELOG              CONTRIBUTING.md  README_EN.md  support-files</span><br><span class="line">CODE_OF_CONDUCT.en.md  docker-images    README.md     THIRD-PARTY-NOTICES.txt</span><br><span class="line">CODE_OF_CONDUCT.md     docs             scripts</span><br><span class="line">CODEOWNERS             helm-charts      SECURITY.md</span><br><span class="line">CONTRIBUTING.en.md     LICENSE.txt      src</span><br></pre></td></tr></table></figure>
+
+<p>查看远程仓库的路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git remote -v</span></span><br><span class="line">origin        https://github.com/qiqiuyang/bk-ci.git (fetch)</span><br><span class="line">origin        https://github.com/qiqiuyang/bk-ci.git (push)</span><br></pre></td></tr></table></figure>
+
+<p>这里可以发现从自己仓库clone下来后，fetch和push的路径都是自己的。</p>
+<p>设置上游代码库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git remote add upstream git@github.com:TencentBlueKing/bk-ci.git</span></span><br></pre></td></tr></table></figure>
+
+<p>再次查看远程仓库地址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git remote -v</span></span><br><span class="line">origin        https://github.com/qiqiuyang/bk-ci.git (fetch)</span><br><span class="line">origin        https://github.com/qiqiuyang/bk-ci.git (push)</span><br><span class="line">upstream        git@github.com:TencentBlueKing/bk-ci.git (fetch)</span><br><span class="line">upstream        git@github.com:TencentBlueKing/bk-ci.git (push)</span><br></pre></td></tr></table></figure>
+
+<h1 id="同步源仓库的更新"><a href="#同步源仓库的更新" class="headerlink" title="同步源仓库的更新"></a>同步源仓库的更新</h1><p>使用下面的命令拉取源仓库的更新：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git fetch upstream</span></span><br><span class="line">remote: Enumerating objects: 17643, done.</span><br><span class="line">remote: Counting objects: 100% (13492/13492), done.</span><br><span class="line">remote: Compressing objects: 100% (3960/3960), done.</span><br><span class="line">remote: Total 10070 (delta 4278), reused 8600 (delta 3184), pack-reused 0 (from 0)</span><br><span class="line">接收对象中: 100% (10070/10070), 2.44 MiB | 2.05 MiB/s, 完成.</span><br><span class="line">处理 delta 中: 100% (4278/4278), 完成 657 个本地对象.</span><br><span class="line">来自 github.com:TencentBlueKing/bk-ci</span><br><span class="line"> * [新分支]                master          -&gt; upstream/master</span><br><span class="line"> * [新分支]                release-1.11    -&gt; upstream/release-1.11</span><br><span class="line"> * [新分支]                release-1.14    -&gt; upstream/release-1.14</span><br><span class="line"> * [新分支]                release-1.2     -&gt; upstream/release-1.2</span><br><span class="line"> * [新分支]                release-1.3     -&gt; upstream/release-1.3</span><br><span class="line">。。。</span><br><span class="line">。。。</span><br><span class="line"> * [新标签]                v1.8.4          -&gt; v1.8.4</span><br><span class="line"> * [新标签]                v1.8.5          -&gt; v1.8.5</span><br></pre></td></tr></table></figure>
+
+<p>到这里就比较清晰了，在更新时就是把源仓库的更新的分支放在upstream下，例如：upstream&#x2F;master</p>
+<p>所以同步远端分支时，就是git fetch upstream，然后将自己的分支merge目标分支内容，例如：git merge upstream&#x2F;master</p>
+<p>如此便可以实现自己的fork仓库同步源仓库的新变更了。</p>
+<h1 id="向原仓库发起PR"><a href="#向原仓库发起PR" class="headerlink" title="向原仓库发起PR"></a>向原仓库发起PR</h1><p>首先在自己的仓库点击Pull Request-&gt;New Pull Request，进入以下截图页面<br><a class="simple-lightbox" href="/img_7.png"><img   src="/images/loading.svg" data-src="/img_7.png"  alt="img_7.png" lazyload></a></p>
+<p>base repository为原仓库的某个分支，head repository为fork仓库发某个分支, head的某个分支代码合到base的某个分支<br><a class="simple-lightbox" href="/img_8.png"><img   src="/images/loading.svg" data-src="/img_8.png"  alt="img_8.png" lazyload></a></p>
+<p>进入原仓库的Pull requests可看到刚才发起的PR， 这里就不演示了</p>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#fork%E4%BB%93%E5%BA%93"><span class="top-box-text">fork仓库</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%8A%E6%B8%B8%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="top-box-text">设置上游代码库</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%90%8C%E6%AD%A5%E6%BA%90%E4%BB%93%E5%BA%93%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="top-box-text">同步源仓库的更新</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%90%91%E5%8E%9F%E4%BB%93%E5%BA%93%E5%8F%91%E8%B5%B7PR"><span class="top-box-text">向原仓库发起PR</span></a></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/07/devops/environment/git-huan-jing-pei-zhi/">
+          <h3 class="post-title">
+            
+            下一篇：git环境配置
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+

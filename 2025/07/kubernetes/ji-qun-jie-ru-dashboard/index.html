@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>集群接入dashboard</title>
+<meta name="keywords" content="集群接入dashboard, 花日の博客">
+<meta name="description" content="1 Kubernets Dashboard安装下载kubernetes-dashboard的yaml:
+1wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="集群接入dashboard">
+<meta property="og:description" content="1 Kubernets Dashboard安装下载kubernetes-dashboard的yaml:
+1wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/">
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/avatar.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">集群接入dashboard</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-29</span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="1-Kubernets-Dashboard安装"><a href="#1-Kubernets-Dashboard安装" class="headerlink" title="1 Kubernets Dashboard安装"></a>1 Kubernets Dashboard安装</h1><p>下载kubernetes-dashboard的yaml:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml -O dashboard.yaml</span><br></pre></td></tr></table></figure>
+
+<p>在官方yaml里，我们需要将镜像修改一下，不然会遇见ImagePullBackOff的错误：</p>
+<ul>
+<li>kubernetesui&#x2F;dashboard:v2.7.0</li>
+<li>kubernetesui&#x2F;metrics-scraper:v1.0.8</li>
+<li>备注：版本可能不同，认准镜像名</li>
+</ul>
+<p>将以上镜像修改为可用的：</p>
+<ul>
+<li>m.daocloud.io&#x2F;docker.io&#x2F;kubernetesui&#x2F;dashboard:v2.7.0</li>
+<li>m.daocloud.io&#x2F;docker.io&#x2F;kubernetesui&#x2F;metrics-scraper:v1.0.8</li>
+</ul>
+<p>安装dashboard：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f ./dashboard.yaml</span><br></pre></td></tr></table></figure>
+
+<p>验证操作界面已经部署并且正在运行:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo kubectl get pod -n kubernetes-dashboard</span><br><span class="line">NAME                                         READY   STATUS    RESTARTS   AGE</span><br><span class="line">dashboard-metrics-scraper-864c58f57b-fjlfs   1/1     Running   0          98s</span><br><span class="line">kubernetes-dashboard-58db7bd7d4-pdh76        1/1     Running   0          98s</span><br></pre></td></tr></table></figure>
+
+<p>创建 ServiceAccount 和 ClusterRoleBinding 以提供对新创建的集群的管理权限访问:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl create serviceaccount -n kubernetes-dashboard admin-user</span><br><span class="line">kubectl create clusterrolebinding -n kubernetes-dashboard admin-user --clusterrole cluster-admin --serviceaccount=kubernetes-dashboard:admin-user</span><br></pre></td></tr></table></figure>
+
+<p>需要用 Bearer Token 来登录到操作界面。使用以下命令将 token 保存到变量:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo kubectl -n kubernetes-dashboard create token admin-user</span><br><span class="line">eyJhbGciOiJSUzI1NiIsImtpZCI6InF3b1ZJN0ZVSWUyRkF4blgxVG42d2hVMm0wTGtoSTg3VkVoai1yRTdMN3MifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzI3OTc0NzYyLCJpYXQiOjE3Mjc5NzExNjIsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwianRpIjoiZTI2YjE1NjctYjk5YS00ZGRlLTlmMWUtYTIwYmUzZDAwZGJiIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiNWMxYjMyMmUtNDFmNS00ODcxLTkxNjQtZTYzOTk2NzkxZDM4In19LCJuYmYiOjE3Mjc5NzExNjIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.d-b12OQrq_9BnmWz5g-_2nvRS-ktEhg813N8zb-kWBh5GScUHhuiAej2v1p1kt54Xom1H6DaeyvlmL3G8ub7aKgZwJjOyJBFDnt0B04Ysz-KSj788jR_Yg2d1FhTbgk8-pBdV9qSweBVT6GRyQ53NIsTIc5ArDsvfOg66nEiW9rp5-3XLitKpoSLtp_Dpib1VpOR_1XAV8wRNVc9psxOp3vtALs1_jI0Izo_4qOX17OZ9FnxgkeeKglRFynlgGiQ0g2KG74oYQn0b_sUROvb52cdDJ2RDhk4yao2vjMyg19f_x1gK-xM8O7kgfYkA8gXEzguRMl0OEbWP_UgH0RQqA</span><br></pre></td></tr></table></figure>
+
+<p>使用 kubectl 命令行工具运行以下命令以访问操作界面：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl proxy</span><br></pre></td></tr></table></figure>
+
+<p>进入dashboard：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</span><br></pre></td></tr></table></figure>
+
+<p><a class="simple-lightbox" href="/img.png"><img   src="/images/loading.svg" data-src="/img.png"  alt="img.png" lazyload></a><br><a class="simple-lightbox" href="/img_1.png"><img   src="/images/loading.svg" data-src="/img_1.png"  alt="img_1.png" lazyload></a></p>
+<p>这里是用kubectl proxy起了一个代理，实现在集群外访问集群内的dashboard</p>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#1-Kubernets-Dashboard%E5%AE%89%E8%A3%85"><span class="top-box-text">1 Kubernets Dashboard安装</span></a></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/07/kubernetes/jia-su-dai-li/">
+          <h3 class="post-title">
+            
+            下一篇：加速代理
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+
