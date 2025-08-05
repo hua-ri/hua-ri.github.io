@@ -83,7 +83,7 @@
 
   <div class="current-tag-container">
     <h2 class="title">
-      <i class="icon icon-pricetags-outline"></i> devops
+      <i class="icon icon-pricetags-outline"></i> kubernetes
     </h2>
   </div>
 
@@ -91,35 +91,31 @@
 
 <section class="post-item">
     <div class="content">
-      <a href="/2025/08/devops/blueking/sheng-chan-bu-shu-wen-dang-v7-1/">
-        <h2 class="post-title">生产部署文档(v7-1)</h2>
+      <a href="/2025/07/kubernetes/operator-kai-fa/kustomize-yu-helm-dui-bi/">
+        <h2 class="post-title">Kustomize与Helm对比</h2>
       </a>
-      <a href="/2025/08/devops/blueking/sheng-chan-bu-shu-wen-dang-v7-1/">
+      <a href="/2025/07/kubernetes/operator-kai-fa/kustomize-yu-helm-dui-bi/">
           <div class="post-abstract">
             
-			    1. 概述需要先准备一台中控机，在中控机安装 kubectl、helm、helmfile 等工具，以及蓝鲸安装脚本。然后部署基础套餐，最后再部署持续集成套餐（蓝盾）。
-简单来说就是三个步骤：
-
-1.准备环境 
-2.部署基础服务 
-3.部署蓝
+			    0、前言K8s 是一个开源容器编排平台，可自动执行容器化应用程序的部署、扩展和管理。近年来，K8s 已成为采用云原生架构和容器化技术的组织的标准。
+但是由于K8s的复杂性，所以很多公司以及开源组织都在开发相关的工具来简化k8s的使用门槛，这
             
           </div>
       </a>
       <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-08-01</span>
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
         
           <span>
             <i class="icon icon-pricetags-outline"></i>
             
 
-                devops
+                kubernetes
                 
                   ，
                 
             
 
-                blueking
+                operator
                 
             
           </span>
@@ -132,17 +128,166 @@
 
 <section class="post-item">
     <div class="content">
-      <a href="/2025/07/devops/ldap/ldap-tong-guo-helm-bu-shu/">
-        <h2 class="post-title">Ldap通过helm部署</h2>
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-bu-shu-yan-zheng/">
+        <h2 class="post-title">operator部署验证</h2>
       </a>
-      <a href="/2025/07/devops/ldap/ldap-tong-guo-helm-bu-shu/">
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-bu-shu-yan-zheng/">
           <div class="post-abstract">
             
-			    简介
-⚡️: OpenLDAP是轻量级目录访问协议（LDAP）的开源实现，它提供了一种存储和访问关于用户、组、计算机和其他资源的信息的中心化目录服务。
+			    1、部署命令这个是很多博客教程都在使用的部署命令：
+1234make manifestsmake installexport ENABLE_WEBHOOKS=falsemake run
+我们使用之前的demo来进行部署验证：Kubernet
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
 
-属性介绍
-cn（common name）：通用名称，表示一个对象的名称。在用户条目中，
+                kubernetes
+                
+                  ，
+                
+            
+
+                operator
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
+      <a href="/2025/07/kubernetes/operator-kai-fa/kubebuilder-de-makefile-wen-jian/">
+        <h2 class="post-title">kubebuilder的makefile文件</h2>
+      </a>
+      <a href="/2025/07/kubernetes/operator-kai-fa/kubebuilder-de-makefile-wen-jian/">
+          <div class="post-abstract">
+            
+			    1、Makefile简介Makefile 是一种用于自动化构建软件项目的文件。它通常用于管理和执行编译、链接、测试等一系列任务，以提高开发效率。
+1.1 目标与依赖1.1.1目标（Targets）
+代表一个任务或一个文件的生成结果。例如，编
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+
+                kubernetes
+                
+                  ，
+                
+            
+
+                operator
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-kai-fa-jiao-shou-jia/">
+        <h2 class="post-title">operator开发脚手架</h2>
+      </a>
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-kai-fa-jiao-shou-jia/">
+          <div class="post-abstract">
+            
+			    1、脚手架工具Operator的实现方式主要包括OperatorSDK和KubeBuilder，目前KubeBuilder在阿里使用的比较多。
+KubeBuilder
+OperatorSDK
+我们这里主要是用KubeBuilder来进行，其
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+
+                kubernetes
+                
+                  ，
+                
+            
+
+                operator
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-jian-jie/">
+        <h2 class="post-title">operator简介</h2>
+      </a>
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-jian-jie/">
+          <div class="post-abstract">
+            
+			    1 kubernetes背景1.1 Controller模式controller通过根据被控制对象的属性和字段来实现编排，对于每一个build-in的资源类型，都有对应的controller。
+比如以下是一个简单的Deployment的ya
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+
+                kubernetes
+                
+                  ，
+                
+            
+
+                operator
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
+      <a href="/2025/07/kubernetes/ji-qun-jie-ru-dashboard/">
+        <h2 class="post-title">集群接入dashboard</h2>
+      </a>
+      <a href="/2025/07/kubernetes/ji-qun-jie-ru-dashboard/">
+          <div class="post-abstract">
+            
+			    1 Kubernets Dashboard安装下载kubernetes-dashboard的yaml:
+1wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/
             
           </div>
       </a>
@@ -153,13 +298,7 @@ cn（common name）：通用名称，表示一个对象的名称。在用户条�
             <i class="icon icon-pricetags-outline"></i>
             
 
-                devops
-                
-                  ，
-                
-            
-
-                ldap
+                kubernetes
                 
             
           </span>
@@ -172,16 +311,15 @@ cn（common name）：通用名称，表示一个对象的名称。在用户条�
 
 <section class="post-item">
     <div class="content">
-      <a href="/2025/07/devops/environment/cang-ku-fork-hou-tong-bu/">
-        <h2 class="post-title">仓库fork后同步</h2>
+      <a href="/2025/07/kubernetes/jia-su-dai-li/">
+        <h2 class="post-title">加速代理</h2>
       </a>
-      <a href="/2025/07/devops/environment/cang-ku-fork-hou-tong-bu/">
+      <a href="/2025/07/kubernetes/jia-su-dai-li/">
           <div class="post-abstract">
             
-			    fork仓库
-此时会将该仓库在复制一份，并存放在你的路径下：
-设置上游代码库进入本地代码库：
-12345678910111213# 从自己仓库进行clone(fork)git clone https://github.com/qiqiuya
+			    1 友情链接
+镜像加速：https://github.com/DaoCloud/public-image-mirror
+二进制文件加速：https://github.com/DaoCloud/public-binary-files-mirr
             
           </div>
       </a>
@@ -192,13 +330,7 @@ cn（common name）：通用名称，表示一个对象的名称。在用户条�
             <i class="icon icon-pricetags-outline"></i>
             
 
-                devops
-                
-                  ，
-                
-            
-
-                environment
+                kubernetes
                 
             
           </span>
@@ -211,14 +343,14 @@ cn（common name）：通用名称，表示一个对象的名称。在用户条�
 
 <section class="post-item">
     <div class="content">
-      <a href="/2025/07/devops/environment/git-huan-jing-pei-zhi/">
-        <h2 class="post-title">git环境配置</h2>
+      <a href="/2025/07/kubernetes/kubectl-chang-yong-ming-ling/">
+        <h2 class="post-title">kubectl常用命令</h2>
       </a>
-      <a href="/2025/07/devops/environment/git-huan-jing-pei-zhi/">
+      <a href="/2025/07/kubernetes/kubectl-chang-yong-ming-ling/">
           <div class="post-abstract">
             
-			    环境配置设置用户签名配置用户名： git config –global user.name 你的用户名配置邮箱： git config –global user.email 注册的邮箱
-配置好之后，可以用git config –global
+			    登录命令根据机器ip使用kubectl登录机器(field-selector):
+123456789101112#!/bin/bashexport targetIp=&quot;6.0.90.240&quot;#alias kubectl=
             
           </div>
       </a>
@@ -229,13 +361,7 @@ cn（common name）：通用名称，表示一个对象的名称。在用户条�
             <i class="icon icon-pricetags-outline"></i>
             
 
-                devops
-                
-                  ，
-                
-            
-
-                environment
+                kubernetes
                 
             
           </span>
@@ -248,14 +374,13 @@ cn（common name）：通用名称，表示一个对象的名称。在用户条�
 
 <section class="post-item">
     <div class="content">
-      <a href="/2025/07/devops/terraform/tencentcloud-ckafka-instance/">
-        <h2 class="post-title">tencentcloud_ckafka_instance</h2>
+      <a href="/2025/07/kubernetes/kind-da-jian-ce-shi-ji-qun/">
+        <h2 class="post-title">Kind搭建测试集群</h2>
       </a>
-      <a href="/2025/07/devops/terraform/tencentcloud-ckafka-instance/">
+      <a href="/2025/07/kubernetes/kind-da-jian-ce-shi-ji-qun/">
           <div class="post-abstract">
             
-			    前言约定格式：
-1234567891011121314├── aliyun                                             # 云厂商实例文件│   └── aliyun_ecs_mod_demo  
+			    Kind工具介绍
             
           </div>
       </a>
@@ -266,206 +391,7 @@ cn（common name）：通用名称，表示一个对象的名称。在用户条�
             <i class="icon icon-pricetags-outline"></i>
             
 
-                devops
-                
-                  ，
-                
-            
-
-                terraform
-                
-            
-          </span>
-        
-      </div>
-    </div>
-  </section>
-
-
-
-<section class="post-item">
-    <div class="content">
-      <a href="/2025/07/devops/terraform/alicloud-alikafka-instance/">
-        <h2 class="post-title">alicloud_alikafka_instance</h2>
-      </a>
-      <a href="/2025/07/devops/terraform/alicloud-alikafka-instance/">
-          <div class="post-abstract">
-            
-			    前言约定格式：
-1234567891011121314├── aliyun                                             # 云厂商实例文件│   └── aliyun_ecs_mod_demo  
-            
-          </div>
-      </a>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-29</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-
-                devops
-                
-                  ，
-                
-            
-
-                terraform
-                
-            
-          </span>
-        
-      </div>
-    </div>
-  </section>
-
-
-
-<section class="post-item">
-    <div class="content">
-      <a href="/2025/07/devops/npd/npd-dai-ma-jie-gou-liao-jie/">
-        <h2 class="post-title">Npd代码结构了解</h2>
-      </a>
-      <a href="/2025/07/devops/npd/npd-dai-ma-jie-gou-liao-jie/">
-          <div class="post-abstract">
-            
-			    1 pkg目录结构这里是各个monitor的实现。
-12345678910111213.├── custompluginmonitor             -&gt; 用于实现自定义监视插件。node-problem-detector 
-            
-          </div>
-      </a>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-25</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-
-                devops
-                
-                  ，
-                
-            
-
-                npd
-                
-            
-          </span>
-        
-      </div>
-    </div>
-  </section>
-
-
-
-<section class="post-item">
-    <div class="content">
-      <a href="/2025/07/devops/npd/npd-jie-shao/">
-        <h2 class="post-title">NPD介绍</h2>
-      </a>
-      <a href="/2025/07/devops/npd/npd-jie-shao/">
-          <div class="post-abstract">
-            
-			    1 简介官方文档库地址：https://github.com/kubernetes/node-problem-detector
-node-problem-detector 旨在使集群管理堆栈中的上游层能够看到各种节点问题。
-它是一个在每个节
-            
-          </div>
-      </a>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-25</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-
-                devops
-                
-                  ，
-                
-            
-
-                npd
-                
-            
-          </span>
-        
-      </div>
-    </div>
-  </section>
-
-
-
-<section class="post-item">
-    <div class="content">
-      <a href="/2025/07/devops/blueking/bkci-jian-jie/">
-        <h2 class="post-title">BKCI 简介</h2>
-      </a>
-      <a href="/2025/07/devops/blueking/bkci-jian-jie/">
-          <div class="post-abstract">
-            
-			    文档BK-CI官方文档：https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.mdgithub仓库地址：https://github.com/Te
-            
-          </div>
-      </a>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-25</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-
-                devops
-                
-                  ，
-                
-            
-
-                blueking
-                
-            
-          </span>
-        
-      </div>
-    </div>
-  </section>
-
-
-
-<section class="post-item">
-    <div class="content">
-      <a href="/2025/07/devops/blueking/bk-ci-cha-jian-kai-fa-zhi-yin/">
-        <h2 class="post-title">BK-CI插件开发指引</h2>
-      </a>
-      <a href="/2025/07/devops/blueking/bk-ci-cha-jian-kai-fa-zhi-yin/">
-          <div class="post-abstract">
-            
-			    写在前面
-开发插件前，先进入插件工作台初始化一个插件，确定插件在平台中的唯一标识
-
-工作台可以在这里进行新增&#x2F;发布&#x2F;下架等管理插件的操作
-功能区介绍
-
-切换资源类型
-新增插件
-单个插件的管理入口
-升级、下架、删除插件快捷
-            
-          </div>
-      </a>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-25</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-
-                devops
-                
-                  ，
-                
-            
-
-                blueking
+                kubernetes
                 
             
           </span>

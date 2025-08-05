@@ -83,7 +83,7 @@
 
   <div class="current-tag-container">
     <h2 class="title">
-      <i class="icon icon-pricetags-outline"></i> blueking
+      <i class="icon icon-pricetags-outline"></i> operator
     </h2>
   </div>
 
@@ -91,35 +91,31 @@
 
 <section class="post-item">
     <div class="content">
-      <a href="/2025/08/devops/blueking/sheng-chan-bu-shu-wen-dang-v7-1/">
-        <h2 class="post-title">生产部署文档(v7-1)</h2>
+      <a href="/2025/07/kubernetes/operator-kai-fa/kustomize-yu-helm-dui-bi/">
+        <h2 class="post-title">Kustomize与Helm对比</h2>
       </a>
-      <a href="/2025/08/devops/blueking/sheng-chan-bu-shu-wen-dang-v7-1/">
+      <a href="/2025/07/kubernetes/operator-kai-fa/kustomize-yu-helm-dui-bi/">
           <div class="post-abstract">
             
-			    1. 概述需要先准备一台中控机，在中控机安装 kubectl、helm、helmfile 等工具，以及蓝鲸安装脚本。然后部署基础套餐，最后再部署持续集成套餐（蓝盾）。
-简单来说就是三个步骤：
-
-1.准备环境 
-2.部署基础服务 
-3.部署蓝
+			    0、前言K8s 是一个开源容器编排平台，可自动执行容器化应用程序的部署、扩展和管理。近年来，K8s 已成为采用云原生架构和容器化技术的组织的标准。
+但是由于K8s的复杂性，所以很多公司以及开源组织都在开发相关的工具来简化k8s的使用门槛，这
             
           </div>
       </a>
       <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-08-01</span>
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
         
           <span>
             <i class="icon icon-pricetags-outline"></i>
             
 
-                devops
+                kubernetes
                 
                   ，
                 
             
 
-                blueking
+                operator
                 
             
           </span>
@@ -132,30 +128,32 @@
 
 <section class="post-item">
     <div class="content">
-      <a href="/2025/07/devops/blueking/bkci-jian-jie/">
-        <h2 class="post-title">BKCI 简介</h2>
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-bu-shu-yan-zheng/">
+        <h2 class="post-title">operator部署验证</h2>
       </a>
-      <a href="/2025/07/devops/blueking/bkci-jian-jie/">
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-bu-shu-yan-zheng/">
           <div class="post-abstract">
             
-			    文档BK-CI官方文档：https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/intro/README.mdgithub仓库地址：https://github.com/Te
+			    1、部署命令这个是很多博客教程都在使用的部署命令：
+1234make manifestsmake installexport ENABLE_WEBHOOKS=falsemake run
+我们使用之前的demo来进行部署验证：Kubernet
             
           </div>
       </a>
       <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-25</span>
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
         
           <span>
             <i class="icon icon-pricetags-outline"></i>
             
 
-                devops
+                kubernetes
                 
                   ，
                 
             
 
-                blueking
+                operator
                 
             
           </span>
@@ -168,39 +166,108 @@
 
 <section class="post-item">
     <div class="content">
-      <a href="/2025/07/devops/blueking/bk-ci-cha-jian-kai-fa-zhi-yin/">
-        <h2 class="post-title">BK-CI插件开发指引</h2>
+      <a href="/2025/07/kubernetes/operator-kai-fa/kubebuilder-de-makefile-wen-jian/">
+        <h2 class="post-title">kubebuilder的makefile文件</h2>
       </a>
-      <a href="/2025/07/devops/blueking/bk-ci-cha-jian-kai-fa-zhi-yin/">
+      <a href="/2025/07/kubernetes/operator-kai-fa/kubebuilder-de-makefile-wen-jian/">
           <div class="post-abstract">
             
-			    写在前面
-开发插件前，先进入插件工作台初始化一个插件，确定插件在平台中的唯一标识
-
-工作台可以在这里进行新增&#x2F;发布&#x2F;下架等管理插件的操作
-功能区介绍
-
-切换资源类型
-新增插件
-单个插件的管理入口
-升级、下架、删除插件快捷
+			    1、Makefile简介Makefile 是一种用于自动化构建软件项目的文件。它通常用于管理和执行编译、链接、测试等一系列任务，以提高开发效率。
+1.1 目标与依赖1.1.1目标（Targets）
+代表一个任务或一个文件的生成结果。例如，编
             
           </div>
       </a>
       <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-25</span>
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
         
           <span>
             <i class="icon icon-pricetags-outline"></i>
             
 
-                devops
+                kubernetes
                 
                   ，
                 
             
 
-                blueking
+                operator
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-kai-fa-jiao-shou-jia/">
+        <h2 class="post-title">operator开发脚手架</h2>
+      </a>
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-kai-fa-jiao-shou-jia/">
+          <div class="post-abstract">
+            
+			    1、脚手架工具Operator的实现方式主要包括OperatorSDK和KubeBuilder，目前KubeBuilder在阿里使用的比较多。
+KubeBuilder
+OperatorSDK
+我们这里主要是用KubeBuilder来进行，其
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+
+                kubernetes
+                
+                  ，
+                
+            
+
+                operator
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-jian-jie/">
+        <h2 class="post-title">operator简介</h2>
+      </a>
+      <a href="/2025/07/kubernetes/operator-kai-fa/operator-jian-jie/">
+          <div class="post-abstract">
+            
+			    1 kubernetes背景1.1 Controller模式controller通过根据被控制对象的属性和字段来实现编排，对于每一个build-in的资源类型，都有对应的controller。
+比如以下是一个简单的Deployment的ya
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-07-30</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+
+                kubernetes
+                
+                  ，
+                
+            
+
+                operator
                 
             
           </span>
