@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>蓝盾「Docker公共构建机」全链路源码解析</title>
+<meta name="keywords" content="蓝盾「Docker公共构建机」全链路源码解析, 花日の博客">
+<meta name="description" content="背景本文以蓝盾社区版7.1为例，结合实际源码和配置，详细梳理从前端点击「执行」到最终在 Kubernetes 集群拉起 Deployment 的全链路调用过程，
+目录结构123456789bk-ci/src├── gateway      ">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="蓝盾「Docker公共构建机」全链路源码解析">
+<meta property="og:description" content="背景本文以蓝盾社区版7.1为例，结合实际源码和配置，详细梳理从前端点击「执行」到最终在 Kubernetes 集群拉起 Deployment 的全链路调用过程，
+目录结构123456789bk-ci/src├── gateway      ">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">蓝盾「Docker公共构建机」全链路源码解析</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-05</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/devops/">
+              devops
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/blueking/">
+              blueking
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>本文以蓝盾社区版7.1为例，结合实际源码和配置，详细梳理从前端点击「执行」到最终在 Kubernetes 集群拉起 Deployment 的全链路调用过程，</p>
+<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bk-ci/src</span><br><span class="line">├── gateway          # OpenResty 网关（Lua）</span><br><span class="line">├── frontend         # Vue 前端，模块级微前端</span><br><span class="line">├── backend          # Kotlin + SpringCloud 微服务</span><br><span class="line">│   ├── process      # 流水线引擎</span><br><span class="line">│   ├── dispatch     # 构建调度（Docker &amp; K8s）</span><br><span class="line">│   └── ...</span><br><span class="line">├── agent            # Go 语言 Agent</span><br><span class="line">└── pipeline-plugin  # Java 插件 SDK</span><br></pre></td></tr></table></figure>
+
+<h1 id="源码拆解"><a href="#源码拆解" class="headerlink" title="源码拆解"></a>源码拆解</h1><h2 id="前端触发"><a href="#前端触发" class="headerlink" title="前端触发"></a>前端触发</h2><p>页面地址：<a target="_blank" rel="noopener" href="https://devops.bk.tencent.com/console/pipeline/%7BprojectId%7D/%7BpipelineId%7D/preview">https://devops.bk.tencent.com/console/pipeline/{projectId}/{pipelineId}/preview</a></p>
+<table>
+<thead>
+<tr>
+<th>事件&#x2F;方法</th>
+<th>对应后端接口</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>requestStartupInfo</td>
+<td>GET &#x2F;ms&#x2F;process&#x2F;api&#x2F;user&#x2F;builds&#x2F;{p}&#x2F;{pl}&#x2F;manualStartupInfo</td>
+<td>获取流水线启动所需参数</td>
+</tr>
+<tr>
+<td>executePipeline</td>
+<td>POST &#x2F;ms&#x2F;process&#x2F;api&#x2F;user&#x2F;builds&#x2F;{p}&#x2F;{pl}</td>
+<td>真正触发流水线执行</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>通过全局事件总线 bus 通信，以及具名视图（named views）机制实现页面拆分和组合。在 <code>preview.vue</code> 页面监听 <code>executePipeline</code> 事件，然后在 <code>PreviewHeader.vue</code> 中通过事件总线触发执行。</p>
+</blockquote>
+<h2 id="网关转发"><a href="#网关转发" class="headerlink" title="网关转发"></a>网关转发</h2><p>&#x2F;ms&#x2F;process&#x2F;api&#x2F;user&#x2F;builds&#x2F;… 统一转发到 process 微服务。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /ms/process/ &#123;</span><br><span class="line">    proxy_pass http://process/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Process-服务：流水线启动主链路"><a href="#Process-服务：流水线启动主链路" class="headerlink" title="Process 服务：流水线启动主链路"></a>Process 服务：流水线启动主链路</h2><p>主要方法调用链如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">UserBuildResource.manualStartup()                // 接收启动流水线的请求</span><br><span class="line">    ↓</span><br><span class="line">ServiceBuildResourceImpl.manualStartup()         // 具体实现，做参数校验、权限校验等</span><br><span class="line">    ↓</span><br><span class="line">PipelineBuildFacadeService.buildManualStartup()  // 负责组装启动参数、调用核心服务</span><br><span class="line">    ↓</span><br><span class="line">PipelineBuildService.startPipeline()             // 启动流水线主流程，负责流水线状态流转、记录等</span><br><span class="line">    ↓</span><br><span class="line">PipelineRuntimeService.startBuild()              // 流水线引擎，解析模型，调度 Stage/Job/Container，准备构建任务</span><br></pre></td></tr></table></figure>
+<p>这一阶段主要负责接收前端的启动请求，经过参数校验、权限校验后，组装启动参数，最终进入流水线引擎。流水线引擎会解析流水线的模型（YAML&#x2F;DSL），为后续的调度和任务准备做铺垫。</p>
+<h2 id="生成并下发构建任务"><a href="#生成并下发构建任务" class="headerlink" title="生成并下发构建任务"></a>生成并下发构建任务</h2><p>主要方法调用链如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PipelineContainerService.prepareBuildContainerTasks()      // 遍历流水线模型，为每个 Job/Container 生成任务，判断分发类型</span><br><span class="line">    ↓</span><br><span class="line">VmOperateTaskGenerator.makeStartVMContainerTask()          // 针对容器构建机，生成 VM 启动任务（taskAtom = &quot;dispatchVMStartupTaskAtom&quot;）</span><br><span class="line">    ↓</span><br><span class="line">pipelineEventDispatcher.dispatch(PipelineBuildStartEvent()) // 下发流水线启动事件</span><br></pre></td></tr></table></figure>
+
+<p>此阶段会遍历流水线模型中的每个 Job&#x2F;Container，根据其类型（如容器构建机）生成对应的任务。对于容器构建机，会生成 VM 启动任务，并通过事件分发器下发流水线启动事件，为后续的事件驱动调度做准备。</p>
+<h2 id="事件驱动：Stage-Container-Task-调度"><a href="#事件驱动：Stage-Container-Task-调度" class="headerlink" title="事件驱动：Stage&#x2F;Container&#x2F;Task 调度"></a>事件驱动：Stage&#x2F;Container&#x2F;Task 调度</h2><p>主要方法调用链如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">PipelineBuildStartListener.run(event)                      // 消费 PipelineBuildStartEvent，驱动流水线调度</span><br><span class="line">    ↓</span><br><span class="line">BuildStartControl.handle(event)</span><br><span class="line">    ↓</span><br><span class="line">PipelineBuildStartEvent.execute(watcher)</span><br><span class="line">    ↓</span><br><span class="line">buildModel()</span><br><span class="line">    ↓</span><br><span class="line">pipelineEventDispatcher.dispatch(PipelineBuildStageEvent()) // 下发 Stage 事件</span><br><span class="line"></span><br><span class="line">PipelineStageBuildListener.run(event)                      // 消费 PipelineBuildStageEvent</span><br><span class="line">    ↓</span><br><span class="line">StageControl.handle(event)</span><br><span class="line">    ↓</span><br><span class="line">PipelineBuildStageEvent.execute(watcher)</span><br><span class="line">    ↓</span><br><span class="line">pipelineContainerService.listContainers(...)               // 遍历当前 Stage 下所有 Container（Job）</span><br><span class="line">    ↓</span><br><span class="line">pipelineEventDispatcher.dispatch(PipelineBuildContainerEvent()) // 为每个 Job 下发事件</span><br><span class="line"></span><br><span class="line">PipelineContainerBuildListener.run(event)                  // 消费 PipelineBuildContainerEvent</span><br><span class="line">    ↓</span><br><span class="line">ContainerControl.handle(event)</span><br><span class="line">    ↓</span><br><span class="line">ContainerCmdChain.doCommand(context)                       // 命令链执行，关键命令 StartActionTaskContainerCmd</span><br><span class="line">    ↓</span><br><span class="line">pipelineEventDispatcher.dispatch(PipelineBuildAtomTaskEvent()) // 下发插件任务事件</span><br></pre></td></tr></table></figure>
+<p>蓝盾采用事件驱动架构，每个阶段（Stage）、每个 Job（Container）、每个插件（Task）都通过事件进行调度。每个事件都有对应的 Listener 消费，逐步推进流水线的执行流程，保证了系统的高解耦和可扩展性。</p>
+<h2 id="插件任务调度与-VM-启动"><a href="#插件任务调度与-VM-启动" class="headerlink" title="插件任务调度与 VM 启动"></a>插件任务调度与 VM 启动</h2><p>主要方法调用链如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">PipelineAtomTaskBuildListener.run(event)                   // 消费 PipelineBuildAtomTaskEvent</span><br><span class="line">    ↓</span><br><span class="line">TaskControl.handle(event)</span><br><span class="line">    ↓</span><br><span class="line">taskAtomService.start(buildTask)</span><br><span class="line">    ↓</span><br><span class="line">SpringContextUtil.getBean(IAtomTask::class.java, task.taskAtom).execute(task, runVariables)</span><br><span class="line">    ↓</span><br><span class="line">DispatchVMStartupTaskAtom.execute()                        // 对于 VM 启动任务，加载并执行</span><br><span class="line">    ↓</span><br><span class="line">dispatch()</span><br><span class="line">    ↓</span><br><span class="line">getDispatchType()                                          // 返回 DockerDispatchType（社区版容器构建机默认）</span><br><span class="line">    ↓</span><br><span class="line">pipelineEventDispatcher.dispatch(PipelineAgentStartupEvent()) // 下发分发事件</span><br></pre></td></tr></table></figure>
+
+<p>每个插件任务（Atom）都会被动态加载并执行。对于 VM 启动任务，会加载 DispatchVMStartupTaskAtom 插件，判断分发类型（如 Docker），并下发 PipelineAgentStartupEvent，为后续的构建机分发做准备。</p>
+<h2 id="dispatch-docker-服务：分发到-k8s"><a href="#dispatch-docker-服务：分发到-k8s" class="headerlink" title="dispatch-docker 服务：分发到 k8s"></a>dispatch-docker 服务：分发到 k8s</h2><p>主要方法调用链如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">DockerVMListener.onStartup(dispatchMessage)                // 消费 PipelineAgentStartupEvent</span><br><span class="line">    ↓</span><br><span class="line">getDockerRoutingType(projectId)                            // 判断路由类型（如 configmap 配置为 &quot;KUBERNETES&quot;）</span><br><span class="line">    ↓</span><br><span class="line">startKubernetesDocker(...)                                 // 路由类型为 KUBERNETES 时，走 k8s 资源池</span><br><span class="line">    ↓</span><br><span class="line">DispatchBuildService.startUp()</span><br><span class="line">    ↓</span><br><span class="line">createAndStartNewBuilder()</span><br><span class="line">    ↓</span><br><span class="line">containerServiceFactory.load(projectId).createAndStartBuilder()</span><br><span class="line">    ↓</span><br><span class="line">KubernetesContainerService.createAndStartBuilder()</span><br><span class="line">    ↓</span><br><span class="line">kubernetesBuilderClient.createBuilder()                    // HTTP POST /api/builders 调用 dispatch-k8s-manager</span><br></pre></td></tr></table></figure>
+<p>dispatch-docker 服务会根据项目的路由配置，决定是走本地 Docker 还是 k8s 资源池。若配置为 KUBERNETES，则会通过 HTTP 请求调用 dispatch-k8s-manager 服务，准备在 k8s 集群中拉起构建容器。</p>
+<blockquote>
+<p>查看 bk-ci-bk-ci-dispatch-docker 这个 configmap，可以发现配置文件里的 defaultDockerRoutingType 是 “KUBERNETES”。</p>
+</blockquote>
+<h2 id="dispatch-k8s-manager-服务：拉起-k8s-Deployment"><a href="#dispatch-k8s-manager-服务：拉起-k8s-Deployment" class="headerlink" title="dispatch-k8s-manager 服务：拉起 k8s Deployment"></a>dispatch-k8s-manager 服务：拉起 k8s Deployment</h2><p>主要方法调用链如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST /api/builders                                         // 路由</span><br><span class="line">    ↓</span><br><span class="line">createBuilder handler</span><br><span class="line">    ↓</span><br><span class="line">service.CreateBuilder</span><br><span class="line">    ↓</span><br><span class="line">task.DoCreateBuilder</span><br><span class="line">    ↓</span><br><span class="line">kubeclient.CreateDeployment(dep)                           // 通过 k8s API 创建 Deployment，拉起实际的构建容器</span><br></pre></td></tr></table></figure>
+
+<p>dispatch-k8s-manager 服务负责与 Kubernetes API 交互，接收来自 dispatch-docker 的 HTTP 请求后，组装 Deployment 对象并调用 k8s API，最终在集群中拉起实际的构建容器，完成流水线的环境准备。</p>
+<h2 id="总结时序图"><a href="#总结时序图" class="headerlink" title="总结时序图"></a>总结时序图</h2><p><a class="simple-lightbox" href="/img_24.png"><img   src="/images/loading.svg" data-src="/img_24.png"  alt="img_24.png" lazyload></a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>关键技术点</th>
+<th>一句话描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前端</td>
+<td>Vue + Event Bus</td>
+<td>点击按钮 → 事件总线 → 请求发出</td>
+</tr>
+<tr>
+<td>网关</td>
+<td>OpenResty 前缀转发</td>
+<td>统一入口，&#x2F;ms&#x2F;process&#x2F;** 直接透传至 process 服务。</td>
+</tr>
+<tr>
+<td>流程引擎</td>
+<td>自研事件-命令链框架</td>
+<td>PipelineBuildStart → Stage → Container → Task → AgentStartup，层层事件推进，高内聚低耦合。</td>
+</tr>
+<tr>
+<td>插件</td>
+<td>IAtomTask SPI 机制</td>
+<td>运行时动态加载 DispatchVMStartupTaskAtom，扩展即插即用。</td>
+</tr>
+<tr>
+<td>调度</td>
+<td>dispatch-docker → dispatch-kubernetes</td>
+<td>根据 defaultDockerRoutingType&#x3D;KUBERNETES 路由到对应资源池。</td>
+</tr>
+<tr>
+<td>K8s 交付</td>
+<td>dispatch-k8s-manager 与 kube-apiserver 交互</td>
+<td>一条 HTTP 请求即可在集群内拉起 Deployment，数秒完成环境就绪。</td>
+</tr>
+</tbody></table>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/TencentBlueKing/bk-ci/tree/v2.0.0">https://github.com/TencentBlueKing/bk-ci/tree/v2.0.0</a></li>
+<li><a target="_blank" rel="noopener" href="https://blazehu.com/2025/07/18/devops/landun_dispatch/">https://blazehu.com/2025/07/18/devops/landun_dispatch/</a></li>
+</ul>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%83%8C%E6%99%AF"><span class="top-box-text">背景</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="top-box-text">目录结构</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E6%BA%90%E7%A0%81%E6%8B%86%E8%A7%A3"><span class="top-box-text">源码拆解</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E5%89%8D%E7%AB%AF%E8%A7%A6%E5%8F%91"><span class="top-box-text">前端触发</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E7%BD%91%E5%85%B3%E8%BD%AC%E5%8F%91"><span class="top-box-text">网关转发</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#Process-%E6%9C%8D%E5%8A%A1%EF%BC%9A%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%90%AF%E5%8A%A8%E4%B8%BB%E9%93%BE%E8%B7%AF"><span class="top-box-text">Process 服务：流水线启动主链路</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E7%94%9F%E6%88%90%E5%B9%B6%E4%B8%8B%E5%8F%91%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1"><span class="top-box-text">生成并下发构建任务</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%EF%BC%9AStage-Container-Task-%E8%B0%83%E5%BA%A6"><span class="top-box-text">事件驱动：Stage&#x2F;Container&#x2F;Task 调度</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%8F%92%E4%BB%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%8E-VM-%E5%90%AF%E5%8A%A8"><span class="top-box-text">插件任务调度与 VM 启动</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#dispatch-docker-%E6%9C%8D%E5%8A%A1%EF%BC%9A%E5%88%86%E5%8F%91%E5%88%B0-k8s"><span class="top-box-text">dispatch-docker 服务：分发到 k8s</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#dispatch-k8s-manager-%E6%9C%8D%E5%8A%A1%EF%BC%9A%E6%8B%89%E8%B5%B7-k8s-Deployment"><span class="top-box-text">dispatch-k8s-manager 服务：拉起 k8s Deployment</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%80%BB%E7%BB%93%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="top-box-text">总结时序图</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E6%80%BB%E7%BB%93"><span class="top-box-text">总结</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%8F%82%E8%80%83"><span class="top-box-text">参考</span></a></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/devops/blueking/lan-dun-docker-gong-gong-gou-jian-ji-huan-cun-qing-li/">
+          <h3 class="post-title">
+            
+            下一篇：蓝盾「Docker公共构建机」缓存清理
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+

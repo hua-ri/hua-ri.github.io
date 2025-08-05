@@ -85,6 +85,152 @@
 
 <section class="post-item">
     <div class="content">
+      <a href="/2025/08/devops/blueking/lan-dun-liu-shui-xian-zhong-de-kubernetes-diao-du-you-hua/">
+        <h2 class="post-title">蓝盾流水线中的 Kubernetes 调度优化</h2>
+      </a>
+      <a href="/2025/08/devops/blueking/lan-dun-liu-shui-xian-zhong-de-kubernetes-diao-du-you-hua/">
+          <div class="post-abstract">
+            
+			    背景
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-05</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+
+                devops
+                
+                  ，
+                
+            
+
+                blueking
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
+      <a href="/2025/08/devops/blueking/lan-dun-docker-gong-gong-gou-jian-ji-quan-lian-lu-yuan-ma-jie-xi/">
+        <h2 class="post-title">蓝盾「Docker公共构建机」全链路源码解析</h2>
+      </a>
+      <a href="/2025/08/devops/blueking/lan-dun-docker-gong-gong-gou-jian-ji-quan-lian-lu-yuan-ma-jie-xi/">
+          <div class="post-abstract">
+            
+			    背景本文以蓝盾社区版7.1为例，结合实际源码和配置，详细梳理从前端点击「执行」到最终在 Kubernetes 集群拉起 Deployment 的全链路调用过程，
+目录结构123456789bk-ci/src├── gateway      
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-05</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+
+                devops
+                
+                  ，
+                
+            
+
+                blueking
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
+      <a href="/2025/08/devops/blueking/lan-dun-docker-gong-gong-gou-jian-ji-huan-cun-qing-li/">
+        <h2 class="post-title">蓝盾「Docker公共构建机」缓存清理</h2>
+      </a>
+      <a href="/2025/08/devops/blueking/lan-dun-docker-gong-gong-gou-jian-ji-huan-cun-qing-li/">
+          <div class="post-abstract">
+            
+			    背景在使用蓝盾「Docker公共构建机」一段时间后，我们发现构建镜像偶发性超时。排查后发现是由于集群的 Node 节点的磁盘满了，本文会介绍如何清理构建缓存。
+我们发现构建镜像偶发性超时，排查发现是上了 Docker-in-Docker 构
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-05</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+
+                devops
+                
+                  ，
+                
+            
+
+                blueking
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
+      <a href="/2025/08/devops/blueking/shu-ju-ku-qian-yi/">
+        <h2 class="post-title">数据库迁移</h2>
+      </a>
+      <a href="/2025/08/devops/blueking/shu-ju-ku-qian-yi/">
+          <div class="post-abstract">
+            
+			    数据备份备份脚本准备12345678#!/bin/bashMYSQL_USER=rootMYSQL_HOST=127.0.0.1MYSQL_PASSWD=ignoredblist=&#x27;information_schema|mysql
+            
+          </div>
+      </a>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-05</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+
+                devops
+                
+                  ，
+                
+            
+
+                blueking
+                
+            
+          </span>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="post-item">
+    <div class="content">
       <a href="/2025/08/devops/blueking/sheng-chan-bu-shu-wen-dang-v7-1/">
         <h2 class="post-title">生产部署文档(v7-1)</h2>
       </a>
@@ -303,130 +449,6 @@ OperatorSDK
             
 
                 operator
-                
-            
-          </span>
-        
-      </div>
-    </div>
-  </section>
-
-
-
-<section class="post-item">
-    <div class="content">
-      <a href="/2025/07/kubernetes/ji-qun-jie-ru-dashboard/">
-        <h2 class="post-title">集群接入dashboard</h2>
-      </a>
-      <a href="/2025/07/kubernetes/ji-qun-jie-ru-dashboard/">
-          <div class="post-abstract">
-            
-			    1 Kubernets Dashboard安装下载kubernetes-dashboard的yaml:
-1wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/
-            
-          </div>
-      </a>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-29</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-
-                kubernetes
-                
-            
-          </span>
-        
-      </div>
-    </div>
-  </section>
-
-
-
-<section class="post-item">
-    <div class="content">
-      <a href="/2025/07/kubernetes/jia-su-dai-li/">
-        <h2 class="post-title">加速代理</h2>
-      </a>
-      <a href="/2025/07/kubernetes/jia-su-dai-li/">
-          <div class="post-abstract">
-            
-			    1 友情链接
-镜像加速：https://github.com/DaoCloud/public-image-mirror
-二进制文件加速：https://github.com/DaoCloud/public-binary-files-mirr
-            
-          </div>
-      </a>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-29</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-
-                kubernetes
-                
-            
-          </span>
-        
-      </div>
-    </div>
-  </section>
-
-
-
-<section class="post-item">
-    <div class="content">
-      <a href="/2025/07/kubernetes/kubectl-chang-yong-ming-ling/">
-        <h2 class="post-title">kubectl常用命令</h2>
-      </a>
-      <a href="/2025/07/kubernetes/kubectl-chang-yong-ming-ling/">
-          <div class="post-abstract">
-            
-			    登录命令根据机器ip使用kubectl登录机器(field-selector):
-123456789101112#!/bin/bashexport targetIp=&quot;6.0.90.240&quot;#alias kubectl=
-            
-          </div>
-      </a>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-29</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-
-                kubernetes
-                
-            
-          </span>
-        
-      </div>
-    </div>
-  </section>
-
-
-
-<section class="post-item">
-    <div class="content">
-      <a href="/2025/07/kubernetes/kind-da-jian-ce-shi-ji-qun/">
-        <h2 class="post-title">Kind搭建测试集群</h2>
-      </a>
-      <a href="/2025/07/kubernetes/kind-da-jian-ce-shi-ji-qun/">
-          <div class="post-abstract">
-            
-			    Kind工具介绍
-            
-          </div>
-      </a>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2025-07-29</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-
-                kubernetes
                 
             
           </span>
