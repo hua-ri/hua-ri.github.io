@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>蓝盾接入LDAP登录(v7-1)</title>
+<meta name="keywords" content="蓝盾接入LDAP登录(v7-1), 花日の博客">
+<meta name="description" content="通过蓝鲸用户中心配置 LDAP 后，存在登录失败以及用户名需要加域（与当前用户的使用习惯不符）等问题。
+背景按照官方文档对接 LDAP 服务后用户正常同步，但是登录时报用户密码错误。
+问题分析后台查看 bk-user-api-web 日志，">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="蓝盾接入LDAP登录(v7-1)">
+<meta property="og:description" content="通过蓝鲸用户中心配置 LDAP 后，存在登录失败以及用户名需要加域（与当前用户的使用习惯不符）等问题。
+背景按照官方文档对接 LDAP 服务后用户正常同步，但是登录时报用户密码错误。
+问题分析后台查看 bk-user-api-web 日志，">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">蓝盾接入LDAP登录(v7-1)</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-07</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/devops/">
+              devops
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/blueking/">
+              blueking
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <p>通过蓝鲸用户中心配置 LDAP 后，存在登录失败以及用户名需要加域（与当前用户的使用习惯不符）等问题。</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>按照<a target="_blank" rel="noopener" href="https://blazehu.com/2024/05/24/devops/landun_install/#3-9-%E5%AF%B9%E6%8E%A5Ldap%E6%9C%8D%E5%8A%A1">官方文档</a>对接 LDAP 服务后用户正常同步，但是登录时报用户密码错误。</p>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>后台查看 bk-user-api-web 日志，报错如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;levelname&quot;: &quot;ERROR&quot;,</span><br><span class="line">  &quot;asctime&quot;: &quot;2024-05-22 15:15:30,947&quot;,</span><br><span class="line">  &quot;pathname&quot;: &quot;/app/bkuser_core/api/login/views.py&quot;,</span><br><span class="line">  &quot;lineno&quot;: 205,</span><br><span class="line">  &quot;funcName&quot;: &quot;login&quot;,</span><br><span class="line">  &quot;process&quot;: 530,</span><br><span class="line">  &quot;thread&quot;: 140333237386568,</span><br><span class="line">  &quot;request_id&quot;: &quot;ebf27affe3f74e77b961a11df38583e9&quot;,</span><br><span class="line">  &quot;exc_info&quot;: &quot;Traceback (most recent call last):</span><br><span class="line">  File \&quot;/app/bkuser_core/api/login/views.py\&quot;, line 197, in login</span><br><span class="line">    login_class().check(profile, password)</span><br><span class="line">  File \&quot;/app/bkuser_core/categories/plugins/ldap/login.py\&quot;, line 62, in check</span><br><span class="line">    target_dn = self.fetch_dn(user)</span><br><span class="line">  File \&quot;/app/bkuser_core/categories/plugins/ldap/login.py\&quot;, line 30, in fetch_dn</span><br><span class="line">    return force_str(user_info[\&quot;raw_attributes\&quot;][\&quot;entryDN\&quot;][0])</span><br><span class="line">  File \&quot;/usr/local/lib/python3.6/site-packages/ldap3/utils/ciDict.py\&quot;, line 68, in __getitem__</span><br><span class="line">    return self._store[self._case_insensitive_keymap[self._ci_key(key)]]</span><br><span class="line">  KeyError: &#x27;entrydn&#x27;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>报错信息很明显，在 <code>user_info.raw_attributes</code> 里找不到 <code>entryDN</code> 这个 key。即获取用户用于登陆的 login dn 失败，需要修改相关逻辑。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="修改代码"><a href="#修改代码" class="headerlink" title="修改代码"></a>修改代码</h2><p>本地通过 vscode 插件连上 ldap 后，发现用户用于登陆的 login dn 的 key 应该是 dn，修改用于用户登陆的 login dn 逻辑。详细步骤如下：</p>
+<ul>
+<li>通过部署的配置文件 <code>environments/default/version.yaml</code> 找到部署的 bk-user 的版本为：<code>bk-user: &quot;1.4.14-beta.10&quot;</code></li>
+<li>下载该包到本地 <code>helm pull blueking/bk-user --version 1.4.14-beta.10</code>，解压找到镜像版本：<code>tag: &quot;v2.5.4-beta.10&quot;</code></li>
+<li>找到 bk-user 该 tag 源码地址：<a target="_blank" rel="noopener" href="https://github.com/TencentBlueKing/bk-user/tree/v2.5.4-beta.10">https://github.com/TencentBlueKing/bk-user/tree/v2.5.4-beta.10</a></li>
+<li>根据日志找到对应文件 <code>src/api/bkuser_core/categories/plugins/ldap/login.py</code></li>
+<li>修改 fetch_dn 函数的实现，将 <code>entryDN</code> 修改为 <code>dn</code>。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@staticmethod</span><br><span class="line">def fetch_dn(user_info: dict) -&gt; str:</span><br><span class="line">    return force_str(user_info[&quot;raw_attributes&quot;][&quot;dn&quot;][0])</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新服务"><a href="#更新服务" class="headerlink" title="更新服务"></a>更新服务</h2><h3 id="制作镜像"><a href="#制作镜像" class="headerlink" title="制作镜像"></a>制作镜像</h3><p>我们只需要更新 bk-user-api-web 服务所以只需要制作该服务镜像，执行命令 <code>make build-api</code>。</p>
+<h3 id="变更模版"><a href="#变更模版" class="headerlink" title="变更模版"></a>变更模版</h3><p>在 environments&#x2F;default 目录下新建 bkuser-custom-values.yaml.gotmpl 文件使用新的镜像，若以存在则跳过。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bk-user-api:v1.0.1</span></span><br><span class="line">api:</span><br><span class="line">  image:</span><br><span class="line">    registry: your registry</span><br><span class="line">    repository: bk-user-api</span><br><span class="line">    pullPolicy: IfNotPresent</span><br><span class="line">    tag: &quot;v1.0.1&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新服务-1"><a href="#更新服务-1" class="headerlink" title="更新服务"></a>更新服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helmfile -f base-blueking.yaml.gotmpl -l seq=third sync</span><br></pre></td></tr></table></figure>
+
+<p>检查以下容器镜像的变更是否符合预期：</p>
+<p>bk-user-api-beat<br>bk-user-api-web<br>bk-user-api-worker</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>登陆失败的问题可以通过修改源码进行修复。<br>登陆无需加域的临时方案：将用户和组织结构信息同步至默认域，然后查找默认域。需要修改同步逻辑。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blazehu.com/2024/05/22/devops/landun_login_ldap/">https://blazehu.com/2024/05/22/devops/landun_login_ldap/</a></li>
+<li><a target="_blank" rel="noopener" href="https://bk.tencent.com/s-mart/community/question/9114?type=article">https://bk.tencent.com/s-mart/community/question/9114?type=article</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/TencentBlueKing/bk-user/tree/v2.5.4-beta.10">https://github.com/TencentBlueKing/bk-user/tree/v2.5.4-beta.10</a></li>
+</ul>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%83%8C%E6%99%AF"><span class="top-box-text">背景</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="top-box-text">问题分析</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="top-box-text">解决方案</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81"><span class="top-box-text">修改代码</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%9B%B4%E6%96%B0%E6%9C%8D%E5%8A%A1"><span class="top-box-text">更新服务</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E5%88%B6%E4%BD%9C%E9%95%9C%E5%83%8F"><span class="top-box-text">制作镜像</span></a></li><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E5%8F%98%E6%9B%B4%E6%A8%A1%E7%89%88"><span class="top-box-text">变更模版</span></a></li><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E6%9B%B4%E6%96%B0%E6%9C%8D%E5%8A%A1-1"><span class="top-box-text">更新服务</span></a></li></ol></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E6%80%BB%E7%BB%93"><span class="top-box-text">总结</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%8F%82%E8%80%83"><span class="top-box-text">参考</span></a></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/devops/blueking/lan-dun-cong-dan-ji-dao-dind-de-shi-jian/">
+          <h3 class="post-title">
+            
+            下一篇：蓝盾从单机到 DinD 的实践
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
