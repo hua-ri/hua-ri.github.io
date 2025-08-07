@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>Kaniko容器化构建调研</title>
+<meta name="keywords" content="Kaniko容器化构建调研, 花日の博客">
+<meta name="description" content="简介Github地址：https://github.com/GoogleContainerTools/kaniko
+Kaniko 是谷歌开源的一款构建容器镜像的工具。
+Kaniko 并不依赖于 Docker 守护进程，完全在用户空间根据 D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Kaniko容器化构建调研">
+<meta property="og:description" content="简介Github地址：https://github.com/GoogleContainerTools/kaniko
+Kaniko 是谷歌开源的一款构建容器镜像的工具。
+Kaniko 并不依赖于 Docker 守护进程，完全在用户空间根据 D">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">Kaniko容器化构建调研</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-07</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/devops/">
+              devops
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/blueking/">
+              blueking
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Github地址：<a target="_blank" rel="noopener" href="https://github.com/GoogleContainerTools/kaniko">https://github.com/GoogleContainerTools/kaniko</a></p>
+<p>Kaniko 是谷歌开源的一款构建容器镜像的工具。</p>
+<p>Kaniko 并不依赖于 Docker 守护进程，完全在用户空间根据 Dockerfile 的内容逐行执行命令来构建镜像，这就使得在一些无法获取 docker 守护 进程的环境下也能够构建镜像。</p>
+<p><a class="simple-lightbox" href="/img_27.png"><img   src="/images/loading.svg" data-src="/img_27.png"  alt="img_27.png" lazyload></a></p>
+<p>Kaniko 会先提取基础镜像(Dockerfile FROM 之后的镜像)的文件系统，然后根据 Dockerfile 中所描述的，一条条执行命令，每一条命令执行完以后会在用户空间下面创建一个 snapshot，并与存储与内存中的上一个状态进行比对，如果有变化，就将新的修改生成一个镜像层添加在基础镜像上，并且将相关的修改信息写入镜像元数据中。等所有命令执行完，kaniko 会将最终镜像推送到指定的远端镜像仓库。</p>
+<h1 id="获取Kaniko镜像"><a href="#获取Kaniko镜像" class="headerlink" title="获取Kaniko镜像"></a>获取Kaniko镜像</h1><p>这个需要在linux环境下执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker 登陆</span></span><br><span class="line">docker login --username=huari@xxx public-registry.cn-hangzhou.cr.aliyuncs.com</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">通过代理拉取镜像</span></span><br><span class="line">docker pull --platform linux/amd64 m.daocloud.io/gcr.io/kaniko-project/executor:latest</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改tag</span></span><br><span class="line">docker tag m.daocloud.io/gcr.io/kaniko-project/executor:latest public-registry.cn-hangzhou.cr.aliyuncs.com/public/kaniko-executor:latest</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">推送镜像</span></span><br><span class="line">docker push public-registry.cn-hangzhou.cr.aliyuncs.com/public/kaniko-executor:latest</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>–platform linux&#x2F;amd64：实现在mac上pull amd64的镜像，</p>
+</blockquote>
+<p>pull镜像时，会默认匹配当前架构，因此若不设置该参数，则会自动匹配下载arm64镜像，在amd64上运行时会遇见下面这个报错：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec /kaniko/executor: exec format error</span><br></pre></td></tr></table></figure>
+
+<h1 id="Kaniko-Demo"><a href="#Kaniko-Demo" class="headerlink" title="Kaniko Demo"></a>Kaniko Demo</h1><h2 id="demo项目选择"><a href="#demo项目选择" class="headerlink" title="demo项目选择"></a>demo项目选择</h2><p>在gitlab上新建一个demo项目，仅添加一个Dockerfile即可。内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM ubuntu:20.04</span><br><span class="line">LABEL maintainer=&quot;yourname@example.com&quot;</span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y nginx</span><br></pre></td></tr></table></figure>
+
+<p>对项目的要求是，通过 Dockerfile 能够直接编译得到镜像。一共有两个验证点:</p>
+<ul>
+<li>通过kaniko可以直接构建docker镜像</li>
+<li>构建的镜像可以正常运行</li>
+</ul>
+<h2 id="Docker环境进行测试"><a href="#Docker环境进行测试" class="headerlink" title="Docker环境进行测试"></a>Docker环境进行测试</h2><h3 id="生成推送镜像的凭证"><a href="#生成推送镜像的凭证" class="headerlink" title="生成推送镜像的凭证"></a>生成推送镜像的凭证</h3><p>凭证信息：</p>
+<ul>
+<li>YOUR_USERNAME（我的阿里云 dockerhub账户）:huari@xxx</li>
+<li>YOUR_PASSWORD（我的阿里云 dockerhub账户密码）: 域账号密码<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export AUTH=$(echo -n YOUR_USERNAME:YOUR_PASSWORD | base64 )</span><br><span class="line"></span><br><span class="line">cat &gt; config.json &lt;&lt;-EOF</span><br><span class="line">&#123;</span><br><span class="line">        &quot;auths&quot;: &#123;</span><br><span class="line">                &quot;https://index.docker.io/v1/&quot;: &#123;</span><br><span class="line">                        &quot;auth&quot;: &quot;$&#123;AUTH&#125;&quot;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="执行构建"><a href="#执行构建" class="headerlink" title="执行构建"></a>执行构建</h3><p>因为我在mac环境执行，所以pull image时，要加–platform linux&#x2F;arm64<br>也可以直接使用原始镜像(经过代理)：m.daocloud.io&#x2F;gcr.io&#x2F;kaniko-project&#x2F;executor:latest</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">  --interactive -v `pwd`/config.json:/kaniko/.docker/config.json m.daocloud.io/gcr.io/kaniko-project/executor:latest \</span><br><span class="line">  --context git://gitlab.papegames.com/huari/kaniko-build-test \</span><br><span class="line">  --dockerfile Dockerfile \</span><br><span class="line">  --destination=dev-registry.cn-hangzhou.cr.aliyuncs.com/ops/kaniko-demo:v2</span><br></pre></td></tr></table></figure>
+
+<p>参数说明:</p>
+<ul>
+<li>context：构建需要的上下文。支持多种格式，S3、本地目录、标准输入、Git 仓库等</li>
+<li>dockerfile：Dockerfile 路径</li>
+<li>destination：构建后推送的镜像地址</li>
+</ul>
+<p>已经可以完成镜像编译和上传：<br><a class="simple-lightbox" href="/img_28.png"><img   src="/images/loading.svg" data-src="/img_28.png"  alt="img_28.png" lazyload></a></p>
+<h2 id="K8s集群环境进行测试"><a href="#K8s集群环境进行测试" class="headerlink" title="K8s集群环境进行测试"></a>K8s集群环境进行测试</h2><h3 id="生成推送镜像凭证"><a href="#生成推送镜像凭证" class="headerlink" title="生成推送镜像凭证"></a>生成推送镜像凭证</h3><p>这个是用来给kaniko向阿里云推送镜像使用的</p>
+<p>凭证信息：</p>
+<ul>
+<li>YOUR_USERNAME（我的阿里云 dockerhub账户）:huari@xxx</li>
+<li>YOUR_PASSWORD（我的阿里云 dockerhub账户密码）: 域账号密码</li>
+<li>YOUR_EMAIL （我的叠纸邮箱）：<a href="mailto:&#120;&#120;&#120;&#64;&#121;&#x79;&#121;&#46;&#110;&#101;&#x74;">&#120;&#120;&#120;&#64;&#121;&#x79;&#121;&#46;&#110;&#101;&#x74;</a></li>
+<li>YOUR_NAMESPACE (集群内的namespace)</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create secret docker-registry aliyun-regsecret --docker-server=dev-registry.cn-hangzhou.cr.aliyuncs.com --docker-username=&lt;YOUR_USERNAME&gt; --docker-password=&lt;YOUR_PASSWORD&gt; --docker-email=&lt;YOUR_EMAIL&gt; -n &lt;YOUR_NAMESPACE&gt;</span><br></pre></td></tr></table></figure>
+
+<p>参数解释：</p>
+<ul>
+<li>kubectl create secret aliyun-regsecret：核心命令<ul>
+<li>创建一个专门用于 Docker 镜像仓库认证的 Kubernetes Secret</li>
+<li>这种 Secret 会自动生成 ~&#x2F;.docker&#x2F;config.json 格式的认证文件</li>
+</ul>
+</li>
+<li>aliyun-regsecret：Secret 名称<ul>
+<li>自定义的 Secret 名称（可任意命名）</li>
+<li>后续在 Pod 中通过此名称引用认证信息</li>
+</ul>
+</li>
+<li>–docker-server&#x3D;dev-registry.cn-hangzhou.cr.aliyuncs.com：仓库服务器地址<ul>
+<li>阿里云容器镜像服务的 Registry 地址</li>
+<li>cn-hangzhou 表示杭州地域（根据你的仓库所在地域修改）</li>
+</ul>
+</li>
+<li>认证凭据<ul>
+<li>–docker-username&#x3D;<your-name>  # 阿里云账号用户名<ul>
+<li>用户名：阿里云 主账号 或 RAM 子账号 用户名</li>
+</ul>
+</li>
+<li>–docker-password&#x3D;<your-pword> # 阿里云账号密码或访问凭证<ul>
+<li>主账号：登录密码</li>
+<li>推荐使用 访问凭证（更安全）：<ol>
+<li>进入 <a target="_blank" rel="noopener" href="https://ram.console.aliyun.com/users">阿里云访问控制台</a></li>
+<li>创建 AccessKey（包含 AccessKey ID 和 AccessKey Secret）</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>–docker-email&#x3D;<your-email>    # 账号邮箱（Kubernetes 要求但实际不验证）</li>
+</ul>
+</li>
+</ul>
+<p>查看secret：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe secret aliyun-regsecret -n huari</span><br><span class="line">Name:         aliyun-regsecret</span><br><span class="line">Namespace:    huari</span><br><span class="line">Labels:       &lt;none&gt;</span><br><span class="line">Annotations:  &lt;none&gt;</span><br><span class="line"></span><br><span class="line">Type:  kubernetes.io/dockerconfigjson</span><br><span class="line"></span><br><span class="line">Data</span><br><span class="line">====</span><br><span class="line">.dockerconfigjson:  218 bytes</span><br></pre></td></tr></table></figure>
+
+<h3 id="构建pod的yaml"><a href="#构建pod的yaml" class="headerlink" title="构建pod的yaml"></a>构建pod的yaml</h3><p>因为最终镜像在amd64环境执行，所以pull image时，要加–platform linux&#x2F;amd64</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: kaniko-builder</span><br><span class="line">  namespace: huari</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">    - name: kaniko</span><br><span class="line">      image: m.daocloud.io/gcr.io/kaniko-project/executor:latest</span><br><span class="line">      args: [&quot;--dockerfile=Dockerfile&quot;,</span><br><span class="line">             &quot;--context=git://gitlab.papegames.com/huari/kaniko-build-test&quot;,</span><br><span class="line">             &quot;--destination=dev-registry.cn-hangzhou.cr.aliyuncs.com/ops/kaniko-demo:v3&quot;]</span><br><span class="line">      volumeMounts:</span><br><span class="line">        - name: kaniko-secret</span><br><span class="line">          mountPath: &quot;/kaniko/.docker&quot;</span><br><span class="line">  volumes:</span><br><span class="line">    - name: kaniko-secret</span><br><span class="line">      secret:</span><br><span class="line">        secretName: aliyun-regsecret</span><br><span class="line">        items:</span><br><span class="line">          - key: .dockerconfigjson</span><br><span class="line">            path: config.json</span><br><span class="line">  restartPolicy: Never</span><br></pre></td></tr></table></figure>
+
+<h3 id="执行构建-1"><a href="#执行构建-1" class="headerlink" title="执行构建"></a>执行构建</h3><p>将pod的yaml保存进kaniko-test.yaml内，然后执行apply：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f kaniko-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>查看运行日志（部分）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl logs pod/kaniko-builder -n huari      </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">···</span><br><span class="line"></span><br><span class="line">INFO[0020] Taking snapshot of full filesystem...        </span><br><span class="line">INFO[0022] Pushing image to dev-registry.cn-hangzhou.cr.aliyuncs.com/ops/kaniko-demo:v3 </span><br><span class="line">INFO[0032] Pushed dev-registry.cn-hangzhou.cr.aliyuncs.com/ops/kaniko-demo@sha256:baf97628a3981542e85db343f77c9e0dba5f666c868c2c6671290f7bfdc0d207 </span><br></pre></td></tr></table></figure>
+
+<p>已经打包好镜像：<br><a class="simple-lightbox" href="/img_29.png"><img   src="/images/loading.svg" data-src="/img_29.png"  alt="img_29.png" lazyload></a></p>
+<p>并且pod状态已经变为：Completed</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl get pod -n huari</span><br><span class="line">NAME             READY   STATUS      RESTARTS   AGE</span><br><span class="line">kaniko-builder   0/1     Completed   0          2m22s</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E7%AE%80%E4%BB%8B"><span class="top-box-text">简介</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%8E%B7%E5%8F%96Kaniko%E9%95%9C%E5%83%8F"><span class="top-box-text">获取Kaniko镜像</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#Kaniko-Demo"><span class="top-box-text">Kaniko Demo</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#demo%E9%A1%B9%E7%9B%AE%E9%80%89%E6%8B%A9"><span class="top-box-text">demo项目选择</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#Docker%E7%8E%AF%E5%A2%83%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="top-box-text">Docker环境进行测试</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E7%94%9F%E6%88%90%E6%8E%A8%E9%80%81%E9%95%9C%E5%83%8F%E7%9A%84%E5%87%AD%E8%AF%81"><span class="top-box-text">生成推送镜像的凭证</span></a></li><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E6%89%A7%E8%A1%8C%E6%9E%84%E5%BB%BA"><span class="top-box-text">执行构建</span></a></li></ol></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#K8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="top-box-text">K8s集群环境进行测试</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E7%94%9F%E6%88%90%E6%8E%A8%E9%80%81%E9%95%9C%E5%83%8F%E5%87%AD%E8%AF%81"><span class="top-box-text">生成推送镜像凭证</span></a></li><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E6%9E%84%E5%BB%BApod%E7%9A%84yaml"><span class="top-box-text">构建pod的yaml</span></a></li><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E6%89%A7%E8%A1%8C%E6%9E%84%E5%BB%BA-1"><span class="top-box-text">执行构建</span></a></li></ol></li></ol></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/devops/blueking/lan-dun-jie-ru-ldap-deng-lu-v7-1/">
+          <h3 class="post-title">
+            
+            下一篇：蓝盾接入LDAP登录(v7-1)
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+
