@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>Mcp-Golang-Demo</title>
+<meta name="keywords" content="Mcp-Golang-Demo, 花日の博客">
+<meta name="description" content="前言官方sdk仓库：https://github.com/modelcontextprotocol/go-sdk
+环境准备创建工作目录：mcp-server12345# 创建&amp;进入工作目录mkdir mcp-server &amp;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Mcp-Golang-Demo">
+<meta property="og:description" content="前言官方sdk仓库：https://github.com/modelcontextprotocol/go-sdk
+环境准备创建工作目录：mcp-server12345# 创建&amp;进入工作目录mkdir mcp-server &amp;">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">Mcp-Golang-Demo</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-07</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/llm/">
+              llm
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/mcp/">
+              mcp
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>官方sdk仓库：<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/go-sdk">https://github.com/modelcontextprotocol/go-sdk</a></p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="创建工作目录：mcp-server"><a href="#创建工作目录：mcp-server" class="headerlink" title="创建工作目录：mcp-server"></a>创建工作目录：mcp-server</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建&amp;进入工作目录</span></span><br><span class="line">mkdir mcp-server &amp;&amp; cd mcp-server</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">初始化go mod</span></span><br><span class="line">go mod init mcp-server</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mcp-demo"><a href="#Mcp-demo" class="headerlink" title="Mcp demo"></a>Mcp demo</h2><h3 id="测试-stdio-本地-测试"><a href="#测试-stdio-本地-测试" class="headerlink" title="测试-stdio(本地)测试"></a>测试-stdio(本地)测试</h3><p>将下面的代码保存为main.go文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    &quot;context&quot;</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;log&quot;</span><br><span class="line">    &quot;strings&quot;</span><br><span class="line"></span><br><span class="line">    &quot;github.com/modelcontextprotocol/go-sdk/mcp&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">// AddArgs 定义加法工具的输入参数</span><br><span class="line">type AddArgs struct &#123;</span><br><span class="line">    A int `json:&quot;a&quot;`</span><br><span class="line">    B int `json:&quot;b&quot;`</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">    // 创建 MCP 服务器</span><br><span class="line">    s := mcp.NewServer(&quot;Demo&quot;, &quot;1.0.0&quot;, nil)</span><br><span class="line"></span><br><span class="line">    // 添加加法工具</span><br><span class="line">    addTool := mcp.NewServerTool(</span><br><span class="line">       &quot;add&quot;,</span><br><span class="line">       &quot;Add two numbers&quot;,</span><br><span class="line">       func(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[AddArgs]) (*mcp.CallToolResultFor[int], error) &#123;</span><br><span class="line">          sum := params.Arguments.A + params.Arguments.B</span><br><span class="line">          return &amp;mcp.CallToolResultFor[int]&#123;</span><br><span class="line">             Content: []mcp.Content&#123;&amp;mcp.TextContent&#123;Text: fmt.Sprintf(&quot;%d&quot;, sum)&#125;&#125;,</span><br><span class="line">          &#125;, nil</span><br><span class="line">       &#125;,</span><br><span class="line">    )</span><br><span class="line">    s.AddTools(addTool)</span><br><span class="line"></span><br><span class="line">    // 添加动态问候资源模板</span><br><span class="line">    greetingTemplate := &amp;mcp.ServerResourceTemplate&#123;</span><br><span class="line">       ResourceTemplate: &amp;mcp.ResourceTemplate&#123;</span><br><span class="line">          URITemplate: &quot;greeting://&#123;name&#125;&quot;,</span><br><span class="line">          MIMEType:    &quot;text/plain&quot;,</span><br><span class="line">       &#125;,</span><br><span class="line">       Handler: func(ctx context.Context, ss *mcp.ServerSession, params *mcp.ReadResourceParams) (*mcp.ReadResourceResult, error) &#123;</span><br><span class="line">          // 从 URI 中提取 name 参数</span><br><span class="line">          name := strings.TrimPrefix(params.URI, &quot;greeting://&quot;)</span><br><span class="line">          greeting := fmt.Sprintf(&quot;Hello, %s!&quot;, name)</span><br><span class="line"></span><br><span class="line">          return &amp;mcp.ReadResourceResult&#123;</span><br><span class="line">             Contents: []*mcp.ResourceContents&#123;</span><br><span class="line">                &#123;</span><br><span class="line">                   URI:      params.URI,</span><br><span class="line">                   MIMEType: &quot;text/plain&quot;,</span><br><span class="line">                   Text:     greeting,</span><br><span class="line">                &#125;,</span><br><span class="line">             &#125;,</span><br><span class="line">          &#125;, nil</span><br><span class="line">       &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    s.AddResourceTemplates(greetingTemplate)</span><br><span class="line"></span><br><span class="line">    // Run the server over stdin/stdout, until the client disconnects</span><br><span class="line">    if err := s.Run(context.Background(), mcp.NewStdioTransport()); err != nil &#123;</span><br><span class="line">       log.Fatal(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将go代码编译成可执行二进制文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go build -o mcp-server main.go</span><br></pre></td></tr></table></figure>
+
+<p>执行下面的命令启动mcp inspector：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @modelcontextprotocol/inspector</span><br></pre></td></tr></table></figure>
+
+<p>会有类似的输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting MCP inspector...</span><br><span class="line">⚙️ Proxy server listening on 127.0.0.1:6277</span><br><span class="line">🔑 Session token: f53ad695ef69e8b0dce5c340ba7515ef5cad6eeb71938cdedeaaf37a01862166</span><br><span class="line">Use this token to authenticate requests or set DANGEROUSLY_OMIT_AUTH=true to disable auth</span><br><span class="line"></span><br><span class="line">🔗 Open inspector with token pre-filled:</span><br><span class="line">   http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=5191d3a4eec39eb2c355275d0b0152624b61e518f5224b02bcb27e198ea51040#resources</span><br><span class="line"></span><br><span class="line">🔍 MCP Inspector is up and running at http://127.0.0.1:6274 🚀</span><br></pre></td></tr></table></figure>
+
+<p>根据提示在前端访问：<a target="_blank" rel="noopener" href="http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=5191d3a4eec39eb2c355275d0b0152624b61e518f5224b02bcb27e198ea51040#resources">http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=5191d3a4eec39eb2c355275d0b0152624b61e518f5224b02bcb27e198ea51040#resources</a></p>
+<p>前端需设置的参数：</p>
+<ul>
+<li>Transport Type：STDIO</li>
+<li>Command参数：.&#x2F;mcp-server</li>
+<li>Arguments参数：–directory &#x2F;Users&#x2F;king&#x2F;workspace-test&#x2F;mcp-server</li>
+</ul>
+<blockquote>
+<p>这里的mcp-server就是上面编译出来的可执行二进制文件</p>
+</blockquote>
+<p><a class="simple-lightbox" href="/img_11.png"><img   src="/images/loading.svg" data-src="/img_11.png"  alt="img_11.png" lazyload></a></p>
+<p>测试：<br><a class="simple-lightbox" href="/img_12.png"><img   src="/images/loading.svg" data-src="/img_12.png"  alt="img_12.png" lazyload></a><br><a class="simple-lightbox" href="/img_13.png"><img   src="/images/loading.svg" data-src="/img_13.png"  alt="img_13.png" lazyload></a></p>
+<h2 id="测试-sse-远程-测试"><a href="#测试-sse-远程-测试" class="headerlink" title="测试-sse(远程)测试"></a>测试-sse(远程)测试</h2><p>将下面的代码保存为main.go文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    &quot;context&quot;</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;log&quot;</span><br><span class="line">    &quot;net/http&quot;</span><br><span class="line">    &quot;strings&quot;</span><br><span class="line"></span><br><span class="line">    &quot;github.com/modelcontextprotocol/go-sdk/mcp&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">// AddArgs 定义加法工具的输入参数</span><br><span class="line">type AddArgs struct &#123;</span><br><span class="line">    A int `json:&quot;a&quot;`</span><br><span class="line">    B int `json:&quot;b&quot;`</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">    // 创建 MCP 服务器</span><br><span class="line">    s := mcp.NewServer(&quot;Demo&quot;, &quot;1.0.0&quot;, nil)</span><br><span class="line">    // 添加加法工具</span><br><span class="line">    addTool := mcp.NewServerTool(</span><br><span class="line">       &quot;add&quot;,</span><br><span class="line">       &quot;Add two numbers&quot;,</span><br><span class="line">       func(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[AddArgs]) (*mcp.CallToolResultFor[int], error) &#123;</span><br><span class="line">          sum := params.Arguments.A + params.Arguments.B</span><br><span class="line">          return &amp;mcp.CallToolResultFor[int]&#123;</span><br><span class="line">             Content: []mcp.Content&#123;&amp;mcp.TextContent&#123;Text: fmt.Sprintf(&quot;%d&quot;, sum)&#125;&#125;,</span><br><span class="line">          &#125;, nil</span><br><span class="line">       &#125;,</span><br><span class="line">    )</span><br><span class="line">    s.AddTools(addTool)</span><br><span class="line"></span><br><span class="line">    // 添加动态问候资源模板</span><br><span class="line">    greetingTemplate := &amp;mcp.ServerResourceTemplate&#123;</span><br><span class="line">       ResourceTemplate: &amp;mcp.ResourceTemplate&#123;</span><br><span class="line">          URITemplate: &quot;greeting://&#123;name&#125;&quot;,</span><br><span class="line">          MIMEType:    &quot;text/plain&quot;,</span><br><span class="line">       &#125;,</span><br><span class="line">       Handler: func(ctx context.Context, ss *mcp.ServerSession, params *mcp.ReadResourceParams) (*mcp.ReadResourceResult, error) &#123;</span><br><span class="line">          // 从 URI 中提取 name 参数</span><br><span class="line">          name := strings.TrimPrefix(params.URI, &quot;greeting://&quot;)</span><br><span class="line">          greeting := fmt.Sprintf(&quot;Hello, %s!&quot;, name)</span><br><span class="line"></span><br><span class="line">          return &amp;mcp.ReadResourceResult&#123;</span><br><span class="line">             Contents: []*mcp.ResourceContents&#123;</span><br><span class="line">                &#123;</span><br><span class="line">                   URI:      params.URI,</span><br><span class="line">                   MIMEType: &quot;text/plain&quot;,</span><br><span class="line">                   Text:     greeting,</span><br><span class="line">                &#125;,</span><br><span class="line">             &#125;,</span><br><span class="line">          &#125;, nil</span><br><span class="line">       &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    s.AddResourceTemplates(greetingTemplate)</span><br><span class="line"></span><br><span class="line">    // 启动服务器</span><br><span class="line">    // 创建SSE处理器</span><br><span class="line">    sseHandler := mcp.NewSSEHandler(func(request *http.Request) *mcp.Server &#123;</span><br><span class="line">       return s</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    // 设置HTTP路由</span><br><span class="line">    http.Handle(&quot;/sse&quot;, sseHandler)</span><br><span class="line"></span><br><span class="line">    // 启动HTTP服务器</span><br><span class="line">    log.Println(&quot;Starting MCP server on :8000...&quot;)</span><br><span class="line">    if err := http.ListenAndServe(&quot;:8000&quot;, nil); err != nil &#123;</span><br><span class="line">       log.Fatalf(&quot;HTTP server failed: %v&quot;, err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行下面的命令启动mcp inspector：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @modelcontextprotocol/inspector</span><br></pre></td></tr></table></figure>
+
+<p>会有类似的输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting MCP inspector...</span><br><span class="line">⚙️ Proxy server listening on 127.0.0.1:6277</span><br><span class="line">🔑 Session token: 6b62eff25370b4bc483516c39e58fa9c25f37c2ecdbabad4ade0ca1d81683687</span><br><span class="line">Use this token to authenticate requests or set DANGEROUSLY_OMIT_AUTH=true to disable auth</span><br><span class="line"></span><br><span class="line">🔗 Open inspector with token pre-filled:</span><br><span class="line">   http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=6b62eff25370b4bc483516c39e58fa9c25f37c2ecdbabad4ade0ca1d81683687</span><br><span class="line"></span><br><span class="line">🔍 MCP Inspector is up and running at http://127.0.0.1:6274 🚀</span><br></pre></td></tr></table></figure>
+
+<p>根据提示在前端访问：<a target="_blank" rel="noopener" href="http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=5191d3a4eec39eb2c355275d0b0152624b61e518f5224b02bcb27e198ea51040#resources">http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=5191d3a4eec39eb2c355275d0b0152624b61e518f5224b02bcb27e198ea51040#resources</a></p>
+<p>前端需设置的参数：</p>
+<ul>
+<li>Transport Type：SSE</li>
+<li>URL参数：<a target="_blank" rel="noopener" href="http://localhost:8000/sse">http://localhost:8000/sse</a></li>
+</ul>
+<blockquote>
+<p>此处的8000端口根据实际情况修改</p>
+</blockquote>
+<p><a class="simple-lightbox" href="/img_14.png"><img   src="/images/loading.svg" data-src="/img_14.png"  alt="img_14.png" lazyload></a><br><a class="simple-lightbox" href="/img_15.png"><img   src="/images/loading.svg" data-src="/img_15.png"  alt="img_15.png" lazyload></a></p>
+<p>测试：<br><a class="simple-lightbox" href="/img_16.png"><img   src="/images/loading.svg" data-src="/img_16.png"  alt="img_16.png" lazyload></a><br><a class="simple-lightbox" href="/img_17.png"><img   src="/images/loading.svg" data-src="/img_17.png"  alt="img_17.png" lazyload></a></p>
+<h2 id="测试-streamable-http"><a href="#测试-streamable-http" class="headerlink" title="测试-streamable http"></a>测试-streamable http</h2><p>将下面的代码保存为main.go文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    &quot;context&quot;</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;log&quot;</span><br><span class="line">    &quot;net/http&quot;</span><br><span class="line">    &quot;strings&quot;</span><br><span class="line"></span><br><span class="line">    &quot;github.com/modelcontextprotocol/go-sdk/mcp&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">// AddArgs 定义加法工具的输入参数</span><br><span class="line">type AddArgs struct &#123;</span><br><span class="line">    A int `json:&quot;a&quot;`</span><br><span class="line">    B int `json:&quot;b&quot;`</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">    // 创建 MCP 服务器</span><br><span class="line">    s := mcp.NewServer(&quot;Demo&quot;, &quot;1.0.0&quot;, nil)</span><br><span class="line">    // 添加加法工具</span><br><span class="line">    addTool := mcp.NewServerTool(</span><br><span class="line">       &quot;add&quot;,</span><br><span class="line">       &quot;Add two numbers&quot;,</span><br><span class="line">       func(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[AddArgs]) (*mcp.CallToolResultFor[int], error) &#123;</span><br><span class="line">          sum := params.Arguments.A + params.Arguments.B</span><br><span class="line">          return &amp;mcp.CallToolResultFor[int]&#123;</span><br><span class="line">             Content: []mcp.Content&#123;&amp;mcp.TextContent&#123;Text: fmt.Sprintf(&quot;%d&quot;, sum)&#125;&#125;,</span><br><span class="line">          &#125;, nil</span><br><span class="line">       &#125;,</span><br><span class="line">    )</span><br><span class="line">    s.AddTools(addTool)</span><br><span class="line"></span><br><span class="line">    // 添加动态问候资源模板</span><br><span class="line">    greetingTemplate := &amp;mcp.ServerResourceTemplate&#123;</span><br><span class="line">       ResourceTemplate: &amp;mcp.ResourceTemplate&#123;</span><br><span class="line">          URITemplate: &quot;greeting://&#123;name&#125;&quot;,</span><br><span class="line">          MIMEType:    &quot;text/plain&quot;,</span><br><span class="line">       &#125;,</span><br><span class="line">       Handler: func(ctx context.Context, ss *mcp.ServerSession, params *mcp.ReadResourceParams) (*mcp.ReadResourceResult, error) &#123;</span><br><span class="line">          // 从 URI 中提取 name 参数</span><br><span class="line">          name := strings.TrimPrefix(params.URI, &quot;greeting://&quot;)</span><br><span class="line">          greeting := fmt.Sprintf(&quot;Hello, %s!&quot;, name)</span><br><span class="line"></span><br><span class="line">          return &amp;mcp.ReadResourceResult&#123;</span><br><span class="line">             Contents: []*mcp.ResourceContents&#123;</span><br><span class="line">                &#123;</span><br><span class="line">                   URI:      params.URI,</span><br><span class="line">                   MIMEType: &quot;text/plain&quot;,</span><br><span class="line">                   Text:     greeting,</span><br><span class="line">                &#125;,</span><br><span class="line">             &#125;,</span><br><span class="line">          &#125;, nil</span><br><span class="line">       &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    s.AddResourceTemplates(greetingTemplate)</span><br><span class="line"></span><br><span class="line">    // 启动服务器</span><br><span class="line">    // 创建SSE处理器</span><br><span class="line">    sseHandler := mcp.NewStreamableHTTPHandler(func(request *http.Request) *mcp.Server &#123;</span><br><span class="line">       return s</span><br><span class="line">    &#125;, nil)</span><br><span class="line"></span><br><span class="line">    // 设置HTTP路由</span><br><span class="line">    http.Handle(&quot;/mcp&quot;, sseHandler)</span><br><span class="line"></span><br><span class="line">    // 启动HTTP服务器</span><br><span class="line">    log.Println(&quot;Starting MCP server on :8000...&quot;)</span><br><span class="line">    if err := http.ListenAndServe(&quot;:8000&quot;, nil); err != nil &#123;</span><br><span class="line">       log.Fatalf(&quot;HTTP server failed: %v&quot;, err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>并将脚本运行起来！</code></p>
+<p>执行下面的命令启动mcp inspector：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @modelcontextprotocol/inspector</span><br></pre></td></tr></table></figure>
+
+<p>会有类似的输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting MCP inspector...</span><br><span class="line">⚙️ Proxy server listening on 127.0.0.1:6277</span><br><span class="line">🔑 Session token: 6b62eff25370b4bc483516c39e58fa9c25f37c2ecdbabad4ade0ca1d81683687</span><br><span class="line">Use this token to authenticate requests or set DANGEROUSLY_OMIT_AUTH=true to disable auth</span><br><span class="line"></span><br><span class="line">🔗 Open inspector with token pre-filled:</span><br><span class="line">   http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=6b62eff25370b4bc483516c39e58fa9c25f37c2ecdbabad4ade0ca1d81683687</span><br><span class="line"></span><br><span class="line">🔍 MCP Inspector is up and running at http://127.0.0.1:6274 🚀</span><br></pre></td></tr></table></figure>
+
+<p>根据提示在前端访问：<a target="_blank" rel="noopener" href="http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=5191d3a4eec39eb2c355275d0b0152624b61e518f5224b02bcb27e198ea51040#resources">http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=5191d3a4eec39eb2c355275d0b0152624b61e518f5224b02bcb27e198ea51040#resources</a></p>
+<p>前端需设置的参数：</p>
+<ul>
+<li>Transport Type：SSE</li>
+<li>URL参数：<a target="_blank" rel="noopener" href="http://localhost:8000/sse">http://localhost:8000/sse</a></li>
+</ul>
+<blockquote>
+<p>此处的8000端口根据实际情况修改</p>
+</blockquote>
+<p><a class="simple-lightbox" href="/img_18.png"><img   src="/images/loading.svg" data-src="/img_18.png"  alt="img_18.png" lazyload></a><br><a class="simple-lightbox" href="/img_19.png"><img   src="/images/loading.svg" data-src="/img_19.png"  alt="img_19.png" lazyload></a></p>
+<p>测试：<br><a class="simple-lightbox" href="/img_20.png"><img   src="/images/loading.svg" data-src="/img_20.png"  alt="img_20.png" lazyload></a><br><a class="simple-lightbox" href="/img_21.png"><img   src="/images/loading.svg" data-src="/img_21.png"  alt="img_21.png" lazyload></a></p>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%89%8D%E8%A8%80"><span class="top-box-text">前言</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="top-box-text">环境准备</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%EF%BC%9Amcp-server"><span class="top-box-text">创建工作目录：mcp-server</span></a></li></ol></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#Mcp-demo"><span class="top-box-text">Mcp demo</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-3"><a class="top-box-link" href="#%E6%B5%8B%E8%AF%95-stdio-%E6%9C%AC%E5%9C%B0-%E6%B5%8B%E8%AF%95"><span class="top-box-text">测试-stdio(本地)测试</span></a></li></ol></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%B5%8B%E8%AF%95-sse-%E8%BF%9C%E7%A8%8B-%E6%B5%8B%E8%AF%95"><span class="top-box-text">测试-sse(远程)测试</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%B5%8B%E8%AF%95-streamable-http"><span class="top-box-text">测试-streamable http</span></a></li></ol></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/llm/mcp/mcp-python-demo/">
+          <h3 class="post-title">
+            
+            下一篇：Mcp-Python-Demo
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+

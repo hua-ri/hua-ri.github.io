@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>基于Kaniko构建bkci基础镜像</title>
+<meta name="keywords" content="基于Kaniko构建bkci基础镜像, 花日の博客">
+<meta name="description" content="自定义IC镜像参考官方文档：https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/ci-images/docker-build.md
+有两种方">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="基于Kaniko构建bkci基础镜像">
+<meta property="og:description" content="自定义IC镜像参考官方文档：https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/ci-images/docker-build.md
+有两种方">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">基于Kaniko构建bkci基础镜像</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-07</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/devops/">
+              devops
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/blueking/">
+              blueking
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/kaniko/">
+              kaniko
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="自定义IC镜像"><a href="#自定义IC镜像" class="headerlink" title="自定义IC镜像"></a>自定义IC镜像</h1><p>参考官方文档：<a target="_blank" rel="noopener" href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/ci-images/docker-build.md">https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/ci-images/docker-build.md</a></p>
+<p>有两种方式：</p>
+<ul>
+<li>Dockerfile 示例 1（以 bkci 默认镜像为基础镜像）：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM bkci/ci:latest</span><br><span class="line"></span><br><span class="line">RUN yum install -y mysql-devel</span><br></pre></td></tr></table></figure></li>
+<li>Dockerfile 示例 2（不以 bkci 默认镜像为基础镜像时，镜像环境基本要求如下）：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">============= bkci基础环境 ================</span></span><br><span class="line">FROM openjdk:8-jre-slim</span><br><span class="line">RUN apt update &amp;&amp; apt upgrade &amp;&amp; apt autoremove -y</span><br><span class="line">RUN apt install -y curl wget</span><br><span class="line">RUN wget -q https://repo1.maven.org/maven2/org/bouncycastle/bcprov-jdk16/1.46/bcprov-jdk16-1.46.jar -O $JAVA_HOME/lib/ext/bcprov-jdk16-1.46.jar</span><br><span class="line">RUN ln -sf $JAVA_HOME /usr/local/jre</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">============= 自定义环境 ================</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">RUN whatever you want</span></span><br><span class="line">RUN apt install -y git python-pip</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>重要提示：</p>
+<ul>
+<li>因为流水线里的容器是通过 CMD，使用&#x2F;bin&#x2F;sh 启动的，因此必须保证镜像里面存在&#x2F;bin&#x2F;sh 以及 curl 命令（用来下载 Agent）</li>
+<li>不要设置 ENTRYPOINT</li>
+<li>确保为 64 位镜像</li>
+<li>用户用 root，如需普通用户可以在 bash 里面切换，否则流水线任务启动不了</li>
+<li>流水线插件有可能使用 python 或 nodejs 开发，建议准备好插件执行环境:<br>Python 插件执行环境<br>NodeJS 插件执行环境</li>
+</ul>
+<h1 id="构建kaniko-bkci镜像"><a href="#构建kaniko-bkci镜像" class="headerlink" title="构建kaniko bkci镜像"></a>构建kaniko bkci镜像</h1><h2 id="编写Dockerfile："><a href="#编写Dockerfile：" class="headerlink" title="编写Dockerfile："></a>编写Dockerfile：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">第一阶段：获取 kaniko 执行器</span></span><br><span class="line">FROM m.daocloud.io/gcr.io/kaniko-project/executor:latest as kaniko</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">第二阶段：使用 BKCI 官方基础镜像</span></span><br><span class="line">FROM bkci/ci:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MAINTAINER huari &quot;qiqiuyang@papegames.net&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从 kaniko 阶段复制必要文件（不包含用户特定的配置文件）</span></span><br><span class="line">COPY --from=kaniko /kaniko /kaniko</span><br><span class="line">RUN chmod +x /kaniko/executor</span><br><span class="line"></span><br><span class="line">RUN apt install -y git python-pip python3-pip \</span><br><span class="line">    &amp;&amp; pip config set global.index-url https://mirrors.aliyun.com/pypi/simple \</span><br><span class="line">    &amp;&amp; pip config set install.trusted-host mirrors.aliyun.com</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置环境变量</span></span><br><span class="line">ENV PATH $PATH:/kaniko</span><br><span class="line">ENV DOCKER_CONFIG /kaniko/.docker</span><br><span class="line">ENV SSL_CERT_DIR /kaniko/ssl/certs</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">验证 kaniko 可执行文件（不验证配置）</span></span><br><span class="line">RUN /kaniko/executor version</span><br></pre></td></tr></table></figure>
+
+<h2 id="执行bkci镜像构建流水线"><a href="#执行bkci镜像构建流水线" class="headerlink" title="执行bkci镜像构建流水线"></a>执行bkci镜像构建流水线</h2><p><a class="simple-lightbox" href="/img_30.png"><img   src="/images/loading.svg" data-src="/img_30.png"  alt="img_30.png" lazyload></a></p>
+<h1 id="发布容器镜像"><a href="#发布容器镜像" class="headerlink" title="发布容器镜像"></a>发布容器镜像</h1><p>参考官方文档：<a target="_blank" rel="noopener" href="https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/ci-images/release-new-image.md">https://bk.tencent.com/docs/markdown/ZH/Devops/3.0/UserGuide/Services/Store/ci-images/release-new-image.md</a></p>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89IC%E9%95%9C%E5%83%8F"><span class="top-box-text">自定义IC镜像</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E6%9E%84%E5%BB%BAkaniko-bkci%E9%95%9C%E5%83%8F"><span class="top-box-text">构建kaniko bkci镜像</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E7%BC%96%E5%86%99Dockerfile%EF%BC%9A"><span class="top-box-text">编写Dockerfile：</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%89%A7%E8%A1%8Cbkci%E9%95%9C%E5%83%8F%E6%9E%84%E5%BB%BA%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="top-box-text">执行bkci镜像构建流水线</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%8F%91%E5%B8%83%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F"><span class="top-box-text">发布容器镜像</span></a></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/devops/blueking/kaniko-rong-qi-hua-gou-jian-diao-yan/">
+          <h3 class="post-title">
+            
+            下一篇：Kaniko容器化构建调研
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+

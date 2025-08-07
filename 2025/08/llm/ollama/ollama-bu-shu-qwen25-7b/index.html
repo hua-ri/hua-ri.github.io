@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>Ollama部署qwen25:7b</title>
+<meta name="keywords" content="Ollama部署qwen25:7b, 花日の博客">
+<meta name="description" content="Ollama 简介Ollama 是一个本地运行的大语言模型（LLM）工具平台，允许用户在本地设备上运行和管理大模型，而无需依赖云服务。它支持多种开源模型，并提供了用户友好的接口，非常适合开发者和企业使用。
+安装 Ollama首先，从 Oll">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Ollama部署qwen25:7b">
+<meta property="og:description" content="Ollama 简介Ollama 是一个本地运行的大语言模型（LLM）工具平台，允许用户在本地设备上运行和管理大模型，而无需依赖云服务。它支持多种开源模型，并提供了用户友好的接口，非常适合开发者和企业使用。
+安装 Ollama首先，从 Oll">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">Ollama部署qwen25:7b</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-08</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/llm/">
+              llm
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/ollama/">
+              ollama
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="Ollama-简介"><a href="#Ollama-简介" class="headerlink" title="Ollama 简介"></a>Ollama 简介</h1><p>Ollama 是一个本地运行的大语言模型（LLM）工具平台，允许用户在本地设备上运行和管理大模型，而无需依赖云服务。它支持多种开源模型，并提供了用户友好的接口，非常适合开发者和企业使用。</p>
+<h1 id="安装-Ollama"><a href="#安装-Ollama" class="headerlink" title="安装 Ollama"></a>安装 Ollama</h1><p>首先，从 <a href="https://link.zhihu.com/?target=https://ollama.com/">Ollama 官网</a> 下载安装包，并按照提示完成安装。<br><a class="simple-lightbox" href="/img.png"><img   src="/images/loading.svg" data-src="/img.png"  alt="img.png" lazyload></a></p>
+<h1 id="Ollama-命令介绍"><a href="#Ollama-命令介绍" class="headerlink" title="Ollama 命令介绍"></a>Ollama 命令介绍</h1><p>Ollama 提供了几个简单易用的命令，基本功能如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Usage:</span><br><span class="line">  ollama [flags]</span><br><span class="line">  ollama [command]</span><br><span class="line"></span><br><span class="line">Available Commands:</span><br><span class="line">  serve       启动 Ollama 服务</span><br><span class="line">  create      从 Modelfile 创建一个模型</span><br><span class="line">  show        查看模型详细信息</span><br><span class="line">  run         运行一个模型</span><br><span class="line">  stop        停止正在运行的模型</span><br><span class="line">  pull        从注册表拉取一个模型</span><br><span class="line">  push        将一个模型推送到注册表</span><br><span class="line">  list        列出所有可用的模型</span><br><span class="line">  ps          列出当前正在运行的模型</span><br><span class="line">  cp          复制一个模型</span><br><span class="line">  rm          删除一个模型</span><br><span class="line">  help        获取关于任何命令的帮助信息</span><br><span class="line"></span><br><span class="line">Flags:</span><br><span class="line">  -h, --help      help for ollama</span><br><span class="line">  -v, --version   Show version information</span><br></pre></td></tr></table></figure>
+
+<h1 id="下载大模型"><a href="#下载大模型" class="headerlink" title="下载大模型"></a>下载大模型</h1><p>在 Ollama 官网的 <a href="https://link.zhihu.com/?target=https://ollama.com/library">Models 页面</a> 中，可以找到 Ollama 支持的大模型列表。<br><a class="simple-lightbox" href="/img_1.png"><img   src="/images/loading.svg" data-src="/img_1.png"  alt="img_1.png" lazyload></a></p>
+<p>如果没有明确的模型选择，建议使用阿里的 <code>qwen2.5:7b</code> 或 Meta 的 <code>llama3.1:8b</code>。7b 以上的大模型通常能提供更好的对话效果。</p>
+<h2 id="查看模型信息"><a href="#查看模型信息" class="headerlink" title="查看模型信息"></a>查看模型信息</h2><p>选择一个模型后，点击进入可以查看模型的详细信息。<br><a class="simple-lightbox" href="/img_2.png"><img   src="/images/loading.svg" data-src="/img_2.png"  alt="img_2.png" lazyload></a></p>
+<h2 id="下载模型"><a href="#下载模型" class="headerlink" title="下载模型"></a>下载模型</h2><p>使用 <code>ollama run</code> 命令可以在拉取模型后直接进入交互窗口。如果只想下载模型而不进入交互界面，可以使用 <code>ollama pull</code> 命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama run qwen2.5:7b</span><br></pre></td></tr></table></figure>
+
+<p>等待模型下载完成后，会直接进入交互界面。<br><a class="simple-lightbox" href="/img_3.png"><img   src="/images/loading.svg" data-src="/img_3.png"  alt="img_3.png" lazyload></a></p>
+<p>在命令行中输入消息，即可与模型进行交互。<br><a class="simple-lightbox" href="/img_4.png"><img   src="/images/loading.svg" data-src="/img_4.png"  alt="img_4.png" lazyload></a></p>
+<h1 id="交互窗口命令"><a href="#交互窗口命令" class="headerlink" title="交互窗口命令"></a>交互窗口命令</h1><p>在交互窗口中输入 &#x2F;? 可以查看可用命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Available Commands:</span><br><span class="line">  /set            Set session variables</span><br><span class="line">  /show           Show model information</span><br><span class="line">  /load &lt;model&gt;   Load a session or model</span><br><span class="line">  /save &lt;model&gt;   Save your current session</span><br><span class="line">  /clear          Clear session context</span><br><span class="line">  /bye            Exit</span><br><span class="line">  /?, /help       Help for a command</span><br><span class="line">  /? shortcuts    Help for keyboard shortcuts</span><br><span class="line"></span><br><span class="line">Use &quot;&quot;&quot; to begin a multi-line message.</span><br></pre></td></tr></table></figure>
+
+<p>例如，使用 <code>/show</code> 命令查看模型信息：<br><a class="simple-lightbox" href="/img_5.png"><img   src="/images/loading.svg" data-src="/img_5.png"  alt="img_5.png" lazyload></a></p>
+<h2 id="调用-Ollama-接口"><a href="#调用-Ollama-接口" class="headerlink" title="调用 Ollama 接口"></a>调用 Ollama 接口</h2><p>Ollama 提供了丰富的 API 接口，供外部调用访问。详细的 <a href="https://link.zhihu.com/?target=https://github.com/ollama/ollama/blob/main/docs/api.md">接口文档</a> 可以在官方 GitHub 中找到。</p>
+<table>
+<thead>
+<tr>
+<th>接口名称</th>
+<th>接口地址</th>
+<th>请求方法</th>
+<th>接口描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Generate</td>
+<td>&#x2F;api&#x2F;generate</td>
+<td>POST</td>
+<td>使用提供的模型为给定提示生成响应。</td>
+</tr>
+<tr>
+<td>Chat</td>
+<td>&#x2F;api&#x2F;chat</td>
+<td>POST</td>
+<td>使用提供的模型生成聊天中的下一条消息</td>
+</tr>
+<tr>
+<td>Create</td>
+<td>&#x2F;api&#x2F;create</td>
+<td>POST</td>
+<td>从 Modelfile 创建一个新的模型。</td>
+</tr>
+<tr>
+<td>Tags</td>
+<td>&#x2F;api&#x2F;tags</td>
+<td>GET</td>
+<td>列出本地可提供的型号。</td>
+</tr>
+<tr>
+<td>Show</td>
+<td>&#x2F;api&#x2F;show</td>
+<td>POST</td>
+<td>获取指定模型的详细信息。</td>
+</tr>
+<tr>
+<td>Copy</td>
+<td>&#x2F;api&#x2F;copy</td>
+<td>POST</td>
+<td>从现有模型创建副本。</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>&#x2F;api&#x2F;delete</td>
+<td>DELETE</td>
+<td>删除模型及其数据。</td>
+</tr>
+<tr>
+<td>Pull</td>
+<td>&#x2F;api&#x2F;pull</td>
+<td>POST</td>
+<td>从 Ollama 库中下载指定模型。</td>
+</tr>
+<tr>
+<td>Push</td>
+<td>&#x2F;api&#x2F;push</td>
+<td>POST</td>
+<td>将模型上传到模型库。</td>
+</tr>
+<tr>
+<td>Embed</td>
+<td>&#x2F;api&#x2F;embed</td>
+<td>POST</td>
+<td>使用指定模型生成嵌入。</td>
+</tr>
+<tr>
+<td>ListRunning</td>
+<td>&#x2F;api&#x2F;ps</td>
+<td>POST</td>
+<td>列出当前加载到内存中的模型。</td>
+</tr>
+<tr>
+<td>Embeddings</td>
+<td>&#x2F;api&#x2F;embeddings</td>
+<td>POST</td>
+<td>生成嵌入（与 Embed 类似，但可能适用场景不同）。</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>&#x2F;api&#x2F;version</td>
+<td>GET</td>
+<td>获取 Ollama 服务的版本号。</td>
+</tr>
+</tbody></table>
+<h2 id="检查服务"><a href="#检查服务" class="headerlink" title="检查服务"></a>检查服务</h2><p>安装 Ollama 后，服务通常会自动启动。为了确保服务正常运行，可以通过以下命令检查：<br>Ollama 默认端口为 <code>11434</code>，访问地址为 <code>127.0.0.1:11434</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1:11434</span><br></pre></td></tr></table></figure>
+
+<p><a class="simple-lightbox" href="/img_6.png"><img   src="/images/loading.svg" data-src="/img_6.png"  alt="img_6.png" lazyload></a></p>
+<p>如果服务未启动，可以使用以下命令启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama serve</span><br></pre></td></tr></table></figure>
+
+<h2 id="调用模型列表接口"><a href="#调用模型列表接口" class="headerlink" title="调用模型列表接口"></a>调用模型列表接口</h2><p>首先，调用一个简单的接口来查询模型列表：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:11434/api/tags</span><br></pre></td></tr></table></figure>
+<p><a class="simple-lightbox" href="/img_7.png"><img   src="/images/loading.svg" data-src="/img_7.png"  alt="img_7.png" lazyload></a></p>
+<h2 id="调用生成接口"><a href="#调用生成接口" class="headerlink" title="调用生成接口"></a>调用生成接口</h2><p>接下来，调用生成接口来获取模型的响应：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:11434/api/generate -d &#x27;&#123;</span><br><span class="line">  &quot;model&quot;: &quot;qwen2.5:7b&quot;,</span><br><span class="line">  &quot;prompt&quot;: &quot;天空为什么是蓝色的?&quot;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，接口会返回流式数据：<br><a class="simple-lightbox" href="/img_8.png"><img   src="/images/loading.svg" data-src="/img_8.png"  alt="img_8.png" lazyload></a></p>
+<p>可以通过设置 <code>stream: false</code> 参数，直接返回完整内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:11434/api/generate -d &#x27;&#123;</span><br><span class="line">  &quot;model&quot;: &quot;qwen2.5:7b&quot;,</span><br><span class="line">  &quot;prompt&quot;: &quot;天空为什么是蓝色的?&quot;,</span><br><span class="line">  &quot;stream&quot;: false</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<p><a class="simple-lightbox" href="/img_9.png"><img   src="/images/loading.svg" data-src="/img_9.png"  alt="img_9.png" lazyload></a></p>
+<h1 id="使用API远程调用"><a href="#使用API远程调用" class="headerlink" title="使用API远程调用"></a>使用API远程调用</h1><p>注意，ollama启动时默认监听在127.0.0.1:11434上，可以通过配置OLLAMA_HOST环境变量修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export OLLAMA_HOST=&quot;0.0.0.0:11434&quot;</span><br><span class="line"> </span><br><span class="line">ollama serve&amp;  </span><br><span class="line"> </span><br><span class="line">ollama run qwen2.5:7b</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后可以如上面<a target="_blank" rel="noopener" href="https://papergames.feishu.cn/docx/P2DOdDqNCoojcBxwS7UcqTCpnAc#doxcnlvcxKxBuU1ko1w9vH8Gclc">调用生成接口</a>一样进行远端访问了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:11434/api/generate -d &#x27;&#123;&quot;model&quot;: &quot;qwen2.5:7b&quot;,&quot;prompt&quot;: &quot;what can you do?&quot;,&quot;stream&quot;:false&#125;&#x27;</span><br><span class="line"></span><br><span class="line">curl http://localhost:11434/api/generate -d &#x27;&#123;</span><br><span class="line">  &quot;model&quot;: &quot;qwen2.5:7b&quot;,</span><br><span class="line">  &quot;prompt&quot;: &quot;Why is the sky blue?&quot;,</span><br><span class="line">  &quot;stream&quot;: false,</span><br><span class="line">  &quot;options&quot;: &#123;</span><br><span class="line">    &quot;num_keep&quot;: 5,</span><br><span class="line">    &quot;seed&quot;: 42,</span><br><span class="line">    &quot;num_predict&quot;: 100,</span><br><span class="line">    &quot;top_k&quot;: 20,</span><br><span class="line">    &quot;top_p&quot;: 0.9,</span><br><span class="line">    &quot;tfs_z&quot;: 0.5,</span><br><span class="line">    &quot;typical_p&quot;: 0.7,</span><br><span class="line">    &quot;repeat_last_n&quot;: 33,</span><br><span class="line">    &quot;temperature&quot;: 0.8,</span><br><span class="line">    &quot;repeat_penalty&quot;: 1.2,</span><br><span class="line">    &quot;presence_penalty&quot;: 1.5,</span><br><span class="line">    &quot;frequency_penalty&quot;: 1.0,</span><br><span class="line">    &quot;mirostat&quot;: 1,</span><br><span class="line">    &quot;mirostat_tau&quot;: 0.8,</span><br><span class="line">    &quot;mirostat_eta&quot;: 0.6,</span><br><span class="line">    &quot;penalize_newline&quot;: true,</span><br><span class="line">    &quot;stop&quot;: [&quot;\n&quot;, &quot;user:&quot;],</span><br><span class="line">    &quot;numa&quot;: false,</span><br><span class="line">    &quot;num_ctx&quot;: 1024,</span><br><span class="line">    &quot;num_batch&quot;: 2,</span><br><span class="line">    &quot;num_gqa&quot;: 1,</span><br><span class="line">    &quot;num_gpu&quot;: 1,</span><br><span class="line">    &quot;main_gpu&quot;: 0,</span><br><span class="line">    &quot;low_vram&quot;: false,</span><br><span class="line">    &quot;f16_kv&quot;: true,</span><br><span class="line">    &quot;vocab_only&quot;: false,</span><br><span class="line">    &quot;use_mmap&quot;: true,</span><br><span class="line">    &quot;use_mlock&quot;: false,</span><br><span class="line">    &quot;rope_frequency_base&quot;: 1.1,</span><br><span class="line">    &quot;rope_frequency_scale&quot;: 0.8,</span><br><span class="line">    &quot;num_thread&quot;: 8</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>重点来了，也可以通过通过openai代码接口访问:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">from openai import OpenAI</span><br><span class="line">client = OpenAI(</span><br><span class="line">    base_url=&#x27;http://localhost:11434/v1/&#x27;,</span><br><span class="line">    api_key=&#x27;ollama&#x27;,  # required but ignored</span><br><span class="line">)</span><br><span class="line">chat_completion = client.chat.completions.create(</span><br><span class="line">    messages=[</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;role&quot;: &quot;system&quot;,</span><br><span class="line">            &quot;content&quot;: &quot;你是一个能够理解中英文指令并帮助完成任务的智能助手。你的任务是根据用户的需求生成合适的分类任务或生成任务，并准确判断这些任务的类型。请确保你的回答简洁、准确且符合中英文语境。&quot;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;role&quot;: &quot;user&quot;,</span><br><span class="line">            &quot;content&quot;: &quot;Come up with a series of tasks:1. Link all the entities in the sentence (highlighted in brackets) to a Wikipedia page.For each entity, you should output the Wikipedia page title, or output None if you know.&quot;,</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    model=&#x27;qwen2.5:7b&#x27;,</span><br><span class="line"></span><br><span class="line">    max_tokens=38192,</span><br><span class="line">    temperature=0.7,</span><br><span class="line">    top_p=0.5,</span><br><span class="line">    frequency_penalty=0,</span><br><span class="line">    presence_penalty=2,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">print(chat_completion)</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ChatCompletion(id=&#x27;chatcmpl-228&#x27;, choices=[Choice(finish_reason=&#x27;stop&#x27;, index=0, logprobs=None, message=ChatCompletionMessage(content=&#x27;Task 1:\nSentence: Apple (the technology company), founded by Steve Jobs and located in Cupertino.\nOutput format for Task 1: \n- Entity &quot;Apple&quot; is linked to [Wikipedia page title]: Apple Inc.\n- Entity &quot;Steve Jobs&quot; is linked to [None] as the task only requires linking entities, not individuals.\n\nTask 2:\nSentence: The Eiffel Tower (a famous landmark in Paris) was designed by Gustave Eiffel and completed in 1889.\nOutput format for Task 2:\n- Entity &quot;Eiffel Tower&quot; is linked to [Wikipedia page title]: Eiffel Tower\n- Entity &quot;Gustave Eiffel&quot; is linked to [None]\n\nTask 3: \nSentence: The Great Barrier Reef (the largest coral reef system in the world) spans over 2,000 kilometers.\nOutput format for Task 3:\n- Entity &quot;Great Barrier Reef&quot; is linked to [Wikipedia page title]: Great Barrier Reef\n\nNote that some entities might not have a corresponding Wikipedia article or may be ambiguous. In such cases, you should output None as instructed in the task description.\n\nThese tasks are of classification type since they require linking named entities to their respective Wikipedia pages (or determining if there is no suitable link).&#x27;, refusal=None, role=&#x27;assistant&#x27;, annotations=None, audio=None, function_call=None, tool_calls=None))], created=1753247977, model=&#x27;qwen2.5:7b&#x27;, object=&#x27;chat.completion&#x27;, service_tier=None, system_fingerprint=&#x27;fp_ollama&#x27;, usage=CompletionUsage(completion_tokens=266, prompt_tokens=109, total_tokens=375, completion_tokens_details=None, prompt_tokens_details=None))</span><br></pre></td></tr></table></figure>
+
+<h2 id="在gops-agent里测试"><a href="#在gops-agent里测试" class="headerlink" title="在gops-agent里测试"></a>在gops-agent里测试</h2><p>模型信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LLM_API_KEY= &quot;sk-ollama&quot;</span><br><span class="line">LLM_MODEL_NAME= &quot;qwen2.5:7b&quot;</span><br><span class="line">LLM_BASE_URL= &quot;http://localhost:11434/v1&quot;</span><br><span class="line">LLM_TEMPERATURE = 0</span><br><span class="line">LLM_MAX_TOKENS = 512</span><br></pre></td></tr></table></figure>
+
+<p>初始化：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">全局 LLM 实例</span></span><br><span class="line">llm = ChatOpenAI(</span><br><span class="line">    model=settings.llm_model_name,</span><br><span class="line">    api_key=settings.llm_api_key,</span><br><span class="line">    base_url=settings.llm_base_url,</span><br><span class="line">    temperature=settings.llm_temperature,</span><br><span class="line">    max_tokens=settings.llm_max_tokens,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>测试结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">[default]&gt; </span><span class="language-bash">上海天气怎么样，如果还不错的话，帮我计算下50乘4加6</span></span><br><span class="line">- 子任务1：查询上海天气 → 调用 get_weather 工具 ✔️</span><br><span class="line">- 子任务2：判断天气好坏（LLM 常识判断）→ 晴天视为“不错” ✔️</span><br><span class="line">- 子任务3：计算 50×4+6 → 调用 calculator ✔️</span><br><span class="line">上海天气阳光明媚，晴空万里。接下来进行计算。</span><br><span class="line">计算结果为 206。- 子任务1：查询上海天气 → 调用 get_weather 工具 ✔️</span><br><span class="line">- 子任务2：判断天气好坏（LLM 常识判断）→ 晴天视为“不错” ✔️</span><br><span class="line">- 子任务3：计算 50×4+6 → 调用 calculator ✔️</span><br><span class="line">上海天气阳光明媚，晴空万里。接下来进行计算。</span><br><span class="line">计算结果为 206。</span><br></pre></td></tr></table></figure>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#Ollama-%E7%AE%80%E4%BB%8B"><span class="top-box-text">Ollama 简介</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%AE%89%E8%A3%85-Ollama"><span class="top-box-text">安装 Ollama</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#Ollama-%E5%91%BD%E4%BB%A4%E4%BB%8B%E7%BB%8D"><span class="top-box-text">Ollama 命令介绍</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E4%B8%8B%E8%BD%BD%E5%A4%A7%E6%A8%A1%E5%9E%8B"><span class="top-box-text">下载大模型</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%9F%A5%E7%9C%8B%E6%A8%A1%E5%9E%8B%E4%BF%A1%E6%81%AF"><span class="top-box-text">查看模型信息</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E4%B8%8B%E8%BD%BD%E6%A8%A1%E5%9E%8B"><span class="top-box-text">下载模型</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E4%BA%A4%E4%BA%92%E7%AA%97%E5%8F%A3%E5%91%BD%E4%BB%A4"><span class="top-box-text">交互窗口命令</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E8%B0%83%E7%94%A8-Ollama-%E6%8E%A5%E5%8F%A3"><span class="top-box-text">调用 Ollama 接口</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1"><span class="top-box-text">检查服务</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E8%B0%83%E7%94%A8%E6%A8%A1%E5%9E%8B%E5%88%97%E8%A1%A8%E6%8E%A5%E5%8F%A3"><span class="top-box-text">调用模型列表接口</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E8%B0%83%E7%94%A8%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3"><span class="top-box-text">调用生成接口</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E4%BD%BF%E7%94%A8API%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="top-box-text">使用API远程调用</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E5%9C%A8gops-agent%E9%87%8C%E6%B5%8B%E8%AF%95"><span class="top-box-text">在gops-agent里测试</span></a></li></ol></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/llm/langchain/shi-yong-langchain-he-deepseek-shi-xian-duo-mcp-fu-wu-diao-yong-v1/">
+          <h3 class="post-title">
+            
+            下一篇：使用LangChain和DeepSeek实现多MCP服务调用
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+

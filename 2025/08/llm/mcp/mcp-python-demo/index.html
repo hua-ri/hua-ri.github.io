@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>Mcp-Python-Demo</title>
+<meta name="keywords" content="Mcp-Python-Demo, 花日の博客">
+<meta name="description" content="前言官方sdk仓库：https://github.com/modelcontextprotocol/python-sdk
+环境准备UV安装mac环境安装命令：
+1curl -LsSf https://astral.sh/uv/install">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Mcp-Python-Demo">
+<meta property="og:description" content="前言官方sdk仓库：https://github.com/modelcontextprotocol/python-sdk
+环境准备UV安装mac环境安装命令：
+1curl -LsSf https://astral.sh/uv/install">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">Mcp-Python-Demo</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-07</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/llm/">
+              llm
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/mcp/">
+              mcp
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>官方sdk仓库：<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/python-sdk">https://github.com/modelcontextprotocol/python-sdk</a></p>
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="UV安装"><a href="#UV安装" class="headerlink" title="UV安装"></a>UV安装</h2><p>mac环境安装命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -LsSf https://astral.sh/uv/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装python-3-13"><a href="#安装python-3-13" class="headerlink" title="安装python 3.13"></a>安装python 3.13</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看已安装的python版本</span></span><br><span class="line">uv python list</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装python版本3.13</span></span><br><span class="line">uv python install 3.13</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建工作目录：mcp-server"><a href="#创建工作目录：mcp-server" class="headerlink" title="创建工作目录：mcp-server"></a>创建工作目录：mcp-server</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用指定python版本初始化工作目录</span></span><br><span class="line">uv init mcp-server -p 3.13</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入工作目录</span></span><br><span class="line">cd mcp-server</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装mcp-sdk"><a href="#安装mcp-sdk" class="headerlink" title="安装mcp sdk"></a>安装mcp sdk</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将MCP添加到项目依赖关系中</span></span><br><span class="line">uv add &quot;mcp[cli]&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">对于使用pip作为依赖关系的项目</span></span><br><span class="line">pip install &quot;mcp[cli]&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Mcp-demo"><a href="#Mcp-demo" class="headerlink" title="Mcp demo"></a>Mcp demo</h1><h2 id="测试-stdio-本地-测试"><a href="#测试-stdio-本地-测试" class="headerlink" title="测试-stdio(本地)测试"></a>测试-stdio(本地)测试</h2><p>将下面的代码保存为server.py文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">server.py</span></span><br><span class="line">from mcp.server.fastmcp import FastMCP</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Create an MCP server</span></span><br><span class="line">mcp = FastMCP(&quot;Demo&quot;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add an addition tool</span></span><br><span class="line">@mcp.tool()</span><br><span class="line">def add(a: int, b: int) -&gt; int:</span><br><span class="line">    &quot;&quot;&quot;Add two numbers&quot;&quot;&quot;</span><br><span class="line">    return a + b</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add a dynamic greeting resource</span></span><br><span class="line">@mcp.resource(&quot;greeting://&#123;name&#125;&quot;)</span><br><span class="line">def get_greeting(name: str) -&gt; str:</span><br><span class="line">    &quot;&quot;&quot;Get a personalized greeting&quot;&quot;&quot;</span><br><span class="line">    return f&quot;Hello, &#123;name&#125;!&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    mcp.run(transport=&#x27;stdio&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>执行下面的命令启动mcp inspector：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @modelcontextprotocol/inspector</span><br></pre></td></tr></table></figure>
+
+<p>会有类似的输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting MCP inspector...</span><br><span class="line">⚙️ Proxy server listening on 127.0.0.1:6277</span><br><span class="line">🔑 Session token: c6e0d57bbbb6b4ffb134add451bf0b9332582485bfc005e56ad9b85765b89c46</span><br><span class="line">Use this token to authenticate requests or set DANGEROUSLY_OMIT_AUTH=true to disable auth</span><br><span class="line"></span><br><span class="line">🔗 Open inspector with token pre-filled:</span><br><span class="line">   http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=c6e0d57bbbb6b4ffb134add451bf0b9332582485bfc005e56ad9b85765b89c46</span><br><span class="line"></span><br><span class="line">🔍 MCP Inspector is up and running at http://127.0.0.1:6274 🚀</span><br></pre></td></tr></table></figure>
+
+<p>根据提示在前端访问：<a target="_blank" rel="noopener" href="http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=c6e0d57bbbb6b4ffb134add451bf0b9332582485bfc005e56ad9b85765b89c46">http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=c6e0d57bbbb6b4ffb134add451bf0b9332582485bfc005e56ad9b85765b89c46</a></p>
+<p>前端需设置的参数：</p>
+<ul>
+<li>Transport Type：STDIO</li>
+<li>Command参数：uv</li>
+<li>Arguments参数：–directory &#x2F;Users&#x2F;king&#x2F;workspace-test&#x2F;mcp-server run server.py<br><a class="simple-lightbox" href="/img.png"><img   src="/images/loading.svg" data-src="/img.png"  alt="img.png" lazyload></a></li>
+</ul>
+<p>测试：<br><a class="simple-lightbox" href="/img_1.png"><img   src="/images/loading.svg" data-src="/img_1.png"  alt="img_1.png" lazyload></a><br><a class="simple-lightbox" href="/img_2.png"><img   src="/images/loading.svg" data-src="/img_2.png"  alt="img_2.png" lazyload></a></p>
+<h2 id="测试-sse-远程-测试"><a href="#测试-sse-远程-测试" class="headerlink" title="测试-sse(远程)测试"></a>测试-sse(远程)测试</h2><p>将下面的代码保存为server.py文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">server.py</span></span><br><span class="line">from mcp.server.fastmcp import FastMCP</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Create an MCP server</span></span><br><span class="line">mcp = FastMCP(&quot;Demo&quot;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add an addition tool</span></span><br><span class="line">@mcp.tool()</span><br><span class="line">def add(a: int, b: int) -&gt; int:</span><br><span class="line">    &quot;&quot;&quot;Add two numbers&quot;&quot;&quot;</span><br><span class="line">    return a + b</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add a dynamic greeting resource</span></span><br><span class="line">@mcp.resource(&quot;greeting://&#123;name&#125;&quot;)</span><br><span class="line">def get_greeting(name: str) -&gt; str:</span><br><span class="line">    &quot;&quot;&quot;Get a personalized greeting&quot;&quot;&quot;</span><br><span class="line">    return f&quot;Hello, &#123;name&#125;!&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    mcp.run(transport=&#x27;sse&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><code>并将脚本运行起来！</code></p>
+<p>执行下面的命令启动mcp inspector：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @modelcontextprotocol/inspector</span><br></pre></td></tr></table></figure>
+
+<p>会有类似的输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting MCP inspector...</span><br><span class="line">⚙️ Proxy server listening on 127.0.0.1:6277</span><br><span class="line">🔑 Session token: fec89a2677061c6e71dc76da9cb7d3b05305cc5497fc2c2d41bcc2a1c3c20676</span><br><span class="line">Use this token to authenticate requests or set DANGEROUSLY_OMIT_AUTH=true to disable auth</span><br><span class="line"></span><br><span class="line">🔗 Open inspector with token pre-filled:</span><br><span class="line">   http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=fec89a2677061c6e71dc76da9cb7d3b05305cc5497fc2c2d41bcc2a1c3c20676</span><br><span class="line"></span><br><span class="line">🔍 MCP Inspector is up and running at http://127.0.0.1:6274 🚀</span><br></pre></td></tr></table></figure>
+
+<p>根据提示在前端访问：<a target="_blank" rel="noopener" href="http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=fec89a2677061c6e71dc76da9cb7d3b05305cc5497fc2c2d41bcc2a1c3c20676">http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=fec89a2677061c6e71dc76da9cb7d3b05305cc5497fc2c2d41bcc2a1c3c20676</a></p>
+<p>前端需设置的参数：</p>
+<ul>
+<li>Transport Type：SSE</li>
+<li>URL参数：<a target="_blank" rel="noopener" href="http://localhost:8000/sse">http://localhost:8000/sse</a></li>
+</ul>
+<blockquote>
+<p>此处的8000端口根据实际情况修改</p>
+</blockquote>
+<p><a class="simple-lightbox" href="/img_3.png"><img   src="/images/loading.svg" data-src="/img_3.png"  alt="img_3.png" lazyload></a><br><a class="simple-lightbox" href="/img_4.png"><img   src="/images/loading.svg" data-src="/img_4.png"  alt="img_4.png" lazyload></a></p>
+<p>测试：<br><a class="simple-lightbox" href="/img_5.png"><img   src="/images/loading.svg" data-src="/img_5.png"  alt="img_5.png" lazyload></a><br><a class="simple-lightbox" href="/img_6.png"><img   src="/images/loading.svg" data-src="/img_6.png"  alt="img_6.png" lazyload></a></p>
+<h2 id="测试-streamable-http"><a href="#测试-streamable-http" class="headerlink" title="测试-streamable http"></a>测试-streamable http</h2><p>将下面的代码保存为server.py文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">server.py</span></span><br><span class="line">from mcp.server.fastmcp import FastMCP</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Create an MCP server</span></span><br><span class="line">mcp = FastMCP(&quot;Demo&quot;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add an addition tool</span></span><br><span class="line">@mcp.tool()</span><br><span class="line">def add(a: int, b: int) -&gt; int:</span><br><span class="line">    &quot;&quot;&quot;Add two numbers&quot;&quot;&quot;</span><br><span class="line">    return a + b</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add a dynamic greeting resource</span></span><br><span class="line">@mcp.resource(&quot;greeting://&#123;name&#125;&quot;)</span><br><span class="line">def get_greeting(name: str) -&gt; str:</span><br><span class="line">    &quot;&quot;&quot;Get a personalized greeting&quot;&quot;&quot;</span><br><span class="line">    return f&quot;Hello, &#123;name&#125;!&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    mcp.run(transport=&#x27;streamable-http&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><code>并将脚本运行起来！</code></p>
+<p>执行下面的命令启动mcp inspector：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @modelcontextprotocol/inspector</span><br></pre></td></tr></table></figure>
+
+<p>会有类似的输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Starting MCP inspector...</span><br><span class="line">⚙️ Proxy server listening on 127.0.0.1:6277</span><br><span class="line">🔑 Session token: 54807640c398f18ae4067ce86afe5e9cc56dbb10851b3c9be9de0dfc5af120d4</span><br><span class="line">Use this token to authenticate requests or set DANGEROUSLY_OMIT_AUTH=true to disable auth</span><br><span class="line"></span><br><span class="line">🔗 Open inspector with token pre-filled:</span><br><span class="line">   http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=54807640c398f18ae4067ce86afe5e9cc56dbb10851b3c9be9de0dfc5af120d4</span><br><span class="line"></span><br><span class="line">🔍 MCP Inspector is up and running at http://127.0.0.1:6274 🚀</span><br></pre></td></tr></table></figure>
+
+<p>根据提示在前端访问：<a target="_blank" rel="noopener" href="http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=54807640c398f18ae4067ce86afe5e9cc56dbb10851b3c9be9de0dfc5af120d4">http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=54807640c398f18ae4067ce86afe5e9cc56dbb10851b3c9be9de0dfc5af120d4</a></p>
+<p>前端需设置的参数：</p>
+<ul>
+<li>Transport Type：Streamable HTTP</li>
+<li>URL参数：<a target="_blank" rel="noopener" href="http://localhost:8000/mcp">http://localhost:8000/mcp</a></li>
+</ul>
+<blockquote>
+<p>此处的8000端口根据实际情况修改</p>
+</blockquote>
+<p><a class="simple-lightbox" href="/img_7.png"><img   src="/images/loading.svg" data-src="/img_7.png"  alt="img_7.png" lazyload></a><br><a class="simple-lightbox" href="/img_8.png"><img   src="/images/loading.svg" data-src="/img_8.png"  alt="img_8.png" lazyload></a></p>
+<p>测试：<br><a class="simple-lightbox" href="/img_9.png"><img   src="/images/loading.svg" data-src="/img_9.png"  alt="img_9.png" lazyload></a><br><a class="simple-lightbox" href="/img_10.png"><img   src="/images/loading.svg" data-src="/img_10.png"  alt="img_10.png" lazyload></a></p>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%89%8D%E8%A8%80"><span class="top-box-text">前言</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="top-box-text">环境准备</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#UV%E5%AE%89%E8%A3%85"><span class="top-box-text">UV安装</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E5%AE%89%E8%A3%85python-3-13"><span class="top-box-text">安装python 3.13</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%EF%BC%9Amcp-server"><span class="top-box-text">创建工作目录：mcp-server</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E5%AE%89%E8%A3%85mcp-sdk"><span class="top-box-text">安装mcp sdk</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#Mcp-demo"><span class="top-box-text">Mcp demo</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%B5%8B%E8%AF%95-stdio-%E6%9C%AC%E5%9C%B0-%E6%B5%8B%E8%AF%95"><span class="top-box-text">测试-stdio(本地)测试</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%B5%8B%E8%AF%95-sse-%E8%BF%9C%E7%A8%8B-%E6%B5%8B%E8%AF%95"><span class="top-box-text">测试-sse(远程)测试</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E6%B5%8B%E8%AF%95-streamable-http"><span class="top-box-text">测试-streamable http</span></a></li></ol></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/devops/blueking/ji-yu-kaniko-gou-jian-bkci-ji-chu-jing-xiang/">
+          <h3 class="post-title">
+            
+            下一篇：基于Kaniko构建bkci基础镜像
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+
