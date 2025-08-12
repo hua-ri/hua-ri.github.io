@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>DockerCompose部署Coze</title>
+<meta name="keywords" content="DockerCompose部署Coze, 花日の博客">
+<meta name="description" content="前提条件参考官方文档：https://github.com/coze-dev/coze-studio/blob/v0.2.2/README.zh_CN.md
+安装 Dify 之前, 请确保你的机器已满足最低安装要求：
+
+CPU &gt;&#">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="DockerCompose部署Coze">
+<meta property="og:description" content="前提条件参考官方文档：https://github.com/coze-dev/coze-studio/blob/v0.2.2/README.zh_CN.md
+安装 Dify 之前, 请确保你的机器已满足最低安装要求：
+
+CPU &gt;&#">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">DockerCompose部署Coze</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-10</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/llm/">
+              llm
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/coze/">
+              coze
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h1><p>参考官方文档：<a target="_blank" rel="noopener" href="https://github.com/coze-dev/coze-studio/blob/v0.2.2/README.zh_CN.md">https://github.com/coze-dev/coze-studio/blob/v0.2.2/README.zh_CN.md</a></p>
+<p>安装 Dify 之前, 请确保你的机器已满足最低安装要求：</p>
+<ul>
+<li>CPU &gt;&#x3D; 2 Core</li>
+<li>RAM &gt;&#x3D; 4 GiB</li>
+</ul>
+<p>我的系统环境是macos，安装Docker桌面端即可：《<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/mac-install/">在 Mac 内安装 Docker 桌面端</a>》</p>
+<h1 id="克隆-Coze-代码仓库"><a href="#克隆-Coze-代码仓库" class="headerlink" title="克隆 Coze 代码仓库"></a>克隆 Coze 代码仓库</h1><p>克隆 Coze 源代码至本地环境。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">假设当前最新版本为 0.2.2</span></span><br><span class="line">git clone https://github.com/coze-dev/coze-studio.git --branch v0.2.2</span><br></pre></td></tr></table></figure>
+
+<p>很多人可能访问github有问题，所以也可以用gitee：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://gitee.com/coze-dev/coze-studio.git --branch v0.2.0</span><br></pre></td></tr></table></figure>
+
+<h1 id="启动Coze"><a href="#启动Coze" class="headerlink" title="启动Coze"></a>启动Coze</h1><p>step1: Coze 源代码目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd coze-studio</span><br></pre></td></tr></table></figure>
+
+<p>step2: 复制模型配置模版</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp backend/conf/model/template/model_template_ark_doubao-seed-1.6.yaml backend/conf/model/ark_doubao-seed-1.6.yaml</span><br></pre></td></tr></table></figure>
+
+<p>step3: 在配置文件目录下，修改模版文件。</p>
+<ul>
+<li>进入目录 backend&#x2F;conf&#x2F;model。打开复制后的文件ark_doubao-seed-1.6.yaml。</li>
+<li>设置 id、meta.conn_config.api_key、meta.conn_config.model 字段，并保存文件。<ul>
+<li>id：Coze Studio 中的模型 ID，由开发者自行定义，必须是非 0 的整数，且全局唯一。模型上线后请勿修改模型 id 。</li>
+<li>meta.conn_config.api_key：模型服务的 API Key，在本示例中为火山方舟的 API Key，获取方式可参考<a target="_blank" rel="noopener" href="https://www.volcengine.com/docs/82379/1541594">获取火山方舟 API Key</a>。</li>
+<li>meta.conn_config.model：模型服务的 model ID，在本示例中为火山方舟 doubao-seed-1.6 模型接入点的 Endpoint ID，获取方式可参考<a target="_blank" rel="noopener" href="https://www.volcengine.com/docs/82379/1099522">获取 Endpoint ID</a>。</li>
+</ul>
+</li>
+</ul>
+<p>step4: 部署并启动服务。 首次部署并启动 Coze Studio 需要拉取镜像、构建本地镜像，可能耗时较久，请耐心等待。部署过程中，你会看到以下日志信息。如果看到提示 “Container coze-server Started”，表示 Coze Studio 服务已成功启动。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动服务</span></span><br><span class="line">cd docker</span><br><span class="line">cp .env.example .env</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>运行命令后，你应该会看到类似以下的输出，显示所有容器的状态和端口映射：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[+] Running 11/11</span><br><span class="line"> ✔ Container coze-redis          Healthy                                          1.1s </span><br><span class="line"> ✔ Container coze-minio          Healthy                                          1.1s </span><br><span class="line"> ✔ Container coze-mysql          Healthy                                          1.1s </span><br><span class="line"> ✔ Container coze-nsqlookupd     Healthy                                          0.6s </span><br><span class="line"> ✔ Container coze-nsqd           Running                                          0.0s </span><br><span class="line"> ✔ Container coze-nsqadmin       Running                                          0.0s </span><br><span class="line"> ✔ Container coze-elasticsearch  Healthy                                          1.1s </span><br><span class="line"> ✔ Container coze-etcd           Healthy                                          0.6s </span><br><span class="line"> ✔ Container coze-milvus         Healthy                                          1.1s </span><br><span class="line"> ✔ Container coze-server         Running                                          0.0s </span><br><span class="line"> ✔ Container coze-web            Running                                          0.0s                                     54.2s </span><br></pre></td></tr></table></figure>
+
+<p>最后检查是否所有容器都正常运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose ps</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">NAME                 IMAGE                                            COMMAND                    SERVICE         CREATED         STATUS                   PORTS</span><br><span class="line">coze-elasticsearch   bitnami/elasticsearch:8.18.0                     &quot;/opt/bitnami/script…&quot;    elasticsearch   4 minutes ago   Up 3 minutes (healthy)   0.0.0.0:52418-&gt;9200/tcp, [::]:52418-&gt;9200/tcp</span><br><span class="line">coze-etcd            bitnami/etcd:3.5                                 &quot;/opt/bitnami/script…&quot;    etcd            4 minutes ago   Up 3 minutes (healthy)   0.0.0.0:2379-2380-&gt;2379-2380/tcp, [::]:2379-2380-&gt;2379-2380/tcp</span><br><span class="line">coze-milvus          milvusdb/milvus:v2.5.10                          &quot;/tini -- bash -c &#x27;\n…&quot;   milvus          4 minutes ago   Up 3 minutes (healthy)   0.0.0.0:52469-&gt;9091/tcp, [::]:52469-&gt;9091/tcp, 0.0.0.0:52468-&gt;19530/tcp, [::]:52468-&gt;19530/tcp</span><br><span class="line">coze-minio           minio/minio:RELEASE.2025-06-13T11-33-47Z-cpuv1   &quot;/bin/sh -c &#x27;# Run i…&quot;    minio           4 minutes ago   Up 3 minutes (healthy)   0.0.0.0:52413-&gt;9000/tcp, [::]:52413-&gt;9000/tcp, 0.0.0.0:52414-&gt;9001/tcp, [::]:52414-&gt;9001/tcp</span><br><span class="line">coze-mysql           mysql:8.4.5                                      &quot;docker-entrypoint.s…&quot;    mysql           4 minutes ago   Up 3 minutes (healthy)   0.0.0.0:52424-&gt;3306/tcp, [::]:52424-&gt;3306/tcp</span><br><span class="line">coze-nsqadmin        nsqio/nsq:v1.2.1                                 &quot;/nsqadmin --lookupd…&quot;    nsqadmin        4 minutes ago   Up 3 minutes             0.0.0.0:52449-&gt;4171/tcp, [::]:52449-&gt;4171/tcp</span><br><span class="line">coze-nsqd            nsqio/nsq:v1.2.1                                 &quot;/nsqd --lookupd-tcp…&quot;    nsqd            4 minutes ago   Up 3 minutes (healthy)   0.0.0.0:52451-&gt;4150/tcp, [::]:52451-&gt;4150/tcp, 0.0.0.0:52450-&gt;4151/tcp, [::]:52450-&gt;4151/tcp</span><br><span class="line">coze-nsqlookupd      nsqio/nsq:v1.2.1                                 &quot;/nsqlookupd&quot;              nsqlookupd      4 minutes ago   Up 3 minutes (healthy)   0.0.0.0:52415-&gt;4160/tcp, [::]:52415-&gt;4160/tcp, 0.0.0.0:52416-&gt;4161/tcp, [::]:52416-&gt;4161/tcp</span><br><span class="line">coze-redis           bitnami/redis:8.0                                &quot;/opt/bitnami/script…&quot;    redis           4 minutes ago   Up 3 minutes (healthy)   0.0.0.0:52417-&gt;6379/tcp, [::]:52417-&gt;6379/tcp</span><br><span class="line">coze-server          opencoze/opencoze:latest                         &quot;/app/opencoze&quot;            coze-server     4 minutes ago   Up 34 seconds            0.0.0.0:8889-&gt;8889/tcp, [::]:8889-&gt;8889/tcp, 0.0.0.0:52970-&gt;8888/tcp, [::]:52970-&gt;8888/tcp</span><br><span class="line">coze-web             opencoze/web:latest                              &quot;/docker-entrypoint.…&quot;    coze-web        4 minutes ago   Up 30 seconds            0.0.0.0:8888-&gt;80/tcp, [::]:8888-&gt;80/tcp</span><br></pre></td></tr></table></figure>
+
+<p>通过这些步骤，你可以在本地成功安装 Coze。</p>
+<h1 id="更新-Coze"><a href="#更新-Coze" class="headerlink" title="更新 Coze"></a>更新 Coze</h1><p>进入 dify 源代码的 docker 目录，按顺序执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd coze-studio/docker</span><br><span class="line">docker compose down</span><br><span class="line">git pull origin main</span><br><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>同步环境变量配置 (重要！)</p>
+<ul>
+<li>如果 .env.example 文件有更新，请务必同步修改你本地的 .env 文件。</li>
+<li>检查 .env 文件中的所有配置项，确保它们与你的实际运行环境相匹配。你可能需要将 .env.example 中的新变量添加到 .env 文件中，并更新已更改的任何值。</li>
+</ul>
+<h1 id="访问-Coze"><a href="#访问-Coze" class="headerlink" title="访问 Coze"></a>访问 Coze</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">本地环境</span></span><br><span class="line">http://localhost:8888/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">服务器环境</span></span><br><span class="line">http://your_server_ip:8888/</span><br></pre></td></tr></table></figure>
+<p><a class="simple-lightbox" href="/img.png"><img   src="/images/loading.svg" data-src="/img.png"  alt="img.png" lazyload></a><br><a class="simple-lightbox" href="/img_1.png"><img   src="/images/loading.svg" data-src="/img_1.png"  alt="img_1.png" lazyload></a></p>
+<h1 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h1><p>编辑 .env 文件中的环境变量值。然后重新启动 Coze：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker compose down</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>完整的环境变量集合可以在 docker&#x2F;.env.example 中找到。</p>
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="top-box-text">前提条件</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%85%8B%E9%9A%86-Coze-%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93"><span class="top-box-text">克隆 Coze 代码仓库</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%90%AF%E5%8A%A8Coze"><span class="top-box-text">启动Coze</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E6%9B%B4%E6%96%B0-Coze"><span class="top-box-text">更新 Coze</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%AE%BF%E9%97%AE-Coze"><span class="top-box-text">访问 Coze</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="top-box-text">自定义配置</span></a></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/llm/dify/dockercompose-bu-shu-dify/">
+          <h3 class="post-title">
+            
+            下一篇：DockerCompose部署Dify
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+
