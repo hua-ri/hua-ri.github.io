@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>Mcp-Golang-SDK</title>
+<meta name="keywords" content="Mcp-Golang-SDK, 花日の博客">
+<meta name="description" content="前言官方SDK仓库：https://github.com/modelcontextprotocol/go-sdk官方demo：https://github.com/modelcontextprotocol/go-sdk/blob/main/">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Mcp-Golang-SDK">
+<meta property="og:description" content="前言官方SDK仓库：https://github.com/modelcontextprotocol/go-sdk官方demo：https://github.com/modelcontextprotocol/go-sdk/blob/main/">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">Mcp-Golang-SDK</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-13</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/llm/">
+              llm
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/mcp/">
+              mcp
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>官方SDK仓库：<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/go-sdk">https://github.com/modelcontextprotocol/go-sdk</a><br>官方demo：<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/go-sdk/blob/main/examples/hello/main.go">https://github.com/modelcontextprotocol/go-sdk/blob/main/examples/hello/main.go</a></p>
+<p>demo代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Copyright 2025 The Go MCP SDK Authors. All rights reserved.</span></span><br><span class="line"><span class="comment">// Use of this source code is governed by an MIT-style</span></span><br><span class="line"><span class="comment">// license that can be found in the LICENSE file.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">&quot;context&quot;</span></span><br><span class="line">        <span class="string">&quot;flag&quot;</span></span><br><span class="line">        <span class="string">&quot;fmt&quot;</span></span><br><span class="line">        <span class="string">&quot;log&quot;</span></span><br><span class="line">        <span class="string">&quot;net/http&quot;</span></span><br><span class="line">        <span class="string">&quot;net/url&quot;</span></span><br><span class="line">        <span class="string">&quot;os&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;github.com/modelcontextprotocol/go-sdk/mcp&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> httpAddr = flag.String(<span class="string">&quot;http&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;if set, use streamable HTTP at this address, instead of stdin/stdout&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> HiArgs <span class="keyword">struct</span> &#123;</span><br><span class="line">        Name <span class="type">string</span> <span class="string">`json:&quot;name&quot; jsonschema:&quot;the name to say hi to&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SayHi</span><span class="params">(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[HiArgs])</span></span> (*mcp.CallToolResultFor[<span class="keyword">struct</span>&#123;&#125;], <span class="type">error</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &amp;mcp.CallToolResultFor[<span class="keyword">struct</span>&#123;&#125;]&#123;</span><br><span class="line">                Content: []mcp.Content&#123;</span><br><span class="line">                        &amp;mcp.TextContent&#123;Text: <span class="string">&quot;Hi &quot;</span> + params.Arguments.Name&#125;,</span><br><span class="line">                &#125;,</span><br><span class="line">        &#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">PromptHi</span><span class="params">(ctx context.Context, ss *mcp.ServerSession, params *mcp.GetPromptParams)</span></span> (*mcp.GetPromptResult, <span class="type">error</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> &amp;mcp.GetPromptResult&#123;</span><br><span class="line">                Description: <span class="string">&quot;Code review prompt&quot;</span>,</span><br><span class="line">                Messages: []*mcp.PromptMessage&#123;</span><br><span class="line">                        &#123;Role: <span class="string">&quot;user&quot;</span>, Content: &amp;mcp.TextContent&#123;Text: <span class="string">&quot;Say hi to &quot;</span> + params.Arguments[<span class="string">&quot;name&quot;</span>]&#125;&#125;,</span><br><span class="line">                &#125;,</span><br><span class="line">        &#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        flag.Parse()</span><br><span class="line"></span><br><span class="line">        server := mcp.NewServer(&amp;mcp.Implementation&#123;Name: <span class="string">&quot;greeter&quot;</span>&#125;, <span class="literal">nil</span>)</span><br><span class="line">        mcp.AddTool(server, &amp;mcp.Tool&#123;Name: <span class="string">&quot;greet&quot;</span>, Description: <span class="string">&quot;say hi&quot;</span>&#125;, SayHi)</span><br><span class="line">        server.AddPrompt(&amp;mcp.Prompt&#123;Name: <span class="string">&quot;greet&quot;</span>&#125;, PromptHi)</span><br><span class="line">        server.AddResource(&amp;mcp.Resource&#123;</span><br><span class="line">                Name:     <span class="string">&quot;info&quot;</span>,</span><br><span class="line">                MIMEType: <span class="string">&quot;text/plain&quot;</span>,</span><br><span class="line">                URI:      <span class="string">&quot;embedded:info&quot;</span>,</span><br><span class="line">        &#125;, handleEmbeddedResource)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> *httpAddr != <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">                handler := mcp.NewStreamableHTTPHandler(<span class="function"><span class="keyword">func</span><span class="params">(*http.Request)</span></span> *mcp.Server &#123;</span><br><span class="line">                        <span class="keyword">return</span> server</span><br><span class="line">                &#125;, <span class="literal">nil</span>)</span><br><span class="line">                log.Printf(<span class="string">&quot;MCP handler listening at %s&quot;</span>, *httpAddr)</span><br><span class="line">                http.ListenAndServe(*httpAddr, handler)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                t := mcp.NewLoggingTransport(mcp.NewStdioTransport(), os.Stderr)</span><br><span class="line">                <span class="keyword">if</span> err := server.Run(context.Background(), t); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                        log.Printf(<span class="string">&quot;Server failed: %v&quot;</span>, err)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> embeddedResources = <span class="keyword">map</span>[<span class="type">string</span>]<span class="type">string</span>&#123;</span><br><span class="line">        <span class="string">&quot;info&quot;</span>: <span class="string">&quot;This is the hello example server.&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleEmbeddedResource</span><span class="params">(_ context.Context, _ *mcp.ServerSession, params *mcp.ReadResourceParams)</span></span> (*mcp.ReadResourceResult, <span class="type">error</span>) &#123;</span><br><span class="line">        u, err := url.Parse(params.URI)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> u.Scheme != <span class="string">&quot;embedded&quot;</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;wrong scheme: %q&quot;</span>, u.Scheme)</span><br><span class="line">        &#125;</span><br><span class="line">        key := u.Opaque</span><br><span class="line">        text, ok := embeddedResources[key]</span><br><span class="line">        <span class="keyword">if</span> !ok &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;no embedded resource named %q&quot;</span>, key)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &amp;mcp.ReadResourceResult&#123;</span><br><span class="line">                Contents: []*mcp.ResourceContents&#123;</span><br><span class="line">                        &#123;URI: params.URI, MIMEType: <span class="string">&quot;text/plain&quot;</span>, Text: text&#125;,</span><br><span class="line">                &#125;,</span><br><span class="line">        &#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h1><h2 id="1-程序结构"><a href="#1-程序结构" class="headerlink" title="1. 程序结构"></a>1. 程序结构</h2><ul>
+<li>flag 模块：用于解析命令行参数，这里定义了一个 httpAddr，用于指定是否通过 HTTP 提供服务。</li>
+<li>mcp 模块：这是 MCP SDK 的核心模块，用于定义和处理 tool、prompt 和 resource。</li>
+<li>main 函数：程序入口，负责初始化 mcp.Server，注册工具、提示和资源，并启动服务。</li>
+</ul>
+<h2 id="2-mcp-的主要概念"><a href="#2-mcp-的主要概念" class="headerlink" title="2. mcp 的主要概念"></a>2. mcp 的主要概念</h2><ul>
+<li>Tool：工具函数，用于执行特定的任务。例如，SayHi 是一个工具函数，它接收一个名字，并返回一个问候消息。</li>
+<li>Prompt：提示函数，用于生成对话框的内容。例如，PromptHi 生成一个提示用户输入名字的对话框。</li>
+<li>Resource：资源，用于存储和提供数据。例如，handleEmbeddedResource 提供了一个嵌入式的资源，返回一段文本。</li>
+</ul>
+<h2 id="3-程序的主要功能"><a href="#3-程序的主要功能" class="headerlink" title="3. 程序的主要功能"></a>3. 程序的主要功能</h2><ul>
+<li>工具函数 SayHi：<ul>
+<li>接收一个名字作为参数。</li>
+<li>返回一个包含问候消息的 mcp.CallToolResult。</li>
+</ul>
+</li>
+<li>提示函数 PromptHi：<ul>
+<li>生成一个提示消息，让用户输入名字。</li>
+</ul>
+</li>
+<li>资源 info：<ul>
+<li>提供一个嵌入式的资源，返回一段固定的文本。</li>
+</ul>
+</li>
+<li>服务启动：<ul>
+<li>如果设置了 httpAddr，则通过 HTTP 提供服务。</li>
+<li>否则，通过标准输入&#x2F;输出与用户交互。</li>
+</ul>
+</li>
+</ul>
+<h1 id="mcp-的-prompt、resource-和-tool-的使用"><a href="#mcp-的-prompt、resource-和-tool-的使用" class="headerlink" title="mcp 的 prompt、resource 和 tool 的使用"></a>mcp 的 prompt、resource 和 tool 的使用</h1><h2 id="1-Tool-的使用"><a href="#1-Tool-的使用" class="headerlink" title="1. Tool 的使用"></a>1. Tool 的使用</h2><ul>
+<li>定义：通过 mcp.AddTool 将工具函数注册到 mcp.Server。</li>
+<li>调用：客户端可以通过调用工具的名称，传递参数，获取结果。</li>
+<li>示例：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mcp.AddTool(server, &amp;mcp.Tool&#123;Name: <span class="string">&quot;greet&quot;</span>, Description: <span class="string">&quot;say hi&quot;</span>&#125;, SayHi)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-Prompt-的使用"><a href="#2-Prompt-的使用" class="headerlink" title="2. Prompt 的使用"></a>2. Prompt 的使用</h2><ul>
+<li>定义：通过 server.AddPrompt 将提示函数注册到 mcp.Server。</li>
+<li>调用：客户端可以通过调用提示的名称，获取提示内容。</li>
+<li>示例：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.AddPrompt(&amp;mcp.Prompt&#123;Name: <span class="string">&quot;greet&quot;</span>&#125;, PromptHi)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3-Resource-的使用"><a href="#3-Resource-的使用" class="headerlink" title="3. Resource 的使用"></a>3. Resource 的使用</h2><ul>
+<li>定义：通过 server.AddResource 将资源注册到 mcp.Server。</li>
+<li>调用：客户端可以通过资源的 URI 获取资源内容。</li>
+<li>示例：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server.AddResource(&amp;mcp.Resource&#123;</span><br><span class="line">    Name:     <span class="string">&quot;info&quot;</span>,</span><br><span class="line">    MIMEType: <span class="string">&quot;text/plain&quot;</span>,</span><br><span class="line">    URI:      <span class="string">&quot;embedded:info&quot;</span>,</span><br><span class="line">&#125;, handleEmbeddedResource)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="资源查询场景的举例"><a href="#资源查询场景的举例" class="headerlink" title="资源查询场景的举例"></a>资源查询场景的举例</h1><h2 id="1-功能概述"><a href="#1-功能概述" class="headerlink" title="1. 功能概述"></a>1. 功能概述</h2><p>实现一个查询资源的 mcp 服务，包含以下功能：</p>
+<ul>
+<li>用户输入查询文本进行模糊查询。</li>
+<li>如果查询结果超过阈值（如10个），系统自动提取资源类型列表，并提示用户选择一个资源类型。</li>
+<li>用户选择资源类型后，系统进行更精确的查询并返回结果。</li>
+</ul>
+<h2 id="2-伪代码实现"><a href="#2-伪代码实现" class="headerlink" title="2. 伪代码实现"></a>2. 伪代码实现</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">        <span class="string">&quot;context&quot;</span></span><br><span class="line">        <span class="string">&quot;flag&quot;</span></span><br><span class="line">        <span class="string">&quot;fmt&quot;</span></span><br><span class="line">        <span class="string">&quot;log&quot;</span></span><br><span class="line">        <span class="string">&quot;net/http&quot;</span></span><br><span class="line">        <span class="string">&quot;os&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;github.com/modelcontextprotocol/go-sdk/mcp&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> httpAddr = flag.String(<span class="string">&quot;http&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;if set, use streamable HTTP at this address, instead of stdin/stdout&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询资源的工具参数</span></span><br><span class="line"><span class="keyword">type</span> QueryResourcesArgs <span class="keyword">struct</span> &#123;</span><br><span class="line">        QueryText   <span class="type">string</span> <span class="string">`json:&quot;queryText&quot; jsonschema:&quot;the query text&quot;`</span></span><br><span class="line">        ResourceType <span class="type">string</span> <span class="string">`json:&quot;resourceType&quot; jsonschema:&quot;the resource type (optional)&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义资源结构体</span></span><br><span class="line"><span class="keyword">type</span> Resource <span class="keyword">struct</span> &#123;</span><br><span class="line">        ID   <span class="type">string</span></span><br><span class="line">        Type <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 资源管理器</span></span><br><span class="line"><span class="keyword">type</span> ResourceManager <span class="keyword">struct</span> &#123;</span><br><span class="line">        Resources []Resource</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建资源管理器</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewResourceManager</span><span class="params">(resources []Resource)</span></span> *ResourceManager &#123;</span><br><span class="line">        <span class="keyword">return</span> &amp;ResourceManager&#123;</span><br><span class="line">                Resources: resources,</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询资源的工具</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(rm *ResourceManager)</span></span> QueryResources(ctx context.Context, ss *mcp.ServerSession, params *mcp.CallToolParamsFor[QueryResourcesArgs]) (*mcp.CallToolResultFor[[]<span class="type">string</span>], <span class="type">error</span>) &#123;</span><br><span class="line">        queryText := params.Arguments.QueryText</span><br><span class="line">        resourceType := params.Arguments.ResourceType</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 模糊查询逻辑</span></span><br><span class="line">        <span class="keyword">var</span> results []<span class="type">string</span></span><br><span class="line">        <span class="keyword">for</span> _, res := <span class="keyword">range</span> rm.Resources &#123;</span><br><span class="line">                <span class="keyword">if</span> resourceType == <span class="string">&quot;&quot;</span> || res.Type == resourceType &#123;</span><br><span class="line">                        <span class="keyword">if</span> queryText == <span class="string">&quot;&quot;</span> || res.ID == queryText &#123;</span><br><span class="line">                                results = <span class="built_in">append</span>(results, res.ID)</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果结果超过阈值，提示用户选择资源类型</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(results) &gt; <span class="number">10</span> &#123;</span><br><span class="line">                <span class="comment">// 提取资源类型列表</span></span><br><span class="line">                typeSet := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="keyword">struct</span>&#123;&#125;)</span><br><span class="line">                <span class="keyword">for</span> _, res := <span class="keyword">range</span> rm.Resources &#123;</span><br><span class="line">                        typeSet[res.Type] = <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">                &#125;</span><br><span class="line">                typeList := <span class="built_in">make</span>([]<span class="type">string</span>, <span class="number">0</span>, <span class="built_in">len</span>(typeSet))</span><br><span class="line">                <span class="keyword">for</span> t := <span class="keyword">range</span> typeSet &#123;</span><br><span class="line">                        typeList = <span class="built_in">append</span>(typeList, t)</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 提示用户选择资源类型</span></span><br><span class="line">                <span class="keyword">return</span> &amp;mcp.CallToolResultFor[[]<span class="type">string</span>]&#123;</span><br><span class="line">                        Content: []mcp.Content&#123;</span><br><span class="line">                                &amp;mcp.TextContent&#123;Text: fmt.Sprintf(<span class="string">&quot;Too many results (%d). Please specify a resource type from: %v&quot;</span>, <span class="built_in">len</span>(results), typeList)&#125;,</span><br><span class="line">                        &#125;,</span><br><span class="line">                &#125;, <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> &amp;mcp.CallToolResultFor[[]<span class="type">string</span>]&#123;</span><br><span class="line">                Content: []mcp.Content&#123;</span><br><span class="line">                        &amp;mcp.TextContent&#123;Text: fmt.Sprintf(<span class="string">&quot;Found %d resources: %v&quot;</span>, <span class="built_in">len</span>(results), results)&#125;,</span><br><span class="line">                &#125;,</span><br><span class="line">                Result: results,</span><br><span class="line">        &#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提示用户选择资源类型</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(rm *ResourceManager)</span></span> PromptSelectResourceType(ctx context.Context, ss *mcp.ServerSession, params *mcp.GetPromptParams) (*mcp.GetPromptResult, <span class="type">error</span>) &#123;</span><br><span class="line">        <span class="comment">// 提取资源类型列表</span></span><br><span class="line">        typeSet := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="keyword">struct</span>&#123;&#125;)</span><br><span class="line">        <span class="keyword">for</span> _, res := <span class="keyword">range</span> rm.Resources &#123;</span><br><span class="line">                typeSet[res.Type] = <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        typeList := <span class="built_in">make</span>([]<span class="type">string</span>, <span class="number">0</span>, <span class="built_in">len</span>(typeSet))</span><br><span class="line">        <span class="keyword">for</span> t := <span class="keyword">range</span> typeSet &#123;</span><br><span class="line">                typeList = <span class="built_in">append</span>(typeList, t)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> &amp;mcp.GetPromptResult&#123;</span><br><span class="line">                Description: <span class="string">&quot;Select a resource type&quot;</span>,</span><br><span class="line">                Messages: []*mcp.PromptMessage&#123;</span><br><span class="line">                        &#123;Role: <span class="string">&quot;user&quot;</span>, Content: &amp;mcp.TextContent&#123;Text: fmt.Sprintf(<span class="string">&quot;Please select a resource type from: %v&quot;</span>, typeList)&#125;&#125;,</span><br><span class="line">                &#125;,</span><br><span class="line">        &#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        flag.Parse()</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化资源管理器</span></span><br><span class="line">        mockResources := []Resource&#123;</span><br><span class="line">                &#123;<span class="string">&quot;doc1&quot;</span>, <span class="string">&quot;document&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;doc2&quot;</span>, <span class="string">&quot;document&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;img1&quot;</span>, <span class="string">&quot;image&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;img2&quot;</span>, <span class="string">&quot;image&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;vid1&quot;</span>, <span class="string">&quot;video&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;vid2&quot;</span>, <span class="string">&quot;video&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;doc3&quot;</span>, <span class="string">&quot;document&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;doc4&quot;</span>, <span class="string">&quot;document&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;img3&quot;</span>, <span class="string">&quot;image&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;img4&quot;</span>, <span class="string">&quot;image&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;vid3&quot;</span>, <span class="string">&quot;video&quot;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&quot;vid4&quot;</span>, <span class="string">&quot;video&quot;</span>&#125;,</span><br><span class="line">        &#125;</span><br><span class="line">        resourceManager := NewResourceManager(mockResources)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化 MCP 服务器</span></span><br><span class="line">        server := mcp.NewServer(&amp;mcp.Implementation&#123;Name: <span class="string">&quot;resource-query&quot;</span>&#125;, <span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 注册工具和提示</span></span><br><span class="line">        mcp.AddTool(server, &amp;mcp.Tool&#123;Name: <span class="string">&quot;queryResources&quot;</span>, Description: <span class="string">&quot;Query resources by text and type&quot;</span>&#125;, resourceManager.QueryResources)</span><br><span class="line">        server.AddPrompt(&amp;mcp.Prompt&#123;Name: <span class="string">&quot;selectResourceType&quot;</span>&#125;, resourceManager.PromptSelectResourceType)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 启动服务</span></span><br><span class="line">        <span class="keyword">if</span> *httpAddr != <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">                handler := mcp.NewStreamableHTTPHandler(<span class="function"><span class="keyword">func</span><span class="params">(*http.Request)</span></span> *mcp.Server &#123;</span><br><span class="line">                        <span class="keyword">return</span> server</span><br><span class="line">                &#125;, <span class="literal">nil</span>)</span><br><span class="line">                log.Printf(<span class="string">&quot;MCP handler listening at %s&quot;</span>, *httpAddr)</span><br><span class="line">                http.ListenAndServe(*httpAddr, handler)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                t := mcp.NewLoggingTransport(mcp.NewStdioTransport(), os.Stderr)</span><br><span class="line">                <span class="keyword">if</span> err := server.Run(context.Background(), t); err != <span class="literal">nil</span> &#123;</span><br><span class="line">                        log.Printf(<span class="string">&quot;Server failed: %v&quot;</span>, err)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-功能说明"><a href="#3-功能说明" class="headerlink" title="3. 功能说明"></a>3. 功能说明</h2><ol>
+<li>工具 queryResources：</li>
+</ol>
+<ul>
+<li>输入参数：<ul>
+<li>queryText：用户输入的查询文本。</li>
+<li>resourceType：用户指定的资源类型（可选）。</li>
+</ul>
+</li>
+<li>逻辑：<ul>
+<li>如果用户未指定资源类型，进行模糊查询。</li>
+<li>如果查询结果超过10个，提取资源类型列表，并提示用户选择一个资源类型。</li>
+<li>如果用户指定了资源类型，进行精确查询。</li>
+</ul>
+</li>
+<li>输出：<ul>
+<li>如果结果超过阈值，返回提示信息，列出资源类型供用户选择。</li>
+<li>如果结果未超过阈值，返回查询到的资源列表。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>动态提示：</li>
+</ol>
+<ul>
+<li>当查询结果超过10个时，系统会自动提取资源类型列表，并提示用户选择一个资源类型。</li>
+<li>提示信息格式：Too many results (12). Please specify a resource type from: [document, image, video]。</li>
+</ul>
+<h1 id="4-交互流程"><a href="#4-交互流程" class="headerlink" title="4. 交互流程"></a>4. 交互流程</h1><ol>
+<li>用户首次查询：</li>
+</ol>
+<ul>
+<li>用户调用 queryResources，仅输入查询文本（如 queryText&#x3D;”doc”）。</li>
+<li>系统进行模糊查询，返回结果。</li>
+<li>如果结果超过10个，系统提取资源类型列表，并提示用户选择资源类型。</li>
+</ul>
+<ol start="2">
+<li>用户选择资源类型：</li>
+</ol>
+<ul>
+<li>用户根据提示选择一个资源类型（如 resourceType&#x3D;”document”）。</li>
+<li>用户再次调用 queryResources，输入查询文本和资源类型。</li>
+<li>系统进行精确查询，返回更精确的结果。</li>
+</ul>
+<h1 id="5-示例交互"><a href="#5-示例交互" class="headerlink" title="5. 示例交互"></a>5. 示例交互</h1><p>首次查询：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User: queryResources(queryText=&quot;doc&quot;)</span><br><span class="line">System: Too many results (12). Please specify a resource type from: [document, image, video]</span><br></pre></td></tr></table></figure>
+<p>用户选择资源类型并再次查询：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User: queryResources(queryText=&quot;doc&quot;, resourceType=&quot;document&quot;)</span><br><span class="line">System: Found 4 resources: [doc1, doc2, doc3, doc4]</span><br></pre></td></tr></table></figure>
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%89%8D%E8%A8%80"><span class="top-box-text">前言</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="top-box-text">代码解析</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="top-box-text">1. 程序结构</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#2-mcp-%E7%9A%84%E4%B8%BB%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="top-box-text">2. mcp 的主要概念</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#3-%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="top-box-text">3. 程序的主要功能</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#mcp-%E7%9A%84-prompt%E3%80%81resource-%E5%92%8C-tool-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="top-box-text">mcp 的 prompt、resource 和 tool 的使用</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#1-Tool-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="top-box-text">1. Tool 的使用</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#2-Prompt-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="top-box-text">2. Prompt 的使用</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#3-Resource-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="top-box-text">3. Resource 的使用</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%B5%84%E6%BA%90%E6%9F%A5%E8%AF%A2%E5%9C%BA%E6%99%AF%E7%9A%84%E4%B8%BE%E4%BE%8B"><span class="top-box-text">资源查询场景的举例</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#1-%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0"><span class="top-box-text">1. 功能概述</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#2-%E4%BC%AA%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="top-box-text">2. 伪代码实现</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#3-%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E"><span class="top-box-text">3. 功能说明</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#4-%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B"><span class="top-box-text">4. 交互流程</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#5-%E7%A4%BA%E4%BE%8B%E4%BA%A4%E4%BA%92"><span class="top-box-text">5. 示例交互</span></a></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/devops/argo/argorollout-ce-shi/">
+          <h3 class="post-title">
+            
+            下一篇：ArgoRollout测试
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
