@@ -154,7 +154,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: apiextensions.k8s.io/v1</span><br><span class="line">kind: CustomResourceDefinition</span><br><span class="line">metadata:</span><br><span class="line">  name: test ## CRD名称</span><br><span class="line">spec:</span><br><span class="line">  conversion:</span><br><span class="line">    strategy: None</span><br><span class="line">  group: tq   # REST API: /apis/&lt;group&gt;/&lt;version&gt;</span><br><span class="line">  names:</span><br><span class="line">    kind: App</span><br><span class="line">    listKind: AppList</span><br><span class="line">    plural: apps</span><br><span class="line">    singular: app</span><br><span class="line">  scope: Namespaced  # 资源是否区分namespace</span><br><span class="line">  versions: [] # 资源的版本信息，例如：v1beta1、v1等</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-3-自定义控制器-Controller"><a href="#2-3-自定义控制器-Controller" class="headerlink" title="2.3 自定义控制器 Controller"></a>2.3 自定义控制器 Controller</h2><p>Kubernetes控制器会监视资源的创建&#x2F;更新&#x2F;删除事件，并触发 Reconcile 函数作为响应。Reconcile 是一个使用 object（Resource 的实例）的命名空间和实例名来调用的函数，使object的实际状态与object的Spec中定义的状态保持一致。 调用完成后，Reconcile 会将object的状态更新为当前实际状态。</p>
-<p>在实际环境中，Controller会被打包成镜像，以Deployment拉起的Pod的形式应用在集群中，并用service中的ClusterIP方式进行服务暴露发现。<br><a class="simple-lightbox" href="/img.png"><img src="/images/loading.svg" data-src="/img.png" alt="img.png" lazyload></a></p>
+<p>在实际环境中，Controller会被打包成镜像，以Deployment拉起的Pod的形式应用在集群中，并用service中的ClusterIP方式进行服务暴露发现。<br><a class="simple-lightbox" href="/img.png"><img   src="/images/loading.svg" data-src="/img.png"  alt="img.png" lazyload></a></p>
 <h2 id="2-4-名词解释"><a href="#2-4-名词解释" class="headerlink" title="2.4 名词解释"></a>2.4 名词解释</h2><ul>
 <li>CRD（Custom Resource Definition）: CRD允许用户在Kubernetes API中定义新的资源类型。这意味着你可以创建符合自己应用或服务特性的资源，这些资源能够被Kubernetes以类似于内置资源（如Pods、Services）的方式来管理和操作。CRD实质上是扩展了Kubernetes API的功能，允许你定义资源的名称、字段结构、验证规则等元数据。通过YAML或JSON文件定义CRD后，Kubernetes会将其注册到API服务器，使得用户可以通过Kubernetes API来创建、读取、更新和删除这些自定义资源。</li>
 <li>CR（Custom Resource）: CR是基于CRD定义的具体实例。一旦定义了CRD，用户就可以创建该类型的资源实例，这些实例就是CR。每个CR代表了特定的配置或状态，比如一个特定数据库实例的配置、一个复杂应用的部署配置等。CR的工作原理类似于Kubernetes中的其他对象（如Deployment、Service），但它们是用户自定义的，能够更好地适应特定应用的需求。开发者或运维人员通过创建CR来声明他们希望在集群中部署或管理的资源状态，而与之关联的Operator会根据这些声明来创建、维护和更新实际的Kubernetes对象。</li>
@@ -236,7 +236,7 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type DemoSpecs struct &#123;</span><br><span class="line">        // FiledA 允许为空</span><br><span class="line">        FieldA string `json&quot;fieldA,omitempty&quot;`</span><br><span class="line">        </span><br><span class="line">        // FieldB 不允许为空</span><br><span class="line">        FieldB string `json&quot;fieldB&quot;`</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="3-Operator-工作流程"><a href="#3-Operator-工作流程" class="headerlink" title="3 Operator 工作流程"></a>3 Operator 工作流程</h1><p><a class="simple-lightbox" href="/img_1.png"><img src="/images/loading.svg" data-src="/img_1.png" alt="img_1.png" lazyload></a></p>
+<h1 id="3-Operator-工作流程"><a href="#3-Operator-工作流程" class="headerlink" title="3 Operator 工作流程"></a>3 Operator 工作流程</h1><p><a class="simple-lightbox" href="/img_1.png"><img   src="/images/loading.svg" data-src="/img_1.png"  alt="img_1.png" lazyload></a></p>
 <h2 id="3-1-核心组件"><a href="#3-1-核心组件" class="headerlink" title="3.1 核心组件"></a>3.1 核心组件</h2><ul>
 <li>Informer：一个依赖 Kubernetes List&#x2F;Watch API 、可监听事件并触发回调函数的二级缓存工具包。<ul>
 <li>在启动时Reflector调用List API获得crd的全部Object实例，并缓存在Local Store中。</li>
@@ -255,7 +255,7 @@
 <li>LocalStore 会周期性地把所有资源的信息重新放到 DeltaFIFO 中，确保二级缓存间的同步，让失败的事件得到重新处理。若在入队前发现DeltaFIFO中已经有新版本的Object实例，则不入队。</li>
 <li>Reconcilers是核心处理逻辑，但其只获取资源的名称和命名空间，并不知道资源的操作(增删改)是什么，也不知道资源的其他信息。目的就是在收到资源变更时，根据object的期望状态直接调整资源的状态。</li>
 </ul>
-<h2 id="3-3-以Pod为对象的流程示例"><a href="#3-3-以Pod为对象的流程示例" class="headerlink" title="3.3 以Pod为对象的流程示例"></a>3.3 以Pod为对象的流程示例</h2><p><a class="simple-lightbox" href="/img_2.png"><img src="/images/loading.svg" data-src="/img_2.png" alt="img_2.png" lazyload></a></p>
+<h2 id="3-3-以Pod为对象的流程示例"><a href="#3-3-以Pod为对象的流程示例" class="headerlink" title="3.3 以Pod为对象的流程示例"></a>3.3 以Pod为对象的流程示例</h2><p><a class="simple-lightbox" href="/img_2.png"><img   src="/images/loading.svg" data-src="/img_2.png"  alt="img_2.png" lazyload></a></p>
 <ul>
 <li>Informer 在初始化时，Reflector 会先通过 List API 向 API Server 获得所有的 Pod 实例。</li>
 <li>Reflector 拿到全部 Pod 实例后，会将全部 Pod 实例放到 Local Store 中</li>
@@ -276,7 +276,7 @@
 <li>YAML文件编写： 手动编写CRD定义和Deployment定义YAML文件，通过kubectl apply完成k8s资源的扩展和控制器的部署。</li>
 <li>其他开发工作： 比如对Controller进行二进制编译、镜像打包上传、以Deployment中的Pod的形式部署到K8s中等。</li>
 </ul>
-<p>等后面来看下，这些工作中，脚手架能帮忙实现多少。<br><a class="simple-lightbox" href="/img_3.png"><img src="/images/loading.svg" data-src="/img_3.png" alt="img_3.png" lazyload></a></p>
+<p>等后面来看下，这些工作中，脚手架能帮忙实现多少。<br><a class="simple-lightbox" href="/img_3.png"><img   src="/images/loading.svg" data-src="/img_3.png"  alt="img_3.png" lazyload></a></p>
 
         </div>
           

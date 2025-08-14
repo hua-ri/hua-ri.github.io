@@ -120,7 +120,7 @@ Kaniko 并不依赖于 Docker 守护进程，完全在用户空间根据 D">
           <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Github地址：<a target="_blank" rel="noopener" href="https://github.com/GoogleContainerTools/kaniko">https://github.com/GoogleContainerTools/kaniko</a></p>
 <p>Kaniko 是谷歌开源的一款构建容器镜像的工具。</p>
 <p>Kaniko 并不依赖于 Docker 守护进程，完全在用户空间根据 Dockerfile 的内容逐行执行命令来构建镜像，这就使得在一些无法获取 docker 守护 进程的环境下也能够构建镜像。</p>
-<p><a class="simple-lightbox" href="/img_27.png"><img src="/images/loading.svg" data-src="/img_27.png" alt="img_27.png" lazyload></a></p>
+<p><a class="simple-lightbox" href="/img_27.png"><img   src="/images/loading.svg" data-src="/img_27.png"  alt="img_27.png" lazyload></a></p>
 <p>Kaniko 会先提取基础镜像(Dockerfile FROM 之后的镜像)的文件系统，然后根据 Dockerfile 中所描述的，一条条执行命令，每一条命令执行完以后会在用户空间下面创建一个 snapshot，并与存储与内存中的上一个状态进行比对，如果有变化，就将新的修改生成一个镜像层添加在基础镜像上，并且将相关的修改信息写入镜像元数据中。等所有命令执行完，kaniko 会将最终镜像推送到指定的远端镜像仓库。</p>
 <h1 id="获取Kaniko镜像"><a href="#获取Kaniko镜像" class="headerlink" title="获取Kaniko镜像"></a>获取Kaniko镜像</h1><p>这个需要在linux环境下执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker 登陆</span></span><br><span class="line">docker login --username=huari@xxx public-registry.cn-hangzhou.cr.aliyuncs.com</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">通过代理拉取镜像</span></span><br><span class="line">docker pull --platform linux/amd64 m.daocloud.io/gcr.io/kaniko-project/executor:latest</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改tag</span></span><br><span class="line">docker tag m.daocloud.io/gcr.io/kaniko-project/executor:latest public-registry.cn-hangzhou.cr.aliyuncs.com/public/kaniko-executor:latest</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">推送镜像</span></span><br><span class="line">docker push public-registry.cn-hangzhou.cr.aliyuncs.com/public/kaniko-executor:latest</span><br></pre></td></tr></table></figure>
@@ -153,13 +153,13 @@ Kaniko 并不依赖于 Docker 守护进程，完全在用户空间根据 D">
 <li>dockerfile：Dockerfile 路径</li>
 <li>destination：构建后推送的镜像地址</li>
 </ul>
-<p>已经可以完成镜像编译和上传：<br><a class="simple-lightbox" href="/img_28.png"><img src="/images/loading.svg" data-src="/img_28.png" alt="img_28.png" lazyload></a></p>
+<p>已经可以完成镜像编译和上传：<br><a class="simple-lightbox" href="/img_28.png"><img   src="/images/loading.svg" data-src="/img_28.png"  alt="img_28.png" lazyload></a></p>
 <h2 id="K8s集群环境进行测试"><a href="#K8s集群环境进行测试" class="headerlink" title="K8s集群环境进行测试"></a>K8s集群环境进行测试</h2><h3 id="生成推送镜像凭证"><a href="#生成推送镜像凭证" class="headerlink" title="生成推送镜像凭证"></a>生成推送镜像凭证</h3><p>这个是用来给kaniko向阿里云推送镜像使用的</p>
 <p>凭证信息：</p>
 <ul>
 <li>YOUR_USERNAME（我的阿里云 dockerhub账户）:huari@xxx</li>
 <li>YOUR_PASSWORD（我的阿里云 dockerhub账户密码）: 域账号密码</li>
-<li>YOUR_EMAIL （我的叠纸邮箱）：<a href="mailto:&#120;&#120;&#x78;&#64;&#x79;&#121;&#121;&#x2e;&#110;&#x65;&#116;">&#120;&#120;&#x78;&#64;&#x79;&#121;&#121;&#x2e;&#110;&#x65;&#116;</a></li>
+<li>YOUR_EMAIL （我的叠纸邮箱）：<a href="mailto:&#x78;&#x78;&#x78;&#x40;&#x79;&#121;&#x79;&#x2e;&#110;&#101;&#x74;">&#x78;&#x78;&#x78;&#x40;&#x79;&#121;&#x79;&#x2e;&#110;&#101;&#x74;</a></li>
 <li>YOUR_NAMESPACE (集群内的namespace)</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create secret docker-registry aliyun-regsecret --docker-server=dev-registry.cn-hangzhou.cr.aliyuncs.com --docker-username=&lt;YOUR_USERNAME&gt; --docker-password=&lt;YOUR_PASSWORD&gt; --docker-email=&lt;YOUR_EMAIL&gt; -n &lt;YOUR_NAMESPACE&gt;</span><br></pre></td></tr></table></figure>
@@ -185,7 +185,7 @@ Kaniko 并不依赖于 Docker 守护进程，完全在用户空间根据 D">
 <li>–docker-username&#x3D;<your-name>  # 阿里云账号用户名<ul>
 <li>用户名：阿里云 主账号 或 RAM 子账号 用户名</li>
 </ul>
-</your-name></li>
+</li>
 <li>–docker-password&#x3D;<your-pword> # 阿里云账号密码或访问凭证<ul>
 <li>主账号：登录密码</li>
 <li>推荐使用 访问凭证（更安全）：<ol>
@@ -194,8 +194,8 @@ Kaniko 并不依赖于 Docker 守护进程，完全在用户空间根据 D">
 </ol>
 </li>
 </ul>
-</your-pword></li>
-<li>–docker-email&#x3D;<your-email>    # 账号邮箱（Kubernetes 要求但实际不验证）</your-email></li>
+</li>
+<li>–docker-email&#x3D;<your-email>    # 账号邮箱（Kubernetes 要求但实际不验证）</li>
 </ul>
 </li>
 </ul>
@@ -211,7 +211,7 @@ Kaniko 并不依赖于 Docker 守护进程，完全在用户空间根据 D">
 <p>查看运行日志（部分）：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl logs pod/kaniko-builder -n huari      </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">···</span><br><span class="line"></span><br><span class="line">INFO[0020] Taking snapshot of full filesystem...        </span><br><span class="line">INFO[0022] Pushing image to dev-registry.cn-hangzhou.cr.aliyuncs.com/ops/kaniko-demo:v3 </span><br><span class="line">INFO[0032] Pushed dev-registry.cn-hangzhou.cr.aliyuncs.com/ops/kaniko-demo@sha256:baf97628a3981542e85db343f77c9e0dba5f666c868c2c6671290f7bfdc0d207 </span><br></pre></td></tr></table></figure>
 
-<p>已经打包好镜像：<br><a class="simple-lightbox" href="/img_29.png"><img src="/images/loading.svg" data-src="/img_29.png" alt="img_29.png" lazyload></a></p>
+<p>已经打包好镜像：<br><a class="simple-lightbox" href="/img_29.png"><img   src="/images/loading.svg" data-src="/img_29.png"  alt="img_29.png" lazyload></a></p>
 <p>并且pod状态已经变为：Completed</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl get pod -n huari</span><br><span class="line">NAME             READY   STATUS      RESTARTS   AGE</span><br><span class="line">kaniko-builder   0/1     Completed   0          2m22s</span><br></pre></td></tr></table></figure>
 

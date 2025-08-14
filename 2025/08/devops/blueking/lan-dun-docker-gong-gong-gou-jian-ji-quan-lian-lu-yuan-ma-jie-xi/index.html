@@ -161,7 +161,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST /api/builders                                         // 路由</span><br><span class="line">    ↓</span><br><span class="line">createBuilder handler</span><br><span class="line">    ↓</span><br><span class="line">service.CreateBuilder</span><br><span class="line">    ↓</span><br><span class="line">task.DoCreateBuilder</span><br><span class="line">    ↓</span><br><span class="line">kubeclient.CreateDeployment(dep)                           // 通过 k8s API 创建 Deployment，拉起实际的构建容器</span><br></pre></td></tr></table></figure>
 
 <p>dispatch-k8s-manager 服务负责与 Kubernetes API 交互，接收来自 dispatch-docker 的 HTTP 请求后，组装 Deployment 对象并调用 k8s API，最终在集群中拉起实际的构建容器，完成流水线的环境准备。</p>
-<h2 id="总结时序图"><a href="#总结时序图" class="headerlink" title="总结时序图"></a>总结时序图</h2><p><a class="simple-lightbox" href="/img_24.png"><img src="/images/loading.svg" data-src="/img_24.png" alt="img_24.png" lazyload></a></p>
+<h2 id="总结时序图"><a href="#总结时序图" class="headerlink" title="总结时序图"></a>总结时序图</h2><p><a class="simple-lightbox" href="/img_24.png"><img   src="/images/loading.svg" data-src="/img_24.png"  alt="img_24.png" lazyload></a></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><table>
 <thead>
 <tr>
