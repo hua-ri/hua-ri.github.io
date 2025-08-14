@@ -209,14 +209,16 @@
 
 <p>请根据结果进行操作：</p>
 <ul>
-<li><p>如果有显示镜像数据，可以修改镜像地址为蓝鲸国内仓库，也可改为你已经缓存在内网的镜像：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec -it -n blueking bk-ci-mysql-0 -- /bin/bash -c &#x27;MYSQL_PWD=&quot;$MYSQL_ROOT_PASSWORD&quot; mysql -u root -e &quot;USE devops_ci_store; UPDATE  T_IMAGE SET IMAGE_REPO_NAME=\&quot;hub.bktencent.com/bkci/ci\&quot; WHERE IMAGE_CODE = \&quot;bkci\&quot; ;&quot;&#x27;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>然后重新查询数据库，可以看到 IMAGE_REPO_NAME 列已经更新。</p>
-</li>
-<li><p>如果没有镜像，可以新增：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec -n blueking deploy/bk-ci-bk-ci-store -- \curl -vs http://bk-ci-bk-ci-store.blueking.svc.cluster.local/api/op/market/image/init -X POST \-H &#x27;X-DEVOPS-UID: admin&#x27; -H &#x27;Content-type: application/json&#x27; -d &#x27;&#123;&quot;imageCode&quot;:&quot;bkci&quot;,&quot;imageName&quot;:&quot;bkci&quot;,&quot;imageRepo&quot;:&quot;hub.bktencent.com/bkci/ci&quot;,&quot;projectCode&quot;:&quot;demo&quot;,&quot;userId&quot;:&quot;admin&quot;&#125;&#x27; | jq .</span><br></pre></td></tr></table></figure></li>
+<li>如果有显示镜像数据，可以修改镜像地址为蓝鲸国内仓库，也可改为你已经缓存在内网的镜像：</li>
 </ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec -it -n blueking bk-ci-mysql-0 -- /bin/bash -c &#x27;MYSQL_PWD=&quot;$MYSQL_ROOT_PASSWORD&quot; mysql -u root -e &quot;USE devops_ci_store; UPDATE  T_IMAGE SET IMAGE_REPO_NAME=\&quot;hub.bktencent.com/bkci/ci\&quot; WHERE IMAGE_CODE = \&quot;bkci\&quot; ;&quot;&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后重新查询数据库，可以看到 IMAGE_REPO_NAME 列已经更新。</li>
+<li>如果没有镜像，可以新增：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec -n blueking deploy/bk-ci-bk-ci-store -- \curl -vs http://bk-ci-bk-ci-store.blueking.svc.cluster.local/api/op/market/image/init -X POST \-H &#x27;X-DEVOPS-UID: admin&#x27; -H &#x27;Content-type: application/json&#x27; -d &#x27;&#123;&quot;imageCode&quot;:&quot;bkci&quot;,&quot;imageName&quot;:&quot;bkci&quot;,&quot;imageRepo&quot;:&quot;hub.bktencent.com/bkci/ci&quot;,&quot;projectCode&quot;:&quot;demo&quot;,&quot;userId&quot;:&quot;admin&quot;&#125;&#x27; | jq .</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <ul>
 <li>提示</li>

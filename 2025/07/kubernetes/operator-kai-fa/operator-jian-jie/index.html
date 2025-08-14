@@ -117,8 +117,10 @@
 <ul>
 <li>观察期望的状态。</li>
 <li>观察所管理资源的当前状态。</li>
-<li>采取行动，使托管的资源处在期望的状态。<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for &#123;</span><br><span class="line">    actualState := GetResourceActualState(rsvc)</span><br><span class="line">    expectState := GetResourceExpectState(rsvc)</span><br><span class="line">    if actualState == expectState &#123;</span><br><span class="line">        // do nothing</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        Reconcile(rsvc)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>采取行动，使托管的资源处在期望的状态。</li>
 </ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for &#123;</span><br><span class="line">    actualState := GetResourceActualState(rsvc)</span><br><span class="line">    expectState := GetResourceExpectState(rsvc)</span><br><span class="line">    if actualState == expectState &#123;</span><br><span class="line">        // do nothing</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        Reconcile(rsvc)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="1-2-声明式API"><a href="#1-2-声明式API" class="headerlink" title="1.2 声明式API"></a>1.2 声明式API</h2><p>声明式API：告诉K8S你要什么，而不是告诉它你怎么做。</p>
 <p>声明式API的操作体现在kubectl apply命令上，在对象创建和后续修改更新都使用apply命令，告诉k8s对象的终态即可，底层的实现是一个对原有API对象的PATCH操作实现的，可以一次性处理多个写操作，相对于命令时一个个的命令大大提高了操作效率。</p>
 <p>比如上面的deployment.yaml文件，在提交后会通过Group&#x2F;Version&#x2F;Resource的分级来找到deployment在GO语言中的结构体定义，从而将YAML描述转换成一个序列化的deployment对象，并通过etcd的API将其保存起来。</p>
