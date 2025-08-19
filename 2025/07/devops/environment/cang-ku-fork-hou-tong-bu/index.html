@@ -12,17 +12,21 @@
 <title>仓库fork后同步</title>
 <meta name="keywords" content="仓库fork后同步, 花日の博客">
 <meta name="description" content="fork仓库
+
 此时会将该仓库在复制一份，并存放在你的路径下：
+
 设置上游代码库进入本地代码库：
-12345678910111213# 从自己仓库进行clone(fork)git clone https://github.com/qiqiuya">
+12345678910111213# 从自己仓库进行clone(fork)git clone https://github.com/qiqiu">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:title" content="仓库fork后同步">
 <meta property="og:description" content="fork仓库
+
 此时会将该仓库在复制一份，并存放在你的路径下：
+
 设置上游代码库进入本地代码库：
-12345678910111213# 从自己仓库进行clone(fork)git clone https://github.com/qiqiuya">
+12345678910111213# 从自己仓库进行clone(fork)git clone https://github.com/qiqiu">
 
 <link rel="shortcut icon" href="/images/huari.ico">
 <link rel="stylesheet" href="/style/main.css">
@@ -112,8 +116,10 @@
       </div>
       <div class="post-content-wrapper">
         <div class="post-content">
-          <h1 id="fork仓库"><a href="#fork仓库" class="headerlink" title="fork仓库"></a>fork仓库</h1><p><a class="simple-lightbox" href="/img_4.png"><img   src="/images/loading.svg" data-src="/img_4.png"  alt="img_4.png" lazyload></a><br><a class="simple-lightbox" href="/img_5.png"><img   src="/images/loading.svg" data-src="/img_5.png"  alt="img_5.png" lazyload></a></p>
-<p>此时会将该仓库在复制一份，并存放在你的路径下：<br><a class="simple-lightbox" href="/img_6.png"><img   src="/images/loading.svg" data-src="/img_6.png"  alt="img_6.png" lazyload></a></p>
+          <h1 id="fork仓库"><a href="#fork仓库" class="headerlink" title="fork仓库"></a>fork仓库</h1><p><a class="simple-lightbox" target="_blank" rel="noopener" href="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_4.png"><img   src="/images/loading.svg" data-src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_4.png"  alt="img_4" lazyload></a></p>
+<p><a class="simple-lightbox" target="_blank" rel="noopener" href="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_5.png"><img   src="/images/loading.svg" data-src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_5.png"  alt="img_5" lazyload></a></p>
+<p>此时会将该仓库在复制一份，并存放在你的路径下：</p>
+<p><a class="simple-lightbox" target="_blank" rel="noopener" href="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_6.png"><img   src="/images/loading.svg" data-src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_6.png"  alt="img_6" lazyload></a></p>
 <h1 id="设置上游代码库"><a href="#设置上游代码库" class="headerlink" title="设置上游代码库"></a>设置上游代码库</h1><p>进入本地代码库：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从自己仓库进行<span class="built_in">clone</span>(fork)</span></span><br><span class="line">git clone https://github.com/qiqiuyang/bk-ci.git</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入目录</span></span><br><span class="line">cd bk-ci/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看目录结构</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">CHANGELOG              CONTRIBUTING.md  README_EN.md  support-files</span><br><span class="line">CODE_OF_CONDUCT.en.md  docker-images    README.md     THIRD-PARTY-NOTICES.txt</span><br><span class="line">CODE_OF_CONDUCT.md     docs             scripts</span><br><span class="line">CODEOWNERS             helm-charts      SECURITY.md</span><br><span class="line">CONTRIBUTING.en.md     LICENSE.txt      src</span><br></pre></td></tr></table></figure>
 
@@ -133,8 +139,10 @@
 <p>到这里就比较清晰了，在更新时就是把源仓库的更新的分支放在upstream下，例如：upstream&#x2F;master</p>
 <p>所以同步远端分支时，就是git fetch upstream，然后将自己的分支merge目标分支内容，例如：git merge upstream&#x2F;master</p>
 <p>如此便可以实现自己的fork仓库同步源仓库的新变更了。</p>
-<h1 id="向原仓库发起PR"><a href="#向原仓库发起PR" class="headerlink" title="向原仓库发起PR"></a>向原仓库发起PR</h1><p>首先在自己的仓库点击Pull Request-&gt;New Pull Request，进入以下截图页面<br><a class="simple-lightbox" href="/img_7.png"><img   src="/images/loading.svg" data-src="/img_7.png"  alt="img_7.png" lazyload></a></p>
-<p>base repository为原仓库的某个分支，head repository为fork仓库发某个分支, head的某个分支代码合到base的某个分支<br><a class="simple-lightbox" href="/img_8.png"><img   src="/images/loading.svg" data-src="/img_8.png"  alt="img_8.png" lazyload></a></p>
+<h1 id="向原仓库发起PR"><a href="#向原仓库发起PR" class="headerlink" title="向原仓库发起PR"></a>向原仓库发起PR</h1><p>首先在自己的仓库点击Pull Request-&gt;New Pull Request，进入以下截图页面</p>
+<p><a class="simple-lightbox" target="_blank" rel="noopener" href="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_7.png"><img   src="/images/loading.svg" data-src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_7.png"  alt="img_7" lazyload></a></p>
+<p>base repository为原仓库的某个分支，head repository为fork仓库发某个分支, head的某个分支代码合到base的某个分支</p>
+<p><a class="simple-lightbox" target="_blank" rel="noopener" href="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_8.png"><img   src="/images/loading.svg" data-src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesenv_img_8.png"  alt="img_8" lazyload></a></p>
 <p>进入原仓库的Pull requests可看到刚才发起的PR， 这里就不演示了</p>
 
         </div>

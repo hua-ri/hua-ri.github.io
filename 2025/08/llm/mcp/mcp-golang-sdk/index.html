@@ -142,24 +142,18 @@
 <h1 id="mcp-的-prompt、resource-和-tool-的使用"><a href="#mcp-的-prompt、resource-和-tool-的使用" class="headerlink" title="mcp 的 prompt、resource 和 tool 的使用"></a>mcp 的 prompt、resource 和 tool 的使用</h1><h2 id="1-Tool-的使用"><a href="#1-Tool-的使用" class="headerlink" title="1. Tool 的使用"></a>1. Tool 的使用</h2><ul>
 <li>定义：通过 mcp.AddTool 将工具函数注册到 mcp.Server。</li>
 <li>调用：客户端可以通过调用工具的名称，传递参数，获取结果。</li>
-<li>示例：</li>
+<li>示例：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mcp.AddTool(server, &amp;mcp.Tool&#123;Name: <span class="string">&quot;greet&quot;</span>, Description: <span class="string">&quot;say hi&quot;</span>&#125;, SayHi)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mcp.AddTool(server, &amp;mcp.Tool&#123;Name: <span class="string">&quot;greet&quot;</span>, Description: <span class="string">&quot;say hi&quot;</span>&#125;, SayHi)</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-Prompt-的使用"><a href="#2-Prompt-的使用" class="headerlink" title="2. Prompt 的使用"></a>2. Prompt 的使用</h2><ul>
 <li>定义：通过 server.AddPrompt 将提示函数注册到 mcp.Server。</li>
 <li>调用：客户端可以通过调用提示的名称，获取提示内容。</li>
-<li>示例：</li>
+<li>示例：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.AddPrompt(&amp;mcp.Prompt&#123;Name: <span class="string">&quot;greet&quot;</span>&#125;, PromptHi)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.AddPrompt(&amp;mcp.Prompt&#123;Name: <span class="string">&quot;greet&quot;</span>&#125;, PromptHi)</span><br></pre></td></tr></table></figure>
-
 <h2 id="3-Resource-的使用"><a href="#3-Resource-的使用" class="headerlink" title="3. Resource 的使用"></a>3. Resource 的使用</h2><ul>
 <li>定义：通过 server.AddResource 将资源注册到 mcp.Server。</li>
 <li>调用：客户端可以通过资源的 URI 获取资源内容。</li>
-<li>示例：</li>
+<li>示例：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server.AddResource(&amp;mcp.Resource&#123;</span><br><span class="line">    Name:     <span class="string">&quot;info&quot;</span>,</span><br><span class="line">    MIMEType: <span class="string">&quot;text/plain&quot;</span>,</span><br><span class="line">    URI:      <span class="string">&quot;embedded:info&quot;</span>,</span><br><span class="line">&#125;, handleEmbeddedResource)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server.AddResource(&amp;mcp.Resource&#123;</span><br><span class="line">    Name:     <span class="string">&quot;info&quot;</span>,</span><br><span class="line">    MIMEType: <span class="string">&quot;text/plain&quot;</span>,</span><br><span class="line">    URI:      <span class="string">&quot;embedded:info&quot;</span>,</span><br><span class="line">&#125;, handleEmbeddedResource)</span><br></pre></td></tr></table></figure>
-
 <h1 id="资源查询场景的举例"><a href="#资源查询场景的举例" class="headerlink" title="资源查询场景的举例"></a>资源查询场景的举例</h1><h2 id="1-功能概述"><a href="#1-功能概述" class="headerlink" title="1. 功能概述"></a>1. 功能概述</h2><p>实现一个查询资源的 mcp 服务，包含以下功能：</p>
 <ul>
 <li>用户输入查询文本进行模糊查询。</li>
