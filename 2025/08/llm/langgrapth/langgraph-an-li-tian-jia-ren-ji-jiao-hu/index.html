@@ -11,12 +11,14 @@
 
 <title>LangGraph 案例：添加人机交互</title>
 <meta name="keywords" content="LangGraph 案例：添加人机交互, 花日の博客">
-<meta name="description" content="">
+<meta name="description" content="代理可能不可靠，可能需要人工输入才能成功完成任务。同样，对于某些操作，您可能需要在运行前获得人工批准，以确保一切按预期运行。
+LangGraph 的持久层支持人机交互工作流，允许根据用户反馈暂停和恢复执行。此功能的主要接口是interrup">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:title" content="LangGraph 案例：添加人机交互">
-<meta property="og:description" content="">
+<meta property="og:description" content="代理可能不可靠，可能需要人工输入才能成功完成任务。同样，对于某些操作，您可能需要在运行前获得人工批准，以确保一切按预期运行。
+LangGraph 的持久层支持人机交互工作流，允许根据用户反馈暂停和恢复执行。此功能的主要接口是interrup">
 
 <link rel="shortcut icon" href="/images/huari.ico">
 <link rel="stylesheet" href="/style/main.css">
@@ -106,7 +108,13 @@
       </div>
       <div class="post-content-wrapper">
         <div class="post-content">
-          
+          <p>代理可能不可靠，可能需要人工输入才能成功完成任务。同样，对于某些操作，您可能需要在运行前获得人工批准，以确保一切按预期运行。</p>
+<p>LangGraph 的<a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/concepts/persistence/">持久</a>层支持<strong>人机交互</strong>工作流，允许根据用户反馈暂停和恢复执行。此功能的主要接口是<code>interrupt</code>函数。在节点内部调用该函数将暂停执行。可以通过传入<a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/concepts/low_level/#command">Command</a><code>interrupt</code>来恢复执行，并接收来自用户的新输入。</p>
+<p><code>interrupt</code>从人体工程学角度来看，它与 Python 的内置类似<code>input()</code>，<a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/how-tos/human_in_the_loop/add-human-in-the-loop/">但有一些注意事项</a>。</p>
+<blockquote>
+<p>本教程以<a target="_blank" rel="noopener" href="https://papergames.feishu.cn/wiki/RmfgwkjM5iPEdzk3HMZcdvTInpd">“添加内存”</a>为基础。</p>
+</blockquote>
+
         </div>
           
         <div class="top-div">
