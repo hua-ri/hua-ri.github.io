@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    
+
+    
+<script>!function(){var e=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("use-color-scheme")||"auto";("dark"===t||e&&"light"!==t)&&document.documentElement.classList.toggle("dark",!0)}()</script>
+    
+
+<meta charset="utf-8" >
+
+<title>LangGraph 案例：基本的聊天机器人</title>
+<meta name="keywords" content="LangGraph 案例：基本的聊天机器人, 花日の博客">
+<meta name="description" content="环境准备UV安装mac环境安装命令：
+1curl -LsSf https://astral.sh/uv/install.sh | sh
+
+安装python 3.1312345# 查看已安装的python版本uv python list# 安">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="LangGraph 案例：基本的聊天机器人">
+<meta property="og:description" content="环境准备UV安装mac环境安装命令：
+1curl -LsSf https://astral.sh/uv/install.sh | sh
+
+安装python 3.1312345# 查看已安装的python版本uv python list# 安">
+
+<link rel="shortcut icon" href="/images/huari.ico">
+<link rel="stylesheet" href="/style/main.css">
+
+  <link rel="stylesheet" href="/style/simple-lightbox.min.css"><meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div id="app" class="main">
+
+<div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="http://hua-ri.cn">
+        <img class="avatar" src="/images/huari-image.png" alt="logo" width="32px" height="32px">
+      </a>
+      <a href="http://hua-ri.cn">
+        <h1 class="site-title">花日の博客</h1>
+      </a>
+    </div>
+    <div class="right">
+        <i class="icon menu-switch icon-menu-outline" ></i>
+    </div>
+  </div>
+</div>
+
+<div class="menu-container" style="height: 0;opacity: 0;">
+<nav class="menu-list">
+  
+    
+      <a href="/" class="menu purple-link">
+        首页
+      </a>
+    
+  
+    
+      <a href="/tags" class="menu purple-link">
+        标签
+      </a>
+    
+  
+    
+      <a href="/categories" class="menu purple-link">
+        分类
+      </a>
+    
+  
+    
+      <a href="/archives" class="menu purple-link">
+        归档
+      </a>
+    
+  
+    
+      <a href="/about" class="menu purple-link">
+        关于
+      </a>
+    
+  
+</nav>
+</div>
+
+
+
+  <div class="content-container">
+    <div class="post-detail">
+      
+      <h2 class="post-title">LangGraph 案例：基本的聊天机器人</h2>
+      <div class="post-info post-detail-info">
+        <span><i class="icon icon-calendar-outline"></i> 2025-08-20</span>
+        
+          <span>
+          <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="/tags/llm/">
+              llm
+                
+                  ，
+                
+              </a>
+            
+              <a href="/tags/langgraph/">
+              langgraph
+                
+              </a>
+            
+          </span>
+        
+      </div>
+      <div class="post-content-wrapper">
+        <div class="post-content">
+          <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="UV安装"><a href="#UV安装" class="headerlink" title="UV安装"></a>UV安装</h2><p>mac环境安装命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -LsSf https://astral.sh/uv/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装python-3-13"><a href="#安装python-3-13" class="headerlink" title="安装python 3.13"></a>安装python 3.13</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看已安装的python版本</span></span><br><span class="line">uv python list</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装python版本3.13</span></span><br><span class="line">uv python install 3.13</span><br></pre></td></tr></table></figure>
+
+<h2 id="进入工作空间"><a href="#进入工作空间" class="headerlink" title="进入工作空间"></a>进入工作空间</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p llm &amp;&amp; cd llm</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建工作目录：chatbot"><a href="#创建工作目录：chatbot" class="headerlink" title="创建工作目录：chatbot"></a>创建工作目录：chatbot</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用指定python版本初始化工作目录</span></span><br><span class="line">uv init chatbot -p 3.13</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入工作目录</span></span><br><span class="line">cd chatbot</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加依赖</span></span><br><span class="line">uv add langchain langgraph langsmith langchain_openai langchain_core dotenv IPython </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">对于使用pip作为依赖关系的项目</span></span><br><span class="line">pip install -U langchain langgraph</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="创建StateGraph"><a href="#创建StateGraph" class="headerlink" title="创建StateGraph"></a>创建<code>StateGraph</code></h1><p>现在，您可以使用 LangGraph 创建一个基本的聊天机器人。该聊天机器人将直接回复用户消息。</p>
+<p>首先创建一个<code>StateGraph</code>。该<code>StateGraph</code>对象将聊天机器人的结构定义为“状态机”。我们将添加<code>nodes</code>来表示聊天机器人可以调用的 llm 和函数，并<code>edges</code>指定机器人如何在这些函数之间转换。</p>
+<p><em>API</em> <em>参考：</em><em><a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.state.StateGraph">StateGraph</a></em> <em>|<strong><a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/reference/constants/#langgraph.constants.START">开始</a></strong>|<strong><a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/reference/constants/#langgraph.constants.END">结束</a></strong>|</em> <em><a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.message.add_messages">add_messages</a></em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Annotated</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> TypedDict</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, START, END</span><br><span class="line"><span class="keyword">from</span> langgraph.graph.message <span class="keyword">import</span> add_messages</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    <span class="comment"># Messages have the type &quot;list&quot;. The `add_messages` function</span></span><br><span class="line">    <span class="comment"># in the annotation defines how this state key should be updated</span></span><br><span class="line">    <span class="comment"># (in this case, it appends messages to the list, rather than overwriting them)</span></span><br><span class="line">    messages: Annotated[<span class="built_in">list</span>, add_messages]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">graph_builder = StateGraph(State)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们的图表现在可以处理两个关键任务：</p>
+<ol>
+<li>每个都<code>node</code>可以接收当前<code>State</code>输入并输出状态更新。</li>
+<li><code>messages</code>由于预先构建了 reducer 函数，更新将附加到现有列表而不是覆盖它。</li>
+</ol>
+<blockquote>
+<p><strong>概念</strong></p>
+<p>定义图时，第一步是定义它的<code>State</code>。<code>State</code>包含图的架构和处理状态更新的<a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/concepts/low_level/#reducers">Reducer 函数</a><code>State</code>。在我们的示例中，是一个包含一个键的架构：<code>messages</code>。 Reducer 函数用于将新消息附加到列表，而不是覆盖它。没有 Reducer 注释的键将覆盖先前的值。</p>
+<p>要了解有关状态、reducer 和相关概念的更多信息，请参阅<a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.message.add_messages">LangGraph 参考文档</a>。</p>
+</blockquote>
+<h1 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h1><p>接下来，添加一个“ <code>chatbot</code>”节点。<strong>节点</strong>代表工作单元，通常是常规函数。</p>
+<p>我们依然选择ollama本地部署的<code>qwen2.5:7b</code>模型</p>
+<h2 id="env"><a href="#env" class="headerlink" title=".env"></a>.env</h2><p>我是通过<code>ollama</code>本地部署<code>qwen2.5:7b</code>，这里可以根据实际情况自行变更。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LLM_API_KEY=sk-ollama</span><br><span class="line">LLM_MODEL_NAME=qwen2.5:7b</span><br><span class="line">LLM_BASE_URL=http://localhost:11434/v1</span><br><span class="line">LLM_TEMPERATURE = 0</span><br><span class="line">LLM_MAX_TOKENS = 512</span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以如此家在配置：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line">load_dotenv()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>对应的通过ChatOpenAI初始化llm实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"></span><br><span class="line">llm = ChatOpenAI(</span><br><span class="line">    model=os.getenv(<span class="string">&quot;LLM_MODEL_NAME&quot;</span>),</span><br><span class="line">    api_key=os.getenv(<span class="string">&quot;LLM_API_KEY&quot;</span>),</span><br><span class="line">    base_url=os.getenv(<span class="string">&quot;LLM_BASE_URL&quot;</span>),</span><br><span class="line">    temperature=os.getenv(<span class="string">&quot;LLM_TEMPERATURE&quot;</span>),</span><br><span class="line">    max_tokens=os.getenv(<span class="string">&quot;LLM_MAX_TOKENS&quot;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们现在可以将聊天模型合并到一个简单的节点中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">chatbot</span>(<span class="params">state: State</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: [llm.invoke(state[<span class="string">&quot;messages&quot;</span>])]&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># The first argument is the unique node name</span></span><br><span class="line"><span class="comment"># The second argument is the function or object that will be called whenever</span></span><br><span class="line"><span class="comment"># the node is used.</span></span><br><span class="line">graph_builder.add_node(<span class="string">&quot;chatbot&quot;</span>, chatbot)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>注意</strong>节点函数如何<code>chatbot</code>将当前值<code>State</code>作为输入，并返回一个包含<code>messages</code>键“messages”下更新列表的字典。这是所有 LangGraph 节点函数的基本模式。</p>
+<p><code>add_messages</code>我们的函数将把<code>State</code>LLM 的响应消息附加到状态中已有的任何消息中。</p>
+<h1 id="添加entry点"><a href="#添加entry点" class="headerlink" title="添加entry点"></a>添加<code>entry</code>点</h1><p>添加一个<code>entry</code>点来告诉图表每次运行时<strong>从哪里开始工作：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graph_builder.add_edge(START, <span class="string">&quot;chatbot&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="添加exit点"><a href="#添加exit点" class="headerlink" title="添加exit点"></a>添加<code>exit</code>点</h1><p>添加一个<code>exit</code>点来指示<strong>图表应该在哪里结束执行</strong>。这对于更复杂的流程很有帮助，但即使在像这样的简单图表中，添加结束节点也可以提高清晰度。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graph_builder.add_edge(<span class="string">&quot;chatbot&quot;</span>, <span class="keyword">END</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这告诉图表在运行聊天机器人节点后终止。</p>
+<h1 id="编译图表"><a href="#编译图表" class="headerlink" title="编译图表"></a>编译图表</h1><p>在运行图表之前，我们需要对其进行编译。我们可以通过调用<code>compile()</code> 图表构建器来完成此操作。这将创建一个<code>CompiledGraph</code>我们可以在状态上调用的函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graph = graph_builder.<span class="built_in">compile</span>()</span><br></pre></td></tr></table></figure>
+
+<h1 id="可视化图表（可选）"><a href="#可视化图表（可选）" class="headerlink" title="可视化图表（可选）"></a>可视化图表（可选）</h1><p><code>get_graph</code>您可以使用方法以及“绘制”方法之一，我们可以基于此来实现图的可视化展示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 画图</span></span><br><span class="line">png_bytes = graph.get_graph().draw_mermaid_png()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;graph.png&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(png_bytes)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.system(<span class="string">&quot;open graph.png&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><a class="simple-lightbox" target="_blank" rel="noopener" href="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesimage-20250820225141422.png"><img   src="/images/loading.svg" data-src="https://hua-ri-1308422075.cos.ap-guangzhou.myqcloud.com/huari-blog/imagesimage-20250820225141422.png"  alt="image-20250820225141422" lazyload></a></p>
+<h1 id="运行聊天机器人"><a href="#运行聊天机器人" class="headerlink" title="运行聊天机器人"></a>运行聊天机器人</h1><p>现在运行聊天机器人！</p>
+<blockquote>
+<p>您可以随时通过输入、或退出<code>quit</code>聊天<code>exit</code>循环<code>q</code>。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">stream_graph_updates</span>(<span class="params">user_input: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">for</span> event <span class="keyword">in</span> graph.stream(&#123;<span class="string">&quot;messages&quot;</span>: [&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: user_input&#125;]&#125;):</span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> event.values():</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Assistant:&quot;</span>, value[<span class="string">&quot;messages&quot;</span>][-<span class="number">1</span>].content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        user_input = <span class="built_in">input</span>(<span class="string">&quot;User: &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> user_input.lower() <span class="keyword">in</span> [<span class="string">&quot;quit&quot;</span>, <span class="string">&quot;exit&quot;</span>, <span class="string">&quot;q&quot;</span>]:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Goodbye!&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        stream_graph_updates(user_input)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># fallback if input() is not available</span></span><br><span class="line">        user_input = <span class="string">&quot;What do you know about LangGraph?&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;User: &quot;</span> + user_input)</span><br><span class="line">        stream_graph_updates(user_input)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><p><em>API</em> <em>参考：</em> <em><a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.state.StateGraph">StateGraph</a></em> <em>|</em> <em><a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/reference/constants/#langgraph.constants.START">START</a></em> <em>|</em> <em><a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/reference/constants/#langgraph.constants.END">END</a></em> <em>|</em> <em><a target="_blank" rel="noopener" href="https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.message.add_messages">add_messages</a></em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Annotated</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> typing_extensions <span class="keyword">import</span> TypedDict</span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line"><span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, START, END</span><br><span class="line"><span class="keyword">from</span> langgraph.graph.message <span class="keyword">import</span> add_messages</span><br><span class="line"><span class="keyword">from</span> langchain_openai <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">load_dotenv()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">llm = ChatOpenAI(</span><br><span class="line">    model=os.getenv(<span class="string">&quot;LLM_MODEL_NAME&quot;</span>),</span><br><span class="line">    api_key=os.getenv(<span class="string">&quot;LLM_API_KEY&quot;</span>),</span><br><span class="line">    base_url=os.getenv(<span class="string">&quot;LLM_BASE_URL&quot;</span>),</span><br><span class="line">    temperature=os.getenv(<span class="string">&quot;LLM_TEMPERATURE&quot;</span>),</span><br><span class="line">    max_tokens=os.getenv(<span class="string">&quot;LLM_MAX_TOKENS&quot;</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    <span class="comment"># Messages have the type &quot;list&quot;. The `add_messages` function</span></span><br><span class="line">    <span class="comment"># in the annotation defines how this state key should be updated</span></span><br><span class="line">    <span class="comment"># (in this case, it appends messages to the list, rather than overwriting them)</span></span><br><span class="line">    messages: Annotated[<span class="built_in">list</span>, add_messages]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">graph_builder = StateGraph(State)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">chatbot</span>(<span class="params">state: State</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: [llm.invoke(state[<span class="string">&quot;messages&quot;</span>])]&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># The first argument is the unique node name</span></span><br><span class="line"><span class="comment"># The second argument is the function or object that will be called whenever</span></span><br><span class="line"><span class="comment"># the node is used.</span></span><br><span class="line">graph_builder.add_node(<span class="string">&quot;chatbot&quot;</span>, chatbot)</span><br><span class="line"></span><br><span class="line">graph_builder.add_edge(START, <span class="string">&quot;chatbot&quot;</span>)</span><br><span class="line"></span><br><span class="line">graph_builder.add_edge(<span class="string">&quot;chatbot&quot;</span>, END)</span><br><span class="line"></span><br><span class="line">graph = graph_builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画图</span></span><br><span class="line">png_bytes = graph.get_graph().draw_mermaid_png()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;graph.png&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(png_bytes)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.system(<span class="string">&quot;open graph.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stream_graph_updates</span>(<span class="params">user_input: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="keyword">for</span> event <span class="keyword">in</span> graph.stream(&#123;<span class="string">&quot;messages&quot;</span>: [&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: user_input&#125;]&#125;):</span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> event.values():</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Assistant:&quot;</span>, value[<span class="string">&quot;messages&quot;</span>][-<span class="number">1</span>].content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        user_input = <span class="built_in">input</span>(<span class="string">&quot;User: &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> user_input.lower() <span class="keyword">in</span> [<span class="string">&quot;quit&quot;</span>, <span class="string">&quot;exit&quot;</span>, <span class="string">&quot;q&quot;</span>]:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Goodbye!&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        stream_graph_updates(user_input)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># fallback if input() is not available</span></span><br><span class="line">        user_input = <span class="string">&quot;What do you know about LangGraph?&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;User: &quot;</span> + user_input)</span><br><span class="line">        stream_graph_updates(user_input)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p>对话过程：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">User: What do you know about LangGraph?</span><br><span class="line">Assistant: LangGraph is an open-source knowledge graph project initiated and developed by Alibaba Cloud. It aims to provide researchers and developers with tools and resources for building and utilizing knowledge graphs in various applications, including but not limited to natural language processing (NLP), semantic search, recommendation systems, and more.</span><br><span class="line"></span><br><span class="line">Key features of LangGraph include:</span><br><span class="line"></span><br><span class="line">1. **Data Integration**: Supports the integration of diverse data sources into a unified knowledge graph.</span><br><span class="line">2. **Knowledge Extraction**: Provides tools for extracting structured knowledge from unstructured or semi-structured data.</span><br><span class="line">3. **Query Processing**: Offers efficient query processing capabilities to support complex queries over large-scale graphs.</span><br><span class="line">4. **Visualization and Analysis**: Includes visualization tools to help users understand the structure and content of their knowledge graphs.</span><br><span class="line"></span><br><span class="line">LangGraph is designed to be flexible, scalable, and easy to integrate into existing systems or workflows. It leverages Alibaba Cloud&#x27;s expertise in big data and AI technologies to provide robust support for knowledge graph applications.</span><br><span class="line"></span><br><span class="line">If you need more specific information about LangGraph, such as its technical details, use cases, or documentation, I can try to provide that based on publicly available information.</span><br><span class="line">User: q</span><br><span class="line">Goodbye!</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+        </div>
+          
+        <div class="top-div">
+          <ol class="top-box"><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="top-box-text">环境准备</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#UV%E5%AE%89%E8%A3%85"><span class="top-box-text">UV安装</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E5%AE%89%E8%A3%85python-3-13"><span class="top-box-text">安装python 3.13</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E8%BF%9B%E5%85%A5%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4"><span class="top-box-text">进入工作空间</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%EF%BC%9Achatbot"><span class="top-box-text">创建工作目录：chatbot</span></a></li><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="top-box-text">安装依赖</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%88%9B%E5%BB%BAStateGraph"><span class="top-box-text">创建StateGraph</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E6%B7%BB%E5%8A%A0%E8%8A%82%E7%82%B9"><span class="top-box-text">添加节点</span></a><ol class="top-box-child"><li class="top-box-item top-box-level-2"><a class="top-box-link" href="#env"><span class="top-box-text">.env</span></a></li></ol></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E6%B7%BB%E5%8A%A0entry%E7%82%B9"><span class="top-box-text">添加entry点</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E6%B7%BB%E5%8A%A0exit%E7%82%B9"><span class="top-box-text">添加exit点</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E7%BC%96%E8%AF%91%E5%9B%BE%E8%A1%A8"><span class="top-box-text">编译图表</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E8%A1%A8%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="top-box-text">可视化图表（可选）</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E8%BF%90%E8%A1%8C%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="top-box-text">运行聊天机器人</span></a></li><li class="top-box-item top-box-level-1"><a class="top-box-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="top-box-text">完整代码</span></a></li></ol>
+        </div>
+          
+      </div>
+    </div>
+
+    
+      <div class="next-post">
+        <a class="purple-link" href="/2025/08/llm/langgrapth/langgraph-an-li-sheng-cheng-ti-shi-ci/">
+          <h3 class="post-title">
+            
+            下一篇：LangGraph 案例：生成提示词
+          </h3>
+        </a>
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+<footer>
+<div class="site-footer">
+  <div class="social-container">
+    
+      
+        <a aria-label="跳转至github" href="https://github.com/f-dong" target="_blank">
+          <i class="icon icon-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> <a href="https://github.com/f-dong/hexo-theme-minimalism" target="_blank">Theme</a>
+  
+  
+  
+  
+  
+  
+</div>
+</footer>
+
+
+      </div>
+    </div>
+    
+<script id="hexo-configurations"> window.theme_config = {"image":{"lazyload_enable":true,"lazyload_placeholder":null,"photo_zoom":"simple-lightbox"},"search":{"enable":true,"type":"json","placeholder":"输入关键词搜索...","algolia":{"appID":"","apiKey":"","indexName":""}},"language":"zh-Hans"}; window.is_post = true; </script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+  <script src="/js/simple-lightbox.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {new SimpleLightbox('.post-detail .simple-lightbox', {fileExt: false,captionsData:'alt'});});</script></body>
+</html>
+
